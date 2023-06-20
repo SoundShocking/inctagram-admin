@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useMemo, useState } from 'react'
 
 import { flexRender, getCoreRowModel, Row, useReactTable } from '@tanstack/react-table'
 import { createColumnHelper } from '@tanstack/table-core'
@@ -37,27 +37,31 @@ const RowActions = ({
 }
 
 export const UsersTable = () => {
-  // const { loading, error, data } = useQuery(usersDocument)
-  //
-  // if (loading) return <p>Loading...</p>
-  //
-  // if (error) return <p>Error : {error.message}</p>
-  //
-  // if (data?.users) return <Table users={data.users.items} />
+  const [pageNumber, setPageNumber] = useState(1)
+  const [pageSize, setPageSize] = useState(10)
 
-  const { loading, error, data } = useGetAllUsersQuery()
+  const { loading, error, data } = useGetAllUsersQuery({
+    variables: {
+      pageSize,
+      pageNumber,
+    },
+  })
 
   if (loading) return <p>Loading...</p>
 
   if (error) return <p>Error : {error.message}</p>
 
-  if (data?.users) return <Table users={data.users.items} />
-
-  // const table = useReactTable({
-  //   data: data?.users?.items,
-  //   columns,
-  //   getCoreRowModel: getCoreRowModel(),
-  // })
+  if (data?.users)
+    return (
+      <Table
+        users={data.users.items}
+        pagesCount={data.users.pagesCount}
+        setPageNumber={setPageNumber}
+        setPageSize={setPageSize}
+        pageNumber={pageNumber}
+        pageSize={pageSize}
+      />
+    )
 
   return (
     <>
@@ -72,13 +76,45 @@ export const UsersTable = () => {
 
 interface Props {
   users: Pick<UserForSuperAdminViewModel, 'userId' | 'userName' | 'createdAt'>[]
+  pagesCount: number
+  setPageNumber: (number: number) => void
+  setPageSize: (page: number) => void
+  pageNumber: number
+  pageSize: number
 }
 
-const Table: FC<Props> = ({ users }) => {
+const Table: FC<Props> = ({
+  users,
+  pagesCount,
+  setPageNumber,
+  setPageSize,
+  pageSize,
+  pageNumber,
+}) => {
+  // const pageIndex = 1
+  // const pageSize = 10
+  //
+  // const pagination = useMemo(
+  //   () => ({
+  //     pageIndex,
+  //     pageSize,
+  //   }),
+  //   [pageIndex, pageSize]
+  // )
+
   const table = useReactTable({
     data: users,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    pageCount: pagesCount,
+    state: {
+      pagination: {
+        pageSize,
+        pageIndex: pageNumber,
+      },
+    },
+    manualPagination: true,
+    debugTable: true,
   })
 
   return (
@@ -109,12 +145,34 @@ const Table: FC<Props> = ({ users }) => {
             ))}
           </tbody>
         </table>
-      </div>
 
-      <div>
-        {users.map(user => (
-          <div key={user.userId}>{user.userName}</div>
-        ))}
+        <div>
+          <button onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
+            {'<'}
+          </button>
+
+          {Array.from({ length: table.getPageCount() || 1 }, (_, idx) => idx + 1).map(n => (
+            <button key={n} onClick={() => setPageNumber(n)}>
+              {n}
+            </button>
+          ))}
+
+          <button onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
+            {'>'}
+          </button>
+
+          <select value={pageSize} onChange={e => setPageSize(+e.target.value)}>
+            {[10, 20, 30, 40, 50, 100].map((size, idx) => (
+              <option value={size} key={idx}>
+                {size}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <pre>{JSON.stringify(table.getState().pagination, null, 2)}</pre>
+        </div>
       </div>
     </>
   )
