@@ -21,6 +21,7 @@
     "@typescript-eslint/eslint-plugin": "^5.59.11",
     "@typescript-eslint/parser": "^5.59.11",
     "autoprefixer": "10.4.14",
+    "clsx": "^1.2.1",
     "dayjs": "^1.11.8",
     "eslint": "8.42.0",
     "eslint-config-it-incubator": "^1.0.10",
