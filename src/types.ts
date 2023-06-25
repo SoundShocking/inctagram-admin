@@ -123,3 +123,5 @@ export type UsersWithPaginationViewModel = {
   pagesCount: Scalars['Int']['output']
   totalCount: Scalars['Int']['output']
 }
+
+export class IconPropsType {}
