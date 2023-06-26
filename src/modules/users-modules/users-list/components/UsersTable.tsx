@@ -11,9 +11,9 @@ import {
 import { createColumnHelper } from '@tanstack/table-core'
 import dayjs from 'dayjs'
 
-import { UserActions } from '@/modules/users-modules/users-list/components/UserActions'
 import { getSorting } from '@/modules/users-modules/users-list/helpers/getSorting'
 import { UserForSuperAdminViewModel } from '@/types'
+import { TableActionsDropdown } from '@/ui/dropdown/TableActionsDropdown'
 
 const columnHelper =
   createColumnHelper<Pick<UserForSuperAdminViewModel, 'userId' | 'userName' | 'createdAt'>>()
@@ -39,7 +39,7 @@ const columns = [
   }),
   columnHelper.display({
     id: 'actions',
-    cell: props => <UserActions row={props.row} />,
+    cell: props => <TableActionsDropdown row={props.row} />,
     enableSorting: false,
   }),
 ]
