@@ -13,9 +13,12 @@ import statisticsOutline from '../../assets/icons/statistics-outline.svg'
 import statistics from '../../assets/icons/statistics.svg'
 import usersOutline from '../../assets/icons/users-outline.svg'
 import users from '../../assets/icons/users.svg'
+import {useTranslation} from 'react-i18next';
 
 export const Sidebar: FC = () => {
   const { pathname } = useRouter()
+  const {t } = useTranslation();
+
 
   // CSS Styles
   const className = {
@@ -48,7 +51,7 @@ export const Sidebar: FC = () => {
                 height={24}
                 width={24}
               />
-              <span className={className.hidden}>Users List</span>
+              <span className={className.hidden}> {t('navigation.userList')}</span>
             </Link>
           </li>
           <li>
@@ -59,7 +62,7 @@ export const Sidebar: FC = () => {
                 height={24}
                 width={24}
               />
-              <span className={className.hidden}>Statistics</span>
+              <span className={className.hidden}>{t('navigation.statistics')}</span>
             </Link>
           </li>
           <li className="">
@@ -70,7 +73,7 @@ export const Sidebar: FC = () => {
                 height={24}
                 width={24}
               />
-              <span className={className.hidden}>Payments list</span>
+              <span className={className.hidden}>{t('navigation.paymentsList')}</span>
             </Link>
           </li>
           <li className="">
@@ -81,8 +84,13 @@ export const Sidebar: FC = () => {
                 height={24}
                 width={24}
               />
-              <span className={className.hidden}>Posts list</span>
+              <span className={className.hidden}>
+               {t('navigation.postList')}
+              </span>
             </Link>
+            {/*<div>*/}
+            {/*  <div>{t('navigation.statistics')}</div>*/}
+            {/*</div>*/}
           </li>
         </ul>
       </div>
