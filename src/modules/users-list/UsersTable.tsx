@@ -3,6 +3,7 @@ import { FC, useMemo, useState } from 'react'
 import { flexRender, getCoreRowModel, Row, useReactTable } from '@tanstack/react-table'
 import { createColumnHelper } from '@tanstack/table-core'
 import dayjs from 'dayjs'
+import { useTranslation } from 'react-i18next'
 
 import { useGetAllUsersQuery } from '@/queries/users.generated'
 import { UserForSuperAdminViewModel } from '@/types'
@@ -101,6 +102,8 @@ const Table: FC<Props> = ({
   //   }),
   //   [pageIndex, pageSize]
   // )
+
+  const { t } = useTranslation()
 
   const table = useReactTable({
     data: users,
@@ -233,7 +236,8 @@ const Table: FC<Props> = ({
             >
               {[10, 20, 30, 40, 50].map(pageSize => (
                 <option key={pageSize} value={pageSize}>
-                  Show {pageSize}
+                  {/*Show*/}
+                  {t('userList.show')} {pageSize}
                 </option>
               ))}
             </select>
