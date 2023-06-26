@@ -1,12 +1,15 @@
+import * as Types from '../types'
+
 import { gql } from '@apollo/client'
 import * as Apollo from '@apollo/client'
-
-import * as Types from '../types'
 const defaultOptions = {} as const
-
 export type GetAllUsersQueryVariables = Types.Exact<{
   pageSize: Types.Scalars['Int']['input']
   pageNumber: Types.Scalars['Int']['input']
+  status?: Types.InputMaybe<Types.UserStatusInputType>
+  search?: Types.InputMaybe<Types.Scalars['String']['input']>
+  sortBy?: Types.InputMaybe<Types.SortByForUsers>
+  sortDirection?: Types.InputMaybe<Types.SortDirectionType>
 }>
 
 export type GetAllUsersQuery = {
@@ -25,8 +28,22 @@ export type GetAllUsersQuery = {
 }
 
 export const GetAllUsersDocument = gql`
-  query GetAllUsers($pageSize: Int!, $pageNumber: Int!) {
-    users(pageSize: $pageSize, pageNumber: $pageNumber) {
+  query GetAllUsers(
+    $pageSize: Int!
+    $pageNumber: Int!
+    $status: UserStatusInputType
+    $search: String
+    $sortBy: SortByForUsers
+    $sortDirection: SortDirectionType
+  ) {
+    users(
+      pageSize: $pageSize
+      pageNumber: $pageNumber
+      status: $status
+      search: $search
+      sortBy: $sortBy
+      sortDirection: $sortDirection
+    ) {
       totalCount
       pagesCount
       items {
@@ -52,6 +69,10 @@ export const GetAllUsersDocument = gql`
  *   variables: {
  *      pageSize: // value for 'pageSize'
  *      pageNumber: // value for 'pageNumber'
+ *      status: // value for 'status'
+ *      search: // value for 'search'
+ *      sortBy: // value for 'sortBy'
+ *      sortDirection: // value for 'sortDirection'
  *   },
  * });
  */
@@ -59,14 +80,12 @@ export function useGetAllUsersQuery(
   baseOptions: Apollo.QueryHookOptions<GetAllUsersQuery, GetAllUsersQueryVariables>
 ) {
   const options = { ...defaultOptions, ...baseOptions }
-
   return Apollo.useQuery<GetAllUsersQuery, GetAllUsersQueryVariables>(GetAllUsersDocument, options)
 }
 export function useGetAllUsersLazyQuery(
   baseOptions?: Apollo.LazyQueryHookOptions<GetAllUsersQuery, GetAllUsersQueryVariables>
 ) {
   const options = { ...defaultOptions, ...baseOptions }
-
   return Apollo.useLazyQuery<GetAllUsersQuery, GetAllUsersQueryVariables>(
     GetAllUsersDocument,
     options

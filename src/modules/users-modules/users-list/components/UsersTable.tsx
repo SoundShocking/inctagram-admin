@@ -1,11 +1,18 @@
-import { FC, useMemo, useState } from 'react'
+import { Dispatch, FC, SetStateAction, useMemo } from 'react'
 
-import { flexRender, getCoreRowModel, Row, useReactTable } from '@tanstack/react-table'
+import {
+  flexRender,
+  getCoreRowModel,
+  getSortedRowModel,
+  PaginationState,
+  SortingState,
+  useReactTable,
+} from '@tanstack/react-table'
 import { createColumnHelper } from '@tanstack/table-core'
 import dayjs from 'dayjs'
-import { useTranslation } from 'react-i18next'
 
-import { useGetAllUsersQuery } from '@/queries/users.generated'
+import { UserActions } from '@/modules/users-modules/users-list/components/UserActions'
+import { getSorting } from '@/modules/users-modules/users-list/helpers/getSorting'
 import { UserForSuperAdminViewModel } from '@/types'
 
 const columnHelper =
@@ -13,110 +20,71 @@ const columnHelper =
 
 const columns = [
   columnHelper.accessor('userId', {
+    id: 'id',
+    header: 'User ID',
     cell: info => info.getValue(),
+    enableSorting: true,
   }),
   columnHelper.accessor('userName', {
+    id: 'userName',
+    header: 'Username',
     cell: info => info.getValue(),
+    enableSorting: true,
   }),
   columnHelper.accessor('createdAt', {
+    id: 'createdAt',
+    header: 'Date added',
     cell: info => dayjs(info.getValue()).format('DD.MM.YYYY'),
+    enableSorting: true,
   }),
   columnHelper.display({
     id: 'actions',
-    cell: props => <RowActions row={props.row} />,
+    cell: props => <UserActions row={props.row} />,
+    enableSorting: false,
   }),
 ]
-
-const RowActions = ({
-  row,
-}: {
-  row: Row<Pick<UserForSuperAdminViewModel, 'userId' | 'userName' | 'createdAt'>>
-}) => {
-  console.log(row)
-
-  return <>row</>
-}
-
-export const UsersTable = () => {
-  const [pageNumber, setPageNumber] = useState(1)
-  const [pageSize, setPageSize] = useState(10)
-
-  const { loading, error, data } = useGetAllUsersQuery({
-    variables: {
-      pageSize,
-      pageNumber,
-    },
-  })
-
-  if (loading) return <p>Loading...</p>
-
-  if (error) return <p>Error : {error.message}</p>
-
-  if (data?.users)
-    return (
-      <Table
-        users={data.users.items}
-        pagesCount={data.users.pagesCount}
-        setPageNumber={setPageNumber}
-        setPageSize={setPageSize}
-        pageNumber={pageNumber}
-        pageSize={pageSize}
-      />
-    )
-
-  return (
-    <>
-      <div>count: {data?.users.totalCount}</div>
-
-      {data?.users.items.map(user => (
-        <div key={user.userId}>{user.userName}</div>
-      ))}
-    </>
-  )
-}
 
 interface Props {
   users: Pick<UserForSuperAdminViewModel, 'userId' | 'userName' | 'createdAt'>[]
   pagesCount: number
-  setPageNumber: (number: number) => void
-  setPageSize: (page: number) => void
-  pageNumber: number
+  pageIndex: number
   pageSize: number
+  setPagination: Dispatch<SetStateAction<PaginationState>>
+  sorting: SortingState
+  setSorting: Dispatch<SetStateAction<SortingState>>
 }
 
-const Table: FC<Props> = ({
+export const UsersTable: FC<Props> = ({
   users,
   pagesCount,
-  setPageNumber,
-  setPageSize,
   pageSize,
-  pageNumber,
+  pageIndex,
+  setPagination,
+  sorting,
+  setSorting,
 }) => {
-  // const pageIndex = 1
-  // const pageSize = 10
-  //
-  // const pagination = useMemo(
-  //   () => ({
-  //     pageIndex,
-  //     pageSize,
-  //   }),
-  //   [pageIndex, pageSize]
-  // )
-
-  const { t } = useTranslation()
+  const pagination = useMemo(
+    () => ({
+      pageIndex,
+      pageSize,
+    }),
+    [pageIndex, pageSize]
+  )
 
   const table = useReactTable({
     data: users,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
     pageCount: pagesCount,
     state: {
-      pagination: {
-        pageSize,
-        pageIndex: pageNumber,
-      },
+      pagination,
+      sorting,
     },
+    onPaginationChange: setPagination,
     manualPagination: true,
+    onSortingChange: setSorting,
+    manualSorting: true,
     debugTable: true,
   })
 
@@ -155,6 +123,7 @@ const Table: FC<Props> = ({
                 </tr>
               ))}
             </thead>
+
             <tbody>
               {table.getRowModel().rows.map(row => {
                 return (
@@ -178,6 +147,7 @@ const Table: FC<Props> = ({
               })}
             </tbody>
           </table>
+
           <div className="h-2" />
           <div className="pt-2 flex items-center gap-2 text-light-100 font-normal text-sm">
             <button
@@ -208,25 +178,6 @@ const Table: FC<Props> = ({
             >
               {'>>'}
             </button>
-            <span className="flex items-center gap-1">
-              <div>Page</div>
-              <strong>
-                {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
-              </strong>
-            </span>
-            <span className="flex items-center gap-1">
-              | Go to page:
-              <input
-                type="number"
-                defaultValue={table.getState().pagination.pageIndex + 1}
-                onChange={e => {
-                  const page = e.target.value ? Number(e.target.value) - 1 : 0
-
-                  table.setPageIndex(page)
-                }}
-                className="border p-1 rounded w-16 bg-dark-500 text-light-100 text-sm font-normal"
-              />
-            </span>
             <select
               className={'bg-dark-500 text-light-100 text-sm font-normal'}
               value={table.getState().pagination.pageSize}
@@ -236,18 +187,14 @@ const Table: FC<Props> = ({
             >
               {[10, 20, 30, 40, 50].map(pageSize => (
                 <option key={pageSize} value={pageSize}>
-                  {/*Show*/}
-                  {t('userList.show')} {pageSize}
+                  Show {pageSize}
                 </option>
               ))}
             </select>
-            {/*{dataQuery.isFetching ? 'Loading...' : null}*/}
           </div>
-          <div>{table.getRowModel().rows.length} Rows</div>
-          {/*<div>*/}
-          {/*  <button onClick={() => rerender()}>Force Rerender</button>*/}
-          {/*</div>*/}
-          {/*<pre>{JSON.stringify(pagination, null, 2)}</pre>*/}
+          <pre>{JSON.stringify(pagination, null, 2)}</pre>
+          <pre>{JSON.stringify(sorting, null, 2)}</pre>
+          <pre>{JSON.stringify(getSorting(sorting), null, 2)}</pre>
         </div>
       </div>
     </>
