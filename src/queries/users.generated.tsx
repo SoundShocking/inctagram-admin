@@ -1,8 +1,9 @@
-import * as Types from '../types'
-
 import { gql } from '@apollo/client'
 import * as Apollo from '@apollo/client'
+
+import * as Types from '../types'
 const defaultOptions = {} as const
+
 export type GetAllUsersQueryVariables = Types.Exact<{
   pageSize: Types.Scalars['Int']['input']
   pageNumber: Types.Scalars['Int']['input']
@@ -80,12 +81,14 @@ export function useGetAllUsersQuery(
   baseOptions: Apollo.QueryHookOptions<GetAllUsersQuery, GetAllUsersQueryVariables>
 ) {
   const options = { ...defaultOptions, ...baseOptions }
+
   return Apollo.useQuery<GetAllUsersQuery, GetAllUsersQueryVariables>(GetAllUsersDocument, options)
 }
 export function useGetAllUsersLazyQuery(
   baseOptions?: Apollo.LazyQueryHookOptions<GetAllUsersQuery, GetAllUsersQueryVariables>
 ) {
   const options = { ...defaultOptions, ...baseOptions }
+
   return Apollo.useLazyQuery<GetAllUsersQuery, GetAllUsersQueryVariables>(
     GetAllUsersDocument,
     options

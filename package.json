@@ -10,7 +10,7 @@
     "eslint": "eslint --fix --ext .js,.jsx,.ts,.tsx src",
     "prettier": "prettier . --write",
     "fix": "yarn eslint && yarn prettier",
-    "codegen": "graphql-codegen --config codegen.ts && yarn prettier"
+    "codegen": "graphql-codegen --config codegen.ts && yarn fix"
   },
   "dependencies": {
     "@apollo/client": "^3.7.15",
