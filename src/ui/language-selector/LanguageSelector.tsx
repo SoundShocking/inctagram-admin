@@ -31,7 +31,8 @@ const defaultFlag = languages[0].image
 export const LanguageSelector = () => {
   const { t, i18n } = useTranslation()
 
-  const [language, setLanguage] = useState(`${defaultLanguage} ᐯ`)
+  // const [language, setLanguage] = useState(`${defaultLanguage} ᐯ`)
+  const [language, setLanguage] = useState(defaultLanguage)
   const [flag, setFlag] = useState(defaultFlag)
   const [isOpen, setIsOpen] = useState(false)
 
@@ -40,7 +41,7 @@ export const LanguageSelector = () => {
   }
   const onLanguageClick = ({ language, text, image }: LanguageType) => {
     i18n.changeLanguage(language)
-    setLanguage(`${text} ᐯ`)
+    setLanguage(text)
     setFlag(image)
     setIsOpen(false)
   }
