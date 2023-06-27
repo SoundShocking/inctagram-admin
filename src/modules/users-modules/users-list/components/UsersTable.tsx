@@ -19,8 +19,6 @@ import { TableActionsDropdown } from '@/ui/dropdown/TableActionsDropdown'
 const columnHelper =
   createColumnHelper<Pick<UserForSuperAdminViewModel, 'userId' | 'userName' | 'createdAt'>>()
 
-
-
 interface Props {
   users: Pick<UserForSuperAdminViewModel, 'userId' | 'userName' | 'createdAt'>[]
   pagesCount: number
@@ -61,14 +59,14 @@ export const UsersTable: FC<Props> = ({
     columnHelper.accessor('userName', {
       id: 'userName',
       // header: 'Username',
-      header:  t('userList.table.username'),
+      header: t('userList.table.username'),
       cell: info => info.getValue(),
       enableSorting: true,
     }),
     columnHelper.accessor('createdAt', {
       id: 'createdAt',
       // header: 'Date added',
-      header:  t('userList.table.dateAdded'),
+      header: t('userList.table.dateAdded'),
       cell: info => dayjs(info.getValue()).format('DD.MM.YYYY'),
       enableSorting: true,
     }),

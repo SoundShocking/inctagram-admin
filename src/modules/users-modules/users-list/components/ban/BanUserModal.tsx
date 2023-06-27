@@ -67,7 +67,9 @@ export const BanUserModal = ({
         <div className={'flex justify-end'}>
           <ImageSelector isOpen={isOpen} setIsOpen={onDropdownClick} chosenText={banReason}>
             {reasons.map(({ text }) => {
-              return <ImageOption text={text} onOptionClick={() => onOptionClick(text)} />
+              return (
+                <ImageOption key={text} text={text} onOptionClick={() => onOptionClick(text)} />
+              )
             })}
           </ImageSelector>
         </div>
