@@ -41,7 +41,7 @@ export const BanUserModal = ({
   }
 
   const onConfirm = () => {
-    console.log('ban onConfirm')
+    console.log('ban onConfirm', userId)
     setIsBanUserOpen(false)
     setIsOpen(false)
   }

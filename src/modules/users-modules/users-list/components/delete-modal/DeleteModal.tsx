@@ -19,7 +19,7 @@ export const DeleteModal = ({
   const { t } = useTranslation()
 
   const onConfirm = () => {
-    console.log('delete onConfirm')
+    console.log('delete onConfirm', userId)
     setIsDeleteUserOpen(false)
   }
 
