@@ -5,7 +5,7 @@ import Image from 'next/image'
 import placeholder from '@/assets/images/img-placeholder.png'
 
 type PropsType = {
-  src?: string
+  src?: any
   alt: string
   height?: number
   width?: number

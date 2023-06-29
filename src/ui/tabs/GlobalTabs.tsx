@@ -11,7 +11,7 @@ interface ITabComponentType {
 
 export const TabComponent: FC<ITabComponentType> = ({ label, activeTab, setActiveTab }) => {
   return (
-    <div className="flex justify-center align-middle">
+    <div className="flex justify-center align-middle text-sm font-semibold leading-6">
       <div
         className={clsx(
           'py-[6px] px-[24px]',
