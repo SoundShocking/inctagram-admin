@@ -1,39 +1,47 @@
+import { Fragment, useMemo } from 'react'
+
 import { useQuery } from '@apollo/client'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import { GET_USER_INFO, ViewUserInformationInATab } from '@/modules/users-modules/view-user-info'
-import { ArrowBack } from '@/modules/users-modules/view-user-info/icon-components/ArrowBack'
+import {
+  ArrowBack,
+  GET_USER_INFO,
+  User,
+  UserData,
+  ViewUserInformationInATab,
+} from '@/modules/users-modules/view-user-info'
 import { Avatar } from '@/ui'
-
-type User = {
-  userId: number
-  userName: string
-  profileLink: string
-  createdAt: string
-}
-interface UserData {
-  users: {
-    items: User[]
-  }
-}
 
 export const ViewUserInfo = () => {
   const router = useRouter()
-  const id = router.query.id
+  const { userName } = router.query
   const { loading, error, data } = useQuery<UserData>(GET_USER_INFO, {
-    variables: { search: id },
+    variables: { search: userName },
   })
 
-  const usersData = data?.users.items || []
+
+  const usersData: User[] | [] = useMemo(() => data?.users.items || [], [data])
+
+  if (loading) {
+    return <div>Loading...</div>
+  }
+
+  // if (error) {
+  //   return Error! {error.message}
+  // }
+
+  if (usersData.length === 0) {
+    return <div>User not found</div>
+  }
 
   return (
     <div className="flex w-full pl-[240px]">
       <div className="flex flex-col w-max">
         {!loading &&
-          usersData.map((user: User, key) => {
+          usersData.map((user: User) => {
             return (
-              <>
+              <Fragment key={user.userId}>
                 <div className="pt-6 leading-6 font-normal text-sm">
                   <Link href={'/'} className="flex">
                     <ArrowBack />
@@ -61,7 +69,7 @@ export const ViewUserInfo = () => {
                     </div>
                   </div>
                 </div>
-              </>
+              </Fragment>
             )
           })}
         <div className="pt-7">
