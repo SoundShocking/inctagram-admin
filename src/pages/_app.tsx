@@ -2,6 +2,7 @@ import '@/styles/globals.css'
 import { ReactElement, ReactNode } from 'react'
 
 import { ApolloProvider } from '@apollo/client'
+// eslint-disable-next-line import/no-named-as-default
 import i18n from 'i18next'
 import { NextPage } from 'next'
 import type { AppProps } from 'next/app'
@@ -9,6 +10,7 @@ import { initReactI18next } from 'react-i18next'
 
 import { apolloClient } from '@/apollo-client'
 
+// eslint-disable-next-line import/no-named-as-default-member
 i18n.use(initReactI18next).init({
   resources: {
     en: {

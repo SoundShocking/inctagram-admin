@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+
 import { NextRouter } from 'next/router'
 
 export const callWhenUrlChangesEffect = ({
