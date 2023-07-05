@@ -11,7 +11,6 @@ const UsersPage: NextPageWithLayout = () => {
       <Head>
         <title>Users list</title>
       </Head>
-
       <UsersList />
     </main>
   )
