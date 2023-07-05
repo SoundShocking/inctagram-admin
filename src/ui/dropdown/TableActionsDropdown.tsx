@@ -13,6 +13,9 @@ interface Props {
 
 export const TableActionsDropdown: FC<Props> = ({ row }) => {
   const router = useRouter()
+  const handleMenuItemClickMoreInformation = () => {
+    router.push(`/users-list/${row.original.userName}`)
+  }
 
   return (
     <DropdownMenu.Root modal={false}>
@@ -44,7 +47,7 @@ export const TableActionsDropdown: FC<Props> = ({ row }) => {
 
           <DropdownMenu.Item
             className="flex items-center cursor-pointer"
-            onSelect={() => router.push(`/users-list/${row.original.userName}`)}
+            onSelect={() => handleMenuItemClickMoreInformation()}
           >
             <FaEllipsis size={24} className="mr-3" /> More Information
           </DropdownMenu.Item>
