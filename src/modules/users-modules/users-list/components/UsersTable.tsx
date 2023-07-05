@@ -10,6 +10,7 @@ import {
 } from '@tanstack/react-table'
 import { createColumnHelper } from '@tanstack/table-core'
 import dayjs from 'dayjs'
+import { useTranslation } from 'react-i18next'
 
 import { getSorting } from '@/modules/users-modules/users-list/helpers/getSorting'
 import { UserForSuperAdminViewModel } from '@/types'
@@ -17,32 +18,6 @@ import { TableActionsDropdown } from '@/ui/dropdown/TableActionsDropdown'
 
 const columnHelper =
   createColumnHelper<Pick<UserForSuperAdminViewModel, 'userId' | 'userName' | 'createdAt'>>()
-
-const columns = [
-  columnHelper.accessor('userId', {
-    id: 'id',
-    header: 'User ID',
-    cell: info => info.getValue(),
-    enableSorting: true,
-  }),
-  columnHelper.accessor('userName', {
-    id: 'userName',
-    header: 'Username',
-    cell: info => info.getValue(),
-    enableSorting: true,
-  }),
-  columnHelper.accessor('createdAt', {
-    id: 'createdAt',
-    header: 'Date added',
-    cell: info => dayjs(info.getValue()).format('DD.MM.YYYY'),
-    enableSorting: true,
-  }),
-  columnHelper.display({
-    id: 'actions',
-    cell: props => <TableActionsDropdown row={props.row} />,
-    enableSorting: false,
-  }),
-]
 
 interface Props {
   users: Pick<UserForSuperAdminViewModel, 'userId' | 'userName' | 'createdAt'>[]
@@ -63,6 +38,8 @@ export const UsersTable: FC<Props> = ({
   sorting,
   setSorting,
 }) => {
+  const { t } = useTranslation()
+
   const pagination = useMemo(
     () => ({
       pageIndex,
@@ -70,6 +47,35 @@ export const UsersTable: FC<Props> = ({
     }),
     [pageIndex, pageSize]
   )
+
+  const columns = [
+    columnHelper.accessor('userId', {
+      id: 'id',
+      // header: 'User ID',
+      header: t('userList.table.userId'),
+      cell: info => info.getValue(),
+      enableSorting: true,
+    }),
+    columnHelper.accessor('userName', {
+      id: 'userName',
+      // header: 'Username',
+      header: t('userList.table.username'),
+      cell: info => info.getValue(),
+      enableSorting: true,
+    }),
+    columnHelper.accessor('createdAt', {
+      id: 'createdAt',
+      // header: 'Date added',
+      header: t('userList.table.dateAdded'),
+      cell: info => dayjs(info.getValue()).format('DD.MM.YYYY'),
+      enableSorting: true,
+    }),
+    columnHelper.display({
+      id: 'actions',
+      cell: props => <TableActionsDropdown row={props.row} />,
+      enableSorting: false,
+    }),
+  ]
 
   const table = useReactTable({
     data: users,
@@ -187,7 +193,7 @@ export const UsersTable: FC<Props> = ({
             >
               {[10, 20, 30, 40, 50].map(pageSize => (
                 <option key={pageSize} value={pageSize}>
-                  Show {pageSize}
+                  {t('userList.show')} {pageSize}
                 </option>
               ))}
             </select>

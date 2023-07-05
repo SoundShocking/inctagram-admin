@@ -35,7 +35,7 @@ i18n.use(initReactI18next).init({
             profileLink: 'Profile link',
             username: 'Username',
             userId: 'User ID',
-            dataAdded: 'Date added',
+            dateAdded: 'Date added',
           },
           ban: {
             title: 'Ban user',
@@ -80,7 +80,7 @@ i18n.use(initReactI18next).init({
             profileLink: 'Ссылка на профиль',
             username: 'Имя пользователя',
             userId: 'ID пользователя',
-            dataAdded: 'Дата добавления',
+            dateAdded: 'Дата добавления',
           },
           ban: {
             title: 'Заблокировать пользователя',
@@ -125,7 +125,7 @@ i18n.use(initReactI18next).init({
             profileLink: 'Посилання на профіль',
             username: "Ім'я користувача",
             userId: 'ID користувача',
-            dataAdded: 'Дата додавання',
+            dateAdded: 'Дата додавання',
           },
           ban: {
             title: 'Заблокувати користувача',
@@ -170,7 +170,7 @@ i18n.use(initReactI18next).init({
             profileLink: 'Спасылка на профіль',
             username: 'Імя карыстальніка',
             userId: 'ID карыстальніка',
-            dataAdded: 'Дата дадання',
+            dateAdded: 'Дата дадання',
           },
           ban: {
             title: 'Заблакаваць карыстальніка',
@@ -197,9 +197,9 @@ i18n.use(initReactI18next).init({
       translation: {
         navigation: {
           statistics: 'Rrwgawr',
-          userList: 'Rrwrrg list',
-          postList: 'Rrwggwwr list',
-          paymentsList: 'Rrrrrr list',
+          userList: 'Rrwrrg wrr',
+          postList: 'Rrwggwwr wrr',
+          paymentsList: 'Rrrrrr wrr',
         },
         userList: {
           deleteUser: 'Rrwrrrr rrwrrgg',
@@ -215,7 +215,7 @@ i18n.use(initReactI18next).init({
             profileLink: 'Rrwrrwwwr rrwwwrr',
             username: 'Rrwrrrwwwrrrr',
             userId: 'Rrwrr ID',
-            dataAdded: 'Rrrr rrrrwrr',
+            dateAdded: 'Rrrr rrrrwrr',
           },
           ban: {
             title: 'Rrwrgwwr rrwrrrr',
