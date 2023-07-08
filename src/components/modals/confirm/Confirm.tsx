@@ -1,7 +1,6 @@
 import { FC } from 'react'
 
 import { FaTimes } from 'react-icons/fa'
-// @ts-ignore
 import Modal from 'react-modal'
 
 interface Props {
