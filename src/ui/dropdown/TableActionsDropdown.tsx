@@ -1,13 +1,9 @@
 import { FC, useState } from 'react'
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
-
 import { Row } from '@tanstack/react-table'
 import { useRouter } from 'next/router'
-=======
-import { flexRender, Row } from '@tanstack/react-table'
 import { useTranslation } from 'react-i18next'
-
 import { FaEllipsis, FaUserSlash, FaBan } from 'react-icons/fa6'
 
 import { BanUserModal } from '@/modules/users-modules/users-list/components/ban/BanUserModal'
@@ -19,11 +15,11 @@ interface Props {
 }
 
 export const TableActionsDropdown: FC<Props> = ({ row }) => {
-
   const router = useRouter()
   const handleMenuItemClickMoreInformation = () => {
     router.push(`/users-list/${row.original.userName}`)
-=======
+  }
+
   const { t } = useTranslation()
   const [isDeleteUserOpen, setIsDeleteUserOpen] = useState(false)
   const [isBanUserOpen, setIsBanUserOpen] = useState(false)
@@ -36,7 +32,6 @@ export const TableActionsDropdown: FC<Props> = ({ row }) => {
   }
   const onBanClick = () => {
     setIsBanUserOpen(true)
-
   }
 
   return (
@@ -47,7 +42,6 @@ export const TableActionsDropdown: FC<Props> = ({ row }) => {
             <FaEllipsis size={24} color="#fff" />
           </button>
         </DropdownMenu.Trigger>
-
         <DropdownMenu.Portal>
           <DropdownMenu.Content
             side={'bottom'}
@@ -61,17 +55,6 @@ export const TableActionsDropdown: FC<Props> = ({ row }) => {
               <FaUserSlash size={24} className="mr-3" />
               {t('userList.deleteUser')}
             </DropdownMenu.Item>
-
-          <DropdownMenu.Item
-            className="flex items-center cursor-pointer"
-            onSelect={() => handleMenuItemClickMoreInformation()}
-          >
-            <FaEllipsis size={24} className="mr-3" /> More Information
-          </DropdownMenu.Item>
-        </DropdownMenu.Content>
-      </DropdownMenu.Portal>
-    </DropdownMenu.Root>
-=======
             <DropdownMenu.Item
               className="flex items-center mb-3 cursor-pointer"
               onSelect={() => onBanClick()}
@@ -82,7 +65,7 @@ export const TableActionsDropdown: FC<Props> = ({ row }) => {
 
             <DropdownMenu.Item
               className="flex items-center cursor-pointer"
-              onSelect={() => console.log('more')}
+              onSelect={() => handleMenuItemClickMoreInformation()}
             >
               <FaEllipsis size={24} className="mr-3" />
               {t('userList.moreInfo')}
@@ -105,6 +88,5 @@ export const TableActionsDropdown: FC<Props> = ({ row }) => {
         userId={userId}
       />
     </>
-
   )
 }
