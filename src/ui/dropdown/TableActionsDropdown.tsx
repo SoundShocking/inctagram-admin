@@ -14,7 +14,7 @@ interface Props {
   row: Row<Pick<UserForSuperAdminViewModel, 'userId' | 'userName' | 'createdAt'>>
 }
 
-export const TableActionsDropdown: ({ row }: { row: any }) => void = ({ row }) => {
+export const TableActionsDropdown: FC<Props> = ({ row }) => {
   const router = useRouter()
   const handleMenuItemClickMoreInformation = () => {
     router.push(`/users-list/${row.original.userName}`)
