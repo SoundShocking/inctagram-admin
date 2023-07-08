@@ -1,12 +1,7 @@
-import { Fragment } from 'react'
-
 import { useQuery } from '@apollo/client'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import {
-  ArrowBack,
-  dateChangesFormat,
   GET_USER_INFO,
   User,
   UserData,
@@ -14,7 +9,6 @@ import {
   ViewUserInformationInTabs,
 } from '@/modules/users-modules/view-user-info'
 import { SkeletonViewUserInfoMain } from '@/modules/users-modules/view-user-info/skeleton/SkeletonViewUserInfoMain'
-import { Avatar, Skeleton } from '@/ui'
 
 export const ViewUserInfo = () => {
   const router = useRouter()

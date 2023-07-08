@@ -29,7 +29,7 @@ export const ViewUserInformationInTabs = () => {
   }
 
   const tabsLayout = view_user_info_tabs?.map(tab => {
-    return <div key={tab.id}>{activeTab === tab.label && tab.content}</div>
+    return <div key={tab.id}>{activeTab === tab.label && <tab.content />}</div>
   })
 
   return (
