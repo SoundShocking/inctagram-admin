@@ -1,5 +1,6 @@
 export * from './components/ViewUserInfo'
-export * from './components/ViewUserInformationInATab'
+export * from './components/ViewUserInfoMain'
+export * from './components/ViewUserInformationInTabs'
 export * from './constants/viewUserInfoForTabs'
 export * from './queries/viewUserInfoQueries'
 export * from './icon-components/ArrowBack'
