@@ -9,7 +9,7 @@ import {
   view_user_info_tabs,
 } from '@/modules/users-modules/view-user-info'
 
-export const ViewUserInformationInATab = () => {
+export const ViewUserInformationInTabs = () => {
   const [activeTab, setActiveTab] = useState('Upload Photos')
   const router = useRouter()
   const { userName } = router.query
@@ -29,7 +29,7 @@ export const ViewUserInformationInATab = () => {
   }
 
   const tabsLayout = view_user_info_tabs?.map(tab => {
-    return <div key={tab.id}>{activeTab === tab.label && tab.content}</div>
+    return <div key={tab.id}>{activeTab === tab.label && <tab.content />}</div>
   })
 
   return (
