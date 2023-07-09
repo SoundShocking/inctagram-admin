@@ -7,8 +7,14 @@ import i18n from 'i18next'
 import { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import { initReactI18next } from 'react-i18next'
+import { ToastContainer } from 'react-toastify'
 
+import 'react-toastify/dist/ReactToastify.css'
 import { apolloClient } from '@/apollo-client'
+import { useLoader } from '@/common'
+import AuthProtection from '@/components/auth-components/auth-protection/AuthProtection'
+import { AuthProvider } from '@/store/store'
+import '../styles/nprogress.css'
 
 // eslint-disable-next-line import/no-named-as-default-member
 i18n.use(initReactI18next).init({
@@ -257,7 +263,25 @@ type AppPropsWithLayout = AppProps & {
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? (page => page)
 
+  useLoader()
+
   return (
-    <ApolloProvider client={apolloClient}>{getLayout(<Component {...pageProps} />)}</ApolloProvider>
+    <AuthProvider>
+      <ApolloProvider client={apolloClient}>
+        <AuthProtection> {getLayout(<Component {...pageProps} />)}</AuthProtection>
+        <ToastContainer
+          position="bottom-left"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
+      </ApolloProvider>
+    </AuthProvider>
   )
 }
