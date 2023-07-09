@@ -12,6 +12,7 @@ import { createColumnHelper } from '@tanstack/table-core'
 import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next'
 
+import { TableCellSkeleton } from '@/modules/users-modules/users-list/components/TableCellSkeleton'
 import { getSorting } from '@/modules/users-modules/users-list/helpers/getSorting'
 import { UserForSuperAdminViewModel } from '@/types'
 import { TableActionsDropdown } from '@/ui/dropdown/TableActionsDropdown'
@@ -27,6 +28,7 @@ interface Props {
   setPagination: Dispatch<SetStateAction<PaginationState>>
   sorting: SortingState
   setSorting: Dispatch<SetStateAction<SortingState>>
+  loading: boolean
 }
 
 export const UsersTable: FC<Props> = ({
@@ -37,6 +39,7 @@ export const UsersTable: FC<Props> = ({
   setPagination,
   sorting,
   setSorting,
+  loading,
 }) => {
   const { t } = useTranslation()
 
@@ -77,9 +80,25 @@ export const UsersTable: FC<Props> = ({
     }),
   ]
 
+  const tableColumns = useMemo(
+    () =>
+      loading
+        ? columns.map(column => ({
+            ...column,
+            cell: <TableCellSkeleton />,
+          }))
+        : columns,
+    [loading, columns]
+  )
+
+  const tableData = useMemo(
+    () => (loading ? Array(pageSize).fill({}) : users),
+    [loading, users, pageSize]
+  )
+
   const table = useReactTable({
-    data: users,
-    columns,
+    data: tableData,
+    columns: tableColumns,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     pageCount: pagesCount,

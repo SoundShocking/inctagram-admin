@@ -35,30 +35,27 @@ export const UsersList = () => {
     },
   })
 
-  if (loading) return <p>Loading...</p>
-
   if (error) return <p>Error : {error.message}</p>
 
-  if (data?.users) {
-    return (
-      <>
-        <UsersTableToolbar
-          searchInput={searchInput}
-          setSearchInput={setSearchInput}
-          status={status}
-          setStatus={setStatus}
-        />
+  return (
+    <>
+      <UsersTableToolbar
+        searchInput={searchInput}
+        setSearchInput={setSearchInput}
+        status={status}
+        setStatus={setStatus}
+      />
 
-        <UsersTable
-          users={data.users.items}
-          pagesCount={data.users.pagesCount}
-          pageIndex={pageIndex}
-          pageSize={pageSize}
-          setPagination={setPagination}
-          sorting={sorting}
-          setSorting={setSorting}
-        />
-      </>
-    )
-  }
+      <UsersTable
+        users={data?.users?.items || []}
+        pagesCount={data?.users?.pagesCount || 1}
+        pageIndex={pageIndex}
+        pageSize={pageSize}
+        setPagination={setPagination}
+        sorting={sorting}
+        setSorting={setSorting}
+        loading={loading}
+      />
+    </>
+  )
 }
