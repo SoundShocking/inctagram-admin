@@ -13,6 +13,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
       - name: Install yarn
         run: npm install --global yarn
 
@@ -28,9 +33,10 @@ jobs:
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USER }}
           password: ${{ secrets.REMOTE_PASSWORD }}
+          port: 22
           script: |
             cd ~/front/inctagram-admin/
             git pull
-            yarn
+            yarn install
             yarn build
             pm2 restart front-admin
