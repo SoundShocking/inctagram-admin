@@ -22,3 +22,4 @@ jobs:
           port: 22
           script: |
             ls -a
+            pm2 restart front-admin
