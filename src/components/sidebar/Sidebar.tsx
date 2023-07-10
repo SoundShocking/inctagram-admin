@@ -15,6 +15,8 @@ import statistics from '../../assets/icons/statistics.svg'
 import usersOutline from '../../assets/icons/users-outline.svg'
 import users from '../../assets/icons/users.svg'
 
+import { LogoutButton } from '@/modules/login-module/logout'
+
 export const Sidebar: FC = () => {
   const { pathname } = useRouter()
   const { t } = useTranslation()
@@ -90,6 +92,7 @@ export const Sidebar: FC = () => {
             {/*</div>*/}
           </li>
         </ul>
+        <LogoutButton />
       </div>
     </aside>
   )
