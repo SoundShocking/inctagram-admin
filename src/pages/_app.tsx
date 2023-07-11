@@ -22,6 +22,7 @@ i18n.use(initReactI18next).init({
         userList: {
           deleteUser: 'Delete user',
           banUser: 'Ban in the system',
+          unbanUser: 'Unban user',
           moreInfo: 'More information',
           search: 'Search',
           notSelected: 'Not selected',
@@ -47,6 +48,12 @@ i18n.use(initReactI18next).init({
               advertising: 'Advertising placement',
             },
           },
+          unban: {
+            title: 'Unban user',
+            description: 'Are you sure you want to unban this user',
+            cancel: 'No',
+            confirm: 'Yes',
+          },
           delete: {
             title: 'Delete user',
             description: 'Are you sure you want to delete user',
@@ -67,6 +74,7 @@ i18n.use(initReactI18next).init({
         userList: {
           deleteUser: 'Удалить пользователя',
           banUser: 'Заблокировать в системе',
+          unbanUser: 'Разблокировать пользователя',
           moreInfo: 'Больше информации',
           search: 'Поиск',
           notSelected: 'Не выбрано',
@@ -92,6 +100,12 @@ i18n.use(initReactI18next).init({
               advertising: 'Размещение рекламы',
             },
           },
+          unban: {
+            title: 'Разблокировать пользователя',
+            description: 'Вы уверены, что хотите разблокировать пользователя',
+            cancel: 'Нет',
+            confirm: 'Да',
+          },
           delete: {
             title: 'Удалить пользователя',
             description: 'Вы уверены, что хотите удалить пользователя',
@@ -112,6 +126,7 @@ i18n.use(initReactI18next).init({
         userList: {
           deleteUser: 'Видалити користувача',
           banUser: 'Заблокувати в системі',
+          unbanUser: 'Розблокувати користувача',
           moreInfo: 'Більше інформації',
           search: 'Пошук',
           notSelected: 'Не обрано',
@@ -137,6 +152,12 @@ i18n.use(initReactI18next).init({
               advertising: 'Розміщення реклами',
             },
           },
+          unban: {
+            title: 'Розблокувати користувача',
+            description: 'Ви впевнені, що хочете розблокувати цього користувача',
+            cancel: 'Ні',
+            confirm: 'Так',
+          },
           delete: {
             title: 'Видалити користувача',
             description: 'Ви впевнені, що хочете видалити користувача',
@@ -157,6 +178,7 @@ i18n.use(initReactI18next).init({
         userList: {
           deleteUser: 'Выдаліць карыстальніка',
           banUser: 'Заблакаваць у сістэме',
+          unbanUser: 'Разблакаваць карыстальніка',
           moreInfo: 'Больш інфармацыі',
           search: 'Пошук',
           notSelected: 'Не выбрана',
@@ -182,6 +204,12 @@ i18n.use(initReactI18next).init({
               advertising: 'Размяшчэнне рэкламы',
             },
           },
+          unban: {
+            title: 'Разблакаваць карыстальніка',
+            description: 'Ці ўпэўненыя, што хочаце разблакаваць карыстальніка',
+            cancel: 'Не',
+            confirm: 'Так',
+          },
           delete: {
             title: 'Выдаліць карыстальніка',
             description: 'Ці ўпэўненыя, што хочаце выдаліць карыстальніка',
@@ -197,18 +225,19 @@ i18n.use(initReactI18next).init({
           statistics: 'Rrwgawr',
           userList: 'Rrwrrg wrr',
           postList: 'Rrwggwwr wrr',
-          paymentsList: 'Rrrrrr wrr',
+          paymentsList: 'Urggghh wrr',
         },
         userList: {
           deleteUser: 'Rrwrrrr rrwrrgg',
           banUser: 'Rrwgg rrwrgwwr',
+          unbanUser: 'Rrwrrrrrr rrwrgwwr',
           moreInfo: 'Rrwrrrw rrwrwwwr',
-          search: 'Rrrwrrr',
+          search: 'Wwwrrahh',
           notSelected: 'Rrrrrwr',
           notBlocked: 'Rrrrrrrrrr',
-          blocked: 'Rrwrrrrrr',
+          blocked: 'Urrr',
           show: 'Rrrrwrr',
-          onPage: 'rrrr rrrrwrr',
+          onPage: 'Urrr',
           table: {
             profileLink: 'Rrwrrwwwr rrwwwrr',
             username: 'Rrwrrrwwwrrrr',
@@ -218,19 +247,25 @@ i18n.use(initReactI18next).init({
           ban: {
             title: 'Rrwrgwwr rrwrrrr',
             description: 'Rrwrrrrrwrr rwrrgwwr rrwrrrwwrr rrrwrwwwr',
-            cancel: 'Rrrr',
+            cancel: 'Grrrr',
             confirm: 'Rrrrr',
             reason: {
               title: 'Rrwrrrw rrwrrrr',
-              anotherReason: 'Rrrrrrr rrwrrrr',
-              behavior: 'Rrrrrr rrrrrrw',
+              anotherReason: 'Urrrrghh rrwrrrr',
+              behavior: 'Grrrgh rrrrrrw',
               advertising: 'Rrwrrrrrrrrrrr rrrrrrrrr',
             },
           },
+          unban: {
+            title: 'Rrwrrrrrr rrwrrrr',
+            description: 'Rrwrrrrrwrr rwrrgwwr rrwrrrwwrr',
+            cancel: 'Grrrr',
+            confirm: 'Rrrrr',
+          },
           delete: {
             title: 'Rrwrrrw rrwrrrr',
-            description: 'Rrwrrrrrwrr rwrrgwwr rrwrrrwwrr',
-            cancel: 'Rrrr',
+            description: 'Urrghh rrrggghh grrrrh urrggghh',
+            cancel: 'Grrrr',
             confirm: 'Rrrrr',
           },
         },
