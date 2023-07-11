@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 
+import { useMutation } from '@apollo/client'
 import { useTranslation } from 'react-i18next'
 
 import { ModalWithContent } from '@/components/modals'
+import { DetailsInput } from '@/modules/users-modules/users-list/components/ban/details-input/DetailsInput'
+import { BanReasonInputType, UPDATE_USER_STATUS } from '@/queries/delete-ban'
 import { ImageOption } from '@/ui/image-selector/image-option/ImageOption'
 import { ImageSelector } from '@/ui/image-selector/ImageSelector'
 
@@ -13,6 +16,11 @@ type PropsType = {
   userId: number
   userName: string
 }
+
+type ReasonType = {
+  text: string
+  value: BanReasonInputType
+}
 export const BanUserModal = ({
   isBanUserOpen,
   setIsBanUserOpen,
@@ -22,14 +30,19 @@ export const BanUserModal = ({
 }: PropsType) => {
   const { t } = useTranslation()
 
-  const reasons = [
-    { text: t('userList.ban.reason.anotherReason') },
-    { text: t('userList.ban.reason.behavior') },
-    { text: t('userList.ban.reason.advertising') },
+  const [updateUserStatus] = useMutation(UPDATE_USER_STATUS)
+
+  const reasons: ReasonType[] = [
+    { text: t('userList.ban.reason.anotherReason'), value: 'Another_reason' },
+    { text: t('userList.ban.reason.behavior'), value: 'Bad_behavior' },
+    { text: t('userList.ban.reason.advertising'), value: 'Advertising_placement' },
   ]
 
   const [isOpen, setIsOpen] = useState(false)
-  const [banReason, setBanReason] = useState(defaultText)
+  const [banReasonName, setBanReasonName] = useState(defaultText)
+  const [banReasonValue, setBanReasonValue] = useState<BanReasonInputType>('Bad_behavior')
+  const [banDetails, setBanDetails] = useState('')
+  const [error, setError] = useState('')
 
   const onDropdownClick = () => {
     setIsOpen(!isOpen)
@@ -41,13 +54,22 @@ export const BanUserModal = ({
   }
 
   const onConfirm = () => {
-    console.log('ban onConfirm', userId)
+    updateUserStatus({
+      variables: { userId, banReason: banReasonValue, isBanned: true, details: banDetails },
+    })
+      .then(() => {
+        console.log('User banned successfully')
+      })
+      .catch(error => {
+        console.error('Error banning user:', error)
+      })
     setIsBanUserOpen(false)
     setIsOpen(false)
   }
 
-  const onOptionClick = (text: string) => {
-    setBanReason(text)
+  const onOptionClick = (text: string, value: BanReasonInputType) => {
+    setBanReasonName(text)
+    setBanReasonValue(value)
     setIsOpen(false)
   }
 
@@ -60,18 +82,35 @@ export const BanUserModal = ({
       declineButtonText={t('userList.ban.cancel')}
       onConfirm={onConfirm}
       onDecline={onDecline}
+      disabled={error.length > 0}
     >
       <div>
         <h3>{t('userList.ban.description') + ' ' + userName + '?'}</h3>
-        <span>{`${t('userList.ban.reason.title')}:`}</span>
-        <div className={'flex justify-end'}>
-          <ImageSelector isOpen={isOpen} setIsOpen={onDropdownClick} chosenText={banReason}>
-            {reasons.map(({ text }) => {
+
+        <div className={'mt-3'}>{`${t('userList.ban.reason.title')}:`}</div>
+
+        <div className={'mt-1'}>
+          <ImageSelector isOpen={isOpen} setIsOpen={onDropdownClick} chosenText={banReasonName}>
+            {reasons.map(({ text, value }) => {
               return (
-                <ImageOption key={text} text={text} onOptionClick={() => onOptionClick(text)} />
+                <ImageOption
+                  key={text}
+                  text={text}
+                  onOptionClick={() => onOptionClick(text, value)}
+                />
               )
             })}
           </ImageSelector>
+          <div className={'mt-4'}>
+            {banReasonName === 'Another reason' && (
+              <DetailsInput
+                banDetails={banDetails}
+                setBanDetails={setBanDetails}
+                setError={setError}
+                error={error}
+              />
+            )}
+          </div>
         </div>
       </div>
     </ModalWithContent>

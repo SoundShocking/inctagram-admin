@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import React, { FC, useState } from 'react'
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import { Row } from '@tanstack/react-table'
@@ -8,6 +8,7 @@ import { FaEllipsis, FaUserSlash, FaBan } from 'react-icons/fa6'
 
 import { BanUserModal } from '@/modules/users-modules/users-list/components/ban/BanUserModal'
 import { DeleteModal } from '@/modules/users-modules/users-list/components/delete-modal/DeleteModal'
+import { UnbanUserModal } from '@/modules/users-modules/users-list/components/unban/UnbanUserModal'
 import { UserForSuperAdminViewModel } from '@/types'
 
 interface Props {
@@ -22,16 +23,23 @@ export const TableActionsDropdown: FC<Props> = ({ row }) => {
 
   const { t } = useTranslation()
   const [isDeleteUserOpen, setIsDeleteUserOpen] = useState(false)
+  const [isUnbanUserOpen, setIsUnbanUserOpen] = useState(false)
   const [isBanUserOpen, setIsBanUserOpen] = useState(false)
 
-  const userId = row.getVisibleCells()[0].getValue() as number
-  const userName = row.getVisibleCells()[1].getValue() as string
+  const userId = row.original.userId
+  const userName = row.original.userName
+  //@ts-ignore
+  const userStatus = row.original.status
 
   const onDeleteClick = () => {
     setIsDeleteUserOpen(true)
   }
   const onBanClick = () => {
     setIsBanUserOpen(true)
+  }
+
+  const onUnbanClick = () => {
+    setIsUnbanUserOpen(true)
   }
 
   return (
@@ -55,13 +63,26 @@ export const TableActionsDropdown: FC<Props> = ({ row }) => {
               <FaUserSlash size={24} className="mr-3" />
               {t('userList.deleteUser')}
             </DropdownMenu.Item>
-            <DropdownMenu.Item
-              className="flex items-center mb-3 cursor-pointer"
-              onSelect={() => onBanClick()}
-            >
-              <FaBan size={24} className="mr-3" />
-              {t('userList.banUser')}
-            </DropdownMenu.Item>
+
+            {userStatus === 'ACTIVE' && (
+              <DropdownMenu.Item
+                className="flex items-center mb-3 cursor-pointer"
+                onSelect={() => onBanClick()}
+              >
+                <FaBan size={24} className="mr-3" />
+                {t('userList.banUser')}
+              </DropdownMenu.Item>
+            )}
+
+            {userStatus === 'BANNED' && (
+              <DropdownMenu.Item
+                className="flex items-center mb-3 cursor-pointer"
+                onSelect={() => onUnbanClick()}
+              >
+                <FaBan size={24} className="mr-3" />
+                {t('userList.unbanUser')}
+              </DropdownMenu.Item>
+            )}
 
             <DropdownMenu.Item
               className="flex items-center cursor-pointer"
@@ -80,6 +101,12 @@ export const TableActionsDropdown: FC<Props> = ({ row }) => {
         defaultText={''}
         userId={userId}
         userName={userName}
+      />
+      <UnbanUserModal
+        isUnbanUserOpen={isUnbanUserOpen}
+        setIsUnbanUserOpen={setIsUnbanUserOpen}
+        userName={userName}
+        userId={userId}
       />
       <DeleteModal
         isDeleteUserOpen={isDeleteUserOpen}
