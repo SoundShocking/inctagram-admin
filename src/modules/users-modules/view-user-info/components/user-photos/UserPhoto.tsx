@@ -2,13 +2,13 @@ import React, { FC } from 'react'
 
 import Image from 'next/image'
 
-export const UserPhoto: FC<any> = ({ post, onPostClick }) => {
+export const UserPhoto: FC<any> = ({ item }) => {
   return (
-    <div className="aspect-square relative" key={post.id} onClick={() => onPostClick(post.id)}>
+    <div className="aspect-square relative">
       <Image
-        src={post.images[0]?.versions.huge.url}
-        width={post.images[0]?.versions.huge.width}
-        height={post.images[0]?.versions.huge.height}
+        src={item.url}
+        width={234}
+        height={228}
         alt=""
         className="w-full h-full object-cover cursor-pointer"
       />

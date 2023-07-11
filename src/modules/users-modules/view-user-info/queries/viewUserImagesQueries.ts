@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client'
 
-export const GET_USER_INFO = gql`
-  query getUserInfo(
+export const GET_USER_IMAGES = gql`
+  query getUserImages(
     $userId: Int!
     $pageNumber: Int
     $pageSize: Int
@@ -15,10 +15,6 @@ export const GET_USER_INFO = gql`
       sortBy: $sortBy
       sortDirection: $sortDirection
     ) {
-      userId
-      userName
-      profileLink
-      createdAt
       images {
         page
         pageSize
@@ -27,19 +23,6 @@ export const GET_USER_INFO = gql`
         items {
           url
           createdAt
-        }
-      }
-      payments {
-        page
-        pageSize
-        pagesCount
-        totalCount
-        items {
-          dataOfPayment
-          endDateOfSubscription
-          price
-          type
-          paymentType
         }
       }
     }
