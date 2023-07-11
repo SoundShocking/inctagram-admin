@@ -52,7 +52,6 @@ const AuthProvider = ({ children, ...props }: AuthProviderType) => {
   }
 
   const logout = () => {
-    localStorage.removeItem('authorization')
     dispatch({ type: 'LOGOUT' })
   }
 

@@ -2,7 +2,7 @@ import Head from 'next/head'
 
 import { NextPageWithLayout } from '../_app'
 
-import { getGlobalLayout, GetLayoutViewUserInfo } from '@/components/layout'
+import { GetLayoutViewUserInfo } from '@/components/layout'
 import { ViewUserInfo } from '@/modules/users-modules/view-user-info'
 
 const UsersList: NextPageWithLayout = () => {
