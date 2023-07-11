@@ -51,6 +51,7 @@ export const GetAllUsersDocument = gql`
         userId
         userName
         createdAt
+        status
       }
     }
   }
