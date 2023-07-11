@@ -1,35 +1,91 @@
-import { SkeletonPost } from '@/modules/users-modules/view-user-info'
+import React, { useMemo, useState } from 'react'
+
+import { useQuery } from '@apollo/client'
+import { useRouter } from 'next/router'
+import { useInView } from 'react-intersection-observer'
+
+import {
+  GET_USER_IMAGES,
+  ItemsImagesType,
+  usedToDrawArraysOfSkeletons,
+  useInViewScrollHandlerEffect,
+  UserImagesType,
+  UserPhoto,
+} from '@/modules/users-modules/view-user-info'
 
 export const UserPhotos = () => {
-  const usedToDrawArraysOfSkeletons = (value: number) => {
-    return [...Array(value).keys()].map(i => {
-      return <SkeletonPost key={i} />
-    })
+  const router = useRouter()
+  const { userId } = router.query
+  const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false)
+  const [pageNumber, setPageNumber] = useState<number>(1)
+  const { loading, error, data, fetchMore } = useQuery<UserImagesType>(GET_USER_IMAGES, {
+    variables: {
+      userId: Number(userId),
+      pageSize: 16,
+    },
+  })
+  const images = data?.user.images
+
+  const { ref, inView } = useInView({
+    threshold: 0.1,
+  })
+  const memoizedItems: ItemsImagesType[] | undefined = useMemo(
+    () => images && images.items,
+    [images]
+  )
+
+  const handleScroll = () => {
+    if (images && images?.items.length < images.totalCount) {
+      setIsLoadingMore(true)
+      setPageNumber(prevNumber => prevNumber + 1)
+      fetchMore({
+        variables: { pageNumber: pageNumber },
+        updateQuery: (prev: UserImagesType, { fetchMoreResult }) => {
+          setIsLoadingMore(false)
+          if (!fetchMoreResult) return prev
+
+          return {
+            user: {
+              ...prev.user,
+              images: {
+                ...prev.user.images,
+                items: [...prev.user.images.items, ...fetchMoreResult.user.images.items],
+              },
+            },
+          }
+        },
+      })
+    }
+  }
+
+  useInViewScrollHandlerEffect({ inView, isLoadingMore, loading, handleScroll })
+
+  if (error && !loading) {
+    return <div>Error! {error.message}</div>
   }
 
   return (
     <div className="mt-14">
-      <div className="grid grid-cols-4 gap-3">
-        {
-          usedToDrawArraysOfSkeletons(8)
-          // : data?.photos.map((page, idx) => (
-          //     <React.Fragment key={idx}>
-          //       {photos &&
-          //         photos.items.map(users => (
-          //           < key={users.id} users={users}/>
-          //         ))}
-          //     </React.Fragment>
-          //   ))
-        }
+      <div className="grid grid-cols-4 gap-3 md:grid-cols-3 sm:grid-cols-2">
+        {loading ? (
+          usedToDrawArraysOfSkeletons(32)
+        ) : (
+          <>
+            {memoizedItems && memoizedItems.length > 0 ? (
+              memoizedItems.map((item: any, index: number) => <UserPhoto key={index} item={item} />)
+            ) : (
+              <div>No photos available</div>
+            )}
+          </>
+        )}
       </div>
-
-      {/*{isSuccess && (*/}
-      {/*  <div className="pt-4" ref={ref}>*/}
-      {/*    {isFetchingNextPage && (*/}
-      {/*      <div className={'grid grid-cols-4 gap-3'}>{usedToDrawArraysOfSkeletons(12)}</div>*/}
-      {/*    )}*/}
-      {/*  </div>*/}
-      {/*)}*/}
+      <div ref={ref}>
+        {isLoadingMore && inView && (
+          <div className="pt-4">
+            <div className={'grid grid-cols-4 gap-3'}>{usedToDrawArraysOfSkeletons(12)}</div>
+          </div>
+        )}
+      </div>
     </div>
   )
 }
