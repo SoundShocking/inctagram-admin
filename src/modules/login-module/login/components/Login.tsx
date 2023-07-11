@@ -1,8 +1,8 @@
 import React from 'react'
 
 import { FormLayout } from '@/components/form-layout'
-import { LoginForm } from '@/modules/login-module/login/components/LoginForm'
-import { NameTitle } from '@/ui/title_h2/nameTitle'
+import { LoginForm } from '@/modules/login-module/login'
+import { NameTitle } from '@/ui'
 
 export const Login = ({}) => {
   return (

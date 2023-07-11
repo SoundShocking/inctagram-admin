@@ -1,10 +1,20 @@
-import { ApolloClient, InMemoryCache } from '@apollo/client'
+import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client'
+import { setContext } from '@apollo/client/link/context'
+
+const httpLink = createHttpLink({
+  uri: 'https://cygan.lol/graphql',
+})
+
+const authLink = setContext((_, { headers }) => {
+  return {
+    headers: {
+      ...headers,
+      authorization: `Basic ${localStorage.getItem('authorization')}`,
+    },
+  }
+})
 
 export const apolloClient = new ApolloClient({
-  uri: 'https://urchin-app-debt4.ondigitalocean.app/graphql',
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
-  headers: {
-    authorization: 'Basic YWRtaW5AYWRtaW4ubWU6YWRtaW4=',
-  },
-  // uri: 'https://flyby-router-demo.herokuapp.com/',
 })
