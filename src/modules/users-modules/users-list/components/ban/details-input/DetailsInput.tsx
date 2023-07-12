@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { useTranslation } from 'react-i18next'
+
 import { GlobalInput } from '@/ui/inputs/input/Input'
 type PropsType = {
   setError: (error: string) => void
@@ -8,12 +10,14 @@ type PropsType = {
   error: string
 }
 export const DetailsInput = ({ setError, error, setBanDetails, banDetails }: PropsType) => {
+  const { t } = useTranslation()
+
   const onInputChange = (value: string) => {
     const MAX_LENGTH = 100
 
     if (value.length < MAX_LENGTH) {
       setError('')
-      setBanDetails(banDetails)
+      setBanDetails(value)
     } else {
       setError(`Maximum ${MAX_LENGTH} characters`)
     }
@@ -23,7 +27,7 @@ export const DetailsInput = ({ setError, error, setBanDetails, banDetails }: Pro
     <GlobalInput
       className={'my-3 text-light-100'}
       type={'text'}
-      label={'Add your reason'}
+      label={t('userList.ban.reason.add')}
       error={error}
       onChange={event => {
         onInputChange(event.target.value)

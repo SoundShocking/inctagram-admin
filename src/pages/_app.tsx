@@ -54,6 +54,7 @@ i18n.use(initReactI18next).init({
               anotherReason: 'Another reason',
               behavior: 'Bad behavior',
               advertising: 'Advertising placement',
+              add: 'Add your reason',
             },
           },
           unban: {
@@ -106,6 +107,7 @@ i18n.use(initReactI18next).init({
               anotherReason: 'Другая причина',
               behavior: 'Плохое поведение',
               advertising: 'Размещение рекламы',
+              add: 'Добавьте причину',
             },
           },
           unban: {
@@ -158,6 +160,7 @@ i18n.use(initReactI18next).init({
               anotherReason: 'Інша причина',
               behavior: 'Погана поведінка',
               advertising: 'Розміщення реклами',
+              add: 'Додайте причину',
             },
           },
           unban: {
@@ -210,6 +213,7 @@ i18n.use(initReactI18next).init({
               anotherReason: 'Іншая прычына',
               behavior: 'Паганае паводзіны',
               advertising: 'Размяшчэнне рэкламы',
+              add: 'Дадайце прычыну',
             },
           },
           unban: {
@@ -262,6 +266,7 @@ i18n.use(initReactI18next).init({
               anotherReason: 'Urrrrghh rrwrrrr',
               behavior: 'Grrrgh rrrrrrw',
               advertising: 'Rrwrrrrrrrrrrr rrrrrrrrr',
+              add: 'Rrwrrrr urrggghh',
             },
           },
           unban: {
