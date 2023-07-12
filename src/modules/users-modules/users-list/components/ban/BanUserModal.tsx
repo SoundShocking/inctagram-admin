@@ -12,7 +12,6 @@ import { ImageSelector } from '@/ui/image-selector/ImageSelector'
 type PropsType = {
   isBanUserOpen: boolean
   setIsBanUserOpen: (isBanUserOpen: boolean) => void
-  defaultText: string
   userId: number
   userName: string
 }
@@ -21,22 +20,21 @@ type ReasonType = {
   text: string
   value: BanReasonInputType
 }
-export const BanUserModal = ({
-  isBanUserOpen,
-  setIsBanUserOpen,
-  defaultText,
-  userId,
-  userName,
-}: PropsType) => {
+export const BanUserModal = ({ isBanUserOpen, setIsBanUserOpen, userId, userName }: PropsType) => {
   const { t } = useTranslation()
 
   const [updateUserStatus] = useMutation(UPDATE_USER_STATUS)
+  const ANOTHER_REASON = t('userList.ban.reason.anotherReason')
+  const BAD_BEHAVIOR = t('userList.ban.reason.behavior')
+  const ADVERTISING_PLACEMENT = t('userList.ban.reason.advertising')
 
   const reasons: ReasonType[] = [
-    { text: t('userList.ban.reason.anotherReason'), value: 'Another_reason' },
-    { text: t('userList.ban.reason.behavior'), value: 'Bad_behavior' },
-    { text: t('userList.ban.reason.advertising'), value: 'Advertising_placement' },
+    { text: ANOTHER_REASON, value: 'Another_reason' },
+    { text: BAD_BEHAVIOR, value: 'Bad_behavior' },
+    { text: ADVERTISING_PLACEMENT, value: 'Advertising_placement' },
   ]
+
+  const defaultText = BAD_BEHAVIOR
 
   const [isOpen, setIsOpen] = useState(false)
   const [banReasonName, setBanReasonName] = useState(defaultText)
@@ -102,7 +100,7 @@ export const BanUserModal = ({
             })}
           </ImageSelector>
           <div className={'mt-4'}>
-            {banReasonName === 'Another reason' && (
+            {banReasonName === ANOTHER_REASON && (
               <DetailsInput
                 banDetails={banDetails}
                 setBanDetails={setBanDetails}

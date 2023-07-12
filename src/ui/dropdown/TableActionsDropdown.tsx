@@ -98,7 +98,6 @@ export const TableActionsDropdown: FC<Props> = ({ row }) => {
       <BanUserModal
         isBanUserOpen={isBanUserOpen}
         setIsBanUserOpen={setIsBanUserOpen}
-        defaultText={''}
         userId={userId}
         userName={userName}
       />
