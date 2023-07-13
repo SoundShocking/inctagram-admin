@@ -6,13 +6,13 @@ import {
   ViewUserInfoMain,
   ViewUserInformationInTabs,
 } from '@/modules/users-modules/view-user-info'
-import { SkeletonViewUserInfoMain } from '@/modules/users-modules/view-user-info/skeleton/SkeletonViewUserInfoMain'
+import { SkeletonViewUserInfoMain } from '@/modules/users-modules/view-user-info/Skeletons/SkeletonViewUserInfoMain'
 
 export const ViewUserInfo = () => {
   const router = useRouter()
   const { userId } = router.query
   const { loading, error, data } = useQuery(GET_USER_INFO, {
-    variables: { userId: Number(userId) },
+    variables: { userId: Number(10) },
   })
 
   const userData = data?.user

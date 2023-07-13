@@ -4,14 +4,13 @@ import { useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { useInView } from 'react-intersection-observer'
 
+import { useInViewScrollHandlerEffect, UserPhoto } from '@/modules/users-modules/view-user-info'
+import { GET_USER_IMAGES } from '@/modules/users-modules/view-user-info/components/user-photos/queries/viewUserImagesQueries'
 import {
-  GET_USER_IMAGES,
   ItemsImagesType,
-  usedToDrawArraysOfSkeletons,
-  useInViewScrollHandlerEffect,
   UserImagesType,
-  UserPhoto,
-} from '@/modules/users-modules/view-user-info'
+} from '@/modules/users-modules/view-user-info/components/user-photos/types/UserImagesTypes'
+import { usedToDrawArraysOfSkeletons } from '@/modules/users-modules/view-user-info/Skeletons/usedToDrawArrayOfSkeletons'
 
 export const UserPhotos = () => {
   const router = useRouter()
@@ -20,11 +19,11 @@ export const UserPhotos = () => {
   const [pageNumber, setPageNumber] = useState<number>(1)
   const { loading, error, data, fetchMore } = useQuery<UserImagesType>(GET_USER_IMAGES, {
     variables: {
-      userId: Number(userId),
+      userId: Number(10),
       pageSize: 16,
     },
   })
-  const images = data?.user.images
+  const images = data?.user.imagesUser
 
   const { ref, inView } = useInView({
     threshold: 0.1,
@@ -48,8 +47,8 @@ export const UserPhotos = () => {
             user: {
               ...prev.user,
               images: {
-                ...prev.user.images,
-                items: [...prev.user.images.items, ...fetchMoreResult.user.images.items],
+                ...prev.user.imagesUser,
+                items: [...prev.user.imagesUser.items, ...fetchMoreResult.user.imagesUser.items],
               },
             },
           }
