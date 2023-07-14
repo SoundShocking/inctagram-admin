@@ -16,6 +16,7 @@ export const handleAuthRedirectEffect = ({ auth }: handleAuthRedirectEffectType)
       replace(routes.protected, undefined, { shallow: true })
     }
     if (!auth && !unProtectedPaths.includes(pathname)) {
+      // @ts-ignore
       replace(routes.unprotected, undefined, { shallow: true })
     }
   }, [auth])
