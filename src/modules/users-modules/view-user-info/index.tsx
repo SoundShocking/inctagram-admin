@@ -4,10 +4,10 @@ export * from './components/ViewUserInfoMain'
 export * from './components/ViewUserInformationInTabs'
 export * from './components/user-photos/components/UserPhotos'
 export * from './components/user-photos/components/UserPhoto'
-export * from './components/my-payments/components/UserPayments'
+export * from '@/modules/users-modules/view-user-info/components/user-payments/components/UserPayments'
 //Constants
 export * from './constants/viewUserInfoForTabs'
-export * from './components/my-payments/constants/arrayOfColumnDefinitionsForTheGrid'
+export * from '@/modules/users-modules/view-user-info/components/user-payments/constants/arrayOfColumnDefinitionsForTheGrid'
 //Queries
 export * from './queries/viewUserInfoQueries'
 
@@ -19,8 +19,8 @@ export * from './custom/utils/dateChangesFormat'
 export * from './custom/useEffect/changingTabsParametersUrlEffect'
 export * from './custom/useEffect/callWhenUrlChangesEffect'
 export * from './components/user-photos/custom/useEffect/useInViewScrollHandlerEffect'
-export * from './components/my-payments/custom/useEffect/setUserPaymentsDataEffect'
+export * from '@/modules/users-modules/view-user-info/components/user-payments/custom/useEffect/setUserPaymentsDataEffect'
 //Skeleton
 export * from '@/modules/users-modules/view-user-info/Skeletons/SkeletonPost'
 export * from '@/modules/users-modules/view-user-info/Skeletons/SkeletonViewUserInfoMain'
-export * from './components/my-payments/skeleton/SkeletonUserPayments'
+export * from '@/modules/users-modules/view-user-info/components/user-payments/skeleton/SkeletonUserPayments'

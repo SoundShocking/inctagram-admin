@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import {
   ItemsPaymentsType,
   PaymentsUser,
-} from '@/modules/users-modules/view-user-info/components/my-payments/types/UserPaymentsType'
+} from '@/modules/users-modules/view-user-info/components/user-payments/types/UserPaymentsType'
 
 export const setUserPaymentsDataEffect = (
   paymentsUser: PaymentsUser | undefined,
