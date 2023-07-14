@@ -1,5 +1,3 @@
-import React, { FC } from 'react'
-
 import Image from 'next/image'
 
 import { ItemsImagesType } from '@/modules/users-modules/view-user-info'
