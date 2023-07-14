@@ -35,7 +35,7 @@ export const UserPayments = () => {
     }),
     [pageIndex, pageSize]
   )
-  const { loading, data } = useQuery<UserPaymentsType>(GET_USER_PAYMENTS, {
+  const { loading, data, error } = useQuery<UserPaymentsType>(GET_USER_PAYMENTS, {
     variables: {
       userId: Number(10),
       pageNumber: pageIndex + 1,
@@ -96,11 +96,11 @@ export const UserPayments = () => {
     getSortedRowModel: getSortedRowModel(),
   })
 
+  if (error) return <p>Error : {error.message}</p>
+
   return (
-    <>
-      <div className=" text-accent-500 p-2 block max-w-full ">
-        <UserPaymentsTable tableProps={tableProps} loading={loading} />
-      </div>
-    </>
+    <div className=" text-accent-500 p-2 block max-w-full ">
+      <UserPaymentsTable tableProps={tableProps} loading={loading} />
+    </div>
   )
 }
