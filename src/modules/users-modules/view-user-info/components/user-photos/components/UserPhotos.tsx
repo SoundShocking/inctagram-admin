@@ -20,7 +20,7 @@ export const UserPhotos = () => {
   const [pageNumber, setPageNumber] = useState<number>(1)
   const { loading, error, data, fetchMore } = useQuery<UserImagesType>(GET_USER_IMAGES, {
     variables: {
-      userId: Number(10),
+      userId: Number(userId),
       pageSize: 16,
     },
   })

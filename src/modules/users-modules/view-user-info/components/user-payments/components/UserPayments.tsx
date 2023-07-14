@@ -10,12 +10,13 @@ import {
   ColumnDef,
   Table,
 } from '@tanstack/react-table'
+import { useRouter } from 'next/router'
 
 import { capitalizeFirstLetter } from '@/common'
 import {
   dateChangesFormat,
   GET_USER_PAYMENTS,
-  ItemsPaymentsType,
+  ItemsUserPaymentsType,
   PaymentsUser,
   setUserPaymentsDataEffect,
   SkeletonUserPayments,
@@ -24,6 +25,8 @@ import {
 } from '@/modules/users-modules/view-user-info'
 
 export const UserPayments = () => {
+  const router = useRouter()
+  const { userId } = router.query
   const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({
     pageIndex: 0,
     pageSize: 10,
@@ -37,7 +40,7 @@ export const UserPayments = () => {
   )
   const { loading, data, error } = useQuery<UserPaymentsType>(GET_USER_PAYMENTS, {
     variables: {
-      userId: Number(10),
+      userId: Number(userId),
       pageNumber: pageIndex + 1,
       pageSize: pageSize,
     },
@@ -45,11 +48,11 @@ export const UserPayments = () => {
   })
   const paymentsUser: PaymentsUser | undefined = data?.user.paymentsUser
   const pageCount: number | undefined = paymentsUser?.pagesCount
-  const [myPaymentsData, setMyPaymentsData] = useState<ItemsPaymentsType[]>([])
+  const [myPaymentsData, setMyPaymentsData] = useState<ItemsUserPaymentsType[]>([])
 
   setUserPaymentsDataEffect(paymentsUser, loading, setMyPaymentsData)
 
-  const columns: ColumnDef<ItemsPaymentsType>[] = [
+  const columns: ColumnDef<ItemsUserPaymentsType>[] = [
     {
       header: 'Date of Payment',
       cell: (params: any) =>
@@ -81,7 +84,7 @@ export const UserPayments = () => {
     },
   ]
 
-  const tableProps: Table<ItemsPaymentsType> = useReactTable({
+  const tableProps: Table<ItemsUserPaymentsType> = useReactTable({
     data: myPaymentsData,
     columns: columns,
     state: {

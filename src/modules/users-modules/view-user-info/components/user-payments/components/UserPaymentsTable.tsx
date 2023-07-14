@@ -2,13 +2,13 @@ import React from 'react'
 
 import { flexRender, Table } from '@tanstack/react-table'
 
-import { ItemsPaymentsType } from '@/modules/users-modules/view-user-info'
+import { ItemsUserPaymentsType } from '@/modules/users-modules/view-user-info'
 
 export const UserPaymentsTable = ({
   tableProps,
   loading,
 }: {
-  tableProps: Table<ItemsPaymentsType>
+  tableProps: Table<ItemsUserPaymentsType>
   loading: boolean
 }) => {
   return (

@@ -12,7 +12,7 @@ export const ViewUserInfo = () => {
   const router = useRouter()
   const { userId } = router.query
   const { loading, error, data } = useQuery(GET_USER_INFO, {
-    variables: { userId: Number(10) },
+    variables: { userId: Number(userId) },
   })
 
   const userData = data?.user
