@@ -1,7 +1,7 @@
 import Head from 'next/head'
 
 import { NextPageWithLayout } from './_app'
-import UsersList from './users-list'
+import UsersList from './users'
 
 import { getGlobalLayout } from '@/components/layout'
 

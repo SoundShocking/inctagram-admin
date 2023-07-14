@@ -1,5 +1,9 @@
 export const routes = {
-  protected: '/users-list',
+  protected: '/users',
   unprotected: '/auth/login',
   logout: '/auth/login',
+  users: '/users',
+  payments: '/payments',
+  statistics: '/statistics',
+  posts: '/posts',
 }
