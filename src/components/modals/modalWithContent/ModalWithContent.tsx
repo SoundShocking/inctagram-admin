@@ -15,6 +15,7 @@ interface Props {
   children: any
   confirmButtonText?: string
   declineButtonText?: string
+  disabled?: boolean
 }
 
 export const ModalWithContent: FC<Props> = ({
@@ -26,6 +27,7 @@ export const ModalWithContent: FC<Props> = ({
   children,
   confirmButtonText,
   declineButtonText,
+  disabled,
 }) => {
   return (
     <Modal
@@ -48,8 +50,9 @@ export const ModalWithContent: FC<Props> = ({
       <div className={styles.modalFooter}>
         {onConfirm ? (
           <button
+            disabled={disabled}
             className={
-              'py-[6px] px-[34px] w-mim-[96px] h-[36px] flex justify-center align-middle border-[1px] bg-dark-300 border-accent-500 text-accent-500 leading-6 font-normal text-[16px] active:text-light-100 active:bg-accent-500'
+              'py-[6px] px-[34px] w-mim-[96px] h-[36px] flex justify-center align-middle border-[1px] bg-dark-300 border-accent-500 text-accent-500 leading-6 font-normal text-[16px] active:text-light-100 active:bg-accent-500 disabled:opacity-25'
             }
             onClick={() => onConfirm()}
           >
@@ -60,8 +63,9 @@ export const ModalWithContent: FC<Props> = ({
         )}
         {onDecline ? (
           <button
+            disabled={disabled}
             className={
-              'py-[6px] px-[34px] w-mim-[96px] h-[36px] flex justify-center align-middle border-[1px] bg-dark-300 border-accent-500 text-accent-500 leading-6 font-normal text-[16px] active:text-light-100 active:bg-accent-500'
+              'py-[6px] px-[34px] w-mim-[96px] h-[36px] flex justify-center align-middle border-[1px] bg-dark-300 border-accent-500 text-accent-500 leading-6 font-normal text-[16px] active:text-light-100 active:bg-accent-500 disabled:opacity-25'
             }
             onClick={() => onDecline()}
           >

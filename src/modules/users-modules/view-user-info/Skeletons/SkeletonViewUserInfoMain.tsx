@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { ArrowBack } from '@/modules/users-modules/view-user-info'
+import { ArrowBack } from '@/modules/users-modules/view-user-info/custom/utils/ArrowBack'
 import { Skeleton } from '@/ui'
 
 export const SkeletonViewUserInfoMain = () => {

@@ -5,7 +5,5 @@ export type User = {
   createdAt: string
 }
 export interface UserData {
-  users: {
-    items: User[]
-  }
+  user: User
 }

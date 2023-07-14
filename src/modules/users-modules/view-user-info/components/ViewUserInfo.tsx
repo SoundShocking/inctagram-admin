@@ -3,15 +3,16 @@ import { useRouter } from 'next/router'
 
 import {
   GET_USER_INFO,
+  SkeletonViewUserInfoMain,
+  UserData,
   ViewUserInfoMain,
   ViewUserInformationInTabs,
 } from '@/modules/users-modules/view-user-info'
-import { SkeletonViewUserInfoMain } from '@/modules/users-modules/view-user-info/skeleton/SkeletonViewUserInfoMain'
 
 export const ViewUserInfo = () => {
   const router = useRouter()
   const { userId } = router.query
-  const { loading, error, data } = useQuery(GET_USER_INFO, {
+  const { loading, error, data } = useQuery<UserData>(GET_USER_INFO, {
     variables: { userId: Number(userId) },
   })
 

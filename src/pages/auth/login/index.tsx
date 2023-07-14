@@ -14,7 +14,6 @@ const LoginPage: NextPageWithLayout<ILogin> = memo(({}) => {
       <Head>
         <title>Login</title>
       </Head>
-      {/* eslint-disable-next-line react/jsx-no-undef */}
       <Login />
     </div>
   )
