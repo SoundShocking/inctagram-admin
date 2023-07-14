@@ -2,15 +2,9 @@ import React, { FC } from 'react'
 
 import Image from 'next/image'
 
-type PropsType = {
-  src?: any
-  alt: string
-  height?: number
-  width?: number
-  className?: string
-}
+import { ItemsImagesType } from '@/modules/users-modules/view-user-info'
 
-export const UserPhoto: FC<any> = ({ item }: any) => {
+export const UserPhoto = ({ item }: { item: ItemsImagesType }) => {
   return (
     <div className="aspect-square relative">
       <Image
@@ -18,7 +12,7 @@ export const UserPhoto: FC<any> = ({ item }: any) => {
         src={item.url}
         width={234}
         height={228}
-        alt=""
+        alt="фывафыва"
         className="w-full h-full object-cover cursor-pointer"
       />
     </div>

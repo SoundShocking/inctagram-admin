@@ -1,4 +1,4 @@
-export type ItemsPaymentsType = {
+export type ItemsUserPaymentsType = {
   dataOfPayment: Date
   endDateOfSubscription: Date
   price: number
@@ -11,7 +11,7 @@ export interface PaymentsUser {
   pageSize: number
   pagesCount: number
   totalCount: number
-  items: ItemsPaymentsType[]
+  items: ItemsUserPaymentsType[]
 }
 export interface UserType {
   paymentsUser: PaymentsUser

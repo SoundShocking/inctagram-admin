@@ -4,13 +4,14 @@ import { useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { useInView } from 'react-intersection-observer'
 
-import { useInViewScrollHandlerEffect, UserPhoto } from '@/modules/users-modules/view-user-info'
-import { GET_USER_IMAGES } from '@/modules/users-modules/view-user-info/components/user-photos/queries/viewUserImagesQueries'
 import {
+  GET_USER_IMAGES,
   ItemsImagesType,
+  usedToDrawArraysOfSkeletons,
+  useInViewScrollHandlerEffect,
   UserImagesType,
-} from '@/modules/users-modules/view-user-info/components/user-photos/types/UserImagesTypes'
-import { usedToDrawArraysOfSkeletons } from '@/modules/users-modules/view-user-info/Skeletons/usedToDrawArrayOfSkeletons'
+  UserPhoto,
+} from '@/modules/users-modules/view-user-info'
 
 export const UserPhotos = () => {
   const router = useRouter()
@@ -71,7 +72,9 @@ export const UserPhotos = () => {
         ) : (
           <>
             {memoizedItems && memoizedItems.length > 0 ? (
-              memoizedItems.map((item: any, index: number) => <UserPhoto key={index} item={item} />)
+              memoizedItems.map((item: ItemsImagesType, index: number) => (
+                <UserPhoto key={index} item={item} />
+              ))
             ) : (
               <div>No photos available</div>
             )}

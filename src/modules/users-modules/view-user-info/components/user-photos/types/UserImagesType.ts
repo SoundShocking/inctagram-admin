@@ -2,13 +2,13 @@ export type ItemsImagesType = {
   url: string
 }
 
-export interface ImagesType {
+export interface ImagesUserType {
   totalCount: number
   items: ItemsImagesType[]
 }
-export interface UserType {
-  imagesUser: ImagesType
+export interface UserPhotosType {
+  imagesUser: ImagesUserType
 }
 export interface UserImagesType {
-  user: UserType
+  user: UserPhotosType
 }
