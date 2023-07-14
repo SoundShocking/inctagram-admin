@@ -1,9 +1,6 @@
 import { useEffect } from 'react'
 
-import {
-  ItemsPaymentsType,
-  PaymentsUser,
-} from '@/modules/users-modules/view-user-info/components/user-payments/types/UserPaymentsType'
+import { ItemsPaymentsType, PaymentsUser } from '@/modules/users-modules/view-user-info'
 
 export const setUserPaymentsDataEffect = (
   paymentsUser: PaymentsUser | undefined,
@@ -12,8 +9,6 @@ export const setUserPaymentsDataEffect = (
 ) => {
   return useEffect(() => {
     isLoading ? setMyPaymentsData(Array(30).fill({})) : paymentsUser
-    if (paymentsUser) {
-      setMyPaymentsData(paymentsUser.items)
-    }
+    paymentsUser ? setMyPaymentsData(paymentsUser.items) : setMyPaymentsData(Array(10).fill({}))
   }, [isLoading, paymentsUser])
 }

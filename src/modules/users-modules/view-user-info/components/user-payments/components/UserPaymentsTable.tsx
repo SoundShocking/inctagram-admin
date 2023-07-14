@@ -1,7 +1,8 @@
 import React from 'react'
 
 import { flexRender, Table } from '@tanstack/react-table'
-import { ItemsPaymentsType } from '@/modules/users-modules/view-user-info/components/user-payments/types/UserPaymentsType'
+
+import { ItemsPaymentsType } from '@/modules/users-modules/view-user-info'
 
 export const UserPaymentsTable = ({
   tableProps,
@@ -10,8 +11,6 @@ export const UserPaymentsTable = ({
   tableProps: Table<ItemsPaymentsType>
   loading: boolean
 }) => {
-  console.log('2')
-
   return (
     <div className={`max-w-[972px]`}>
       <table>
@@ -101,19 +100,6 @@ export const UserPaymentsTable = ({
           <strong>
             {tableProps.getState().pagination.pageIndex + 1} of {tableProps.getPageCount()}
           </strong>
-        </span>
-        <span className="flex items-center gap-1">
-          | Go to page:
-          <input
-            type="number"
-            defaultValue={tableProps.getState().pagination.pageIndex + 1}
-            onChange={e => {
-              const page = e.target.value ? Number(e.target.value) + 1 : 0
-
-              tableProps.setPageIndex(page)
-            }}
-            className="border p-1 rounded w-16 bg-dark-500 text-light-100 text-sm font-normal"
-          />
         </span>
         <select
           className={'bg-dark-500 text-light-100 text-sm font-normal'}

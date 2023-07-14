@@ -5,14 +5,15 @@ export * from './components/ViewUserInformationInTabs'
 export * from './components/user-photos/components/UserPhotos'
 export * from './components/user-photos/components/UserPhoto'
 export * from '@/modules/users-modules/view-user-info/components/user-payments/components/UserPayments'
+export * from '@/modules/users-modules/view-user-info/components/user-payments/components/UserPaymentsTable'
 //Constants
 export * from './constants/viewUserInfoForTabs'
-export * from '@/modules/users-modules/view-user-info/components/user-payments/constants/arrayOfColumnDefinitionsForTheGrid'
 //Queries
 export * from './queries/viewUserInfoQueries'
-
+export * from './components/user-payments/queries/viewUserPaymentsQueries'
 //Types
 export * from './types/ViewUserInfoTypes'
+export * from './components/user-payments/types/UserPaymentsType'
 //Custom Utils
 export * from './custom/utils/dateChangesFormat'
 //Custom Effect
