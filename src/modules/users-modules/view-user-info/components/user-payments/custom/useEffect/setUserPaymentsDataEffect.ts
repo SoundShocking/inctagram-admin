@@ -9,6 +9,9 @@ export const setUserPaymentsDataEffect = (
 ) => {
   return useEffect(() => {
     isLoading ? setMyPaymentsData(Array(30).fill({})) : paymentsUser
-    paymentsUser ? setMyPaymentsData(paymentsUser.items) : setMyPaymentsData(Array(10).fill({}))
+
+    paymentsUser && paymentsUser?.items.length > 0
+      ? setMyPaymentsData(paymentsUser.items)
+      : setMyPaymentsData(Array(10).fill({}))
   }, [isLoading, paymentsUser])
 }
