@@ -6,7 +6,9 @@ export const UserPhoto = ({ item }: { item: ItemsImagesType }) => {
   return (
     <div className="aspect-square relative">
       <Image
-        loader={() => item.url}
+        loader={({ src, width }) => {
+          return src + '?w=' + width
+        }}
         src={item.url}
         width={234}
         height={228}

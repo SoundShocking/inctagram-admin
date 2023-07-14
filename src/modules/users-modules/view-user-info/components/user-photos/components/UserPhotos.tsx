@@ -18,7 +18,7 @@ export const UserPhotos = () => {
   const { userId } = router.query
   const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false)
   const [pageNumber, setPageNumber] = useState<number>(1)
-  const { loading, error, data, fetchMore } = useQuery<UserImagesType>(GET_USER_IMAGES, {
+  const { loading, error, data, fetchMore } = useQuery(GET_USER_IMAGES, {
     variables: {
       userId: Number(userId),
       pageSize: 16,
@@ -33,9 +33,8 @@ export const UserPhotos = () => {
     () => images && images.items,
     [images]
   )
-
   const handleScroll = () => {
-    if (images && images?.items.length < images.totalCount) {
+    if (inView && images && images?.items.length < images.totalCount) {
       setIsLoadingMore(true)
       setPageNumber(prevNumber => prevNumber + 1)
       fetchMore({
@@ -43,15 +42,16 @@ export const UserPhotos = () => {
         updateQuery: (prev: UserImagesType, { fetchMoreResult }) => {
           setIsLoadingMore(false)
           if (!fetchMoreResult) return prev
-
-          return {
-            user: {
-              ...prev.user,
-              images: {
-                ...prev.user.imagesUser,
-                items: [...prev.user.imagesUser.items, ...fetchMoreResult.user.imagesUser.items],
+          if (prev.user) {
+            return {
+              user: {
+                ...prev.user,
+                imagesUser: {
+                  ...prev.user.imagesUser,
+                  items: [...prev.user.imagesUser.items, ...fetchMoreResult.user.imagesUser.items],
+                },
               },
-            },
+            }
           }
         },
       })
