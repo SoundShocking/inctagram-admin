@@ -3,12 +3,11 @@ import { useRouter } from 'next/router'
 
 import {
   GET_USER_INFO,
-  User,
+  SkeletonViewUserInfoMain,
   UserData,
   ViewUserInfoMain,
   ViewUserInformationInTabs,
 } from '@/modules/users-modules/view-user-info'
-import { SkeletonViewUserInfoMain } from '@/modules/users-modules/view-user-info/Skeletons/SkeletonViewUserInfoMain'
 
 export const ViewUserInfo = () => {
   const router = useRouter()

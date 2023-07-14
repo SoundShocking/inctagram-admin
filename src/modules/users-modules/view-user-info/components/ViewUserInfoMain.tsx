@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { dateChangesFormat, User } from '@/modules/users-modules/view-user-info'
+import { dateChangesFormat } from '@/modules/users-modules/view-user-info'
 import { ArrowBack } from '@/modules/users-modules/view-user-info/custom/utils/ArrowBack'
 import { Avatar } from '@/ui'
 
