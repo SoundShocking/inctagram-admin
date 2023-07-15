@@ -18,7 +18,7 @@ interface Props {
 export const TableActionsDropdown: FC<Props> = ({ row }) => {
   const router = useRouter()
   const handleMenuItemClickMoreInformation = () => {
-    router.push(`/users-list/${row.original.userId}`)
+    router.push(`/users/${row.original.userId}`)
   }
 
   const { t } = useTranslation()
