@@ -10,24 +10,6 @@
 
 @tailwind utilities;
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -41,13 +23,10 @@ a {
 
 body {
   min-height: 100vh;
-
   font-family: 'Inter', sans-serif;
-  font-size: 20px;
-  line-height: 1.2;
   letter-spacing: -0.02em;
 
-  background-color: #050505;
+  @apply bg-dark-700 text-light-100 font-normal text-sm leading-6;
 }
 
 .container {
@@ -74,8 +53,10 @@ body {
   @apply text-accent-500 outline-none hover:text-accent-100  disabled:text-accent-900 outline-none;
 }
 
-/*body {*/
-/*  color: rgb(var(--foreground-rgb));*/
-/*  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))*/
-/*    rgb(var(--background-start-rgb));*/
-/*}*/
+.tabsSelected {
+  @apply cursor-pointer border-accent-500 text-accent-500 leading-6 text-sm font-semibold hover:border-b-2 hover:border-accent-500 hover:bg-accent-900 hover:text-accent-500 hover:leading-6 hover:text-sm hover:font-semibold active:bg-accent-100 active:border-b-2 active:border-accent-500 active:text-accent-500 active:leading-6 active:text-sm active:font-semibold focus:bg-accent-700  focus:border-b-2 focus:border-accent-500 focus:text-accent-500 focus:leading-6 focus:text-sm focus:font-semibold disabled:border-b-2 disabled:border-accent-500 disabled:text-accent-500 disabled:leading-6 disabled:text-sm disabled:font-semibold;
+}
+
+.tabsUnselected {
+  @apply cursor-pointer  border-b-2 border-dark-100 text-dark-100 leading-6 text-sm font-semibold hover:border-b-2 hover:border-dark-100 hover:bg-accent-900 hover:text-dark-100 hover:leading-6 hover:text-sm hover:font-semibold active:bg-accent-100 active:border-b-2 active:border-dark-100 active:text-dark-100 active:leading-6 active:text-sm active:font-semibold focus:bg-accent-700  focus:border-b-2 focus:border-accent-500 focus:text-accent-500 focus:leading-6 focus:text-sm focus:font-semibold disabled:border-b-2 disabled:border-accent-500 disabled:text-accent-500 disabled:leading-6 disabled:text-sm disabled:font-semibold;
+}
