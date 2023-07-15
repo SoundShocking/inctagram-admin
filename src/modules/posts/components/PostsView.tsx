@@ -1,13 +1,23 @@
 import { ChangeEvent, useState } from 'react'
 
+import { useQuery } from '@apollo/client'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { GET_POSTS_LIST } from '@/modules/posts'
 import { Avatar, GlobalInput } from '@/ui'
 
 export const PostsView = () => {
-  const [showMore, setShowMore] = useState<boolean>(false)
   const [search, setSearch] = useState<string>('')
+
+  const { loading, error, data, fetchMore } = useQuery(GET_POSTS_LIST, {
+    variables: {
+      search: search,
+      pageSize: 16,
+    },
+  })
+
+  const [showMore, setShowMore] = useState<boolean>(false)
 
   // const handleCallBackShowMore = ({ userId: number }: { userId: boolean }) => {}
   const handleCallBackSearch = (e: ChangeEvent<HTMLInputElement>) => {

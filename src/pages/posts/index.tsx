@@ -1,6 +1,5 @@
 import { getGlobalLayout } from '@/components/layout'
-import { PostsView } from '@/modules/posts/components/PostsView'
-
+import { PostsView } from '@/modules/posts'
 const Posts = () => {
   return (
     <>
