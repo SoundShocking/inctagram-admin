@@ -1,1 +1,1 @@
-export const unProtectedPaths = ['/auth/login']
+export const unProtectedPaths = ['/auth/login', '/404']

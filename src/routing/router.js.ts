@@ -1,6 +1,6 @@
 export const routes = {
   protected: '/users',
-  unprotected: ['/auth/login', '/404'],
+  unprotected: '/auth/login',
   logout: '/auth/login',
   users: '/users',
   payments: '/payments',
