@@ -1,6 +1,4 @@
-import React, { FC, memo, PropsWithChildren, useContext, useEffect } from 'react'
-
-import { useRouter } from 'next/router'
+import React, { FC, memo, PropsWithChildren, useContext } from 'react'
 
 import { handleAuthRedirectEffect, useLastRoutingEffect } from '@/components/auth-components'
 import { accessTokenVerificationEffect } from '@/components/auth-components/custom/useEffect/accessTokenVerificationEffect'
