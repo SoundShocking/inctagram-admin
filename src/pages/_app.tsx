@@ -24,7 +24,7 @@ i18n.use(initReactI18next).init({
         navigation: {
           statistics: 'Statistics',
           userList: 'Users list',
-          postList: 'Posts list',
+          postList: 'PostsView list',
           paymentsList: 'Payments list',
         },
         userList: {

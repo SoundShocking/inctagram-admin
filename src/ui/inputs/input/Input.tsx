@@ -1,4 +1,5 @@
 import {
+  ChangeEvent,
   CSSProperties,
   ForwardedRef,
   forwardRef,
@@ -16,11 +17,22 @@ export type InputType = InputHTMLAttributes<HTMLInputElement> & {
   label?: string
   error?: string | FieldValues | any
   classNameContainer?: string | CSSProperties
+  value?: string
+  callBack?: (e: ChangeEvent<HTMLInputElement>) => void | never
 }
 
 export const GlobalInput = forwardRef(
   (
-    { type, label = '', id, error, classNameContainer = '', ...restProps }: InputType,
+    {
+      value,
+      callBack,
+      type,
+      label = '',
+      id,
+      error,
+      classNameContainer = '',
+      ...restProps
+    }: InputType,
     ref: ForwardedRef<HTMLInputElement>
   ): JSX.Element => {
     return (
@@ -30,7 +42,9 @@ export const GlobalInput = forwardRef(
         </label>
         <div className="relative">
           <input
+            onChange={(e: ChangeEvent<HTMLInputElement>) => (callBack ? callBack(e) : '')}
             id={id}
+            value={value}
             className={error ? style.inputBottomError : ''}
             type={type}
             autoComplete={type === 'email' ? 'on' : 'off'}
