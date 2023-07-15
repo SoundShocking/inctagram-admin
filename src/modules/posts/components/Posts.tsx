@@ -9,41 +9,48 @@ export const Posts = ({
   setShowMore,
   text,
 }: {
-  data?: any[]
+  data: any
   showMore: boolean
   setShowMore: (show: boolean) => void
   text: string
 }) => {
+  console.log(1)
+
+  // "createdAt": "2023-07-15T12:36:17.684Z",
+  //     "userId": 39,
+  //     "userName": "beeBrick",
+  //     "status": "ACTIVE",
+  //     "description": "new post for test",
+  //     "urlAvatar": null,
+
   return (
-    <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-4 gap-3">
+    <>
       <div className="max-w-[234px] flex flex-col h-auto">
         <div className="w-full">
           <Image
             className="bg-dark-300"
             width={234}
             height={240}
-            src={
-              'https://mykaleidoscope.ru/x/uploads/posts/2022-09/1663655218_46-mykaleidoscope-ru-p-emotsii-krutie-instagram-49.jpg'
-            }
-            alt={'asdf'}
+            src={data.urlsPostsImages ? data.urlsPostsImages[0] : null}
+            alt={'Posts image'}
           />
           <div className="flex pt-[6px] justify-between">
             <div className="flex gap-3">
               <Avatar
-                src={
-                  'https://pixelbox.ru/wp-content/uploads/2022/08/avatar-boy-telegram-pixelbox.ru-94.jpg'
-                }
+                src={data.urlAvatar ? data.urlAvatar : null}
                 alt={'user avatar'}
                 height={36}
                 width={36}
               />
-              <Link href={'/'}>
-                <span className="font-semibold leading-6 text-base">URLProfile</span>
+              <Link href={`/users/` + data.userId}>
+                <span className="font-semibold leading-6 text-base">{data.userName}</span>
               </Link>
             </div>
-            <span>STATUS</span>
+            <span>Status: {data.status}</span>
           </div>
-          <span className="pt-3 font-normal text-light-900 leading-4 text-xs">22 min ago</span>
+          <span className="pt-3 font-normal text-light-900 leading-4 text-xs">
+            Created: {data.createdAt}
+          </span>
           <p className="text-sm text-light-100 leading-6 font-normal">
             {showMore ? text : `${text.substring(0, 83)}`}
             <button className="text-accent-700" onClick={() => setShowMore(!showMore)}>
@@ -52,6 +59,6 @@ export const Posts = ({
           </p>
         </div>
       </div>
-    </div>
+    </>
   )
 }

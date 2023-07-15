@@ -1,19 +1,17 @@
 import { ChangeEvent, useState } from 'react'
 
 import { useQuery } from '@apollo/client'
-import Image from 'next/image'
-import Link from 'next/link'
 
 import { GET_POSTS_LIST, Posts } from '@/modules/posts'
-import { Avatar, GlobalInput } from '@/ui'
+import { GlobalInput } from '@/ui'
 
 export const PostsList = () => {
   const [search, setSearch] = useState<string>('')
 
-  const { loading, error, data, fetchMore } = useQuery(GET_POSTS_LIST, {
+  const { data } = useQuery(GET_POSTS_LIST, {
     variables: {
       search: search,
-      pageSize: 16,
+      pageSize: 100,
     },
   })
 
@@ -39,8 +37,19 @@ export const PostsList = () => {
           callBack={handleCallBackSearch}
         />
       </div>
-
-      <Posts showMore={showMore} setShowMore={setShowMore} text={text} />
+      <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-4 gap-3">
+        {data !== undefined
+          ? data?.postsList?.items.map((data: any, index: number) => (
+              <Posts
+                data={data}
+                key={index}
+                showMore={showMore}
+                setShowMore={setShowMore}
+                text={text}
+              />
+            ))
+          : ''}
+      </div>
     </div>
   )
 }
