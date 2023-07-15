@@ -1,2 +1,3 @@
 export * from './queries/postsListQueries'
-export * from './components/PostsView'
+export * from './components/PostsList'
+export * from './components/Posts'
