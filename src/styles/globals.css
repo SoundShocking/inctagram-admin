@@ -73,9 +73,3 @@ body {
 .black {
   @apply text-accent-500 outline-none hover:text-accent-100  disabled:text-accent-900 outline-none;
 }
-
-/*body {*/
-/*  color: rgb(var(--foreground-rgb));*/
-/*  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))*/
-/*    rgb(var(--background-start-rgb));*/
-/*}*/
