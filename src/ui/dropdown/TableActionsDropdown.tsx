@@ -9,7 +9,6 @@ import { FaEllipsis, FaUserSlash, FaBan } from 'react-icons/fa6'
 import { BanUserModal } from '@/modules/users-modules/users-list/components/ban/BanUserModal'
 import { DeleteModal } from '@/modules/users-modules/users-list/components/delete-modal/DeleteModal'
 import { UnbanUserModal } from '@/modules/users-modules/users-list/components/unban/UnbanUserModal'
-import { routes } from '@/routing/router.js'
 import { UserForSuperAdminViewModel } from '@/types'
 
 interface Props {
