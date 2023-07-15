@@ -9,17 +9,16 @@ import { AuthContextType } from '@/store/storeTypes/storeTypes'
 type handleAuthRedirectEffectType = Pick<AuthContextType, 'auth'>
 
 export const handleAuthRedirectEffect = ({ auth }: handleAuthRedirectEffectType) => {
-  const { pathname, replace } = useRouter()
+  const { pathname, replace, route } = useRouter()
 
   useEffect(() => {
-    const lastRouting = localStorage?.getItem('lastRouting')
+    const lastRouting: string | null = localStorage?.getItem('lastRouting') || null
 
-    console.log(lastRouting)
     if (auth && unProtectedPaths.includes(pathname)) {
       replace(lastRouting ? lastRouting : routes.protected, undefined, { shallow: true })
     }
     if (!auth && !unProtectedPaths.includes(pathname)) {
       replace(routes.unprotected, undefined, { shallow: true })
     }
-  }, [auth])
+  }, [auth, route])
 }
