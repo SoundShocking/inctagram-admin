@@ -12,8 +12,11 @@ export const handleAuthRedirectEffect = ({ auth }: handleAuthRedirectEffectType)
   const { pathname, replace } = useRouter()
 
   useEffect(() => {
+    const lastRouting = localStorage?.getItem('lastRouting')
+
+    console.log(lastRouting)
     if (auth && unProtectedPaths.includes(pathname)) {
-      replace(routes.protected, undefined, { shallow: true })
+      replace(lastRouting ? lastRouting : routes.protected, undefined, { shallow: true })
     }
     if (!auth && !unProtectedPaths.includes(pathname)) {
       replace(routes.unprotected, undefined, { shallow: true })

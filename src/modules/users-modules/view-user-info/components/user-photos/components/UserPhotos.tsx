@@ -33,6 +33,7 @@ export const UserPhotos = () => {
     () => images && images.items,
     [images]
   )
+
   const handleScroll = () => {
     if (inView && images && images?.items.length < images.totalCount) {
       setIsLoadingMore(true)
@@ -82,7 +83,7 @@ export const UserPhotos = () => {
         )}
       </div>
       <div ref={ref}>
-        {isLoadingMore && inView && (
+        {isLoadingMore && (
           <div className="pt-4">
             <div className={'grid grid-cols-4 gap-3'}>{usedToDrawArraysOfSkeletons(12)}</div>
           </div>
