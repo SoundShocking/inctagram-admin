@@ -12,6 +12,7 @@ import {
   UserImagesType,
   UserPhoto,
 } from '@/modules/users-modules/view-user-info'
+import { Spinner } from '@/ui'
 
 export const UserPhotos = () => {
   const router = useRouter()
@@ -83,11 +84,7 @@ export const UserPhotos = () => {
         )}
       </div>
       <div ref={ref}>
-        {isLoadingMore && (
-          <div className="pt-4">
-            <div className={'grid grid-cols-4 gap-3'}>{usedToDrawArraysOfSkeletons(12)}</div>
-          </div>
-        )}
+        {isLoadingMore && <div className="pt-4">{isLoadingMore && <Spinner />}</div>}
       </div>
     </div>
   )

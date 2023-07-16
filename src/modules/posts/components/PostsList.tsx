@@ -13,11 +13,6 @@ import {
   PostsType,
   SkeletonPost,
 } from '@/modules/posts'
-import {
-  ItemsImagesType,
-  usedToDrawArraysOfSkeletons,
-  UserPhoto,
-} from '@/modules/users-modules/view-user-info'
 import { GlobalInput, Spinner } from '@/ui'
 
 export const PostsList = () => {
