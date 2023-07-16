@@ -113,7 +113,7 @@ export const PostsList = () => {
           </>
         )}
       </div>
-      <div className="flex justify-center pt-4" ref={ref}>
+      <div className="flex pt-3 pb-3 justify-center" ref={ref}>
         {isLoadingMore && <Spinner />}
       </div>
     </div>

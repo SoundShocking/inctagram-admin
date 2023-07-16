@@ -83,8 +83,8 @@ export const UserPhotos = () => {
           </>
         )}
       </div>
-      <div ref={ref}>
-        {isLoadingMore && <div className="pt-4">{isLoadingMore && <Spinner />}</div>}
+      <div className="flex pt-3 pb-3 align-middle justify-center" ref={ref}>
+        {isLoadingMore && <Spinner />}
       </div>
     </div>
   )
