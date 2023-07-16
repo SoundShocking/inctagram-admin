@@ -1,20 +1,20 @@
 import { useEffect } from 'react'
 
-import { NextRouter } from 'next/router'
+import { useRouter } from 'next/router'
 
 export const changingTabsParametersUrlEffect = ({
-  userName,
+  userId,
   activeTab,
-  router,
 }: {
-  userName: string | string[] | undefined
+  userId: string | string[] | undefined
   activeTab: string
-  router: NextRouter
 }) => {
+  const router = useRouter()
+
   useEffect(() => {
-    if (userName) {
-      router.push(`/users-list/${userName}?activeTab=${activeTab}`, undefined, {
-        shallow: true,
+    if (userId) {
+      router.replace(`/users-list/${userId}`, {
+        query: { activeTab: activeTab, comment: 'ActiveTab' },
       })
     }
   }, [activeTab])

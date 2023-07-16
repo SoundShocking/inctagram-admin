@@ -6,7 +6,7 @@ module.exports = {
       sans: ['Inter', 'sans-serif'],
     },
     screens: {
-      sm: { max: '360px' },
+      sm: { max: '560px' },
       md: { max: '850px' },
       // => @media (min-width: 768px and max-width: 1023px) { ... }
       lg: { max: '1024px' },
