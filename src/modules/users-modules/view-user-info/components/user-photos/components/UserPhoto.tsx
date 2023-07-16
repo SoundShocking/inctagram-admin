@@ -12,7 +12,7 @@ export const UserPhoto = ({ item }: { item: ItemsImagesType }) => {
         src={item.url}
         width={234}
         height={228}
-        alt="фывафыва"
+        alt="user photo"
         className="w-full h-full object-cover cursor-pointer"
       />
     </div>

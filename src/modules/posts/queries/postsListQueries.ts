@@ -22,6 +22,7 @@ export const GET_POSTS_LIST = gql`
       items {
         createdAt
         userId
+        postId
         userName
         status
         description

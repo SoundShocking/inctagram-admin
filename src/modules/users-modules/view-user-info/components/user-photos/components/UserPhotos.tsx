@@ -4,14 +4,15 @@ import { useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { useInView } from 'react-intersection-observer'
 
+import { useInViewScrollHandlerEffect } from '@/common'
 import {
   GET_USER_IMAGES,
   ItemsImagesType,
   usedToDrawArraysOfSkeletons,
-  useInViewScrollHandlerEffect,
   UserImagesType,
   UserPhoto,
 } from '@/modules/users-modules/view-user-info'
+import { Spinner } from '@/ui'
 
 export const UserPhotos = () => {
   const router = useRouter()
@@ -82,12 +83,8 @@ export const UserPhotos = () => {
           </>
         )}
       </div>
-      <div ref={ref}>
-        {isLoadingMore && (
-          <div className="pt-4">
-            <div className={'grid grid-cols-4 gap-3'}>{usedToDrawArraysOfSkeletons(12)}</div>
-          </div>
-        )}
+      <div className="flex pt-3 pb-3 align-middle justify-center" ref={ref}>
+        {isLoadingMore && <Spinner />}
       </div>
     </div>
   )

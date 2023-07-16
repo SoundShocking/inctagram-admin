@@ -12,9 +12,8 @@ import {
 } from '@tanstack/react-table'
 import { useRouter } from 'next/router'
 
-import { capitalizeFirstLetter } from '@/common'
+import { capitalizeFirstLetter, dateChangesFormat } from '@/common'
 import {
-  dateChangesFormat,
   GET_USER_PAYMENTS,
   ItemsUserPaymentsType,
   PaymentsUser,
@@ -103,7 +102,13 @@ export const UserPayments = () => {
 
   return (
     <div className=" text-accent-500 p-2 block max-w-full ">
-      <UserPaymentsTable tableProps={tableProps} loading={loading} />
+      {data?.user.paymentsUser.items.length ? (
+        <UserPaymentsTable tableProps={tableProps} loading={loading} />
+      ) : (
+        <div className="flex justify-center text-light-100 align-middle text-base leading-6 font-normal">
+          <span> No payments ... :(</span>
+        </div>
+      )}
     </div>
   )
 }

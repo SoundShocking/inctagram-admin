@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 import { useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 
@@ -10,7 +8,6 @@ import {
   ViewUserInfoMain,
   ViewUserInformationInTabs,
 } from '@/modules/users-modules/view-user-info'
-import { DateCalendar } from '@/ui'
 
 export const ViewUserInfo = () => {
   const router = useRouter()
