@@ -39,7 +39,6 @@ export const UsersTable: FC<Props> = ({
   setSorting,
 }) => {
   const { t } = useTranslation()
-
   const pagination = useMemo(
     () => ({
       pageIndex,
@@ -47,7 +46,6 @@ export const UsersTable: FC<Props> = ({
     }),
     [pageIndex, pageSize]
   )
-
   const columns = [
     columnHelper.accessor('userId', {
       id: 'id',
@@ -72,7 +70,7 @@ export const UsersTable: FC<Props> = ({
     }),
     columnHelper.display({
       id: 'actions',
-      cell: props => <TableActionsDropdown row={props.row} />,
+      cell: props => <TableActionsDropdown viewInfo={true} row={props.row} />,
       enableSorting: false,
     }),
   ]

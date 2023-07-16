@@ -12,9 +12,8 @@ import {
 } from '@tanstack/react-table'
 import { useRouter } from 'next/router'
 
-import { capitalizeFirstLetter } from '@/common'
+import { capitalizeFirstLetter, dateChangesFormat } from '@/common'
 import {
-  dateChangesFormat,
   GET_USER_PAYMENTS,
   ItemsUserPaymentsType,
   PaymentsUser,

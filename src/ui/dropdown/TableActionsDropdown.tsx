@@ -13,9 +13,10 @@ import { UserForSuperAdminViewModel } from '@/types'
 
 interface Props {
   row: Row<Pick<UserForSuperAdminViewModel, 'userId' | 'userName' | 'createdAt'>>
+  viewInfo?: boolean
 }
 
-export const TableActionsDropdown: FC<Props> = ({ row }) => {
+export const TableActionsDropdown: FC<Props> = ({ row, viewInfo }) => {
   const router = useRouter()
   const handleMenuItemClickMoreInformation = () => {
     router.push(`/users/${row.original.userId}`)
@@ -30,7 +31,6 @@ export const TableActionsDropdown: FC<Props> = ({ row }) => {
   const userName = row.original.userName
   //@ts-ignore
   const userStatus = row.original.status
-
   const onDeleteClick = () => {
     setIsDeleteUserOpen(true)
   }
@@ -84,13 +84,15 @@ export const TableActionsDropdown: FC<Props> = ({ row }) => {
               </DropdownMenu.Item>
             )}
 
-            <DropdownMenu.Item
-              className="flex items-center cursor-pointer"
-              onSelect={() => handleMenuItemClickMoreInformation()}
-            >
-              <FaEllipsis size={24} className="mr-3" />
-              {t('userList.moreInfo')}
-            </DropdownMenu.Item>
+            {viewInfo && (
+              <DropdownMenu.Item
+                className="flex items-center cursor-pointer"
+                onSelect={() => handleMenuItemClickMoreInformation()}
+              >
+                <FaEllipsis size={24} className="mr-3" />
+                {t('userList.moreInfo')}
+              </DropdownMenu.Item>
+            )}
           </DropdownMenu.Content>
         </DropdownMenu.Portal>
       </DropdownMenu.Root>
