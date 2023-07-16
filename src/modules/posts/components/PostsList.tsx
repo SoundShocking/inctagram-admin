@@ -1,33 +1,64 @@
-import { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 
 import { useQuery } from '@apollo/client'
+import { useInView } from 'react-intersection-observer'
 
-import { GET_POSTS_LIST, Posts } from '@/modules/posts'
+import { useInViewScrollHandlerEffect } from '@/common'
+import { GET_POSTS_LIST, Posts, PostsListType } from '@/modules/posts'
 import { PostsItemsType, PostsType } from '@/modules/posts/type/postsType'
-import userId from '@/pages/users/[userId]'
-import { GlobalInput } from '@/ui'
+import { GlobalInput, Spinner } from '@/ui'
 
 export const PostsList = () => {
   const [search, setSearch] = useState<string>('')
-  const [posts, setPosts] = useState<PostsItemsType[]>([])
+  const [posts, setPosts] = useState<PostsListType | undefined>()
   const [showMoreIds, setShowMoreIds] = useState<number[]>([])
-  const { data } = useQuery<PostsType>(GET_POSTS_LIST, {
+  const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false)
+  const [pageNumber, setPageNumber] = useState<number>(1)
+
+  const { data, error, loading, fetchMore } = useQuery<PostsType>(GET_POSTS_LIST, {
     variables: {
       search: search,
       pageSize: 8,
     },
     onCompleted: (data: PostsType) => {
-      setPosts(data.postsList.items)
+      setPosts(data?.postsList)
     },
   })
 
-  const handleCallBackShowMore = (id: number) => {
-    if (showMoreIds.includes(id)) {
-      // Если ID уже есть в массиве, уберите его из массива
-      setShowMoreIds(showMoreIds.filter(item => item !== id))
+  const handleScroll = () => {
+    if (!isLoadingMore && inView && posts && posts.items.length < posts.totalCount) {
+      console.log('1')
+      setIsLoadingMore(true)
+      setPageNumber(prevNumber => prevNumber + 1)
+      fetchMore({
+        variables: { pageNumber: pageNumber },
+        updateQuery: (prev: PostsType, { fetchMoreResult }: { fetchMoreResult?: PostsType }) => {
+          setIsLoadingMore(false)
+          if (!fetchMoreResult) return prev
+          if (prev?.postsList?.items) {
+            return {
+              ...prev,
+              postsList: {
+                ...prev.postsList,
+                items: [...prev.postsList.items, ...fetchMoreResult.postsList.items],
+              },
+            }
+          }
+        },
+      })
+    }
+  }
+
+  const { ref, inView } = useInView({
+    threshold: 0.1,
+  })
+
+  useInViewScrollHandlerEffect({ inView, isLoadingMore, handleScroll, loading })
+  const handleCallBackShowMore = (postId: number) => {
+    if (showMoreIds.includes(postId)) {
+      setShowMoreIds(showMoreIds.filter(item => item !== postId))
     } else {
-      // В противном случае добавьте ID в массив
-      setShowMoreIds([...showMoreIds, id])
+      setShowMoreIds([...showMoreIds, postId])
     }
   }
 
@@ -38,6 +69,11 @@ export const PostsList = () => {
   }
   const text =
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incdipiscing elit, sed do eiusmod tempor inipiscing elit, sed do eiusmod tempor incdipiscing elit, sed do eiusmod tempor incd.mpor incd.mpor incd.mpo..'
+
+  if (error && !loading) {
+    return <div>Error! {error.message}</div>
+  }
+  console.log(isLoadingMore)
 
   return (
     <div className="w-full pt-[60px] pl-[24px] pr-[60px] flex flex-col">
@@ -51,17 +87,22 @@ export const PostsList = () => {
         />
       </div>
       <div className="grid sm:grid-cols-2 grid-cols-4 md:grid-cols-3  gap-3">
-        {posts !== undefined
-          ? posts.map((post: PostsItemsType, index: number) => (
-              <Posts
-                post={post}
-                key={index}
-                showMore={showMoreIds.includes(post.userId)}
-                setShowMoreId={handleCallBackShowMore}
-                text={text}
-              />
-            ))
-          : ''}
+        {posts !== undefined ? (
+          posts.items.map((post: PostsItemsType, index: number) => (
+            <Posts
+              post={post}
+              key={index}
+              showMore={showMoreIds.includes(post.postId)}
+              setShowMoreId={handleCallBackShowMore}
+              text={text}
+            />
+          ))
+        ) : (
+          <span>Not found</span>
+        )}
+      </div>
+      <div className="flex justify-center pt-4" ref={ref}>
+        {isLoadingMore && <Spinner />}
       </div>
     </div>
   )

@@ -12,7 +12,7 @@ export const Posts = ({
 }: {
   post: PostsItemsType
   showMore: boolean
-  setShowMoreId: (id: number) => void
+  setShowMoreId: (postId: number) => void
   text: string
 }) => {
   // "createdAt": "2023-07-15T12:36:17.684Z",
@@ -52,7 +52,7 @@ export const Posts = ({
           </span>
           <p className="text-sm text-light-100 leading-6 font-normal">
             {showMore ? text : `${text.substring(0, 83)}`}
-            <button className="text-accent-700" onClick={() => setShowMoreId(post.userId)}>
+            <button className="text-accent-700" onClick={() => setShowMoreId(post.postId)}>
               {showMore ? 'Show hide' : 'Show more'}
             </button>
           </p>

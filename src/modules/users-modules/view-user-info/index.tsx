@@ -20,7 +20,6 @@ export * from './custom/utils/dateChangesFormat'
 //Custom Effect
 export * from './custom/useEffect/changingTabsParametersUrlEffect'
 export * from './custom/useEffect/callWhenUrlChangesEffect'
-export * from './components/user-photos/custom/useEffect/useInViewScrollHandlerEffect'
 export * from '@/modules/users-modules/view-user-info/components/user-payments/custom/useEffect/setUserPaymentsDataEffect'
 //Skeleton
 export * from '@/modules/users-modules/view-user-info/Skeletons/SkeletonPost'

@@ -2,6 +2,7 @@ export type PostsItemsType = {
   createdAt: string
   userId: number
   userName: string
+  postId: number
   status: string
   description: string
   urlAvatar: string
@@ -16,6 +17,8 @@ export type PostsListType = {
   items: PostsItemsType[]
 }
 
-export type PostsType = {
-  postsList: PostsListType
-}
+export type PostsType =
+  | {
+      postsList: PostsListType
+    }
+  | undefined
