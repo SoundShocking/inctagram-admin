@@ -2,10 +2,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { dateChangesFormat } from '@/common'
-import { IconStatus, PostsItemsType } from '@/modules/posts'
+import { IconStatus, PostsItemsType, TableActionsDropDown } from '@/modules/posts'
 import { Avatar } from '@/ui'
+import { TableActionsDropdown } from '@/ui/dropdown/TableActionsDropdown'
 
-export const Posts = ({
+export const Post = ({
   post,
   showMore,
   setShowMoreId,
@@ -27,10 +28,10 @@ export const Posts = ({
             width={234}
             height={240}
             src={post.urlsPostsImages ? post.urlsPostsImages[0] : ''}
-            alt={'Posts image'}
+            alt={'Post image'}
           />
           <div className="flex flex-wrap pt-[6px] justify-between">
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-3 align-middle">
               <Avatar
                 src={post.urlAvatar ? post.urlAvatar : null}
                 alt={'user avatar'}
@@ -42,8 +43,9 @@ export const Posts = ({
               </Link>
             </div>
             <span className="flex align-middle gap-1">
-              Status: <IconStatus styleColor={getStatusColor(post.status)} />
+              <IconStatus styleColor={getStatusColor(post.status)} />
             </span>
+            <TableActionsDropDown post={post} />
           </div>
           <span className="pt-3 font-normal text-light-900 leading-4 text-xs">
             Created: {dateChangesFormat(post.createdAt)}

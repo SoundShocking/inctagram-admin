@@ -6,32 +6,24 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'react-i18next'
 import { FaEllipsis, FaUserSlash, FaBan } from 'react-icons/fa6'
 
+import { PostsItemsType } from '@/modules/posts'
 import { BanUserModal } from '@/modules/users-modules/users-list/components/ban/BanUserModal'
 import { DeleteModal } from '@/modules/users-modules/users-list/components/delete-modal/DeleteModal'
 import { UnbanUserModal } from '@/modules/users-modules/users-list/components/unban/UnbanUserModal'
 import { UserForSuperAdminViewModel } from '@/types'
 
-interface Props {
-  row: Row<Pick<UserForSuperAdminViewModel, 'userId' | 'userName' | 'createdAt'>>
-  viewInfo?: boolean
+type TableActionsDropDownType = {
+  post: Pick<PostsItemsType, 'userName' | 'status' | 'userId'>
 }
 
-export const TableActionsDropdown: FC<Props> = ({ row, viewInfo }) => {
-  const router = useRouter()
-  const handleMenuItemClickMoreInformation = () => {
-    router.push(`/users/${row.original.userId}`)
-  }
-
+export const TableActionsDropDown = ({
+  post: { userName, status, userId },
+}: TableActionsDropDownType) => {
   const { t } = useTranslation()
   const [isDeleteUserOpen, setIsDeleteUserOpen] = useState(false)
   const [isUnbanUserOpen, setIsUnbanUserOpen] = useState(false)
   const [isBanUserOpen, setIsBanUserOpen] = useState(false)
 
-  console.log(row.id)
-  const userId = row.original.userId
-  const userName = row.original.userName
-  //@ts-ignore
-  const userStatus = row.original.status
   const onDeleteClick = () => {
     setIsDeleteUserOpen(true)
   }
@@ -65,7 +57,7 @@ export const TableActionsDropdown: FC<Props> = ({ row, viewInfo }) => {
               {t('userList.deleteUser')}
             </DropdownMenu.Item>
 
-            {userStatus === 'ACTIVE' && (
+            {status === 'ACTIVE' && (
               <DropdownMenu.Item
                 className="flex items-center mb-3 cursor-pointer"
                 onSelect={() => onBanClick()}
@@ -75,23 +67,13 @@ export const TableActionsDropdown: FC<Props> = ({ row, viewInfo }) => {
               </DropdownMenu.Item>
             )}
 
-            {userStatus === 'BANNED' && (
+            {status === 'BANNED' && (
               <DropdownMenu.Item
                 className="flex items-center mb-3 cursor-pointer"
                 onSelect={() => onUnbanClick()}
               >
                 <FaBan size={24} className="mr-3" />
                 {t('userList.unbanUser')}
-              </DropdownMenu.Item>
-            )}
-
-            {viewInfo && (
-              <DropdownMenu.Item
-                className="flex items-center cursor-pointer"
-                onSelect={() => handleMenuItemClickMoreInformation()}
-              >
-                <FaEllipsis size={24} className="mr-3" />
-                {t('userList.moreInfo')}
               </DropdownMenu.Item>
             )}
           </DropdownMenu.Content>

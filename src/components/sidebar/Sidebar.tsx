@@ -79,7 +79,7 @@ export const Sidebar: FC = () => {
             <Link href={routes.posts} className={className.posts}>
               <Image
                 src={pathname === routes.posts ? postsOutline : posts}
-                alt={'Posts list'}
+                alt={'Post list'}
                 height={24}
                 width={24}
               />
