@@ -1,8 +1,6 @@
-import React, { FC, useState } from 'react'
+import React, { useState } from 'react'
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
-import { Row } from '@tanstack/react-table'
-import { useRouter } from 'next/router'
 import { useTranslation } from 'react-i18next'
 import { FaEllipsis, FaUserSlash, FaBan } from 'react-icons/fa6'
 
@@ -10,7 +8,6 @@ import { PostsItemsType } from '@/modules/posts'
 import { BanUserModal } from '@/modules/users-modules/users-list/components/ban/BanUserModal'
 import { DeleteModal } from '@/modules/users-modules/users-list/components/delete-modal/DeleteModal'
 import { UnbanUserModal } from '@/modules/users-modules/users-list/components/unban/UnbanUserModal'
-import { UserForSuperAdminViewModel } from '@/types'
 
 type TableActionsDropDownType = {
   post: Pick<PostsItemsType, 'userName' | 'status' | 'userId'>

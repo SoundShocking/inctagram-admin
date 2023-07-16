@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { dateChangesFormat } from '@/common'
 import { IconStatus, PostsItemsType, TableActionsDropDown } from '@/modules/posts'
 import { Avatar } from '@/ui'
-import { TableActionsDropdown } from '@/ui/dropdown/TableActionsDropdown'
 
 export const Post = ({
   post,
