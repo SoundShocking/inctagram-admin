@@ -27,7 +27,6 @@ export const TableActionsDropdown: FC<Props> = ({ row, viewInfo }) => {
   const [isUnbanUserOpen, setIsUnbanUserOpen] = useState(false)
   const [isBanUserOpen, setIsBanUserOpen] = useState(false)
 
-  console.log(row.id)
   const userId = row.original.userId
   const userName = row.original.userName
   //@ts-ignore
