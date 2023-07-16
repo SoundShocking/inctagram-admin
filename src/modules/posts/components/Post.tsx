@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { dateChangesFormat } from '@/common'
-import { IconStatus, PostsItemsType, TableActionsDropDown } from '@/modules/posts'
+import { IconStatus, PostsItemsType, PostsActionsDropDown } from '@/modules/posts'
 import { Avatar } from '@/ui'
 
 export const Post = ({
@@ -44,7 +44,7 @@ export const Post = ({
             <span className="flex align-middle gap-1">
               <IconStatus styleColor={getStatusColor(post.status)} />
             </span>
-            <TableActionsDropDown post={post} />
+            <PostsActionsDropDown post={post} />
           </div>
           <span className="pt-3 font-normal text-light-900 leading-4 text-xs">
             Created: {dateChangesFormat(post.createdAt)}

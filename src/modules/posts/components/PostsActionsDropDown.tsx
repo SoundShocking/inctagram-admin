@@ -13,7 +13,7 @@ type TableActionsDropDownType = {
   post: Pick<PostsItemsType, 'userName' | 'status' | 'userId'>
 }
 
-export const TableActionsDropDown = ({
+export const PostsActionsDropDown = ({
   post: { userName, status, userId },
 }: TableActionsDropDownType) => {
   const { t } = useTranslation()
