@@ -15,8 +15,6 @@ export * from './components/user-photos/queries/viewUserImagesQueries'
 export * from './types/ViewUserInfoTypes'
 export * from './components/user-payments/types/UserPaymentsType'
 export * from './components/user-photos/types/UserImagesType'
-//Custom Utils
-export * from './custom/utils/dateChangesFormat'
 //Custom Effect
 export * from './custom/useEffect/changingTabsParametersUrlEffect'
 export * from './custom/useEffect/callWhenUrlChangesEffect'

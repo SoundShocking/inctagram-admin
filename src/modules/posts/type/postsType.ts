@@ -1,9 +1,11 @@
+export type StatusType = 'PENDING' | 'ACTIVE' | 'BANNED' | 'DELETED'
+
 export type PostsItemsType = {
   createdAt: string
   userId: number
   userName: string
   postId: number
-  status: string
+  status: StatusType
   description: string
   urlAvatar: string
   urlsPostsImages: string[]

@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client'
 import { useInView } from 'react-intersection-observer'
 
 import { useInViewScrollHandlerEffect } from '@/common'
-import { GET_POSTS_LIST, Posts, PostsListType } from '@/modules/posts'
+import { GET_POSTS_LIST, getStatusColor, Posts, PostsListType } from '@/modules/posts'
 import { PostsItemsType, PostsType } from '@/modules/posts/type/postsType'
 import { GlobalInput, Spinner } from '@/ui'
 
@@ -86,7 +86,7 @@ export const PostsList = () => {
           callBack={handleCallBackSearch}
         />
       </div>
-      <div className="grid sm:grid-cols-2 grid-cols-4 md:grid-cols-3  gap-3">
+      <div className="grid grid-cols-4 lg:grid-cols-3 gap-3">
         {posts !== undefined ? (
           posts.items.map((post: PostsItemsType, index: number) => (
             <Posts
@@ -94,6 +94,7 @@ export const PostsList = () => {
               key={index}
               showMore={showMoreIds.includes(post.postId)}
               setShowMoreId={handleCallBackShowMore}
+              getStatusColor={getStatusColor}
               text={text}
             />
           ))
