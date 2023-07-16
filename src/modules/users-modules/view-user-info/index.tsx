@@ -1,4 +1,6 @@
 //Components
+export * from './components/user-following/UserFollowing'
+export * from './components/user-followers/UserFollowers'
 export * from './components/ViewUserInfo'
 export * from './components/ViewUserInfoMain'
 export * from './components/ViewUserInformationInTabs'

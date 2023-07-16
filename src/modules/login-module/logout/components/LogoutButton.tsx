@@ -16,7 +16,7 @@ export const LogoutButton: FC = () => {
     <div>
       <button onClick={handleLogout} className="flex items-center">
         <FaSignOutAlt className="mr-4" />
-        <span className={'lg:hidden'}>Logout</span>
+        <span className={'lg:hidden font-bold'}>Logout</span>
       </button>
     </div>
   )

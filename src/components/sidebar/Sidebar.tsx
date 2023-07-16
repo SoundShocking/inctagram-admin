@@ -35,7 +35,7 @@ export const Sidebar: FC = () => {
     ),
     posts: clsx(pathname === routes.posts ? 'text-accent-500' : '', 'flex gap-[15px] items-center'),
 
-    hidden: 'lg:hidden',
+    hidden: 'lg:hidden font-bold',
   }
 
   return (

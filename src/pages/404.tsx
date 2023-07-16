@@ -4,7 +4,7 @@ import { routes } from '@/routing/router.js'
 
 const NotFound = () => {
   return (
-    <div className="flex justify-center items-center flex-col gap-10">
+    <div className="flex h-screen text-lg justify-center items-center flex-col gap-10">
       <h1>Oooooooops...</h1>
       <h2>That page cannot be found</h2>
       <p>
