@@ -1,21 +1,20 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { PostsItemsType } from '@/modules/posts'
 import { Avatar } from '@/ui'
 
 export const Posts = ({
-  data,
+  post,
   showMore,
-  setShowMore,
+  setShowMoreId,
   text,
 }: {
-  data: any
+  post: PostsItemsType
   showMore: boolean
-  setShowMore: (show: boolean) => void
+  setShowMoreId: (id: number) => void
   text: string
 }) => {
-  console.log(1)
-
   // "createdAt": "2023-07-15T12:36:17.684Z",
   //     "userId": 39,
   //     "userName": "beeBrick",
@@ -31,29 +30,29 @@ export const Posts = ({
             className="bg-dark-300"
             width={234}
             height={240}
-            src={data.urlsPostsImages ? data.urlsPostsImages[0] : null}
+            src={post.urlsPostsImages ? post.urlsPostsImages[0] : ''}
             alt={'Posts image'}
           />
           <div className="flex pt-[6px] justify-between">
             <div className="flex gap-3">
               <Avatar
-                src={data.urlAvatar ? data.urlAvatar : null}
+                src={post.urlAvatar ? post.urlAvatar : null}
                 alt={'user avatar'}
                 height={36}
                 width={36}
               />
-              <Link href={`/users/` + data.userId}>
-                <span className="font-semibold leading-6 text-base">{data.userName}</span>
+              <Link href={`/users/` + post.userId}>
+                <span className="font-semibold leading-6 text-base">{post.userName}</span>
               </Link>
             </div>
-            <span>Status: {data.status}</span>
+            <span>Status: {post.status}</span>
           </div>
           <span className="pt-3 font-normal text-light-900 leading-4 text-xs">
-            Created: {data.createdAt}
+            Created: {post.createdAt}
           </span>
           <p className="text-sm text-light-100 leading-6 font-normal">
             {showMore ? text : `${text.substring(0, 83)}`}
-            <button className="text-accent-700" onClick={() => setShowMore(!showMore)}>
+            <button className="text-accent-700" onClick={() => setShowMoreId(post.userId)}>
               {showMore ? 'Show hide' : 'Show more'}
             </button>
           </p>

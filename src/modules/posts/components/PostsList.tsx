@@ -3,21 +3,34 @@ import { ChangeEvent, useState } from 'react'
 import { useQuery } from '@apollo/client'
 
 import { GET_POSTS_LIST, Posts } from '@/modules/posts'
+import { PostsItemsType, PostsType } from '@/modules/posts/type/postsType'
+import userId from '@/pages/users/[userId]'
 import { GlobalInput } from '@/ui'
 
 export const PostsList = () => {
   const [search, setSearch] = useState<string>('')
-
-  const { data } = useQuery(GET_POSTS_LIST, {
+  const [posts, setPosts] = useState<PostsItemsType[]>([])
+  const [showMoreIds, setShowMoreIds] = useState<number[]>([])
+  const { data } = useQuery<PostsType>(GET_POSTS_LIST, {
     variables: {
       search: search,
-      pageSize: 100,
+      pageSize: 8,
+    },
+    onCompleted: (data: PostsType) => {
+      setPosts(data.postsList.items)
     },
   })
 
-  const [showMore, setShowMore] = useState<boolean>(false)
+  const handleCallBackShowMore = (id: number) => {
+    if (showMoreIds.includes(id)) {
+      // Если ID уже есть в массиве, уберите его из массива
+      setShowMoreIds(showMoreIds.filter(item => item !== id))
+    } else {
+      // В противном случае добавьте ID в массив
+      setShowMoreIds([...showMoreIds, id])
+    }
+  }
 
-  // const handleCallBackShowMore = ({ userId: number }: { userId: boolean }) => {}
   const handleCallBackSearch = (e: ChangeEvent<HTMLInputElement>) => {
     const target = e.currentTarget.value
 
@@ -37,14 +50,14 @@ export const PostsList = () => {
           callBack={handleCallBackSearch}
         />
       </div>
-      <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-4 gap-3">
-        {data !== undefined
-          ? data?.postsList?.items.map((data: any, index: number) => (
+      <div className="grid sm:grid-cols-2 grid-cols-4 md:grid-cols-3  gap-3">
+        {posts !== undefined
+          ? posts.map((post: PostsItemsType, index: number) => (
               <Posts
-                data={data}
+                post={post}
                 key={index}
-                showMore={showMore}
-                setShowMore={setShowMore}
+                showMore={showMoreIds.includes(post.userId)}
+                setShowMoreId={handleCallBackShowMore}
                 text={text}
               />
             ))
