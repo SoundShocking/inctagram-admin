@@ -10,17 +10,19 @@ import {
 } from '@tanstack/react-table'
 import { createColumnHelper } from '@tanstack/table-core'
 import dayjs from 'dayjs'
-import { useTranslation } from 'react-i18next'
+import { t } from 'i18next'
 
-import { getUsersSorting } from '@/modules/users-modules/users-list/helpers/getUsersSorting'
-import { UserForSuperAdminViewModel } from '@/types'
-import { TableActionsDropdown } from '@/ui/dropdown/TableActionsDropdown'
+import { PaymentsListViewModel } from '@/types'
 
-const columnHelper =
-  createColumnHelper<Pick<UserForSuperAdminViewModel, 'userId' | 'userName' | 'createdAt'>>()
+type PaymentsItem = Pick<
+  PaymentsListViewModel,
+  'userName' | 'createdAt' | 'amount' | 'typeSubscription' | 'paymentMethod'
+>
+
+const columnHelper = createColumnHelper<PaymentsItem>()
 
 interface Props {
-  users: Pick<UserForSuperAdminViewModel, 'userId' | 'userName' | 'createdAt'>[]
+  payments: PaymentsItem[]
   pagesCount: number
   pageIndex: number
   pageSize: number
@@ -29,8 +31,8 @@ interface Props {
   setSorting: Dispatch<SetStateAction<SortingState>>
 }
 
-export const UsersTable: FC<Props> = ({
-  users,
+export const PaymentsTable: FC<Props> = ({
+  payments,
   pagesCount,
   pageSize,
   pageIndex,
@@ -38,7 +40,6 @@ export const UsersTable: FC<Props> = ({
   sorting,
   setSorting,
 }) => {
-  const { t } = useTranslation()
   const pagination = useMemo(
     () => ({
       pageIndex,
@@ -46,34 +47,42 @@ export const UsersTable: FC<Props> = ({
     }),
     [pageIndex, pageSize]
   )
+
   const columns = [
-    columnHelper.accessor('userId', {
-      id: 'id',
-      header: t('userList.table.userId'),
-      cell: info => info.getValue(),
-      enableSorting: true,
-    }),
     columnHelper.accessor('userName', {
-      id: 'userName',
-      header: t('userList.table.username'),
+      id: 'username',
+      header: 'Username',
       cell: info => info.getValue(),
       enableSorting: true,
     }),
     columnHelper.accessor('createdAt', {
       id: 'createdAt',
-      header: t('userList.table.dateAdded'),
+      header: 'Date added',
       cell: info => dayjs(info.getValue()).format('DD.MM.YYYY'),
       enableSorting: true,
     }),
-    columnHelper.display({
-      id: 'actions',
-      cell: props => <TableActionsDropdown viewInfo={true} row={props.row} />,
+    columnHelper.accessor('amount', {
+      id: 'price',
+      header: 'Amount, $',
+      cell: info => `${info.getValue()}$`,
+      enableSorting: true,
+    }),
+    columnHelper.accessor('typeSubscription', {
+      id: 'typeSubscription',
+      header: 'Subscription',
+      cell: info => info.getValue(),
       enableSorting: false,
+    }),
+    columnHelper.accessor('paymentMethod', {
+      id: 'paymentMethod',
+      header: 'Payment Method',
+      cell: info => info.getValue(),
+      enableSorting: true,
     }),
   ]
 
   const table = useReactTable({
-    data: users,
+    data: payments,
     columns,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),

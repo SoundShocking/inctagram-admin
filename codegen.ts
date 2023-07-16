@@ -1,7 +1,7 @@
 import type { CodegenConfig } from '@graphql-codegen/cli'
 
 const config: CodegenConfig = {
-  schema: 'https://cygan.lol/graphql',
+  schema: 'https://api.cygan.lol/graphql',
   documents: ['./src/queries/**/*.ts'],
   ignoreNoDocuments: true, // for better experience with the watcher
   generates: {

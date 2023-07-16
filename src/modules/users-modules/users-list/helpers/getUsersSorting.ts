@@ -2,7 +2,7 @@ import { SortingState } from '@tanstack/react-table'
 
 import { SortByForUsers, SortDirectionType } from '@/types'
 
-export const getSorting = (sorting: SortingState) => {
+export const getUsersSorting = (sorting: SortingState) => {
   if (sorting?.[0]) {
     return {
       sortBy: sorting[0].id as SortByForUsers,
