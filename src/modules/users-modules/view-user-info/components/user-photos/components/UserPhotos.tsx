@@ -18,13 +18,13 @@ export const UserPhotos = () => {
   const { userId } = router.query
   const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false)
   const [pageNumber, setPageNumber] = useState<number>(1)
-  const { loading, error, data, fetchMore } = useQuery<UserImagesType>(GET_USER_IMAGES, {
+  const { loading, error, data, fetchMore } = useQuery(GET_USER_IMAGES, {
     variables: {
       userId: Number(userId),
       pageSize: 16,
     },
   })
-  const images = data?.user.images
+  const images = data?.user.imagesUser
 
   const { ref, inView } = useInView({
     threshold: 0.1,
@@ -35,7 +35,7 @@ export const UserPhotos = () => {
   )
 
   const handleScroll = () => {
-    if (images && images?.items.length < images.totalCount) {
+    if (inView && images && images?.items.length < images.totalCount) {
       setIsLoadingMore(true)
       setPageNumber(prevNumber => prevNumber + 1)
       fetchMore({
@@ -43,15 +43,16 @@ export const UserPhotos = () => {
         updateQuery: (prev: UserImagesType, { fetchMoreResult }) => {
           setIsLoadingMore(false)
           if (!fetchMoreResult) return prev
-
-          return {
-            user: {
-              ...prev.user,
-              images: {
-                ...prev.user.images,
-                items: [...prev.user.images.items, ...fetchMoreResult.user.images.items],
+          if (prev.user) {
+            return {
+              user: {
+                ...prev.user,
+                imagesUser: {
+                  ...prev.user.imagesUser,
+                  items: [...prev.user.imagesUser.items, ...fetchMoreResult.user.imagesUser.items],
+                },
               },
-            },
+            }
           }
         },
       })
@@ -72,7 +73,9 @@ export const UserPhotos = () => {
         ) : (
           <>
             {memoizedItems && memoizedItems.length > 0 ? (
-              memoizedItems.map((item: any, index: number) => <UserPhoto key={index} item={item} />)
+              memoizedItems.map((item: ItemsImagesType, index: number) => (
+                <UserPhoto key={index} item={item} />
+              ))
             ) : (
               <div>No photos available</div>
             )}
@@ -80,7 +83,7 @@ export const UserPhotos = () => {
         )}
       </div>
       <div ref={ref}>
-        {isLoadingMore && inView && (
+        {isLoadingMore && (
           <div className="pt-4">
             <div className={'grid grid-cols-4 gap-3'}>{usedToDrawArraysOfSkeletons(12)}</div>
           </div>

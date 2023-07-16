@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { SkeletonPost } from '@/modules/users-modules/view-user-info'
 
 export const usedToDrawArraysOfSkeletons = (value: number) => {

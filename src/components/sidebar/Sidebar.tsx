@@ -16,6 +16,7 @@ import usersOutline from '../../assets/icons/users-outline.svg'
 import users from '../../assets/icons/users.svg'
 
 import { LogoutButton } from '@/modules/login-module/logout'
+import { routes } from '@/routing/router.js'
 
 export const Sidebar: FC = () => {
   const { pathname } = useRouter()
@@ -23,19 +24,16 @@ export const Sidebar: FC = () => {
 
   // CSS Styles
   const className = {
-    users: clsx(
-      pathname === '/users-list' ? 'text-accent-500' : '',
-      'flex gap-[15px] items-center'
-    ),
+    users: clsx(pathname === routes.users ? 'text-accent-500' : '', 'flex gap-[15px] items-center'),
     statistics: clsx(
-      pathname === '/statistics' ? 'text-accent-500' : '',
+      pathname === routes.statistics ? 'text-accent-500' : '',
       'flex gap-[15px] items-center mt-14'
     ),
     payments: clsx(
-      pathname === '/payments' ? 'text-accent-500' : '',
+      pathname === routes.payments ? 'text-accent-500' : '',
       'flex gap-[15px] items-center'
     ),
-    posts: clsx(pathname === '/posts' ? 'text-accent-500' : '', 'flex gap-[15px] items-center'),
+    posts: clsx(pathname === routes.posts ? 'text-accent-500' : '', 'flex gap-[15px] items-center'),
 
     hidden: 'lg:hidden',
   }
@@ -45,9 +43,9 @@ export const Sidebar: FC = () => {
       <div className="text-light-100 font-medium flex flex-col items-center justify-between py-[72px] h-full">
         <ul className="list-none flex gap-6 flex-col">
           <li>
-            <Link href={'/users-list'} className={className.users}>
+            <Link href={routes.users} className={className.users}>
               <Image
-                src={pathname === '/' ? users : usersOutline}
+                src={pathname === routes.users ? usersOutline : users}
                 alt={'Users'}
                 height={24}
                 width={24}
@@ -56,9 +54,9 @@ export const Sidebar: FC = () => {
             </Link>
           </li>
           <li>
-            <Link href={'/statistics'} className={className.statistics}>
+            <Link href={routes.statistics} className={className.statistics}>
               <Image
-                src={pathname === '/statistics' ? statistics : statisticsOutline}
+                src={pathname === routes.statistics ? statisticsOutline : statistics}
                 alt={'statistics'}
                 height={24}
                 width={24}
@@ -67,9 +65,9 @@ export const Sidebar: FC = () => {
             </Link>
           </li>
           <li className="">
-            <Link href={'/payments'} className={className.payments}>
+            <Link href={routes.payments} className={className.payments}>
               <Image
-                src={pathname === '/payments' ? payments : paymentsOutline}
+                src={pathname === routes.payments ? paymentsOutline : payments}
                 alt={'Profile'}
                 height={24}
                 width={24}
@@ -78,18 +76,15 @@ export const Sidebar: FC = () => {
             </Link>
           </li>
           <li className="">
-            <Link href={'/posts'} className={className.posts}>
+            <Link href={routes.posts} className={className.posts}>
               <Image
-                src={pathname === '/posts' ? posts : postsOutline}
-                alt={'Statistic'}
+                src={pathname === routes.posts ? postsOutline : posts}
+                alt={'Posts list'}
                 height={24}
                 width={24}
               />
               <span className={className.hidden}>{t('navigation.postList')}</span>
             </Link>
-            {/*<div>*/}
-            {/*  <div>{t('navigation.statistics')}</div>*/}
-            {/*</div>*/}
           </li>
         </ul>
         <LogoutButton />

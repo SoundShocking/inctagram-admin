@@ -15,7 +15,7 @@ export const GET_USER_IMAGES = gql`
       sortBy: $sortBy
       sortDirection: $sortDirection
     ) {
-      images {
+      imagesUser {
         page
         pageSize
         pagesCount

@@ -6,6 +6,8 @@ type AuthContextPick = Pick<AuthContextType, 'login' | 'logout'>
 
 export const LoginEffect = ({ data, login, logout }: AuthContextPick & { data?: any }) => {
   useEffect(() => {
-    data ? login(true) : logout()
+    const accessToken: string | null = localStorage?.getItem('authorization') || null
+
+    data && accessToken ? login(true) : logout()
   }, [data])
 }
