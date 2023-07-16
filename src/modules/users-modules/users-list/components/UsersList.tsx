@@ -6,7 +6,7 @@ import { useDebounce } from 'usehooks-ts'
 
 import { UsersTable } from '@/modules/users-modules/users-list/components/UsersTable'
 import { UsersTableToolbar } from '@/modules/users-modules/users-list/components/UsersTableToolbar'
-import { getSorting } from '@/modules/users-modules/users-list/helpers/getSorting'
+import { getUsersSorting } from '@/modules/users-modules/users-list/helpers/getUsersSorting'
 import { useGetAllUsersQuery } from '@/queries/users.generated'
 import { UserStatusInputType } from '@/types'
 
@@ -28,10 +28,10 @@ export const UsersList = () => {
   const { loading, error, data } = useGetAllUsersQuery({
     variables: {
       pageSize,
-      pageNumber: pageIndex,
+      pageNumber: pageIndex + 1,
       status,
       search,
-      ...getSorting(sorting),
+      ...getUsersSorting(sorting),
     },
   })
 

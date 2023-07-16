@@ -1,7 +1,11 @@
 import { getGlobalLayout } from '@/components/layout'
-
+import { PostsList } from '@/modules/posts'
 const Posts = () => {
-  return <div>{'Posts List'}</div>
+  return (
+    <>
+      <PostsList />
+    </>
+  )
 }
 
 Posts.getLayout = getGlobalLayout

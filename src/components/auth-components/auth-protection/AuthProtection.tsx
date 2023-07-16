@@ -1,14 +1,16 @@
 import React, { FC, memo, PropsWithChildren, useContext } from 'react'
 
-import { handleAuthRedirectEffect, useLastRouting } from '@/components/auth-components'
+import { handleAuthRedirectEffect, useLastRoutingEffect } from '@/components/auth-components'
+import { accessTokenVerificationEffect } from '@/components/auth-components/custom/useEffect/accessTokenVerificationEffect'
 import { AuthContext } from '@/store/store'
 import { AuthContextType } from '@/store/storeTypes/storeTypes'
 import { Preloader } from '@/ui'
 
 const AuthProtection: FC<PropsWithChildren> = memo(({ children }) => {
-  const { auth, loading } = useContext<AuthContextType>(AuthContext)
+  const { auth, loading, logout } = useContext<AuthContextType>(AuthContext)
 
-  useLastRouting()
+  accessTokenVerificationEffect({ logout })
+  useLastRoutingEffect()
   handleAuthRedirectEffect({ auth })
 
   return (
