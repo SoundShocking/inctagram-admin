@@ -1,3 +1,4 @@
+import { formatDistance, parseISO } from 'date-fns'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -18,6 +19,8 @@ export const Post = ({
   setShowMoreId: (postId: number) => void
   text: string
 }) => {
+  console.log(post.createdAt)
+
   return (
     <>
       <div className="max-w-[234px] flex flex-col h-auto">
@@ -49,8 +52,10 @@ export const Post = ({
               <PostsActionsDropDown post={post} />
             </div>
           </div>
-          <span className="pt-3 font-normal text-light-900 leading-4 text-xs">
-            Created: {dateChangesFormat(post.createdAt)}
+          <span className="pt-3 font-normal text-light-100 leading-4 text-xs">
+            {formatDistance(parseISO(post.createdAt), new Date(), {
+              addSuffix: true,
+            })}
           </span>
           <p className="text-sm text-light-100 leading-6 font-normal">
             {showMore ? text : `${text.substring(0, 83)}`}
