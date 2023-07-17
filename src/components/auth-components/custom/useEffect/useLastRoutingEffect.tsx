@@ -7,6 +7,7 @@ import { routes } from '@/routing/router.js'
 export const useLastRoutingEffect = () => {
   const { asPath, events, route } = useRouter()
 
+  console.log(asPath)
   useEffect(() => {
     const handleRouteChange = () => {
       if (asPath !== routes.unprotected) {

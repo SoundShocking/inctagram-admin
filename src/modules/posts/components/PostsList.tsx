@@ -26,7 +26,7 @@ export const PostsList = () => {
   const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false)
   const [pageNumber, setPageNumber] = useState<number>(1)
   const { postStatusBannedDeleted } = useContext(AuthContext)
-  const { error, loading, fetchMore, refetch } = useQuery<PostsType>(GET_POSTS_LIST, {
+  const { error, data, loading, fetchMore, refetch } = useQuery<PostsType>(GET_POSTS_LIST, {
     variables: {
       search: debounce,
       pageSize: 8,
@@ -37,7 +37,7 @@ export const PostsList = () => {
   })
 
   const handleScroll = () => {
-    if (!isLoadingMore && inView && posts && posts.items.length < posts.totalCount) {
+    if (!isLoadingMore && loading && inView && posts && posts.items.length < posts.totalCount) {
       setIsLoadingMore(true)
       setPageNumber(prevNumber => prevNumber + 1)
       fetchMore({
@@ -92,7 +92,10 @@ export const PostsList = () => {
       )
     }
   }, [search])
-
+  console.log('data')
+  console.log(data)
+  console.log('post')
+  console.log(posts)
   const text =
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incdipiscing elit, sed do eiusmod tempor inipiscing elit, sed do eiusmod tempor incdipiscing elit, sed do eiusmod tempor incd.mpor incd.mpor incd.mpo..'
 

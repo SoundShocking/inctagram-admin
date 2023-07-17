@@ -36,7 +36,7 @@ export const UserPhotos = () => {
   )
 
   const handleScroll = () => {
-    if (inView && images && images?.items.length < images.totalCount) {
+    if (!isLoadingMore && loading && inView && images && images?.items.length < images.totalCount) {
       setIsLoadingMore(true)
       setPageNumber(prevNumber => prevNumber + 1)
       fetchMore({
