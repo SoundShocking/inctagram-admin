@@ -18,8 +18,6 @@ export const Post = ({
   setShowMoreId: (postId: number) => void
   text: string
 }) => {
-  console.log(post.createdAt)
-
   return (
     <>
       <div className="max-w-[234px] flex flex-col h-auto">
