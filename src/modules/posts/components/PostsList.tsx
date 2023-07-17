@@ -26,7 +26,7 @@ export const PostsList = () => {
   const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false)
   const [pageNumber, setPageNumber] = useState<number>(1)
   const { postStatusBannedDeleted } = useContext(AuthContext)
-  const { error, data, loading, fetchMore, refetch } = useQuery<PostsType>(GET_POSTS_LIST, {
+  const { error, loading, fetchMore, refetch } = useQuery<PostsType>(GET_POSTS_LIST, {
     variables: {
       search: debounce,
       pageSize: 8,
