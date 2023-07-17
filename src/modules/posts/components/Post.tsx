@@ -2,7 +2,6 @@ import { formatDistance, parseISO } from 'date-fns'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { dateChangesFormat } from '@/common'
 import { IconStatus, PostsItemsType, PostsActionsDropDown } from '@/modules/posts'
 import { Avatar } from '@/ui'
 
