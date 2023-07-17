@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useContext, useEffect, useState } from 'react'
 
 import { useQuery } from '@apollo/client'
+import { tSConstructSignatureDeclaration } from '@babel/types'
 import { useInView } from 'react-intersection-observer'
 
 import { useInViewScrollHandlerEffect } from '@/common'
@@ -37,7 +38,7 @@ export const PostsList = () => {
   })
 
   const handleScroll = () => {
-    if (!isLoadingMore && loading && inView && posts && posts.items.length < posts.totalCount) {
+    if (!isLoadingMore && inView && posts && posts.items.length < posts.totalCount) {
       setIsLoadingMore(true)
       setPageNumber(prevNumber => prevNumber + 1)
       fetchMore({
@@ -62,6 +63,8 @@ export const PostsList = () => {
   const { ref, inView } = useInView({
     threshold: 0.1,
   })
+
+  console.log(inView)
 
   useInViewScrollHandlerEffect({ inView, isLoadingMore, handleScroll, loading })
   const handleCallBackShowMore = (postId: number) => {
@@ -92,10 +95,7 @@ export const PostsList = () => {
       )
     }
   }, [search])
-  console.log('data')
-  console.log(data)
-  console.log('post')
-  console.log(posts)
+
   const text =
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incdipiscing elit, sed do eiusmod tempor inipiscing elit, sed do eiusmod tempor incdipiscing elit, sed do eiusmod tempor incd.mpor incd.mpor incd.mpo..'
 
