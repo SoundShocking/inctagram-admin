@@ -43,9 +43,9 @@ export const TableActionsDropdown: FC<Props> = ({ row, viewInfo }) => {
   }
 
   return (
-    <>
+    <div className="flex">
       <DropdownMenu.Root modal={false}>
-        <DropdownMenu.Trigger asChild>
+        <DropdownMenu.Trigger asChild className="flex w-full align-middle">
           <button className="flex align-center" aria-label="Customise options">
             <FaEllipsis size={24} color="#fff" />
           </button>
@@ -115,6 +115,6 @@ export const TableActionsDropdown: FC<Props> = ({ row, viewInfo }) => {
         userName={userName}
         userId={userId}
       />
-    </>
+    </div>
   )
 }

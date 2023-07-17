@@ -7,7 +7,7 @@ import { UsersList } from '@/modules/users-modules/users-list'
 
 const UsersPage: NextPageWithLayout = () => {
   return (
-    <main>
+    <main className="w-full">
       <Head>
         <title>Users list</title>
       </Head>

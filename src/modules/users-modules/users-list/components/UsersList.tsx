@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 
 import { PaginationState, SortingState } from '@tanstack/react-table'
-import { useTranslation } from 'react-i18next'
 import { useDebounce } from 'usehooks-ts'
 
 import { UsersTable } from '@/modules/users-modules/users-list/components/UsersTable'
@@ -41,7 +40,7 @@ export const UsersList = () => {
 
   if (data?.users) {
     return (
-      <>
+      <div className="bg-accent-100w-full pt-16 pl-6 pr-16">
         <UsersTableToolbar
           searchInput={searchInput}
           setSearchInput={setSearchInput}
@@ -58,7 +57,7 @@ export const UsersList = () => {
           sorting={sorting}
           setSorting={setSorting}
         />
-      </>
+      </div>
     )
   }
 }
