@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useContext, useEffect, useState } from 'react'
 
 import { useQuery } from '@apollo/client'
 import { useInView } from 'react-intersection-observer'
@@ -13,6 +13,7 @@ import {
   PostsType,
   SkeletonPost,
 } from '@/modules/posts'
+import { AuthContext } from '@/store/store'
 import { GlobalInput, Spinner } from '@/ui'
 
 export const PostsList = () => {
@@ -21,8 +22,8 @@ export const PostsList = () => {
   const [showMoreIds, setShowMoreIds] = useState<number[]>([])
   const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false)
   const [pageNumber, setPageNumber] = useState<number>(1)
-
-  const { error, loading, fetchMore } = useQuery<PostsType>(GET_POSTS_LIST, {
+  const { postStatusBannedDeleted } = useContext(AuthContext)
+  const { error, loading, fetchMore, refetch } = useQuery<PostsType>(GET_POSTS_LIST, {
     variables: {
       search: search,
       pageSize: 8,
@@ -67,6 +68,12 @@ export const PostsList = () => {
       setShowMoreIds([...showMoreIds, postId])
     }
   }
+
+  useEffect(() => {
+    console.log('1')
+    console.log(postStatusBannedDeleted)
+    refetch()
+  }, [postStatusBannedDeleted])
 
   const handleCallBackSearch = (e: ChangeEvent<HTMLInputElement>) => {
     const target: string = e.currentTarget.value

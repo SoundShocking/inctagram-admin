@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import { useMutation } from '@apollo/client'
 import { useTranslation } from 'react-i18next'
 
 import { Confirm } from '@/components/modals'
 import { UPDATE_USER_STATUS } from '@/queries/delete-ban'
+import { AuthContext } from '@/store/store'
 
 type PropsType = {
   isUnbanUserOpen: boolean
@@ -20,11 +21,12 @@ export const UnbanUserModal = ({
 }: PropsType) => {
   const { t } = useTranslation()
   const [updateUserStatus] = useMutation(UPDATE_USER_STATUS)
-
+  const { postStatusBannedDeleted, setPostStatusBannedDeleted } = useContext(AuthContext)
   const onConfirm = () => {
     updateUserStatus({ variables: { userId, isBanned: false } })
       .then(() => {
         console.log('User unbanned successfully')
+        setPostStatusBannedDeleted(!postStatusBannedDeleted)
       })
       .catch(error => {
         console.error('Error unbanning user:', error)

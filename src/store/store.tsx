@@ -13,6 +13,8 @@ import {
 const AuthContext = createContext<AuthContextType>({
   auth: false,
   loading: false,
+  postStatusBannedDeleted: false,
+  setPostStatusBannedDeleted: () => {},
   login: (auth: boolean) => {},
   logout: () => {},
   setLoading: (loading: boolean) => {},
@@ -34,6 +36,11 @@ const authReducer = (state: State, action: Action): State => {
       return {
         ...state,
         loading: action.payload,
+      }
+    case 'STATUS_BANNED_DELETED_POST':
+      return {
+        ...state,
+        postStatusBannedDeleted: action.payload,
       }
     default:
       return state
@@ -59,9 +66,21 @@ const AuthProvider = ({ children, ...props }: AuthProviderType) => {
     dispatch({ type: 'LOADING', payload: loading })
   }
 
+  const setPostStatusBannedDeleted = (status: boolean) => {
+    dispatch({ type: 'STATUS_BANNED_DELETED_POST', payload: status })
+  }
+
   return (
     <AuthContext.Provider
-      value={{ auth: state.auth, loading: state.loading, login, logout, setLoading }}
+      value={{
+        postStatusBannedDeleted: state.postStatusBannedDeleted,
+        setPostStatusBannedDeleted,
+        auth: state.auth,
+        loading: state.loading,
+        login,
+        logout,
+        setLoading,
+      }}
       {...props}
     >
       {children}
