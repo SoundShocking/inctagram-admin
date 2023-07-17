@@ -41,7 +41,7 @@ export const UsersList = () => {
 
   if (data?.users) {
     return (
-      <>
+      <div className="bg-accent-100w-full pt-16 pl-6 pr-16">
         <UsersTableToolbar
           searchInput={searchInput}
           setSearchInput={setSearchInput}
@@ -58,7 +58,7 @@ export const UsersList = () => {
           sorting={sorting}
           setSorting={setSorting}
         />
-      </>
+      </div>
     )
   }
 }

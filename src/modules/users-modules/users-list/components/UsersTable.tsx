@@ -92,7 +92,7 @@ export const UsersTable: FC<Props> = ({
     <>
       <div className=" text-accent-500 p-2 block max-w-full ">
         <div className={`max-w-[972px]`}>
-          <table>
+          <table className="w-full">
             <thead
               className={
                 'h-12 bg-dark-500 border-2 border-dark-500 border-r-2 text-light-100 font-semibold text-sm'
@@ -124,7 +124,7 @@ export const UsersTable: FC<Props> = ({
               ))}
             </thead>
 
-            <tbody>
+            <tbody className="w-full">
               {table.getRowModel().rows.map(row => {
                 return (
                   <tr
@@ -138,7 +138,9 @@ export const UsersTable: FC<Props> = ({
                           key={cell.id}
                           style={{ width: cell.column.getSize() }}
                         >
-                          <div>{flexRender(cell.column.columnDef.cell, cell.getContext())}</div>
+                          <div className="w-full flex align-middle justify-center">
+                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                          </div>
                         </td>
                       )
                     })}
