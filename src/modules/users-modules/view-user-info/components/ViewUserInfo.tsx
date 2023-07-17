@@ -23,8 +23,8 @@ export const ViewUserInfo = () => {
   }
 
   return (
-    <div className="flex w-full pl-60">
-      <div className="flex flex-col w-max">
+    <div className="flex w-full pl-60 pr-16 pb-10">
+      <div className="flex flex-col w-full">
         {loading ? <SkeletonViewUserInfoMain /> : <ViewUserInfoMain userData={userData} />}
         <div className="pt-7">
           <ViewUserInformationInTabs />

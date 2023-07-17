@@ -32,6 +32,7 @@ export const Post = ({
           <div className="flex flex-wrap pt-[6px] gap-1 justify-between">
             <div className="flex w-full h-full flex-wrap gap-3 align-middle">
               <Avatar
+                className="cursor-default"
                 src={post.urlAvatar ? post.urlAvatar : null}
                 alt={'user avatar'}
                 height={36}

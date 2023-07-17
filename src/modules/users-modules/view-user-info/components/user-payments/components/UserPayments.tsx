@@ -101,7 +101,7 @@ export const UserPayments = () => {
   if (error) return <p>Error : {error.message}</p>
 
   return (
-    <div className=" text-accent-500 p-2 block max-w-full ">
+    <div className=" text-accent-500 p-2 block w-full ">
       {data?.user.paymentsUser.items.length ? (
         <UserPaymentsTable tableProps={tableProps} loading={loading} />
       ) : (
