@@ -12,7 +12,6 @@ import { createColumnHelper } from '@tanstack/table-core'
 import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next'
 
-import { getUsersSorting } from '@/modules/users-modules/users-list/helpers/getUsersSorting'
 import { UserForSuperAdminViewModel } from '@/types'
 import { TableActionsDropdown } from '@/ui/dropdown/TableActionsDropdown'
 
