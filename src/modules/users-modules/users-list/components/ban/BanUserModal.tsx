@@ -2,8 +2,6 @@ import React, { useContext, useState } from 'react'
 
 import { useMutation } from '@apollo/client'
 import { useTranslation } from 'react-i18next'
-import { refCount } from 'rxjs'
-import { parseJsDocOfNode } from 'tsutils'
 
 import { ModalWithContent } from '@/components/modals'
 import { DetailsInput } from '@/modules/users-modules/users-list/components/ban/details-input/DetailsInput'
