@@ -29,9 +29,10 @@ export const Post = ({
             src={post.urlsPostsImages ? post.urlsPostsImages[0] : ''}
             alt={'Post image'}
           />
-          <div className="flex flex-wrap pt-[6px] justify-between">
-            <div className="flex flex-wrap gap-3 align-middle">
+          <div className="flex flex-wrap pt-[6px] gap-1 justify-between">
+            <div className="flex w-full h-full flex-wrap gap-3 align-middle">
               <Avatar
+                className="cursor-default"
                 src={post.urlAvatar ? post.urlAvatar : null}
                 alt={'user avatar'}
                 height={36}
@@ -41,10 +42,12 @@ export const Post = ({
                 <span className="font-semibold leading-6 text-base">{post.userName}</span>
               </Link>
             </div>
-            <span className="flex align-middle gap-1">
-              <IconStatus styleColor={getStatusColor(post.status)} />
-            </span>
-            <PostsActionsDropDown post={post} />
+            <div className="flex flex-row  w-full justify-between">
+              <span className="flex align-middle gap-1">
+                <IconStatus styleColor={getStatusColor(post.status)} />
+              </span>
+              <PostsActionsDropDown post={post} />
+            </div>
           </div>
           <span className="pt-3 font-normal text-light-900 leading-4 text-xs">
             Created: {dateChangesFormat(post.createdAt)}

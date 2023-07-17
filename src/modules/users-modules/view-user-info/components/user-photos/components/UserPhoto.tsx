@@ -4,7 +4,7 @@ import { ItemsImagesType } from '@/modules/users-modules/view-user-info'
 
 export const UserPhoto = ({ item }: { item: ItemsImagesType }) => {
   return (
-    <div className="aspect-square relative">
+    <div className="cursor-default aspect-square relative">
       <Image
         loader={({ src, width }) => {
           return src + '?w=' + width
@@ -13,7 +13,7 @@ export const UserPhoto = ({ item }: { item: ItemsImagesType }) => {
         width={234}
         height={228}
         alt="user photo"
-        className="w-full h-full object-cover cursor-pointer"
+        className="w-full cursor-default h-full object-cover"
       />
     </div>
   )

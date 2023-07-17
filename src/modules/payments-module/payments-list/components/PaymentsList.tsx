@@ -7,7 +7,6 @@ import { useDebounce } from 'usehooks-ts'
 import { PaymentsTable } from '@/modules/payments-module/payments-list/components/PaymentsTable'
 import { getPaymentsSorting } from '@/modules/payments-module/payments-list/getPaymentsSorting'
 import { useGetAllPaymentsQuery } from '@/queries/payments.generated'
-import { UserStatusInputType } from '@/types'
 
 export const PaymentsList: FC = () => {
   const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({

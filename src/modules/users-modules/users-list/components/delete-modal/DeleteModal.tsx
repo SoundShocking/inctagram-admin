@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import { useMutation } from '@apollo/client'
 import { useTranslation } from 'react-i18next'
 
 import { Confirm } from '@/components/modals'
 import { DELETE_USER } from '@/queries/delete-ban'
+import { AuthContext } from '@/store/store'
 
 type PropsType = {
   isDeleteUserOpen: boolean
@@ -20,11 +21,12 @@ export const DeleteModal = ({
 }: PropsType) => {
   const { t } = useTranslation()
   const [deleteUser] = useMutation(DELETE_USER)
-
+  const { postStatusBannedDeleted, setPostStatusBannedDeleted } = useContext(AuthContext)
   const onConfirm = () => {
     deleteUser({ variables: { userId } })
       .then(() => {
         console.log('User deleted successfully')
+        setPostStatusBannedDeleted(!postStatusBannedDeleted)
       })
       .catch(error => {
         console.error('Error deleting user:', error)

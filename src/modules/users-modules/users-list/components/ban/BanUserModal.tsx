@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 
 import { useMutation } from '@apollo/client'
 import { useTranslation } from 'react-i18next'
@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { ModalWithContent } from '@/components/modals'
 import { DetailsInput } from '@/modules/users-modules/users-list/components/ban/details-input/DetailsInput'
 import { BanReasonInputType, UPDATE_USER_STATUS } from '@/queries/delete-ban'
+import { AuthContext } from '@/store/store'
 import { ImageOption } from '@/ui/image-selector/image-option/ImageOption'
 import { ImageSelector } from '@/ui/image-selector/ImageSelector'
 
@@ -22,7 +23,7 @@ type ReasonType = {
 }
 export const BanUserModal = ({ isBanUserOpen, setIsBanUserOpen, userId, userName }: PropsType) => {
   const { t } = useTranslation()
-
+  const { postStatusBannedDeleted, setPostStatusBannedDeleted } = useContext(AuthContext)
   const [updateUserStatus] = useMutation(UPDATE_USER_STATUS)
   const ANOTHER_REASON = t('userList.ban.reason.anotherReason')
   const BAD_BEHAVIOR = t('userList.ban.reason.behavior')
@@ -57,6 +58,7 @@ export const BanUserModal = ({ isBanUserOpen, setIsBanUserOpen, userId, userName
     })
       .then(() => {
         console.log('User banned successfully')
+        setPostStatusBannedDeleted(!postStatusBannedDeleted)
       })
       .catch(error => {
         console.error('Error banning user:', error)
