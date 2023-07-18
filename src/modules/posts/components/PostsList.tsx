@@ -16,7 +16,7 @@ import {
   SkeletonPost,
 } from '@/modules/posts'
 import { AuthContext } from '@/store/store'
-import { GlobalInput, Spinner } from '@/ui'
+import { DateCalendar, GlobalInput, Spinner } from '@/ui'
 
 export const PostsList = () => {
   const [timerId, setTimerId] = useState<NodeJS.Timeout | undefined>(undefined)

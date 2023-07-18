@@ -3,7 +3,6 @@ import 'react-datepicker/dist/react-datepicker.css'
 import { FC } from 'react'
 
 import { clsx } from 'clsx'
-import { getYear } from 'date-fns'
 import { range } from 'lodash'
 // eslint-disable-next-line import/no-named-as-default
 import ReactDatePicker from 'react-datepicker'
@@ -77,21 +76,6 @@ export const DateCalendar: FC<DatePickerProps> = ({
     day: () => s.day,
   }
 
-  const years = range(1900, getYear(new Date()) + 1, 1)
-  const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ]
   const DatePickerHandler = (dates: [Date | null, Date | null] | Date | null) => {
     if (Array.isArray(dates)) {
       const [start, end] = dates
@@ -114,22 +98,11 @@ export const DateCalendar: FC<DatePickerProps> = ({
         monthsShown={12}
         preventOpenOnFocus={true}
         selectsRange={isRange}
-        renderCustomHeader={({
-          date,
-          changeYear,
-          changeMonth,
-          decreaseMonth,
-          increaseMonth,
-          ...rest
-        }) => (
+        renderCustomHeader={({ date, decreaseMonth, increaseMonth, ...rest }) => (
           <CustomHeader
             date={date}
             decreaseMonth={decreaseMonth}
             increaseMonth={increaseMonth}
-            changeYear={changeYear}
-            years={years}
-            months={months}
-            changeMonth={changeMonth}
             {...rest}
           />
         )}
