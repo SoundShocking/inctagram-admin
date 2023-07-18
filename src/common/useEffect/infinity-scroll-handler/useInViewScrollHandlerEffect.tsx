@@ -12,7 +12,7 @@ export const useInViewScrollHandlerEffect = ({
   handleScroll: () => void
 }) => {
   useEffect(() => {
-    if (inView && !loading && !isLoadingMore) {
+    if (inView && !loading && isLoadingMore) {
       handleScroll()
     }
   }, [inView])

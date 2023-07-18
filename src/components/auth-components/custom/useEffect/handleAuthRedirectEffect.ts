@@ -12,10 +12,12 @@ export const handleAuthRedirectEffect = ({ auth }: handleAuthRedirectEffectType)
   const { pathname, replace, route } = useRouter()
 
   useEffect(() => {
-    const lastRouting: string | null = localStorage?.getItem('lastRouting') || null
+    const lastRouting: string | null = localStorage.getItem('lastRouting') || null
 
     if (auth && unProtectedPaths.includes(pathname)) {
-      replace(lastRouting ? lastRouting : routes.protected, undefined, { shallow: true })
+      replace(lastRouting ? lastRouting : routes.protected, undefined, {
+        shallow: true,
+      })
     }
     if (!auth && !unProtectedPaths.includes(pathname)) {
       replace(routes.unprotected, undefined, { shallow: true })

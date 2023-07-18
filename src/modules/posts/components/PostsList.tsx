@@ -3,6 +3,8 @@ import React, { ChangeEvent, useContext, useEffect, useState } from 'react'
 import { useQuery } from '@apollo/client'
 import { useInView } from 'react-intersection-observer'
 
+import { Caorusel } from './Caorusel'
+
 import { useInViewScrollHandlerEffect } from '@/common'
 import {
   GET_POSTS_LIST,
@@ -17,7 +19,10 @@ import { AuthContext } from '@/store/store'
 import { GlobalInput, Spinner } from '@/ui'
 
 export const PostsList = () => {
+  const [timerId, setTimerId] = useState<NodeJS.Timeout | undefined>(undefined)
   const [search, setSearch] = useState<string>('')
+  const [debounce, setDebounce] = useState<string>('')
+
   const [posts, setPosts] = useState<PostsListType | undefined>()
   const [showMoreIds, setShowMoreIds] = useState<number[]>([])
   const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false)
@@ -25,7 +30,7 @@ export const PostsList = () => {
   const { postStatusBannedDeleted } = useContext(AuthContext)
   const { error, loading, fetchMore, refetch } = useQuery<PostsType>(GET_POSTS_LIST, {
     variables: {
-      search: search,
+      search: debounce,
       pageSize: 8,
     },
     onCompleted: (data: PostsType) => {
@@ -70,16 +75,26 @@ export const PostsList = () => {
   }
 
   useEffect(() => {
-    console.log('1')
-    console.log(postStatusBannedDeleted)
     refetch()
   }, [postStatusBannedDeleted])
-
   const handleCallBackSearch = (e: ChangeEvent<HTMLInputElement>) => {
     const target: string = e.currentTarget.value
 
     setSearch(target)
   }
+
+  useEffect(() => {
+    clearTimeout(timerId)
+
+    if (!loading) {
+      setTimerId(
+        setTimeout(() => {
+          setDebounce(search)
+        }, 1000)
+      )
+    }
+  }, [search])
+
   const text =
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incdipiscing elit, sed do eiusmod tempor inipiscing elit, sed do eiusmod tempor incdipiscing elit, sed do eiusmod tempor incd.mpor incd.mpor incd.mpo..'
 
@@ -115,7 +130,9 @@ export const PostsList = () => {
                 />
               ))
             ) : (
-              <span>Not found</span>
+              <span>
+                <Caorusel />
+              </span>
             )}
           </>
         )}

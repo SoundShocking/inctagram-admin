@@ -89,8 +89,8 @@ export const UserPayments = () => {
     state: {
       pagination,
     },
+    enableSorting: false,
     pageCount: pageCount,
-    manualSorting: true,
     manualPagination: true,
     onPaginationChange: setPagination,
     getCoreRowModel: getCoreRowModel(),
