@@ -3,6 +3,8 @@ import React, { ChangeEvent, useContext, useEffect, useState } from 'react'
 import { useQuery } from '@apollo/client'
 import { useInView } from 'react-intersection-observer'
 
+import { Caorusel } from './Caorusel'
+
 import { useInViewScrollHandlerEffect } from '@/common'
 import {
   GET_POSTS_LIST,
@@ -62,8 +64,6 @@ export const PostsList = () => {
   const { ref, inView } = useInView({
     threshold: 0.1,
   })
-
-  console.log(inView)
 
   useInViewScrollHandlerEffect({ inView, isLoadingMore, handleScroll, loading })
   const handleCallBackShowMore = (postId: number) => {
@@ -130,7 +130,9 @@ export const PostsList = () => {
                 />
               ))
             ) : (
-              <span>Not found</span>
+              <span>
+                <Caorusel />
+              </span>
             )}
           </>
         )}

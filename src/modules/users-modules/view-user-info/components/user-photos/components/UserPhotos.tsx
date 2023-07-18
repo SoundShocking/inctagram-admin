@@ -28,13 +28,12 @@ export const UserPhotos = () => {
   const images = data?.user.imagesUser
 
   const { ref, inView } = useInView({
-    threshold: 0.1,
+    threshold: 1,
   })
   const memoizedItems: ItemsImagesType[] | undefined = useMemo(
     () => images && images.items,
     [images]
   )
-
   const handleScroll = () => {
     if (!isLoadingMore && inView && images && images?.items.length < images.totalCount) {
       setIsLoadingMore(true)
@@ -84,7 +83,7 @@ export const UserPhotos = () => {
         )}
       </div>
       <div className="flex pt-3 pb-3 align-middle justify-center" ref={ref}>
-        {isLoadingMore && <Spinner />}
+        {isLoadingMore && !loading && <Spinner />}
       </div>
     </div>
   )

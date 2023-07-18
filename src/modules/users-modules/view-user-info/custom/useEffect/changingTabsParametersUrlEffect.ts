@@ -11,9 +11,11 @@ export const changingTabsParametersUrlEffect = ({
 }) => {
   const router = useRouter()
 
+  debugger
   useEffect(() => {
+    console.log(userId)
     if (userId) {
-      router.replace(`/users-list/${userId}`, {
+      router.replace(`/users/${userId}`, {
         query: { activeTab: activeTab, comment: 'ActiveTab' },
       })
     }

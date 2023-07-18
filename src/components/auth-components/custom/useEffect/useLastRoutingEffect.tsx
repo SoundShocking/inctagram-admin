@@ -5,20 +5,28 @@ import { useRouter } from 'next/router'
 import { routes } from '@/routing/router.js'
 
 export const useLastRoutingEffect = () => {
-  const { asPath, events, route } = useRouter()
+  const { asPath } = useRouter()
+  // const { userId } = query
 
-  console.log(asPath)
   useEffect(() => {
-    const handleRouteChange = () => {
-      if (asPath !== routes.unprotected) {
-        localStorage.setItem('lastRouting', asPath)
-      }
+    if (asPath !== routes.unprotected) {
+      localStorage.removeItem('lastRouting')
+      localStorage.setItem('lastRouting', asPath)
     }
+  }, [asPath])
 
-    events.on('routeChangeComplete', handleRouteChange)
-
-    return () => {
-      events.off('routeChangeComplete', handleRouteChange)
-    }
-  }, [asPath, route])
+  // useEffect(() => {
+  //   const handleRouteChange = () => {
+  //     if (asPath !== routes.unprotected) {
+  //       localStorage.removeItem('lastRouting')
+  //       localStorage.setItem('lastRouting', asPath)
+  //     }
+  //   }
+  //
+  //   events.on('routeChangeComplete', handleRouteChange)
+  //
+  //   return () => {
+  //     events.off('routeChangeComplete', handleRouteChange)
+  //   }
+  // }, [asPath, route, userId])
 }
