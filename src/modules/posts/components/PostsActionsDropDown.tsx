@@ -4,27 +4,24 @@ import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import { useTranslation } from 'react-i18next'
 import { FaEllipsis, FaBan } from 'react-icons/fa6'
 
-import { PostsItemsType } from '@/modules/posts'
-import { BanUserModal } from '@/modules/users-modules/users-list/components/ban/BanUserModal'
-import { UnbanUserModal } from '@/modules/users-modules/users-list/components/unban/UnbanUserModal'
+import { BanUserPostModal, PostsItemsType, UnBanPostUserModal } from '@/modules/posts'
 
 type TableActionsDropDownType = {
-  post: Pick<PostsItemsType, 'userName' | 'status' | 'userId'>
+  post: Pick<PostsItemsType, 'userName' | 'status' | 'postId' | 'postStatus'>
 }
 
 export const PostsActionsDropDown = ({
-  post: { userName, status, userId },
+  post: { userName, postStatus, postId },
 }: TableActionsDropDownType) => {
   const { t } = useTranslation()
   const [isUnbanUserOpen, setIsUnBanPostOpen] = useState(false)
   const [isBanUserOpen, setIsBanPostOpen] = useState(false)
-
   const onBanClick = () => {
     setIsBanPostOpen(true)
   }
 
   const onUnbanClick = () => {
-    setIsBanPostOpen(true)
+    setIsUnBanPostOpen(true)
   }
 
   return (
@@ -41,7 +38,7 @@ export const PostsActionsDropDown = ({
             align={'end'}
             className="bg-dark-500 border border-dark-100 p-3 text-sm"
           >
-            {status === 'ACTIVE' && (
+            {postStatus === 'PUBLISHED' && (
               <DropdownMenu.Item
                 className="flex items-center mb-3 cursor-pointer"
                 onSelect={() => onBanClick()}
@@ -51,7 +48,7 @@ export const PostsActionsDropDown = ({
               </DropdownMenu.Item>
             )}
 
-            {status === 'BANNED' && (
+            {postStatus === 'BANNED' && (
               <DropdownMenu.Item
                 className="flex items-center mb-3 cursor-pointer"
                 onSelect={() => onUnbanClick()}
@@ -64,17 +61,17 @@ export const PostsActionsDropDown = ({
         </DropdownMenu.Portal>
       </DropdownMenu.Root>
 
-      <BanUserModal
+      <BanUserPostModal
         isBanUserOpen={isBanUserOpen}
         setIsBanUserOpen={setIsBanPostOpen}
-        userId={userId}
+        postId={postId}
         userName={userName}
       />
-      <UnbanUserModal
+      <UnBanPostUserModal
         isUnbanUserOpen={isUnbanUserOpen}
         setIsUnbanUserOpen={setIsUnBanPostOpen}
         userName={userName}
-        userId={userId}
+        postId={postId}
       />
     </>
   )

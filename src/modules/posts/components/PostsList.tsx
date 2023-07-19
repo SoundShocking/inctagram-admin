@@ -106,8 +106,6 @@ export const PostsList = () => {
   if (error && !loading) {
     return <div>Error! {error.message}</div>
   }
-  console.log(isLoadingMore)
-  console.log(inView)
 
   return (
     <div className="w-full pt-[60px] pl-[24px] pr-[60px] flex flex-col">

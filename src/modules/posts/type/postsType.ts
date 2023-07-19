@@ -9,6 +9,7 @@ export type PostsItemsType = {
   description: string
   urlAvatar: string
   urlsPostsImages: string[]
+  postStatus: 'PUBLISHED' | 'BANNED'
 }
 
 export type PostsListType = {

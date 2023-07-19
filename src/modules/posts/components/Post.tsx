@@ -44,7 +44,7 @@ export const Post = ({
             </div>
             <div className="flex flex-row  w-full justify-between">
               <span className="flex align-middle gap-1">
-                <IconStatus styleColor={getStatusColor(post.status)} />
+                <IconStatus styleColor={getStatusColor(post.postStatus)} />
               </span>
               <PostsActionsDropDown post={post} />
             </div>
