@@ -4,8 +4,9 @@ import { useMutation } from '@apollo/client'
 import { useTranslation } from 'react-i18next'
 
 import { ModalWithContent } from '@/components/modals'
+import { BAN_UN_BAN_POST } from '@/modules/posts'
 import { DetailsInput } from '@/modules/users-modules/users-list/components/ban/details-input/DetailsInput'
-import { BanReasonInputType, UPDATE_USER_STATUS } from '@/queries/delete-ban'
+import { BanReasonInputType } from '@/queries/delete-ban'
 import { AuthContext } from '@/store/store'
 import { ImageOption } from '@/ui/image-selector/image-option/ImageOption'
 import { ImageSelector } from '@/ui/image-selector/ImageSelector'
@@ -13,7 +14,7 @@ import { ImageSelector } from '@/ui/image-selector/ImageSelector'
 type PropsType = {
   isBanUserOpen: boolean
   setIsBanUserOpen: (isBanUserOpen: boolean) => void
-  userId: number
+  postId: number
   userName: string
 }
 
@@ -21,13 +22,19 @@ type ReasonType = {
   text: string
   value: BanReasonInputType
 }
-export const BanUserModal = ({ isBanUserOpen, setIsBanUserOpen, userId, userName }: PropsType) => {
+export const BanUserPostModal = ({
+  isBanUserOpen,
+  setIsBanUserOpen,
+  postId,
+  userName,
+}: PropsType) => {
   const { t } = useTranslation()
   const { postStatusBannedDeleted, setPostStatusBannedDeleted } = useContext(AuthContext)
-  const [updateUserStatus] = useMutation(UPDATE_USER_STATUS)
-  const ANOTHER_REASON = t('userList.ban-post.reason.anotherReason')
-  const BAD_BEHAVIOR = t('userList.ban-post.reason.behavior')
-  const ADVERTISING_PLACEMENT = t('userList.ban-post.reason.advertising')
+  const [updateUserStatus] = useMutation(BAN_UN_BAN_POST)
+
+  const ANOTHER_REASON = t('userList.ban.reason.anotherReason')
+  const BAD_BEHAVIOR = t('userList.ban.reason.behavior')
+  const ADVERTISING_PLACEMENT = t('userList.ban.reason.advertising')
 
   const reasons: ReasonType[] = [
     { text: ANOTHER_REASON, value: 'Another_reason' },
@@ -39,7 +46,7 @@ export const BanUserModal = ({ isBanUserOpen, setIsBanUserOpen, userId, userName
 
   const [isOpen, setIsOpen] = useState(false)
   const [banReasonName, setBanReasonName] = useState(defaultText)
-  const [banReasonValue, setBanReasonValue] = useState<BanReasonInputType>('Bad_behavior')
+  const [setBanReasonValue] = useState<BanReasonInputType>('Bad_behavior')
   const [banDetails, setBanDetails] = useState('')
   const [error, setError] = useState('')
 
@@ -54,7 +61,12 @@ export const BanUserModal = ({ isBanUserOpen, setIsBanUserOpen, userId, userName
 
   const onConfirm = () => {
     updateUserStatus({
-      variables: { userId, banReason: banReasonValue, isBanned: true, details: banDetails },
+      variables: {
+        postId,
+        banReason: 'DISCRIMINATION_AND_HATE',
+        isBanned: true,
+        details: banDetails,
+      },
     })
       .then(() => {
         console.log('User banned successfully')
@@ -69,6 +81,7 @@ export const BanUserModal = ({ isBanUserOpen, setIsBanUserOpen, userId, userName
 
   const onOptionClick = (text: string, value: BanReasonInputType) => {
     setBanReasonName(text)
+    // @ts-ignore
     setBanReasonValue(value)
     setIsOpen(false)
   }
@@ -77,17 +90,17 @@ export const BanUserModal = ({ isBanUserOpen, setIsBanUserOpen, userId, userName
     <ModalWithContent
       isOpen={isBanUserOpen}
       onClose={onDecline}
-      title={t('userList.ban-post.title')}
-      confirmButtonText={t('userList.ban-post.confirm')}
-      declineButtonText={t('userList.ban-post.cancel')}
+      title={t('userList.ban.title')}
+      confirmButtonText={t('userList.ban.confirm')}
+      declineButtonText={t('userList.ban.cancel')}
       onConfirm={onConfirm}
       onDecline={onDecline}
       disabled={error.length > 0}
     >
       <div>
-        <h3>{t('userList.ban-post.description') + ' ' + userName + '?'}</h3>
+        <h3>{t('userList.ban.description') + ' ' + userName + '?'}</h3>
 
-        <div className={'mt-3'}>{`${t('userList.ban-post.reason.title')}:`}</div>
+        <div className={'mt-3'}>{`${t('userList.ban.reason.title')}:`}</div>
 
         <div className={'mt-1'}>
           <ImageSelector isOpen={isOpen} setIsOpen={onDropdownClick} chosenText={banReasonName}>

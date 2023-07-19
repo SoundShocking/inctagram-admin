@@ -30,6 +30,7 @@ export const GET_POSTS_LIST = gql`
         description
         urlAvatar
         urlsPostsImages
+        postStatus
       }
     }
   }
