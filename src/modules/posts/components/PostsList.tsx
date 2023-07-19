@@ -3,8 +3,6 @@ import React, { ChangeEvent, useContext, useEffect, useState } from 'react'
 import { useQuery } from '@apollo/client'
 import { useInView } from 'react-intersection-observer'
 
-import { Caorusel } from './Caorusel'
-
 import { useInViewScrollHandlerEffect } from '@/common'
 import {
   GET_POSTS_LIST,
@@ -14,15 +12,17 @@ import {
   PostsListType,
   PostsType,
   SkeletonPost,
+  StatusSelected,
 } from '@/modules/posts'
 import { AuthContext } from '@/store/store'
+import { UserStatusInputType } from '@/types'
 import { DateCalendar, GlobalInput, Spinner } from '@/ui'
 
 export const PostsList = () => {
   const [timerId, setTimerId] = useState<NodeJS.Timeout | undefined>(undefined)
   const [search, setSearch] = useState<string>('')
   const [debounce, setDebounce] = useState<string>('')
-
+  const [status, setStatus] = useState<UserStatusInputType>(UserStatusInputType.All)
   const [posts, setPosts] = useState<PostsListType | undefined>()
   const [showMoreIds, setShowMoreIds] = useState<number[]>([])
   const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false)
@@ -104,6 +104,9 @@ export const PostsList = () => {
 
   return (
     <div className="w-full pt-[60px] pl-[24px] pr-[60px] flex flex-col">
+      <div>
+        <StatusSelected status={status} setStatus={setStatus} />
+      </div>
       <div className="pb-[36px] w-full">
         <GlobalInput
           className="w-[972px] pb-[36px] h-[36px]"
@@ -130,9 +133,7 @@ export const PostsList = () => {
                 />
               ))
             ) : (
-              <span>
-                <Caorusel />
-              </span>
+              <span className="text-base leading-6 font-normal ">Not Found</span>
             )}
           </>
         )}
