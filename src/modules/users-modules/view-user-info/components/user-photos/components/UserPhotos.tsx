@@ -4,11 +4,11 @@ import { useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { useInView } from 'react-intersection-observer'
 
-import { useInViewScrollHandlerEffect } from '@/common'
 import {
   GET_USER_IMAGES,
   ItemsImagesType,
   usedToDrawArraysOfSkeletons,
+  useInViewScrollHandlerEffect,
   UserImagesType,
   UserPhoto,
 } from '@/modules/users-modules/view-user-info'
