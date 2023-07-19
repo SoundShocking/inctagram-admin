@@ -3,7 +3,6 @@ import React, { ChangeEvent, useContext, useEffect, useState } from 'react'
 import { useQuery } from '@apollo/client'
 import { useInView } from 'react-intersection-observer'
 
-import { useInViewScrollHandlerEffect } from '@/common'
 import {
   GET_POSTS_LIST,
   getStatusColor,
