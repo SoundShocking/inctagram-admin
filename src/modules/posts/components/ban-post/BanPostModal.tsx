@@ -46,7 +46,7 @@ export const BanUserPostModal = ({
 
   const [isOpen, setIsOpen] = useState(false)
   const [banReasonName, setBanReasonName] = useState(defaultText)
-  const [banReasonValue, setBanReasonValue] = useState<BanReasonInputType>('Bad_behavior')
+  const [setBanReasonValue] = useState<BanReasonInputType>('Bad_behavior')
   const [banDetails, setBanDetails] = useState('')
   const [error, setError] = useState('')
 
@@ -81,6 +81,7 @@ export const BanUserPostModal = ({
 
   const onOptionClick = (text: string, value: BanReasonInputType) => {
     setBanReasonName(text)
+    // @ts-ignore
     setBanReasonValue(value)
     setIsOpen(false)
   }
