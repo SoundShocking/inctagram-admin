@@ -14,10 +14,10 @@ export const ViewUserInformationInTabs = () => {
   const router = useRouter()
   const { userId } = router.query
 
-  // changingTabsParametersUrlEffect({
-  //   userId,
-  //   activeTab,
-  // })
+  changingTabsParametersUrlEffect({
+    userId,
+    activeTab,
+  })
   callWhenUrlChangesEffect({
     router,
     setActiveTab,
