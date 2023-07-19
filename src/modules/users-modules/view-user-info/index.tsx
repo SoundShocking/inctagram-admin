@@ -21,6 +21,7 @@ export * from './components/user-photos/types/UserImagesType'
 export * from './custom/useEffect/changingTabsParametersUrlEffect'
 export * from './custom/useEffect/callWhenUrlChangesEffect'
 export * from '@/modules/users-modules/view-user-info/components/user-payments/custom/useEffect/setUserPaymentsDataEffect'
+export * from './components/user-photos/custom/useEffect/infinity-scroll-handler/useInViewScrollHandlerEffect'
 //Skeleton
 export * from '@/modules/users-modules/view-user-info/Skeletons/SkeletonPost'
 export * from '@/modules/users-modules/view-user-info/Skeletons/SkeletonViewUserInfoMain'

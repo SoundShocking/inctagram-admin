@@ -27,6 +27,10 @@ i18n.use(initReactI18next).init({
           postList: 'PostsList list',
           paymentsList: 'Payments list',
         },
+        postsList: {
+          publishedPosts: 'Published posts',
+          bannedPosts: 'Banned posts',
+        },
         userList: {
           deleteUser: 'Delete user',
           banUser: 'Ban in the system',
@@ -79,6 +83,10 @@ i18n.use(initReactI18next).init({
           userList: 'Список пользователей',
           postList: 'Список постов',
           paymentsList: 'Список платежей',
+        },
+        postsList: {
+          publishedPosts: 'Опубликованные посты',
+          bannedPosts: 'Заблокированные посты',
         },
         userList: {
           deleteUser: 'Удалить пользователя',
@@ -133,6 +141,10 @@ i18n.use(initReactI18next).init({
           postList: 'Список постів',
           paymentsList: 'Список платежів',
         },
+        postsList: {
+          publishedPosts: 'Опубліковані пости',
+          bannedPosts: 'Заборонені пости',
+        },
         userList: {
           deleteUser: 'Видалити користувача',
           banUser: 'Заблокувати в системі',
@@ -186,6 +198,10 @@ i18n.use(initReactI18next).init({
           postList: 'Спіс паведамленняў',
           paymentsList: 'Спіс плацяжоў',
         },
+        postsList: {
+          publishedPosts: 'Апублікаваныя паведамленні',
+          bannedPosts: 'Забароненыя паведамленні',
+        },
         userList: {
           deleteUser: 'Выдаліць карыстальніка',
           banUser: 'Заблакаваць у сістэме',
@@ -238,6 +254,10 @@ i18n.use(initReactI18next).init({
           userList: 'Rrwrrg wrr',
           postList: 'Rrwggwwr wrr',
           paymentsList: 'Urggghh wrr',
+        },
+        postsList: {
+          publishedPosts: 'Апублікаваныя паведамленні',
+          bannedPosts: 'Забароненыя паведамленні',
         },
         userList: {
           deleteUser: 'Rrwrrrr rrwrrgg',

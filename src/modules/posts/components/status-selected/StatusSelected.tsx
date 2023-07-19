@@ -2,11 +2,14 @@ import { FC } from 'react'
 
 import { useTranslation } from 'react-i18next'
 
-import { UserStatusInputType } from '@/types'
+export enum PostStatusForPostsListInputType {
+  PUBLISHED = 'PUBLISHED',
+  BANNED = 'BANNED',
+}
 
 interface Props {
-  status: UserStatusInputType
-  setStatus: (status: UserStatusInputType) => void
+  status: PostStatusForPostsListInputType
+  setStatus: (status: PostStatusForPostsListInputType) => void
 }
 
 export const StatusSelected: FC<Props> = ({ status, setStatus }) => {
@@ -17,11 +20,12 @@ export const StatusSelected: FC<Props> = ({ status, setStatus }) => {
       <select
         className="bg-dark-500 align-bottom text-light-100 text-sm font-normal"
         value={status}
-        onChange={e => setStatus(e.target.value as UserStatusInputType)}
+        onChange={e => setStatus(e.target.value as PostStatusForPostsListInputType)}
       >
-        <option value={UserStatusInputType.All}>{t('userList.notSelected')}</option>
-        <option value={UserStatusInputType.Banned}>{t('userList.blocked')}</option>
-        <option value={UserStatusInputType.Active}>{t('userList.notBlocked')}</option>
+        <option value={PostStatusForPostsListInputType.PUBLISHED}>
+          {t('postsList.publishedPosts')}
+        </option>
+        <option value={PostStatusForPostsListInputType.BANNED}>{t('postsList.bannedPosts')}</option>
       </select>
     </div>
   )

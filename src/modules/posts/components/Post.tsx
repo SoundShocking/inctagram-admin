@@ -3,7 +3,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { IconStatus, PostsItemsType, PostsActionsDropDown } from '@/modules/posts'
-import { StatusSelected } from '@/modules/posts/components/status-selected/StatusSelected'
 import { Avatar } from '@/ui'
 
 export const Post = ({

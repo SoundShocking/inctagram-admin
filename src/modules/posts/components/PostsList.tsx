@@ -7,35 +7,40 @@ import { useInViewScrollHandlerEffect } from '@/common'
 import {
   GET_POSTS_LIST,
   getStatusColor,
+  infinityScrollForPostsEffect,
   Post,
   PostsItemsType,
   PostsListType,
+  PostStatusForPostsListInputType,
   PostsType,
   SkeletonPost,
   StatusSelected,
 } from '@/modules/posts'
 import { AuthContext } from '@/store/store'
-import { UserStatusInputType } from '@/types'
-import { DateCalendar, GlobalInput, Spinner } from '@/ui'
+import { GlobalInput, Spinner } from '@/ui'
 
 export const PostsList = () => {
   const [timerId, setTimerId] = useState<NodeJS.Timeout | undefined>(undefined)
   const [search, setSearch] = useState<string>('')
   const [debounce, setDebounce] = useState<string>('')
-  const [status, setStatus] = useState<UserStatusInputType>(UserStatusInputType.All)
+  const [status, setStatus] = useState<PostStatusForPostsListInputType>(
+    PostStatusForPostsListInputType.PUBLISHED
+  )
   const [posts, setPosts] = useState<PostsListType | undefined>()
   const [showMoreIds, setShowMoreIds] = useState<number[]>([])
   const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false)
   const [pageNumber, setPageNumber] = useState<number>(1)
   const { postStatusBannedDeleted } = useContext(AuthContext)
-  const { error, loading, fetchMore, refetch } = useQuery<PostsType>(GET_POSTS_LIST, {
+  const { loading, error, fetchMore, refetch } = useQuery<PostsType>(GET_POSTS_LIST, {
     variables: {
       search: debounce,
       pageSize: 8,
+      status: status,
     },
     onCompleted: (data: PostsType) => {
       setPosts(data?.postsList)
     },
+    onError: error => console.error('error', error),
   })
 
   const handleScroll = () => {
@@ -65,7 +70,8 @@ export const PostsList = () => {
     threshold: 0.1,
   })
 
-  useInViewScrollHandlerEffect({ inView, isLoadingMore, handleScroll, loading })
+  infinityScrollForPostsEffect({ inView, isLoadingMore, handleScroll, loading })
+
   const handleCallBackShowMore = (postId: number) => {
     if (showMoreIds.includes(postId)) {
       setShowMoreIds(showMoreIds.filter(item => item !== postId))
@@ -101,6 +107,8 @@ export const PostsList = () => {
   if (error && !loading) {
     return <div>Error! {error.message}</div>
   }
+  console.log(isLoadingMore)
+  console.log(inView)
 
   return (
     <div className="w-full pt-[60px] pl-[24px] pr-[60px] flex flex-col">
