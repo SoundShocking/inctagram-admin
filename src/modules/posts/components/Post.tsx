@@ -27,6 +27,7 @@ export const Post = ({
             height={240}
             src={post.urlsPostsImages ? post.urlsPostsImages[0] : ''}
             alt={'Post image'}
+            priority={true}
           />
           <div className="flex flex-wrap pt-1.5 gap-1 justify-between">
             <div className="flex w-full h-full flex-wrap gap-3 align-middle">
