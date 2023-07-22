@@ -33,7 +33,7 @@ export const PostsList = () => {
   const [showMoreIds, setShowMoreIds] = useState<number[]>([])
   const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false)
   const [pageNumber, setPageNumber] = useState<number>(1)
-  const { postStatusBannedDeleted } = useContext(AuthContext)
+  // const { postStatusBannedDeleted } = useContext(AuthContext)
   const { loading, error, fetchMore, refetch } = useQuery<PostsType>(GET_POSTS_LIST, {
     variables: {
       search: debounce,
@@ -77,7 +77,6 @@ export const PostsList = () => {
   }
 
   infinityScrollForPostsEffect({ inView, isLoadingMore, handleScroll, loading })
-  changeStatusBanDelRefetchEffect({ refetch, postStatusBannedDeleted })
   handleSearchDebounceEffect({ loading, timerId, setTimerId, setDebounce, search })
 
   if (error && !loading) {
@@ -85,13 +84,13 @@ export const PostsList = () => {
   }
 
   return (
-    <div className="w-full pt-[60px] pl-[24px] pr-[60px] flex flex-col">
+    <div className="w-full pt-16 pl-6 pr-16 flex flex-col">
       <div>
-        <StatusSelected status={status} setStatus={setStatus} />
+        <StatusSelected refetch={refetch} status={status} setStatus={setStatus} />
       </div>
-      <div className="pb-[36px] w-full">
+      <div className="pb-9 w-full">
         <GlobalInput
-          className="w-[972px] pb-[36px] h-[36px]"
+          className="w-[972px] pb-9 h-9"
           type={'text'}
           placeholder={'Search'}
           value={search}

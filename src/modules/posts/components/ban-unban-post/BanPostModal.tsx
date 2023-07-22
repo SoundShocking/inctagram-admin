@@ -10,6 +10,7 @@ import {
   BAN_UN_BAN_POST,
   BanPostModalType,
   BanReasonForPostInputType,
+  GET_POSTS_LIST,
   ReasonType,
 } from 'modules/posts'
 
@@ -43,7 +44,6 @@ export const BanUserPostModal = ({
     { text: SHOCKING_OR_DISTURBING_CONTENT, value: 'CONTROVERSIAL_TOPICS' },
     { text: CONTROVERSIAL_TOPICS, value: 'CONTROVERSIAL_TOPICS' },
   ]
-  const { postStatusBannedDeleted, setPostStatusBannedDeleted } = useContext(AuthContext)
   const [updateUserStatus] = useMutation(BAN_UN_BAN_POST)
 
   const [isOpen, setIsOpen] = useState(false)
@@ -70,10 +70,10 @@ export const BanUserPostModal = ({
         isBanned: true,
         details: banDetails,
       },
+      refetchQueries: [GET_POSTS_LIST],
     })
       .then(() => {
         console.log('Post banned successfully')
-        setPostStatusBannedDeleted(!postStatusBannedDeleted)
       })
       .catch(error => {
         console.error('Error banning post:', error)

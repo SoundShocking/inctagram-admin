@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 
 import { Confirm } from '@/components/modals'
 import { AuthContext } from '@/store/store'
-import { BAN_UN_BAN_POST, UnBanPostModalType } from 'modules/posts'
+import { BAN_UN_BAN_POST, GET_POSTS_LIST, UnBanPostModalType } from 'modules/posts'
 
 export const UnBanPostUserModal = ({
   isUnbanUserOpen,
@@ -15,12 +15,10 @@ export const UnBanPostUserModal = ({
 }: UnBanPostModalType) => {
   const { t } = useTranslation()
   const [updateUserStatus] = useMutation(BAN_UN_BAN_POST)
-  const { postStatusBannedDeleted, setPostStatusBannedDeleted } = useContext(AuthContext)
   const onConfirm = () => {
-    updateUserStatus({ variables: { postId, isBanned: false } })
+    updateUserStatus({ variables: { postId, isBanned: false }, refetchQueries: [GET_POSTS_LIST] })
       .then(() => {
         console.log('Post unbanned successfully')
-        setPostStatusBannedDeleted(!postStatusBannedDeleted)
       })
       .catch(error => {
         console.error('Error unbanning post:', error)

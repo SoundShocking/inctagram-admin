@@ -19,7 +19,7 @@ export const Post = ({
 }) => {
   return (
     <>
-      <div className="max-w-[234px] flex flex-col h-auto">
+      <div className="max-w-56 flex flex-col h-auto">
         <div className="w-full">
           <Image
             className="bg-dark-300"
@@ -28,7 +28,7 @@ export const Post = ({
             src={post.urlsPostsImages ? post.urlsPostsImages[0] : ''}
             alt={'Post image'}
           />
-          <div className="flex flex-wrap pt-[6px] gap-1 justify-between">
+          <div className="flex flex-wrap pt-1.5 gap-1 justify-between">
             <div className="flex w-full h-full flex-wrap gap-3 align-middle">
               <Avatar
                 className="cursor-default"

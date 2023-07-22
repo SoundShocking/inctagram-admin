@@ -39,6 +39,7 @@ export enum PostStatusForPostsListInputType {
 export type StatusSelectedType = {
   status: PostStatusForPostsListInputType
   setStatus: (status: PostStatusForPostsListInputType) => void
+  refetch: () => void
 }
 
 //ban unban post

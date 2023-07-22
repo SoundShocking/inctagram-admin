@@ -21,12 +21,10 @@ export const DeleteModal = ({
 }: PropsType) => {
   const { t } = useTranslation()
   const [deleteUser] = useMutation(DELETE_USER)
-  const { postStatusBannedDeleted, setPostStatusBannedDeleted } = useContext(AuthContext)
   const onConfirm = () => {
     deleteUser({ variables: { userId } })
       .then(() => {
         console.log('User deleted successfully')
-        setPostStatusBannedDeleted(!postStatusBannedDeleted)
       })
       .catch(error => {
         console.error('Error deleting user:', error)

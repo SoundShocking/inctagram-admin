@@ -14,11 +14,9 @@ export interface Action {
 export interface AuthContextType {
   auth: boolean
   loading: boolean
-  postStatusBannedDeleted: boolean
   login: (auth: boolean) => void
   logout: () => void
   setLoading: (loading: boolean) => void
-  setPostStatusBannedDeleted: (status: boolean) => void
 }
 
 export const initialState: State = {
