@@ -1,10 +1,9 @@
-import React, { useContext } from 'react'
+import React from 'react'
 
 import { useMutation } from '@apollo/client'
 import { useTranslation } from 'react-i18next'
 
 import { Confirm } from '@/components/modals'
-import { AuthContext } from '@/store/store'
 import { BAN_UN_BAN_POST, GET_POSTS_LIST, UnBanPostModalType } from 'modules/posts'
 
 export const UnBanPostUserModal = ({

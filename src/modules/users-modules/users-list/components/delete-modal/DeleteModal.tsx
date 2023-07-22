@@ -1,11 +1,10 @@
-import React, { useContext } from 'react'
+import React from 'react'
 
 import { useMutation } from '@apollo/client'
 import { useTranslation } from 'react-i18next'
 
 import { Confirm } from '@/components/modals'
 import { DELETE_USER } from '@/queries/delete-ban'
-import { AuthContext } from '@/store/store'
 
 type PropsType = {
   isDeleteUserOpen: boolean

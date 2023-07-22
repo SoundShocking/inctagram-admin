@@ -1,13 +1,11 @@
-import React, { ChangeEvent, useContext, useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 
 import { useQuery } from '@apollo/client'
 import { useInView } from 'react-intersection-observer'
 
 import { ErrorComponent } from '@/common'
-import { AuthContext } from '@/store/store'
 import { GlobalInput, Spinner } from '@/ui'
 import {
-  changeStatusBanDelRefetchEffect,
   GET_POSTS_LIST,
   getStatusColor,
   handleSearchDebounceEffect,

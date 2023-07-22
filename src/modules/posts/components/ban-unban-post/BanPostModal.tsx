@@ -1,10 +1,9 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 
 import { useMutation } from '@apollo/client'
 import { useTranslation } from 'react-i18next'
 
 import { ModalWithContent } from '@/components/modals'
-import { AuthContext } from '@/store/store'
 import { DetailsInput, ImageOption, ImageSelector } from '@/ui'
 import {
   BAN_UN_BAN_POST,
