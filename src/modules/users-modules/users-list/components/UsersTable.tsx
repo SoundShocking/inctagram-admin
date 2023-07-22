@@ -22,30 +22,13 @@ const columnHelper =
 interface Props {
   users: Pick<UserForSuperAdminViewModel, 'userId' | 'userName' | 'createdAt'>[]
   pagesCount: number
-  pageIndex: number
-  pageSize: number
-  setPagination: Dispatch<SetStateAction<PaginationState>>
   sorting: SortingState
   setSorting: Dispatch<SetStateAction<SortingState>>
 }
 
-export const UsersTable: FC<Props> = ({
-  users,
-  pagesCount,
-  pageSize,
-  pageIndex,
-  setPagination,
-  sorting,
-  setSorting,
-}) => {
+export const UsersTable: FC<Props> = ({ users, pagesCount, sorting, setSorting }) => {
   const { t } = useTranslation()
-  const pagination = useMemo(
-    () => ({
-      pageIndex,
-      pageSize,
-    }),
-    [pageIndex, pageSize]
-  )
+
   const columns = [
     columnHelper.accessor('userId', {
       id: 'id',
@@ -77,13 +60,9 @@ export const UsersTable: FC<Props> = ({
     columns,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
-    pageCount: pagesCount,
     state: {
-      pagination,
       sorting,
     },
-    onPaginationChange: setPagination,
-    manualPagination: true,
     onSortingChange: setSorting,
     manualSorting: true,
   })
@@ -147,51 +126,6 @@ export const UsersTable: FC<Props> = ({
               })}
             </tbody>
           </table>
-
-          <div className="h-2" />
-          <div className="pt-2 flex items-center gap-2 text-light-100 font-normal text-sm">
-            <button
-              className="border rounded p-1"
-              onClick={() => table.setPageIndex(0)}
-              disabled={!table.getCanPreviousPage()}
-            >
-              {'<<'}
-            </button>
-            <button
-              className="border rounded p-1"
-              onClick={() => table.previousPage()}
-              disabled={!table.getCanPreviousPage()}
-            >
-              {'<'}
-            </button>
-            <button
-              className="border rounded p-1"
-              onClick={() => table.nextPage()}
-              disabled={!table.getCanNextPage()}
-            >
-              {'>'}
-            </button>
-            <button
-              className="border rounded p-1"
-              onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-              disabled={!table.getCanNextPage()}
-            >
-              {'>>'}
-            </button>
-            <select
-              className={'bg-dark-500 text-light-100 text-sm font-normal'}
-              value={table.getState().pagination.pageSize}
-              onChange={e => {
-                table.setPageSize(Number(e.target.value))
-              }}
-            >
-              {[10, 20, 30, 40, 50].map(pageSize => (
-                <option key={pageSize} value={pageSize}>
-                  {t('userList.show')} {pageSize}
-                </option>
-              ))}
-            </select>
-          </div>
         </div>
       </div>
     </>

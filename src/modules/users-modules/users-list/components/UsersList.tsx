@@ -4,6 +4,7 @@ import { PaginationState, SortingState } from '@tanstack/react-table'
 import { useTranslation } from 'react-i18next'
 import { useDebounce } from 'usehooks-ts'
 
+import { TablePagination } from '@/components/table-pagination'
 import { UsersTable } from '@/modules/users-modules/users-list/components/UsersTable'
 import { UsersTableToolbar } from '@/modules/users-modules/users-list/components/UsersTableToolbar'
 import { getUsersSorting } from '@/modules/users-modules/users-list/helpers/getUsersSorting'
@@ -11,10 +12,8 @@ import { useGetAllUsersQuery } from '@/queries/users.generated'
 import { UserStatusInputType } from '@/types'
 
 export const UsersList = () => {
-  const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({
-    pageIndex: 0,
-    pageSize: 10,
-  })
+  const [pageIndex, setPageIndex] = useState(0)
+  const [pageSize, setPageSize] = useState(10)
   const [sorting, setSorting] = useState<SortingState>([])
 
   const [status, setStatus] = useState<UserStatusInputType>(UserStatusInputType.All)
@@ -22,7 +21,7 @@ export const UsersList = () => {
   const search = useDebounce(searchInput, 500)
 
   useEffect(() => {
-    setPagination(prev => ({ ...prev, pageIndex: 0 }))
+    setPageIndex(0)
   }, [search, pageSize])
 
   const { loading, error, data } = useGetAllUsersQuery({
@@ -52,11 +51,16 @@ export const UsersList = () => {
         <UsersTable
           users={data.users.items}
           pagesCount={data.users.pagesCount}
-          pageIndex={pageIndex}
-          pageSize={pageSize}
-          setPagination={setPagination}
           sorting={sorting}
           setSorting={setSorting}
+        />
+
+        <TablePagination
+          pagesCount={data.users.pagesCount}
+          pageIndex={pageIndex}
+          setPageIndex={setPageIndex}
+          pageSize={pageSize}
+          setPageSize={setPageSize}
         />
       </>
     )

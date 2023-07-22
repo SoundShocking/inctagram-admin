@@ -37,6 +37,7 @@ export const UsersTableToolbar: FC<Props> = ({
         <option value={UserStatusInputType.All}>{t('userList.notSelected')}</option>
         <option value={UserStatusInputType.Banned}>{t('userList.blocked')}</option>
         <option value={UserStatusInputType.Active}>{t('userList.notBlocked')}</option>
+        <option value={UserStatusInputType.Pending}>Pending</option>
       </select>
     </div>
   )
