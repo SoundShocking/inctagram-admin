@@ -5,19 +5,35 @@ import { useTranslation } from 'react-i18next'
 import { FaEllipsis, FaBan } from 'react-icons/fa6'
 
 import { BanUserPostModal, TableActionsDropDownType, UnBanPostUserModal } from '@/modules/posts'
+import { BanUserModal } from '@/modules/users-modules/users-list/components/ban/BanUserModal'
+import { UnbanUserModal } from '@/modules/users-modules/users-list/components/unban/UnbanUserModal'
 
 export const PostsActionsDropDown = ({
-  post: { userName, postStatus, postId },
+  post: { userName, postStatus, postId, status, userId },
 }: TableActionsDropDownType) => {
   const { t } = useTranslation()
-  const [isUnbanUserOpen, setIsUnBanPostOpen] = useState(false)
-  const [isBanUserOpen, setIsBanPostOpen] = useState(false)
+
+  //Ban unBan Post
+  const [isUnbanPostOpen, setIsUnBanPostOpen] = useState(false)
+  const [isBanPostOpen, setIsBanPostOpen] = useState(false)
+
+  //Ban unBan User
+  const [isUnbanUserOpen, setIsUnbanUserOpen] = useState(false)
+  const [isBanUserOpen, setIsBanUserOpen] = useState(false)
   const onBanClick = () => {
     setIsBanPostOpen(true)
   }
 
   const onUnbanClick = () => {
     setIsUnBanPostOpen(true)
+  }
+
+  const onBanPostClick = () => {
+    setIsBanUserOpen(true)
+  }
+
+  const onUnbanPostClick = () => {
+    setIsUnbanUserOpen(true)
   }
 
   return (
@@ -34,6 +50,26 @@ export const PostsActionsDropDown = ({
             align={'end'}
             className="bg-dark-500 border border-dark-100 p-3 text-sm"
           >
+            {status === 'ACTIVE' && (
+              <DropdownMenu.Item
+                className="flex items-center mb-3 cursor-pointer"
+                onSelect={() => onBanPostClick()}
+              >
+                <FaBan size={24} className="mr-3" />
+                {t('userList.banUser')}
+              </DropdownMenu.Item>
+            )}
+
+            {status === 'BANNED' && (
+              <DropdownMenu.Item
+                className="flex items-center mb-3 cursor-pointer"
+                onSelect={() => onUnbanPostClick()}
+              >
+                <FaBan size={24} className="mr-3" />
+                {t('userList.unbanUser')}
+              </DropdownMenu.Item>
+            )}
+
             {postStatus === 'PUBLISHED' && (
               <DropdownMenu.Item
                 className="flex items-center mb-3 cursor-pointer"
@@ -58,16 +94,28 @@ export const PostsActionsDropDown = ({
       </DropdownMenu.Root>
 
       <BanUserPostModal
-        isBanUserOpen={isBanUserOpen}
+        isBanUserOpen={isBanPostOpen}
         setIsBanUserOpen={setIsBanPostOpen}
         postId={postId}
         userName={userName}
       />
       <UnBanPostUserModal
-        isUnbanUserOpen={isUnbanUserOpen}
+        isUnbanUserOpen={isUnbanPostOpen}
         setIsUnbanUserOpen={setIsUnBanPostOpen}
         userName={userName}
         postId={postId}
+      />
+      <BanUserModal
+        isBanUserOpen={isBanUserOpen}
+        setIsBanUserOpen={setIsBanUserOpen}
+        userId={userId}
+        userName={userName}
+      />
+      <UnbanUserModal
+        isUnbanUserOpen={isUnbanUserOpen}
+        setIsUnbanUserOpen={setIsUnbanUserOpen}
+        userName={userName}
+        userId={userId}
       />
     </>
   )

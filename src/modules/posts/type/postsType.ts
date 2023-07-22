@@ -27,7 +27,7 @@ export type PostsType =
   | undefined
 
 export type TableActionsDropDownType = {
-  post: Pick<PostsItemsType, 'userName' | 'status' | 'postId' | 'postStatus'>
+  post: Pick<PostsItemsType, 'userName' | 'status' | 'postId' | 'postStatus' | 'userId'>
 }
 
 //Status Selected
