@@ -23,7 +23,7 @@ export const CustomHeader = ({
   decreaseMonth,
   increaseMonth,
   ...rest
-}: ReactDatePickerCustomHeaderProps) => {
+}: Pick<ReactDatePickerCustomHeaderProps, 'date' | 'decreaseMonth' | 'increaseMonth'>) => {
   const classNames = {
     header: s.header,
     buttonBox: s.buttonBox,
