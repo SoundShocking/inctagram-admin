@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { PostsType } from '@/modules/posts'
+import { PostsType } from 'modules/posts'
 
 export const updateCachePostsList = (
   prev: PostsType,

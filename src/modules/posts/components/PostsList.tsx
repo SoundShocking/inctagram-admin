@@ -4,6 +4,8 @@ import { useQuery } from '@apollo/client'
 import { useInView } from 'react-intersection-observer'
 
 import { ErrorComponent } from '@/common'
+import { AuthContext } from '@/store/store'
+import { GlobalInput, Spinner } from '@/ui'
 import {
   changeStatusBanDelRefetchEffect,
   GET_POSTS_LIST,
@@ -18,9 +20,7 @@ import {
   SkeletonPost,
   StatusSelected,
   updateCachePostsList,
-} from '@/modules/posts'
-import { AuthContext } from '@/store/store'
-import { GlobalInput, Spinner } from '@/ui'
+} from 'modules/posts'
 
 export const PostsList = () => {
   const [timerId, setTimerId] = useState<NodeJS.Timeout | undefined>(undefined)

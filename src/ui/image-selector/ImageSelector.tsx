@@ -21,7 +21,7 @@ export const ImageSelector: FC<PropsWithChildren<Props>> = ({
   return (
     <div className="relative">
       <button
-        className=" pr-2 bg w-full border-dark-100 border w-[180px] h-8 text-[16px] flex items-center justify-center text-white"
+        className=" pr-2 bg w-full border-dark-100 border h-8 text-[16px] flex items-center justify-center text-white"
         onClick={() => setIsOpen(prev => !prev)}
       >
         <>

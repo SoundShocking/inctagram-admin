@@ -6,9 +6,9 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'react-i18next'
 import { FaEllipsis, FaUserSlash, FaBan } from 'react-icons/fa6'
 
-import { BanUserModal } from '@/modules/users-modules/users-list/components/ban/BanUserModal'
+import { BanUserModal } from '@/components/ban-unban/ban/BanUserModal'
+import { UnbanUserModal } from '@/components/ban-unban/unban/UnbanUserModal'
 import { DeleteModal } from '@/modules/users-modules/users-list/components/delete-modal/DeleteModal'
-import { UnbanUserModal } from '@/modules/users-modules/users-list/components/unban/UnbanUserModal'
 import { UserForSuperAdminViewModel } from '@/types'
 
 interface Props {

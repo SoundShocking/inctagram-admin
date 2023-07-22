@@ -4,9 +4,9 @@ import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import { useTranslation } from 'react-i18next'
 import { FaEllipsis, FaBan } from 'react-icons/fa6'
 
-import { BanUserPostModal, TableActionsDropDownType, UnBanPostUserModal } from '@/modules/posts'
-import { BanUserModal } from '@/modules/users-modules/users-list/components/ban/BanUserModal'
-import { UnbanUserModal } from '@/modules/users-modules/users-list/components/unban/UnbanUserModal'
+import { BanUserModal } from '@/components/ban-unban/ban/BanUserModal'
+import { UnbanUserModal } from '@/components/ban-unban/unban/UnbanUserModal'
+import { BanUserPostModal, TableActionsDropDownType, UnBanPostUserModal } from 'modules/posts'
 
 export const PostsActionsDropDown = ({
   post: { userName, postStatus, postId, status, userId },

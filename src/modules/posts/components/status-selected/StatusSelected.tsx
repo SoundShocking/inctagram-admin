@@ -2,7 +2,7 @@ import { ChangeEvent, FC } from 'react'
 
 import { useTranslation } from 'react-i18next'
 
-import { PostStatusForPostsListInputType, StatusSelectedType } from '@/modules/posts'
+import { PostStatusForPostsListInputType, StatusSelectedType } from 'modules/posts'
 
 export const StatusSelected: FC<StatusSelectedType> = ({ status, setStatus }) => {
   const { t } = useTranslation()

@@ -2,9 +2,9 @@ import { formatDistance, parseISO } from 'date-fns'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { IconStatus, PostsActionsDropDown } from '@/modules/posts'
 import { PostsItemsType } from '@/modules/posts/type/postsType'
 import { Avatar } from '@/ui'
+import { IconStatus, PostsActionsDropDown } from 'modules/posts'
 
 export const Post = ({
   post,

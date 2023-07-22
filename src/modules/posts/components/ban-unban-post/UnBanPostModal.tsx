@@ -4,8 +4,8 @@ import { useMutation } from '@apollo/client'
 import { useTranslation } from 'react-i18next'
 
 import { Confirm } from '@/components/modals'
-import { BAN_UN_BAN_POST, UnBanPostModalType } from '@/modules/posts'
 import { AuthContext } from '@/store/store'
+import { BAN_UN_BAN_POST, UnBanPostModalType } from 'modules/posts'
 
 export const UnBanPostUserModal = ({
   isUnbanUserOpen,
