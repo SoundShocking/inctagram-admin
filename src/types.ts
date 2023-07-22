@@ -149,6 +149,7 @@ export type PostsListViewModel = {
   createdAt: Scalars['DateTime']['output']
   description?: Maybe<Scalars['String']['output']>
   postId: Scalars['Float']['output']
+  postStatus: PostStatusForPostsListInputType
   status: UserStatusType
   urlAvatar?: Maybe<Scalars['String']['output']>
   urlsPostsImages?: Maybe<Array<Scalars['String']['output']>>

@@ -1,19 +1,16 @@
-import { Dispatch, FC, SetStateAction, useMemo } from 'react'
+import { Dispatch, FC, SetStateAction } from 'react'
 
 import {
   flexRender,
   getCoreRowModel,
   getSortedRowModel,
-  PaginationState,
   SortingState,
   useReactTable,
 } from '@tanstack/react-table'
 import { createColumnHelper } from '@tanstack/table-core'
 import dayjs from 'dayjs'
-import { t } from 'i18next'
 
 import { PaymentsTableUserNameCell } from '@/modules/payments-module/payments-list/components/PaymentsTableUserNameCell'
-import { TablePagination } from '@/modules/payments-module/payments-list/components/TablePagination'
 import { PaymentsListViewModel } from '@/types'
 
 export type PaymentsItem = Pick<

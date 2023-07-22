@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import { PaginationState, SortingState } from '@tanstack/react-table'
-import { useTranslation } from 'react-i18next'
+import { SortingState } from '@tanstack/react-table'
 import { useDebounce } from 'usehooks-ts'
 
 import { TablePagination } from '@/components/table-pagination'
