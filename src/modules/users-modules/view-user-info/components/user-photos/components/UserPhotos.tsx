@@ -28,6 +28,7 @@ export const UserPhotos = () => {
       userId: Number(userId),
       pageSize: 16,
     },
+    fetchPolicy: 'cache-and-network',
     onCompleted: (data: UserImagesType) => setPhotosData(data.user.imagesUser),
     onError: error => console.error('error', error),
   })

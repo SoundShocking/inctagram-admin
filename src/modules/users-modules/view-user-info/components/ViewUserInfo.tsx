@@ -21,6 +21,7 @@ export const ViewUserInfo = () => {
     variables: { userId: Number(userId) },
     onCompleted: (data: UserDataType) => setUserData(data.user),
     onError: error => console.error('error', error),
+    fetchPolicy: 'cache-and-network',
   })
 
   if (error && !loading) {
