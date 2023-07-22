@@ -9,7 +9,7 @@ type PropsType = {
   setBanDetails: (banDetails: string) => void
   error: string
 }
-export const DetailsInput = ({ setError, error, setBanDetails, banDetails }: PropsType) => {
+export const DetailsInput = ({ setError, error, setBanDetails }: PropsType) => {
   const { t } = useTranslation()
 
   const onInputChange = (value: string) => {
