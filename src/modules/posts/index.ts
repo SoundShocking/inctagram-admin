@@ -22,5 +22,4 @@ export * from '@/modules/posts/custom/utils/getStatusColor'
 export * from '@/modules/posts/custom/utils/updateCachePostsList'
 //effect
 export * from './custom/useEffect/handleSearchDebounceEffect'
-export * from './custom/useEffect/changeStatusBanDelRefetchEffect'
 export * from './custom/useEffect/infinityScrollForPostsEffect'

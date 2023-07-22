@@ -13,6 +13,7 @@ import {
 import { useRouter } from 'next/router'
 
 import { capitalizeFirstLetter, dateChangesFormat } from '@/common'
+import { ErrorComponent } from '@/components'
 import {
   GET_USER_PAYMENTS,
   ItemsUserPaymentsType,
@@ -26,6 +27,8 @@ import {
 export const UserPayments = () => {
   const router = useRouter()
   const { userId } = router.query
+  const [paymentsData, setPaymentsData] = useState<PaymentsUser>()
+  const [myPaymentsData, setMyPaymentsData] = useState<ItemsUserPaymentsType[]>([])
   const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({
     pageIndex: 0,
     pageSize: 10,
@@ -43,13 +46,13 @@ export const UserPayments = () => {
       pageNumber: pageIndex + 1,
       pageSize: pageSize,
     },
-    fetchPolicy: 'cache-first',
+    onCompleted: (data: UserPaymentsType) => setPaymentsData(data.users.paymentsUser),
+    onError: error => console.error('error', error),
+    fetchPolicy: 'cache-and-network',
   })
-  const paymentsUser: PaymentsUser | undefined = data?.user.paymentsUser
-  const pageCount: number | undefined = paymentsUser?.pagesCount
-  const [myPaymentsData, setMyPaymentsData] = useState<ItemsUserPaymentsType[]>([])
+  const pageCount: number | undefined = paymentsData?.pagesCount
 
-  setUserPaymentsDataEffect(paymentsUser, loading, setMyPaymentsData)
+  setUserPaymentsDataEffect(paymentsData, loading, setMyPaymentsData)
 
   const columns: ColumnDef<ItemsUserPaymentsType>[] = [
     {
@@ -98,11 +101,13 @@ export const UserPayments = () => {
     getSortedRowModel: getSortedRowModel(),
   })
 
-  if (error) return <p>Error : {error.message}</p>
+  if (error && !loading) {
+    return <ErrorComponent error={error} />
+  }
 
   return (
     <div className=" text-accent-500 p-2 block w-full ">
-      {data?.user.paymentsUser.items.length ? (
+      {data?.users.paymentsUser.items.length ? (
         <UserPaymentsTable tableProps={tableProps} loading={loading} />
       ) : (
         <div className="flex justify-center text-light-100 align-middle text-base leading-6 font-normal">
