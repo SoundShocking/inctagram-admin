@@ -35,7 +35,7 @@ export const ImageSelector: FC<PropsWithChildren<Props>> = ({
       </button>
 
       {isOpen && (
-        <div className="absolute min-w-[180px] top-full right-0 bg-dark-500 border-dark-100 border py-1.5">
+        <div className="absolute z-10 min-w-[180px] top-full right-0 bg-dark-500 border-dark-100 border py-1.5">
           {children}
         </div>
       )}
