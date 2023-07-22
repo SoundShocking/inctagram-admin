@@ -4,11 +4,7 @@ import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import { useTranslation } from 'react-i18next'
 import { FaEllipsis, FaBan } from 'react-icons/fa6'
 
-import { BanUserPostModal, PostsItemsType, UnBanPostUserModal } from '@/modules/posts'
-
-type TableActionsDropDownType = {
-  post: Pick<PostsItemsType, 'userName' | 'status' | 'postId' | 'postStatus'>
-}
+import { BanUserPostModal, TableActionsDropDownType, UnBanPostUserModal } from '@/modules/posts'
 
 export const PostsActionsDropDown = ({
   post: { userName, postStatus, postId },
@@ -44,7 +40,7 @@ export const PostsActionsDropDown = ({
                 onSelect={() => onBanClick()}
               >
                 <FaBan size={24} className="mr-3" />
-                {t('userList.banUser')}
+                {t('postsList.banPost')}
               </DropdownMenu.Item>
             )}
 
@@ -54,7 +50,7 @@ export const PostsActionsDropDown = ({
                 onSelect={() => onUnbanClick()}
               >
                 <FaBan size={24} className="mr-3" />
-                {t('userList.unbanUser')}
+                {t('postsList.unbanPost')}
               </DropdownMenu.Item>
             )}
           </DropdownMenu.Content>

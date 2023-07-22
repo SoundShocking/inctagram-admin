@@ -2,7 +2,8 @@ import { formatDistance, parseISO } from 'date-fns'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { IconStatus, PostsItemsType, PostsActionsDropDown } from '@/modules/posts'
+import { IconStatus, PostsActionsDropDown } from '@/modules/posts'
+import { PostsItemsType } from '@/modules/posts/type/postsType'
 import { Avatar } from '@/ui'
 
 export const Post = ({
@@ -10,13 +11,11 @@ export const Post = ({
   showMore,
   setShowMoreId,
   getStatusColor,
-  text,
 }: {
   post: PostsItemsType
   showMore: boolean
   getStatusColor: (status: string) => string
   setShowMoreId: (postId: number) => void
-  text: string
 }) => {
   return (
     <>
@@ -44,7 +43,7 @@ export const Post = ({
             </div>
             <div className="flex flex-row  w-full justify-between">
               <span className="flex align-middle gap-1">
-                <IconStatus styleColor={getStatusColor(post.postStatus)} />
+                <IconStatus styleColor={getStatusColor(post.status)} />
               </span>
               <PostsActionsDropDown post={post} />
             </div>
@@ -55,9 +54,18 @@ export const Post = ({
             })}
           </span>
           <p className="text-sm text-light-100 leading-6 font-normal">
-            {showMore ? text : `${text.substring(0, 83)}`}
-            <button className="text-accent-700" onClick={() => setShowMoreId(post.postId)}>
-              {showMore ? 'Show hide' : 'Show more'}
+            {/* eslint-disable-next-line no-nested-ternary */}
+            {post.description ? (
+              showMore ? (
+                post.description
+              ) : (
+                <span>{post.description.substring(0, 83)}</span>
+              )
+            ) : (
+              <span className="text-base font-normal leading-6">No description </span>
+            )}
+            <button className="text-accent-700 pl-1" onClick={() => setShowMoreId(post.postId)}>
+              {showMore ? ' Show hide' : 'Show more'}
             </button>
           </p>
         </div>

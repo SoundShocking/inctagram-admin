@@ -18,7 +18,7 @@ export type InputType = InputHTMLAttributes<HTMLInputElement> & {
   error?: string | FieldValues | any
   classNameContainer?: string | CSSProperties
   value?: string
-  callBack?: (e: ChangeEvent<HTMLInputElement>) => void | never
+  callBack?: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
 export const GlobalInput = forwardRef(

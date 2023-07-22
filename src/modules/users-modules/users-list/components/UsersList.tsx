@@ -32,6 +32,7 @@ export const UsersList = () => {
       search,
       ...getUsersSorting(sorting),
     },
+    fetchPolicy: 'cache-and-network',
   })
 
   if (loading) return <p>Loading...</p>

@@ -2,17 +2,9 @@ import { ChangeEvent, FC } from 'react'
 
 import { useTranslation } from 'react-i18next'
 
-export enum PostStatusForPostsListInputType {
-  PUBLISHED = 'PUBLISHED',
-  BANNED = 'BANNED',
-}
+import { PostStatusForPostsListInputType, StatusSelectedType } from '@/modules/posts'
 
-interface Props {
-  status: PostStatusForPostsListInputType
-  setStatus: (status: PostStatusForPostsListInputType) => void
-}
-
-export const StatusSelected: FC<Props> = ({ status, setStatus }) => {
+export const StatusSelected: FC<StatusSelectedType> = ({ status, setStatus }) => {
   const { t } = useTranslation()
   const callBackOnChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setStatus(e.target.value as PostStatusForPostsListInputType)

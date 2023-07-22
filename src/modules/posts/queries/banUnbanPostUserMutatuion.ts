@@ -5,7 +5,8 @@ export const BAN_UN_BAN_POST = gql`
     $postId: Int!
     $isBanned: Boolean!
     $banReason: BanReasonForPostInputType
+    $details: String
   ) {
-    updatePostStatus(postId: $postId, isBanned: $isBanned, banReason: $banReason)
+    updatePostStatus(postId: $postId, isBanned: $isBanned, banReason: $banReason, details: $details)
   }
 `

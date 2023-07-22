@@ -25,7 +25,7 @@ export const DetailsInput = ({ setError, error, setBanDetails, banDetails }: Pro
 
   return (
     <GlobalInput
-      className={'my-3 text-light-100'}
+      className={'my-3 absolute -z-10 text-light-100'}
       type={'text'}
       label={t('userList.ban.reason.add')}
       error={error}

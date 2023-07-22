@@ -4,32 +4,26 @@ import { useMutation } from '@apollo/client'
 import { useTranslation } from 'react-i18next'
 
 import { Confirm } from '@/components/modals'
-import { BAN_UN_BAN_POST } from '@/modules/posts'
+import { BAN_UN_BAN_POST, UnBanPostModalType } from '@/modules/posts'
 import { AuthContext } from '@/store/store'
 
-type PropsType = {
-  isUnbanUserOpen: boolean
-  setIsUnbanUserOpen: (isUnbanUserOpen: boolean) => void
-  userName: string
-  postId: number
-}
 export const UnBanPostUserModal = ({
   isUnbanUserOpen,
   userName,
   setIsUnbanUserOpen,
   postId,
-}: PropsType) => {
+}: UnBanPostModalType) => {
   const { t } = useTranslation()
   const [updateUserStatus] = useMutation(BAN_UN_BAN_POST)
   const { postStatusBannedDeleted, setPostStatusBannedDeleted } = useContext(AuthContext)
   const onConfirm = () => {
     updateUserStatus({ variables: { postId, isBanned: false } })
       .then(() => {
-        console.log('User unbanned successfully')
+        console.log('Post unbanned successfully')
         setPostStatusBannedDeleted(!postStatusBannedDeleted)
       })
       .catch(error => {
-        console.error('Error unbanning user:', error)
+        console.error('Error unbanning post:', error)
       })
     setIsUnbanUserOpen(false)
   }
@@ -44,10 +38,10 @@ export const UnBanPostUserModal = ({
       onConfirm={onConfirm}
       onClose={onDecline}
       onDecline={onDecline}
-      confirmButtonText={t('userList.unban.confirm')}
-      declineButtonText={t('userList.unban.cancel')}
-      title={t('userList.unban.title')}
-      text={t('userList.unban.description') + ' ' + userName + '?'}
+      confirmButtonText={t('postsList.unban.confirm')}
+      declineButtonText={t('postsList.unban.cancel')}
+      title={t('postsList.unban.title')}
+      text={t('postsList.unban.description') + ' ' + userName + '?'}
     />
   )
 }
