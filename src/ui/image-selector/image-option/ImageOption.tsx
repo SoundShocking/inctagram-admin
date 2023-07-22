@@ -14,7 +14,7 @@ export const ImageOption = ({ onOptionClick, text = '', imgSrc = '' }: PropsType
       className="py-1.5 px-3 text-white text-sm cursor-pointer flex items-center justify-between whitespace-nowrap"
       onClick={onOptionClick}
     >
-      {imgSrc ? <Image src={imgSrc} alt={'flag'} className="mr-2 w-5 h-5" /> : null}
+      {imgSrc ? <Image src={imgSrc} alt={'flag'} className="mr-2 bg w-5 h-5" /> : null}
       {text}
     </div>
   )

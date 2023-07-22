@@ -14,6 +14,7 @@ export const UserPhoto = ({ item }: { item: ItemsImagesType }) => {
         height={228}
         alt="user photo"
         className="w-full cursor-default h-full object-cover"
+        priority={true}
       />
     </div>
   )

@@ -9,7 +9,7 @@ type PropsType = {
   setBanDetails: (banDetails: string) => void
   error: string
 }
-export const DetailsInput = ({ setError, error, setBanDetails, banDetails }: PropsType) => {
+export const DetailsInput = ({ setError, error, setBanDetails }: PropsType) => {
   const { t } = useTranslation()
 
   const onInputChange = (value: string) => {
@@ -25,7 +25,7 @@ export const DetailsInput = ({ setError, error, setBanDetails, banDetails }: Pro
 
   return (
     <GlobalInput
-      className={'my-3 text-light-100'}
+      className={'my-3 absolute -z-10 text-light-100'}
       type={'text'}
       label={t('userList.ban.reason.add')}
       error={error}

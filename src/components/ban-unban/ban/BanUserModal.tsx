@@ -1,20 +1,20 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 
 import { useMutation } from '@apollo/client'
 import { useTranslation } from 'react-i18next'
 
 import { ModalWithContent } from '@/components/modals'
-import { BAN_UN_BAN_POST } from '@/modules/posts'
-import { DetailsInput } from '@/modules/users-modules/users-list/components/ban/details-input/DetailsInput'
-import { BanReasonInputType } from '@/queries/delete-ban'
-import { AuthContext } from '@/store/store'
+import { GET_POSTS_LIST } from '@/modules/posts'
+import { BanReasonInputType, UPDATE_USER_STATUS } from '@/queries/delete-ban'
+import { GetAllUsersDocument } from '@/queries/users.generated'
 import { ImageOption } from '@/ui/image-selector/image-option/ImageOption'
 import { ImageSelector } from '@/ui/image-selector/ImageSelector'
+import { DetailsInput } from '@/ui/inputs/details-input/DetailsInput'
 
 type PropsType = {
   isBanUserOpen: boolean
   setIsBanUserOpen: (isBanUserOpen: boolean) => void
-  postId: number
+  userId: number
   userName: string
 }
 
@@ -22,16 +22,9 @@ type ReasonType = {
   text: string
   value: BanReasonInputType
 }
-export const BanUserPostModal = ({
-  isBanUserOpen,
-  setIsBanUserOpen,
-  postId,
-  userName,
-}: PropsType) => {
+export const BanUserModal = ({ isBanUserOpen, setIsBanUserOpen, userId, userName }: PropsType) => {
   const { t } = useTranslation()
-  const { postStatusBannedDeleted, setPostStatusBannedDeleted } = useContext(AuthContext)
-  const [updateUserStatus] = useMutation(BAN_UN_BAN_POST)
-
+  const [updateUserStatus] = useMutation(UPDATE_USER_STATUS)
   const ANOTHER_REASON = t('userList.ban.reason.anotherReason')
   const BAD_BEHAVIOR = t('userList.ban.reason.behavior')
   const ADVERTISING_PLACEMENT = t('userList.ban.reason.advertising')
@@ -46,7 +39,7 @@ export const BanUserPostModal = ({
 
   const [isOpen, setIsOpen] = useState(false)
   const [banReasonName, setBanReasonName] = useState(defaultText)
-  const [setBanReasonValue] = useState<BanReasonInputType>('Bad_behavior')
+  const [banReasonValue, setBanReasonValue] = useState<BanReasonInputType>('Bad_behavior')
   const [banDetails, setBanDetails] = useState('')
   const [error, setError] = useState('')
 
@@ -61,16 +54,11 @@ export const BanUserPostModal = ({
 
   const onConfirm = () => {
     updateUserStatus({
-      variables: {
-        postId,
-        banReason: 'DISCRIMINATION_AND_HATE',
-        isBanned: true,
-        details: banDetails,
-      },
+      variables: { userId, banReason: banReasonValue, isBanned: true, details: banDetails },
+      refetchQueries: [GET_POSTS_LIST, GetAllUsersDocument],
     })
       .then(() => {
         console.log('User banned successfully')
-        setPostStatusBannedDeleted(!postStatusBannedDeleted)
       })
       .catch(error => {
         console.error('Error banning user:', error)
@@ -81,7 +69,6 @@ export const BanUserPostModal = ({
 
   const onOptionClick = (text: string, value: BanReasonInputType) => {
     setBanReasonName(text)
-    // @ts-ignore
     setBanReasonValue(value)
     setIsOpen(false)
   }
