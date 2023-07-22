@@ -90,6 +90,10 @@ export const DateCalendar: FC<DatePickerProps> = ({
   return (
     <div {...rest}>
       <ReactDatePicker
+        nextMonthButtonLabel={false}
+        previousYearButtonLabel={false}
+        previousMonthButtonLabel={false}
+        showPreviousMonths={false}
         maxDate={maxDate}
         dateFormat="dd-MM-yyyy"
         startDate={startDate}
@@ -98,13 +102,8 @@ export const DateCalendar: FC<DatePickerProps> = ({
         monthsShown={12}
         preventOpenOnFocus={true}
         selectsRange={isRange}
-        renderCustomHeader={({ date, decreaseMonth, increaseMonth, ...rest }) => (
-          <CustomHeader
-            date={date}
-            decreaseMonth={decreaseMonth}
-            increaseMonth={increaseMonth}
-            {...rest}
-          />
+        renderCustomHeader={({ date, decreaseMonth, increaseMonth }) => (
+          <CustomHeader date={date} decreaseMonth={decreaseMonth} increaseMonth={increaseMonth} />
         )}
         onChange={(dates: [Date | null, Date | null] | Date | null) => DatePickerHandler(dates)}
         customInput={

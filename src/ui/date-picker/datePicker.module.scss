@@ -1,14 +1,11 @@
 .calendar {
   @apply bg-dark-500 rounded-sm border border-dark-300;
-
   overflow-y: scroll;
-  width: 300px;
-
-  //background: red;
+  width: 350px;
   max-height: 348px;
   padding: 16px 24px;
-
   border-radius: 2px;
+  position: relative;
 
   :global(.react-datepicker__week) {
     width: 100%;
@@ -208,12 +205,10 @@
     }
 
     &:global(.react-datepicker__month-text) {
-      background-color: red;
     }
     //стили для предыдущего или следующего месяца в текущем
     &:global(.react-datepicker__day--outside-month) {
       @apply text-dark-300;
-
       width: 36px;
       height: 36px;
       &:focus-visible {
@@ -228,7 +223,7 @@
       &:hover {
         @apply bg-accent-900;
 
-        border-radius: 18px;
+        border-radius: 50%;
 
         transition: 200ms;
       }
@@ -329,7 +324,6 @@
   //выбранный после выбранного периода
   &:global(.react-datepicker__day--in-range) {
     @apply text-light-900 bg-accent-900;
-
     border: 2px solid #234e99;
     border-radius: 0;
   }
@@ -345,4 +339,21 @@
 
     border-radius: 0 50% 50% 0;
   }
+}
+
+.calendar::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+.calendar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.calendar::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 0.25rem;
+}
+
+.calendar::-webkit-scrollbar-thumb:hover {
+  background: #333;
 }
