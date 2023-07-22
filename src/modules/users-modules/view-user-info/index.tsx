@@ -22,6 +22,8 @@ export * from './custom/useEffect/changingTabsParametersUrlEffect'
 export * from './custom/useEffect/callWhenUrlChangesEffect'
 export * from '@/modules/users-modules/view-user-info/components/user-payments/custom/useEffect/setUserPaymentsDataEffect'
 export * from './components/user-photos/custom/useEffect/infinity-scroll-handler/useInViewScrollHandlerEffect'
+export * from './custom/utils/ArrowBack'
+export * from './components/user-photos/custom/utils/updateCachePhotos'
 //Skeleton
 export * from '@/modules/users-modules/view-user-info/Skeletons/SkeletonPost'
 export * from '@/modules/users-modules/view-user-info/Skeletons/SkeletonViewUserInfoMain'

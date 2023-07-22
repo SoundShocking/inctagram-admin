@@ -45,7 +45,7 @@ export const UserPayments = () => {
     },
     fetchPolicy: 'cache-first',
   })
-  const paymentsUser: PaymentsUser | undefined = data?.user.paymentsUser
+  const paymentsUser: PaymentsUser | undefined = data?.users?.paymentsUser
   const pageCount: number | undefined = paymentsUser?.pagesCount
   const [myPaymentsData, setMyPaymentsData] = useState<ItemsUserPaymentsType[]>([])
 
@@ -102,7 +102,7 @@ export const UserPayments = () => {
 
   return (
     <div className=" text-accent-500 p-2 block w-full ">
-      {data?.user.paymentsUser.items.length ? (
+      {data?.users.paymentsUser.items.length ? (
         <UserPaymentsTable tableProps={tableProps} loading={loading} />
       ) : (
         <div className="flex justify-center text-light-100 align-middle text-base leading-6 font-normal">

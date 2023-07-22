@@ -3,7 +3,7 @@ import React, { ChangeEvent, useState } from 'react'
 import { useQuery } from '@apollo/client'
 import { useInView } from 'react-intersection-observer'
 
-import { ErrorComponent } from '@/common'
+import { ErrorComponent, NotFoundComponent } from '@/components'
 import { GlobalInput, Spinner } from '@/ui'
 import {
   GET_POSTS_LIST,
@@ -27,7 +27,7 @@ export const PostsList = () => {
   const [status, setStatus] = useState<PostStatusForPostsListInputType>(
     PostStatusForPostsListInputType.PUBLISHED
   )
-  const [posts, setPosts] = useState<PostsListType | undefined>()
+  const [postsData, setPostsData] = useState<PostsListType | undefined>()
   const [showMoreIds, setShowMoreIds] = useState<number[]>([])
   const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false)
   const [pageNumber, setPageNumber] = useState<number>(1)
@@ -39,13 +39,13 @@ export const PostsList = () => {
       status: status,
     },
     onCompleted: (data: PostsType) => {
-      setPosts(data?.postsList)
+      setPostsData(data?.postsList)
     },
     onError: error => console.error('error', error),
   })
 
   const handleScroll = () => {
-    if (!isLoadingMore && inView && posts && posts.items.length < posts.totalCount) {
+    if (!isLoadingMore && inView && postsData && postsData.items.length < postsData.totalCount) {
       setIsLoadingMore(true)
       setPageNumber(prevNumber => prevNumber + 1)
       fetchMore({
@@ -100,8 +100,8 @@ export const PostsList = () => {
           SkeletonPost(32)
         ) : (
           <>
-            {posts !== undefined ? (
-              posts.items.map((post: PostsItemsType, index: number) => (
+            {postsData !== undefined ? (
+              postsData.items.map((post: PostsItemsType, index: number) => (
                 <Post
                   post={post}
                   key={index}
@@ -111,7 +111,7 @@ export const PostsList = () => {
                 />
               ))
             ) : (
-              <span className="text-base leading-6 font-normal ">Not Found</span>
+              <NotFoundComponent />
             )}
           </>
         )}
