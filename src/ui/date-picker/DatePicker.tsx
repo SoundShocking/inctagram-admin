@@ -3,9 +3,10 @@ import 'react-datepicker/dist/react-datepicker.css'
 import { FC } from 'react'
 
 import { clsx } from 'clsx'
-import { range } from 'lodash'
 // eslint-disable-next-line import/no-named-as-default
+import { useRouter } from 'next/router'
 import ReactDatePicker from 'react-datepicker'
+import { useTranslation } from 'react-i18next'
 
 import s from '../date-picker/datePicker.module.scss'
 
@@ -51,6 +52,7 @@ export type DatePickerProps = CommonProps & ConditionalProps
  * @constructor
  * {@link https://reactdatepicker.com/#example-custom-input}
  */
+// @ts-ignore
 export const DateCalendar: FC<DatePickerProps> = ({
   startDate,
   setStartDate,
@@ -86,14 +88,28 @@ export const DateCalendar: FC<DatePickerProps> = ({
       setStartDate(dates)
     }
   }
+  const { t } = useTranslation()
+
+  const locale: Locale | string | undefined = {
+    localize: {
+      day: (n: string): any => t(`datePicker.dayNamesShort.${n}`),
+      month: (n: string): any => t(`datePicker.monthNames.${n}`),
+      ordinalNumber: (): any => undefined,
+      era: (): any => undefined,
+      quarter: (): any => undefined,
+      dayPeriod: (): any => undefined,
+    },
+    formatLong: {
+      date: (): string => 'dd/mm/yyyy',
+      time: (): string => 'hh:mm:ss',
+      dateTime: (): string => 'dd/mm/yyyy hh:mm:ss',
+    },
+  }
 
   return (
     <div {...rest}>
       <ReactDatePicker
-        nextMonthButtonLabel={false}
-        previousYearButtonLabel={false}
-        previousMonthButtonLabel={false}
-        showPreviousMonths={false}
+        locale={locale || undefined}
         maxDate={maxDate}
         dateFormat="dd-MM-yyyy"
         startDate={startDate}
