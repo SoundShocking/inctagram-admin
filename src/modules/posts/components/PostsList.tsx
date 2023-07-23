@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client'
 import { useInView } from 'react-intersection-observer'
 
 import { ErrorComponent, NotFoundComponent } from '@/components'
-import { DateCalendar, GlobalInput, Spinner } from '@/ui'
+import { GlobalInput, Spinner } from '@/ui'
 import {
   GET_POSTS_LIST,
   getStatusColor,
@@ -81,19 +81,8 @@ export const PostsList = () => {
     return <ErrorComponent error={error} />
   }
 
-  const [startDate, setStartDate] = useState<Date | null>(new Date())
-  const [endDate, setEndDate] = useState<Date | null>(new Date())
-
   return (
     <div className="w-full pt-16 pl-6 pr-16 flex flex-col">
-      <div>
-        <DateCalendar
-          startDate={startDate}
-          setStartDate={setStartDate}
-          endDate={endDate}
-          setEndDate={setEndDate}
-        />
-      </div>
       <div>
         <StatusSelected refetch={refetch} status={status} setStatus={setStatus} />
       </div>
