@@ -1,5 +1,6 @@
 import { format } from 'date-fns'
 import { ReactDatePickerCustomHeaderProps } from 'react-datepicker'
+import { useTranslation } from 'react-i18next'
 
 import s from './customHeader.module.scss'
 
@@ -32,11 +33,13 @@ export const CustomHeader = ({
     select: s.selectStyle,
   }
 
-  const headerText = capitalizeFirstLetter(format(date, 'LLLL Y'))
+  const headerText = capitalizeFirstLetter(format(date, 'Y'))
+  const monthIndex = date.getMonth()
+  const { t } = useTranslation()
 
   return (
     <div className={classNames.header} {...rest}>
-      <div>{headerText}</div>
+      <div>{`${t(`datePicker.monthNames.${monthIndex}`)} ${headerText}`}</div>
       <div className={classNames.buttonBox}>
         <button type="button" className={classNames.button} onClick={decreaseMonth}>
           <KeyboardArrowLeft />
