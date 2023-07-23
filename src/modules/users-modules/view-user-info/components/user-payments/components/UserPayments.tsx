@@ -40,13 +40,14 @@ export const UserPayments = () => {
     }),
     [pageIndex, pageSize]
   )
+
   const { loading, data, error } = useQuery<UserPaymentsType>(GET_USER_PAYMENTS, {
     variables: {
       userId: Number(userId),
       pageNumber: pageIndex + 1,
       pageSize: pageSize,
     },
-    onCompleted: (data: UserPaymentsType) => setPaymentsData(data.users.paymentsUser),
+    onCompleted: (data: UserPaymentsType) => setPaymentsData(data.user.paymentsUser),
     onError: error => console.error('error', error),
     fetchPolicy: 'cache-and-network',
   })
@@ -107,7 +108,7 @@ export const UserPayments = () => {
 
   return (
     <div className=" text-accent-500 p-2 block w-full ">
-      {data?.users.paymentsUser.items.length ? (
+      {data?.user?.paymentsUser.items.length ? (
         <UserPaymentsTable tableProps={tableProps} loading={loading} />
       ) : (
         <div className="flex justify-center text-light-100 align-middle text-base leading-6 font-normal">

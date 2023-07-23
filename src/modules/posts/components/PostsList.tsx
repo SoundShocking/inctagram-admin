@@ -45,7 +45,12 @@ export const PostsList = () => {
   })
 
   const handleScroll = () => {
-    if (!isLoadingMore && inView && postsData && postsData.items.length < postsData.totalCount) {
+    if (
+      !isLoadingMore &&
+      inView &&
+      postsData &&
+      postsData.items.length + 1 < postsData.totalCount
+    ) {
       setIsLoadingMore(true)
       setPageNumber(prevNumber => prevNumber + 1)
       fetchMore({

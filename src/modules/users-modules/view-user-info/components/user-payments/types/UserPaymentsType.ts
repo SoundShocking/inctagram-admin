@@ -17,5 +17,5 @@ export interface UsersPaymentType {
   paymentsUser: PaymentsUser
 }
 export interface UserPaymentsType {
-  users: UsersPaymentType
+  user: UsersPaymentType
 }

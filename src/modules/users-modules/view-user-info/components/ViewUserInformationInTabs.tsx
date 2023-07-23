@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import { TabsTitle } from '@/components/users'
 import {
   callWhenUrlChangesEffect,
+  changingTabsParametersUrlEffect,
   // changingTabsParametersUrlEffect,
   view_user_info_tabs,
 } from '@/modules/users-modules/view-user-info'
@@ -12,12 +13,12 @@ import {
 export const ViewUserInformationInTabs = () => {
   const [activeTab, setActiveTab] = useState('Upload Photos')
   const router = useRouter()
-  // const { userId } = router.query
+  const { userId } = router.query
 
-  // changingTabsParametersUrlEffect({
-  //   userId,
-  //   activeTab,
-  // })
+  changingTabsParametersUrlEffect({
+    userId,
+    activeTab,
+  })
   callWhenUrlChangesEffect({
     router,
     setActiveTab,
