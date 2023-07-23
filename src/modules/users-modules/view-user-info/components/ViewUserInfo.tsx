@@ -16,7 +16,7 @@ import {
 export const ViewUserInfo = () => {
   const [userData, setUserData] = useState<UserType>()
   const router = useRouter()
-  const { userId, activeTab } = router.query
+  const { userId } = router.query
   const { loading, error } = useQuery<UserDataType>(GET_USER_INFO, {
     variables: { userId: Number(userId) },
     onCompleted: (data: UserDataType) => setUserData(data.user),
