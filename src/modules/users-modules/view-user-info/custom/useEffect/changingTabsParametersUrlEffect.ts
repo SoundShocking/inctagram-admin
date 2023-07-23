@@ -6,14 +6,21 @@ export const changingTabsParametersUrlEffect = ({
   userId,
   activeTab,
 }: {
-  userId: string | string[] | undefined
+  userId: any
   activeTab: string
 }) => {
   const router = useRouter()
 
   useEffect(() => {
     if (userId !== undefined) {
-      router.replace(`/users/${userId}`, { query: activeTab })
+      router.replace(
+        {
+          pathname: `/users/${userId}`,
+          query: { activeTab: activeTab },
+        },
+        undefined,
+        { shallow: true }
+      )
     }
-  }, [activeTab, router])
+  }, [activeTab])
 }
