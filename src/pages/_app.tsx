@@ -33,6 +33,10 @@ i18n.use(initReactI18next).init({
           bannedPosts: 'Banned posts',
           banPost: 'Block post',
           unbanPost: 'Unblock post',
+          post: {
+            showMore: 'Show more',
+            showHide: 'Show hide',
+          },
           ban: {
             title: 'Ban post',
             description: 'Are you sure you want to ban this post',
@@ -136,6 +140,10 @@ i18n.use(initReactI18next).init({
           bannedPosts: 'Заблокированные посты',
           banPost: 'Заблокировать пост',
           unbanPost: 'Разблокировать пост',
+          post: {
+            showMore: 'Показать больше',
+            showHide: 'Cкрыть',
+          },
           ban: {
             title: 'Блокировка поста',
             description: 'Вы уверены, что хотите заблокировать этот пост?',
@@ -239,6 +247,10 @@ i18n.use(initReactI18next).init({
           bannedPosts: 'Заборонені пости',
           banPost: 'Заблокувати пост',
           unbanPost: 'Розблокувати пост',
+          post: {
+            showMore: 'Показати більше',
+            showHide: 'Cховати',
+          },
           ban: {
             title: 'Заборона поста',
             description: 'Ви впевнені, що хочете заборонити цей пост?',
@@ -342,6 +354,10 @@ i18n.use(initReactI18next).init({
           bannedPosts: 'Заблокированные посты',
           banPost: 'Заблокировать пост',
           unbanPost: 'Разблокировать пост',
+          post: {
+            showMore: 'Паказаць больш',
+            showHide: 'Схаваць',
+          },
           ban: {
             title: 'Блокировка поста',
             description: 'Вы уверены, что хотите заблокировать этот пост?',
@@ -445,6 +461,10 @@ i18n.use(initReactI18next).init({
           bannedPosts: 'Gggwwoooorrgghhhh! Bbbbrrraaarrrrghhh!',
           banPost: 'Bbbbbbwwwwwaaaaarrrrgghhhaaaaaaaa!',
           unbanPost: 'Rrwarrggaawwrrooowwwwww!',
+          post: {
+            showMore: 'Rrworr! Rwoooaarrgh!',
+            showHide: 'Rrroowwrrgg!',
+          },
           ban: {
             title: 'Rrwowwrrr woorwoorwor',
             description: 'Wwwrrr rwwoworwo rrwowwowo rwowo?',

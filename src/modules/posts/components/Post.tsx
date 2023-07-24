@@ -1,6 +1,7 @@
 import { formatDistance, parseISO } from 'date-fns'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useTranslation } from 'react-i18next'
 
 import { PostsItemsType } from '@/modules/posts/type/postsType'
 import { Avatar } from '@/ui'
@@ -17,6 +18,8 @@ export const Post = ({
   getStatusColor: (status: string) => string
   setShowMoreId: (postId: number) => void
 }) => {
+  const { t } = useTranslation()
+
   return (
     <>
       <div className="max-w-56 flex flex-col h-auto">
@@ -54,7 +57,7 @@ export const Post = ({
               addSuffix: true,
             })}
           </span>
-          <p className="text-sm text-light-100 leading-6 font-normal">
+          <p className="text-sm text-light-100 overflow-hidden max-w-full leading-6 font-normal">
             {/* eslint-disable-next-line no-nested-ternary */}
             {post.description ? (
               showMore ? (
@@ -66,7 +69,7 @@ export const Post = ({
               <span className="text-base font-normal leading-6">No description </span>
             )}
             <button className="text-accent-700 pl-1" onClick={() => setShowMoreId(post.postId)}>
-              {showMore ? ' Show hide' : 'Show more'}
+              {showMore ? t('postsList.post.showHide') : t('postsList.post.showMore')}
             </button>
           </p>
         </div>
