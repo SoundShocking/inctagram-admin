@@ -41,7 +41,7 @@ export const UserPayments = () => {
     [pageIndex, pageSize]
   )
 
-  const { loading, data, error } = useQuery<UserPaymentsType>(GET_USER_PAYMENTS, {
+  const { loading, error } = useQuery<UserPaymentsType>(GET_USER_PAYMENTS, {
     variables: {
       userId: Number(userId),
       pageNumber: pageIndex + 1,
