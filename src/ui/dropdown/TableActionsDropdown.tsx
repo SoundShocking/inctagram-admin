@@ -9,8 +9,6 @@ import { FaEllipsis, FaUserLock, FaUserXmark } from 'react-icons/fa6'
 import { BanUserModal } from '@/components/ban-unban/ban/BanUserModal'
 import { UnbanUserModal } from '@/components/ban-unban/unban/UnbanUserModal'
 import { DeleteModal } from '@/modules/users-modules/users-list/components/delete-modal/DeleteModal'
-
-import { UserForSuperAdminViewModel } from '@/types'
 import { UsersItem } from '@/modules/users-modules/users-list/components/UsersTable'
 
 interface Props {

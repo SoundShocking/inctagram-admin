@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react'
 
-
-import { PaginationState, SortingState } from '@tanstack/react-table'
-
+import { SortingState } from '@tanstack/react-table'
 import { useDebounce } from 'usehooks-ts'
 
 import { TablePagination } from '@/components/table-pagination'
@@ -42,14 +40,13 @@ export const UsersList = () => {
 
   if (data?.users) {
     return (
-      <div className="bg-accent-100w-full pt-16 pl-6 pr-16">
+      <>
         <UsersTableToolbar
           searchInput={searchInput}
           setSearchInput={setSearchInput}
           status={status}
           setStatus={setStatus}
         />
-
         <UsersTable
           users={data.users.items}
           pagesCount={data.users.pagesCount}
@@ -64,7 +61,7 @@ export const UsersList = () => {
           pageSize={pageSize}
           setPageSize={setPageSize}
         />
-      <div/>
+      </>
     )
   }
 }

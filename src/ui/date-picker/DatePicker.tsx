@@ -2,9 +2,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 
 import { FC } from 'react'
 
-import { clsx } from 'clsx'
-// eslint-disable-next-line import/no-named-as-default
-import { useRouter } from 'next/router'
+import clsx from 'clsx'
 import ReactDatePicker from 'react-datepicker'
 import { useTranslation } from 'react-i18next'
 
