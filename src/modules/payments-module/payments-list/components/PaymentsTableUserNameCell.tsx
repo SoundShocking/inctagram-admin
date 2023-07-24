@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 import { Row } from '@tanstack/react-table'
 import Image from 'next/image'
-import { FaUser, FaUserSecret } from 'react-icons/fa6'
+import { FaUserSecret } from 'react-icons/fa6'
 
 import { PaymentsItem } from '@/modules/payments-module/payments-list/components/PaymentsTable'
 
