@@ -1,25 +1,24 @@
 import { FC, useEffect, useState } from 'react'
 
-import { PaginationState, SortingState } from '@tanstack/react-table'
+import { SortingState } from '@tanstack/react-table'
 import { t } from 'i18next'
 import { useDebounce } from 'usehooks-ts'
 
+import { TablePagination } from '@/components/table-pagination'
 import { PaymentsTable } from '@/modules/payments-module/payments-list/components/PaymentsTable'
 import { getPaymentsSorting } from '@/modules/payments-module/payments-list/getPaymentsSorting'
 import { useGetAllPaymentsQuery } from '@/queries/payments.generated'
 
 export const PaymentsList: FC = () => {
-  const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({
-    pageIndex: 0,
-    pageSize: 10,
-  })
+  const [pageIndex, setPageIndex] = useState(0)
+  const [pageSize, setPageSize] = useState(10)
   const [sorting, setSorting] = useState<SortingState>([])
 
   const [searchInput, setSearchInput] = useState('')
   const search = useDebounce(searchInput, 500)
 
   useEffect(() => {
-    setPagination(prev => ({ ...prev, pageIndex: 0 }))
+    setPageIndex(0)
   }, [search, pageSize])
 
   const { loading, error, data } = useGetAllPaymentsQuery({
@@ -50,12 +49,16 @@ export const PaymentsList: FC = () => {
 
         <PaymentsTable
           payments={data.paymentsList.items}
-          pagesCount={data.paymentsList.pagesCount}
-          pageIndex={pageIndex}
-          pageSize={pageSize}
-          setPagination={setPagination}
           sorting={sorting}
           setSorting={setSorting}
+        />
+
+        <TablePagination
+          pagesCount={data.paymentsList.pagesCount}
+          pageIndex={pageIndex}
+          setPageIndex={setPageIndex}
+          pageSize={pageSize}
+          setPageSize={setPageSize}
         />
       </div>
     )
