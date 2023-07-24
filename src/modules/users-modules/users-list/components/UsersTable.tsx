@@ -11,14 +11,19 @@ import { createColumnHelper } from '@tanstack/table-core'
 import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next'
 
+import { UsersTableUserIdCell } from '@/modules/users-modules/users-list/components/UsersTableUserIdCell'
 import { UserForSuperAdminViewModel } from '@/types'
 import { TableActionsDropdown } from '@/ui/dropdown/TableActionsDropdown'
 
-const columnHelper =
-  createColumnHelper<Pick<UserForSuperAdminViewModel, 'userId' | 'userName' | 'createdAt'>>()
+export type UsersItem = Pick<
+  UserForSuperAdminViewModel,
+  'userId' | 'userName' | 'createdAt' | 'status'
+>
+
+const columnHelper = createColumnHelper<UsersItem>()
 
 interface Props {
-  users: Pick<UserForSuperAdminViewModel, 'userId' | 'userName' | 'createdAt'>[]
+  users: UsersItem[]
   pagesCount: number
   sorting: SortingState
   setSorting: Dispatch<SetStateAction<SortingState>>
@@ -31,7 +36,7 @@ export const UsersTable: FC<Props> = ({ users, pagesCount, sorting, setSorting }
     columnHelper.accessor('userId', {
       id: 'id',
       header: t('userList.table.userId'),
-      cell: info => info.getValue(),
+      cell: props => <UsersTableUserIdCell row={props.row} />,
       enableSorting: true,
     }),
     columnHelper.accessor('userName', {

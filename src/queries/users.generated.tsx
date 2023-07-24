@@ -24,6 +24,7 @@ export type GetAllUsersQuery = {
       userId: number
       userName: string
       createdAt: any
+      status: Types.UserStatusType
     }>
   }
 }
@@ -51,6 +52,7 @@ export const GetAllUsersDocument = gql`
         userId
         userName
         createdAt
+        status
       }
     }
   }
