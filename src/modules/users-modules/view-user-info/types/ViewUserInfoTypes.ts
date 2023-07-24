@@ -1,9 +1,9 @@
-export type User = {
+export type UserType = {
   userId: number
   userName: string
   profileLink: string
   createdAt: string
 }
-export interface UserData {
-  user: User
+export interface UserDataType {
+  user: UserType
 }

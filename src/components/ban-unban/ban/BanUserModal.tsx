@@ -4,10 +4,12 @@ import { useMutation } from '@apollo/client'
 import { useTranslation } from 'react-i18next'
 
 import { ModalWithContent } from '@/components/modals'
-import { DetailsInput } from '@/modules/users-modules/users-list/components/ban/details-input/DetailsInput'
+import { GET_POSTS_LIST } from '@/modules/posts'
 import { BanReasonInputType, UPDATE_USER_STATUS } from '@/queries/delete-ban'
+import { GetAllUsersDocument } from '@/queries/users.generated'
 import { ImageOption } from '@/ui/image-selector/image-option/ImageOption'
 import { ImageSelector } from '@/ui/image-selector/ImageSelector'
+import { DetailsInput } from '@/ui/inputs/details-input/DetailsInput'
 
 type PropsType = {
   isBanUserOpen: boolean
@@ -22,7 +24,6 @@ type ReasonType = {
 }
 export const BanUserModal = ({ isBanUserOpen, setIsBanUserOpen, userId, userName }: PropsType) => {
   const { t } = useTranslation()
-
   const [updateUserStatus] = useMutation(UPDATE_USER_STATUS)
   const ANOTHER_REASON = t('userList.ban.reason.anotherReason')
   const BAD_BEHAVIOR = t('userList.ban.reason.behavior')
@@ -54,6 +55,7 @@ export const BanUserModal = ({ isBanUserOpen, setIsBanUserOpen, userId, userName
   const onConfirm = () => {
     updateUserStatus({
       variables: { userId, banReason: banReasonValue, isBanned: true, details: banDetails },
+      refetchQueries: [GET_POSTS_LIST, GetAllUsersDocument],
     })
       .then(() => {
         console.log('User banned successfully')

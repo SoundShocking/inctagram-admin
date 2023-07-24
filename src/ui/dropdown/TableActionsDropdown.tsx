@@ -6,9 +6,11 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'react-i18next'
 import { FaEllipsis, FaUserLock, FaUserXmark } from 'react-icons/fa6'
 
-import { BanUserModal } from '@/modules/users-modules/users-list/components/ban/BanUserModal'
+import { BanUserModal } from '@/components/ban-unban/ban/BanUserModal'
+import { UnbanUserModal } from '@/components/ban-unban/unban/UnbanUserModal'
 import { DeleteModal } from '@/modules/users-modules/users-list/components/delete-modal/DeleteModal'
-import { UnbanUserModal } from '@/modules/users-modules/users-list/components/unban/UnbanUserModal'
+
+import { UserForSuperAdminViewModel } from '@/types'
 import { UsersItem } from '@/modules/users-modules/users-list/components/UsersTable'
 
 interface Props {
@@ -42,9 +44,9 @@ export const TableActionsDropdown: FC<Props> = ({ row, viewInfo }) => {
   }
 
   return (
-    <>
+    <div className="flex">
       <DropdownMenu.Root modal={false}>
-        <DropdownMenu.Trigger asChild>
+        <DropdownMenu.Trigger asChild className="flex w-full align-middle">
           <button className="flex align-center" aria-label="Customise options">
             <FaEllipsis size={24} color="#fff" />
           </button>
@@ -114,6 +116,6 @@ export const TableActionsDropdown: FC<Props> = ({ row, viewInfo }) => {
         userName={userName}
         userId={userId}
       />
-    </>
+    </div>
   )
 }

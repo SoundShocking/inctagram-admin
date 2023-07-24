@@ -12,9 +12,10 @@ export const UserPaymentsTable = ({
   loading: boolean
 }) => {
   return (
-    <div className={`max-w-[972px]`}>
-      <table>
+    <div className={`max-w-[972px]`} style={{ width: '100%' }}>
+      <table className="w-full" style={{ width: '100%' }}>
         <thead
+          style={{ width: '100%' }}
           className={
             'h-12 bg-dark-500 border-2 border-dark-500 border-r-2 text-light-100 font-semibold text-sm'
           }
@@ -42,7 +43,7 @@ export const UserPaymentsTable = ({
             </tr>
           ))}
         </thead>
-        <tbody>
+        <tbody style={{ width: '100%' }}>
           {tableProps.getRowModel().rows.map(row => {
             return (
               <tr
@@ -116,7 +117,6 @@ export const UserPaymentsTable = ({
         </select>
         {loading ? 'Loading...' : null}
       </div>
-      <div>{tableProps.getRowModel().rows.length} Rows</div>
     </div>
   )
 }

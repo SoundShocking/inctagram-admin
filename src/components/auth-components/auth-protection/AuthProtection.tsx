@@ -10,8 +10,8 @@ const AuthProtection: FC<PropsWithChildren> = memo(({ children }) => {
   const { auth, loading, logout } = useContext<AuthContextType>(AuthContext)
 
   accessTokenVerificationEffect({ logout })
-  useLastRoutingEffect()
   handleAuthRedirectEffect({ auth })
+  useLastRoutingEffect()
 
   return (
     <>

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 
-import { SortingState } from '@tanstack/react-table'
+
+import { PaginationState, SortingState } from '@tanstack/react-table'
+
 import { useDebounce } from 'usehooks-ts'
 
 import { TablePagination } from '@/components/table-pagination'
@@ -31,6 +33,7 @@ export const UsersList = () => {
       search,
       ...getUsersSorting(sorting),
     },
+    fetchPolicy: 'cache-and-network',
   })
 
   if (loading) return <p>Loading...</p>
@@ -39,7 +42,7 @@ export const UsersList = () => {
 
   if (data?.users) {
     return (
-      <>
+      <div className="bg-accent-100w-full pt-16 pl-6 pr-16">
         <UsersTableToolbar
           searchInput={searchInput}
           setSearchInput={setSearchInput}
@@ -61,7 +64,7 @@ export const UsersList = () => {
           pageSize={pageSize}
           setPageSize={setPageSize}
         />
-      </>
+      <div/>
     )
   }
 }

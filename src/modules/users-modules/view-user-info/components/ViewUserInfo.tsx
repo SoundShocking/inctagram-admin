@@ -1,31 +1,44 @@
+import React, { useState } from 'react'
+
 import { useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 
+import { ErrorComponent, NotFoundComponent } from '@/components'
 import {
   GET_USER_INFO,
   SkeletonViewUserInfoMain,
-  UserData,
+  UserDataType,
+  UserType,
   ViewUserInfoMain,
   ViewUserInformationInTabs,
 } from '@/modules/users-modules/view-user-info'
 
 export const ViewUserInfo = () => {
+  const [userData, setUserData] = useState<UserType>()
   const router = useRouter()
   const { userId } = router.query
-  const { loading, error, data } = useQuery<UserData>(GET_USER_INFO, {
+  const { loading, error } = useQuery<UserDataType>(GET_USER_INFO, {
     variables: { userId: Number(userId) },
+    onCompleted: (data: UserDataType) => setUserData(data.user),
+    onError: error => console.error('error', error),
+    fetchPolicy: 'cache-and-network',
   })
 
-  const userData = data?.user
-
-  if (error) {
-    return <div>Error! {error.message}</div>
+  if (error && !loading) {
+    return <ErrorComponent error={error} />
   }
 
   return (
-    <div className="flex w-full pl-60">
-      <div className="flex flex-col w-max">
-        {loading ? <SkeletonViewUserInfoMain /> : <ViewUserInfoMain userData={userData} />}
+    <div className="flex w-full pl-60 pr-16 pb-10">
+      <div className="flex flex-col w-full">
+        {/* eslint-disable-next-line no-nested-ternary */}
+        {loading ? (
+          <SkeletonViewUserInfoMain />
+        ) : userData !== undefined ? (
+          <ViewUserInfoMain userData={userData} />
+        ) : (
+          <NotFoundComponent />
+        )}
         <div className="pt-7">
           <ViewUserInformationInTabs />
         </div>

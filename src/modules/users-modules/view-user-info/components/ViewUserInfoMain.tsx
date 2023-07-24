@@ -1,10 +1,10 @@
 import Link from 'next/link'
 
 import { dateChangesFormat } from '@/common'
-import { ArrowBack } from '@/modules/users-modules/view-user-info/custom/utils/ArrowBack'
+import { ArrowBack, UserType } from '@/modules/users-modules/view-user-info'
 import { Avatar } from '@/ui'
 
-export const ViewUserInfoMain = ({ userData }: any) => {
+export const ViewUserInfoMain = ({ userData }: { userData: UserType }) => {
   const { createdAt, profileLink, userName, userId } = userData
 
   return (

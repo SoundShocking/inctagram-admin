@@ -5,11 +5,13 @@ export const GET_POSTS_LIST = gql`
     $search: String
     $pageNumber: Int
     $pageSize: Int
-    $sortBy: SortByForPaymentsListInputType
+    $sortBy: SortByForPostsListInputType
     $sortDirection: SortDirectionType
+    $status: PostStatusForPostsListInputType
   ) {
     postsList(
       search: $search
+      status: $status
       pageNumber: $pageNumber
       pageSize: $pageSize
       sortBy: $sortBy
@@ -22,12 +24,13 @@ export const GET_POSTS_LIST = gql`
       items {
         createdAt
         userId
-        postId
         userName
+        postId
         status
         description
         urlAvatar
         urlsPostsImages
+        postStatus
       }
     }
   }

@@ -1,15 +1,11 @@
-import { format, getMonth, getYear } from 'date-fns'
+import { format } from 'date-fns'
 import { ReactDatePickerCustomHeaderProps } from 'react-datepicker'
+import { useTranslation } from 'react-i18next'
 
 import s from './customHeader.module.scss'
 
 import { capitalizeFirstLetter } from '@/common'
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@/ui'
-
-type CustomHeaderType = {
-  years: number[]
-  months: string[]
-}
 
 /**
  * CustomHeader - компонент, используемый для отображения заголовка календаря
@@ -27,12 +23,8 @@ export const CustomHeader = ({
   date,
   decreaseMonth,
   increaseMonth,
-  changeMonth,
-  changeYear,
-  years,
-  months,
   ...rest
-}: ReactDatePickerCustomHeaderProps & CustomHeaderType) => {
+}: Pick<ReactDatePickerCustomHeaderProps, 'date' | 'decreaseMonth' | 'increaseMonth'>) => {
   const classNames = {
     header: s.header,
     buttonBox: s.buttonBox,
@@ -41,40 +33,17 @@ export const CustomHeader = ({
     select: s.selectStyle,
   }
 
-  const headerText = capitalizeFirstLetter(format(date, 'LLLL Y'))
+  const headerText = capitalizeFirstLetter(format(date, 'Y'))
+  const monthIndex = date.getMonth()
+  const { t } = useTranslation()
 
   return (
     <div className={classNames.header} {...rest}>
-      <div>{headerText}</div>
+      <div>{`${t(`datePicker.monthNames.${monthIndex}`)} ${headerText}`}</div>
       <div className={classNames.buttonBox}>
         <button type="button" className={classNames.button} onClick={decreaseMonth}>
           <KeyboardArrowLeft />
         </button>
-        <div className={classNames.selectBlock}>
-          <select
-            className={classNames.select}
-            value={getYear(date)}
-            onChange={({ target: { value } }) => changeYear(Number(value))}
-          >
-            {years.map((option, key) => (
-              <option key={key} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-
-          <select
-            className={classNames.select}
-            value={months[getMonth(date)]}
-            onChange={({ target: { value } }) => changeMonth(months.indexOf(value))}
-          >
-            {months.map((option, key) => (
-              <option key={key} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-        </div>
         <button type="button" className={classNames.button} onClick={increaseMonth}>
           <KeyboardArrowRight />
         </button>

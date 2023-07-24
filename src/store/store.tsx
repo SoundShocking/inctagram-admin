@@ -61,7 +61,13 @@ const AuthProvider = ({ children, ...props }: AuthProviderType) => {
 
   return (
     <AuthContext.Provider
-      value={{ auth: state.auth, loading: state.loading, login, logout, setLoading }}
+      value={{
+        auth: state.auth,
+        loading: state.loading,
+        login,
+        logout,
+        setLoading,
+      }}
       {...props}
     >
       {children}

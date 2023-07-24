@@ -3,6 +3,7 @@ import React from 'react'
 export interface State {
   auth: boolean
   loading: boolean
+  postStatusBannedDeleted: boolean
 }
 
 export interface Action {
@@ -21,6 +22,7 @@ export interface AuthContextType {
 export const initialState: State = {
   auth: false,
   loading: false,
+  postStatusBannedDeleted: false,
 }
 
 export interface AuthProviderType {

@@ -3,54 +3,60 @@ import React, { ChangeEvent, useState } from 'react'
 import { useQuery } from '@apollo/client'
 import { useInView } from 'react-intersection-observer'
 
-import { useInViewScrollHandlerEffect } from '@/common'
+import { ErrorComponent, NotFoundComponent } from '@/components'
+import { GlobalInput, Spinner } from '@/ui'
 import {
   GET_POSTS_LIST,
   getStatusColor,
+  handleSearchDebounceEffect,
+  infinityScrollForPostsEffect,
   Post,
   PostsItemsType,
   PostsListType,
+  PostStatusForPostsListInputType,
   PostsType,
   SkeletonPost,
-} from '@/modules/posts'
-import { GlobalInput, Spinner } from '@/ui'
+  StatusSelected,
+  updateCachePostsList,
+} from 'modules/posts'
 
 export const PostsList = () => {
+  const [timerId, setTimerId] = useState<NodeJS.Timeout | undefined>(undefined)
   const [search, setSearch] = useState<string>('')
-  const [posts, setPosts] = useState<PostsListType | undefined>()
+  const [debounce, setDebounce] = useState<string>('')
+  const [status, setStatus] = useState<PostStatusForPostsListInputType>(
+    PostStatusForPostsListInputType.PUBLISHED
+  )
+  const [postsData, setPostsData] = useState<PostsListType | undefined>()
   const [showMoreIds, setShowMoreIds] = useState<number[]>([])
   const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false)
   const [pageNumber, setPageNumber] = useState<number>(1)
-
-  const { error, loading, fetchMore } = useQuery<PostsType>(GET_POSTS_LIST, {
+  // const { postStatusBannedDeleted } = useContext(AuthContext)
+  const { loading, error, fetchMore, refetch } = useQuery<PostsType>(GET_POSTS_LIST, {
     variables: {
-      search: search,
+      search: debounce,
       pageSize: 8,
+      status: status,
     },
     onCompleted: (data: PostsType) => {
-      setPosts(data?.postsList)
+      setPostsData(data?.postsList)
     },
+    onError: error => console.error('error', error),
   })
 
   const handleScroll = () => {
-    if (!isLoadingMore && inView && posts && posts.items.length < posts.totalCount) {
+    if (
+      !isLoadingMore &&
+      inView &&
+      postsData &&
+      postsData.items.length + 1 < postsData.totalCount
+    ) {
       setIsLoadingMore(true)
       setPageNumber(prevNumber => prevNumber + 1)
       fetchMore({
         variables: { pageNumber: pageNumber },
-        updateQuery: (prev: PostsType, { fetchMoreResult }: { fetchMoreResult?: PostsType }) => {
-          setIsLoadingMore(false)
-          if (!fetchMoreResult) return prev
-          if (prev?.postsList?.items) {
-            return {
-              ...prev,
-              postsList: {
-                ...prev.postsList,
-                items: [...prev.postsList.items, ...fetchMoreResult.postsList.items],
-              },
-            }
-          }
-        },
+        updateQuery: (prev, { fetchMoreResult }) =>
+          updateCachePostsList(prev, { fetchMoreResult }, setIsLoadingMore),
       })
     }
   }
@@ -59,7 +65,6 @@ export const PostsList = () => {
     threshold: 0.1,
   })
 
-  useInViewScrollHandlerEffect({ inView, isLoadingMore, handleScroll, loading })
   const handleCallBackShowMore = (postId: number) => {
     if (showMoreIds.includes(postId)) {
       setShowMoreIds(showMoreIds.filter(item => item !== postId))
@@ -73,42 +78,45 @@ export const PostsList = () => {
 
     setSearch(target)
   }
-  const text =
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incdipiscing elit, sed do eiusmod tempor inipiscing elit, sed do eiusmod tempor incdipiscing elit, sed do eiusmod tempor incd.mpor incd.mpor incd.mpo..'
+
+  infinityScrollForPostsEffect({ inView, isLoadingMore, handleScroll, loading })
+  handleSearchDebounceEffect({ loading, timerId, setTimerId, setDebounce, search })
 
   if (error && !loading) {
-    return <div>Error! {error.message}</div>
+    return <ErrorComponent error={error} />
   }
 
   return (
-    <div className="w-full pt-[60px] pl-[24px] pr-[60px] flex flex-col">
-      <div className="pb-[36px] w-full">
+    <div className="w-full pt-16 pl-6 pr-16 flex flex-col">
+      <div>
+        <StatusSelected refetch={refetch} status={status} setStatus={setStatus} />
+      </div>
+      <div className="pb-9 w-full">
         <GlobalInput
-          className="w-[972px] pb-[36px] h-[36px]"
+          className="w-[972px] pb-9 h-9"
           type={'text'}
           placeholder={'Search'}
           value={search}
           callBack={handleCallBackSearch}
         />
       </div>
-      <div className="grid grid-cols-4 lg:grid-cols-3 gap-3">
+      <div className="grid grid-cols-4 sm:grid-cols-2  lg:grid-cols-3  gap-3">
         {loading ? (
           SkeletonPost(32)
         ) : (
           <>
-            {posts !== undefined ? (
-              posts.items.map((post: PostsItemsType, index: number) => (
+            {postsData !== undefined ? (
+              postsData.items.map((post: PostsItemsType, index: number) => (
                 <Post
                   post={post}
                   key={index}
                   showMore={showMoreIds.includes(post.postId)}
                   setShowMoreId={handleCallBackShowMore}
                   getStatusColor={getStatusColor}
-                  text={text}
                 />
               ))
             ) : (
-              <span>Not found</span>
+              <NotFoundComponent />
             )}
           </>
         )}

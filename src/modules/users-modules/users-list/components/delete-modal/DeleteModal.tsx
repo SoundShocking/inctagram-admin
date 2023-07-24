@@ -20,7 +20,6 @@ export const DeleteModal = ({
 }: PropsType) => {
   const { t } = useTranslation()
   const [deleteUser] = useMutation(DELETE_USER)
-
   const onConfirm = () => {
     deleteUser({ variables: { userId } })
       .then(() => {

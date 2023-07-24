@@ -13,9 +13,9 @@ export interface PaymentsUser {
   totalCount: number
   items: ItemsUserPaymentsType[]
 }
-export interface UserType {
+export interface UsersPaymentType {
   paymentsUser: PaymentsUser
 }
 export interface UserPaymentsType {
-  user: UserType
+  user: UsersPaymentType
 }
