@@ -8,10 +8,9 @@ export const setUserPaymentsDataEffect = (
   setMyPaymentsData: (data: ItemsUserPaymentsType[]) => any
 ) => {
   return useEffect(() => {
-    isLoading ? setMyPaymentsData(Array(30).fill({})) : paymentsUser
-
-    paymentsUser && paymentsUser?.items.length > 0
+    isLoading ? setMyPaymentsData(Array(10).fill({})) : paymentsUser
+    !isLoading && paymentsUser && paymentsUser?.items.length > 0
       ? setMyPaymentsData(paymentsUser.items)
-      : setMyPaymentsData(Array(10).fill({}))
+      : setMyPaymentsData(Array(1).fill({ price: 'No Payments' }))
   }, [isLoading, paymentsUser])
 }

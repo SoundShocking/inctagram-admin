@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { useInView } from 'react-intersection-observer'
 
-import { ErrorComponent } from '@/components'
+import { ErrorComponent, NotFoundComponent } from '@/components'
 import {
   GET_USER_IMAGES,
   ImagesUserType,
@@ -49,9 +49,11 @@ export const UserPhotos = () => {
       photosData?.items.length + 1 <= photosData.totalCount
     ) {
       setIsLoadingMore(true)
-      setPageNumber(prevNumber => prevNumber + 1)
+      const newPageNumber = pageNumber + 1
+
+      setPageNumber(newPageNumber)
       fetchMore({
-        variables: { pageNumber: pageNumber },
+        variables: { pageNumber: newPageNumber },
         updateQuery: (prev: UserImagesType, { fetchMoreResult }) =>
           updateCachePhotos(prev, { fetchMoreResult }, setIsLoadingMore),
       })
@@ -66,7 +68,7 @@ export const UserPhotos = () => {
 
   return (
     <div className="mt-14">
-      <div className="grid grid-cols-4 gap-3 md:grid-cols-3 sm:grid-cols-2">
+      <div className="grid w-full grid-cols-4 gap-3 md:grid-cols-3 sm:grid-cols-2">
         {loading ? (
           usedToDrawArraysOfSkeletons(32)
         ) : (
@@ -76,7 +78,7 @@ export const UserPhotos = () => {
                 <UserPhoto key={index} item={item} />
               ))
             ) : (
-              <div>No photos available</div>
+              <NotFoundComponent message={'No photos available'} />
             )}
           </>
         )}
