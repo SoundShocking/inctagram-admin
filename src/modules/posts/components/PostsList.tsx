@@ -35,7 +35,6 @@ export const PostsList = () => {
   const { loading, error, fetchMore, refetch } = useQuery<PostsType>(GET_POSTS_LIST, {
     variables: {
       search: debounce,
-      pageSize: 8,
       status: status,
     },
     onCompleted: (data: PostsType) => {
@@ -52,9 +51,11 @@ export const PostsList = () => {
       postsData.items.length + 1 < postsData.totalCount
     ) {
       setIsLoadingMore(true)
-      setPageNumber(prevNumber => prevNumber + 1)
+      const newPageNumber = pageNumber + 1
+
+      setPageNumber(newPageNumber)
       fetchMore({
-        variables: { pageNumber: pageNumber },
+        variables: { pageNumber: newPageNumber },
         updateQuery: (prev, { fetchMoreResult }) =>
           updateCachePostsList(prev, { fetchMoreResult }, setIsLoadingMore),
       })
@@ -116,7 +117,7 @@ export const PostsList = () => {
                 />
               ))
             ) : (
-              <NotFoundComponent />
+              <NotFoundComponent message={'Not found'} />
             )}
           </>
         )}

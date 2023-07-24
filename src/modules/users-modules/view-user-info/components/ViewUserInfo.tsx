@@ -37,7 +37,7 @@ export const ViewUserInfo = () => {
         ) : userData !== undefined ? (
           <ViewUserInfoMain userData={userData} />
         ) : (
-          <NotFoundComponent />
+          <NotFoundComponent message={'Not found'} />
         )}
         <div className="pt-7">
           <ViewUserInformationInTabs />

@@ -1,5 +1,5 @@
-import { Skeleton } from '@/ui/skeletons/Skeleton'
+import { SkeletonTable } from '@/modules/users-modules/view-user-info'
 
 export const SkeletonUserPayments = () => {
-  return <Skeleton classes={'h-5 w-24 rounded-full m-auto'} />
+  return <SkeletonTable classes={'h-5 w-24 rounded-full m-auto'} />
 }

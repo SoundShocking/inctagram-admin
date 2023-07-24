@@ -41,7 +41,7 @@ export const UserPayments = () => {
     [pageIndex, pageSize]
   )
 
-  const { loading, data, error } = useQuery<UserPaymentsType>(GET_USER_PAYMENTS, {
+  const { loading, error } = useQuery<UserPaymentsType>(GET_USER_PAYMENTS, {
     variables: {
       userId: Number(userId),
       pageNumber: pageIndex + 1,
@@ -108,13 +108,7 @@ export const UserPayments = () => {
 
   return (
     <div className=" text-accent-500 p-2 block w-full ">
-      {data?.user?.paymentsUser.items.length ? (
-        <UserPaymentsTable tableProps={tableProps} loading={loading} />
-      ) : (
-        <div className="flex justify-center text-light-100 align-middle text-base leading-6 font-normal">
-          <span> No payments ... :(</span>
-        </div>
-      )}
+      <UserPaymentsTable tableProps={tableProps} loading={loading} />
     </div>
   )
 }
