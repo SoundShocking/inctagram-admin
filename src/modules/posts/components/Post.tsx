@@ -11,7 +11,6 @@ export const Post = ({
   post,
   showMore,
   setShowMoreId,
-  getStatusColor,
 }: {
   post: PostsItemsType
   showMore: boolean
