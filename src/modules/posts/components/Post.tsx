@@ -14,7 +14,6 @@ export const Post = ({
 }: {
   post: PostsItemsType
   showMore: boolean
-  getStatusColor: (status: string) => string
   setShowMoreId: (postId: number) => void
 }) => {
   const { t, i18n } = useTranslation()

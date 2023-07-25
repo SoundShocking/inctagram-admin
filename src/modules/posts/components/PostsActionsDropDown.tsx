@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import { useTranslation } from 'react-i18next'
-import { FaEllipsis, FaBan } from 'react-icons/fa6'
+import { FaEllipsis, FaBan, FaUserLock } from 'react-icons/fa6'
 
 import { BanUserModal } from '@/components/ban-unban/ban/BanUserModal'
 import { UnbanUserModal } from '@/components/ban-unban/unban/UnbanUserModal'
@@ -65,7 +65,7 @@ export const PostsActionsDropDown = ({
                 className="flex items-center mb-3 cursor-pointer"
                 onSelect={() => onUnbanPostClick()}
               >
-                <FaBan size={24} className="mr-3" />
+                <FaUserLock size={24} className="mr-3" />
                 {t('userList.unbanUser')}
               </DropdownMenu.Item>
             )}
