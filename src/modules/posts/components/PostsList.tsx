@@ -7,7 +7,6 @@ import { ErrorComponent, NotFoundComponent } from '@/components'
 import { GlobalInput, Spinner } from '@/ui'
 import {
   GET_POSTS_LIST,
-  getStatusColor,
   handleSearchDebounceEffect,
   infinityScrollForPostsEffect,
   Post,
@@ -113,7 +112,6 @@ export const PostsList = () => {
                   key={index}
                   showMore={showMoreIds.includes(post.postId)}
                   setShowMoreId={handleCallBackShowMore}
-                  getStatusColor={getStatusColor}
                 />
               ))
             ) : (

@@ -4,20 +4,13 @@ import { flexRender, Table } from '@tanstack/react-table'
 
 import { ItemsUserPaymentsType } from '@/modules/users-modules/view-user-info'
 
-export const UserPaymentsTable = ({
-  tableProps,
-  loading,
-}: {
-  tableProps: Table<ItemsUserPaymentsType>
-  loading: boolean
-}) => {
+export const UserPaymentsTable = ({ tableProps }: { tableProps: Table<ItemsUserPaymentsType> }) => {
   return (
-    <div className={`max-w-[972px]`} style={{ width: '100%' }}>
-      <table className="w-full" style={{ width: '100%' }}>
+    <div className="w-full">
+      <table className="w-full">
         <thead
-          style={{ width: '100%' }}
           className={
-            'h-12 bg-dark-500 border-2 border-dark-500 border-r-2 text-light-100 font-semibold text-sm'
+            'h-12 bg-dark-500 w-full border-2 border-dark-500 border-r-2 text-light-100 font-semibold text-sm'
           }
         >
           {tableProps.getHeaderGroups().map((headerGroup, key) => (
@@ -43,7 +36,7 @@ export const UserPaymentsTable = ({
             </tr>
           ))}
         </thead>
-        <tbody style={{ width: '100%' }}>
+        <tbody className="w-full">
           {tableProps.getRowModel().rows.map(row => {
             return (
               <tr
@@ -66,57 +59,6 @@ export const UserPaymentsTable = ({
           })}
         </tbody>
       </table>
-      <div className="h-2" />
-      <div className="pt-2 flex items-center gap-2 text-light-100 font-normal text-sm">
-        <button
-          className="border rounded p-1"
-          onClick={() => tableProps.setPageIndex(0)}
-          disabled={!tableProps.getCanPreviousPage()}
-        >
-          {'<<'}
-        </button>
-        <button
-          className="border rounded p-1"
-          onClick={() => tableProps.previousPage()}
-          disabled={!tableProps.getCanPreviousPage()}
-        >
-          {'<'}
-        </button>
-        <button
-          className="border rounded p-1"
-          onClick={() => tableProps.nextPage()}
-          disabled={!tableProps.getCanNextPage()}
-        >
-          {'>'}
-        </button>
-        <button
-          className="border rounded p-1"
-          onClick={() => tableProps.setPageIndex(tableProps.getPageCount() - 1)}
-          disabled={!tableProps.getCanNextPage()}
-        >
-          {'>>'}
-        </button>
-        <span className="flex items-center gap-1">
-          <div>Page</div>
-          <strong>
-            {tableProps.getState().pagination.pageIndex + 1} of {tableProps.getPageCount()}
-          </strong>
-        </span>
-        <select
-          className={'bg-dark-500 text-light-100 text-sm font-normal'}
-          value={tableProps.getState().pagination.pageSize}
-          onChange={e => {
-            tableProps.setPageSize(Number(e.target.value))
-          }}
-        >
-          {[10, 20, 30, 40, 50].map(pageSize => (
-            <option key={pageSize} value={pageSize}>
-              Show {pageSize}
-            </option>
-          ))}
-        </select>
-        {loading ? 'Loading...' : null}
-      </div>
     </div>
   )
 }

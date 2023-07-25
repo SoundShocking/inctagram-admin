@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { useTranslation } from 'react-i18next'
 
+import { changingTheReasonForTheBanOrBlockingEffect } from '@/common'
 import { ModalWithContent } from '@/components/modals'
 import { DetailsInput, ImageOption, ImageSelector } from '@/ui'
 import {
@@ -51,6 +52,11 @@ export const BanUserPostModal = ({
     useState<BanReasonForPostInputType>('CONTROVERSIAL_TOPICS')
   const [banDetails, setBanDetails] = useState<string>('')
   const [error, setError] = useState<string>('')
+
+  changingTheReasonForTheBanOrBlockingEffect({
+    setBanReasonName,
+    defaultReason,
+  })
 
   const onDropdownClick = () => {
     setIsOpen(!isOpen)

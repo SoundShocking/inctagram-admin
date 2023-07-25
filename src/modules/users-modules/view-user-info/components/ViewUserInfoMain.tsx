@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 import { dateChangesFormat } from '@/common'
 import { ArrowBack, UserType } from '@/modules/users-modules/view-user-info'
-import { Avatar } from '@/ui'
+import { Placeholder } from '@/ui'
 
 export const ViewUserInfoMain = ({ userData }: { userData: UserType }) => {
   const { createdAt, profileLink, userName, userId } = userData
@@ -16,7 +16,13 @@ export const ViewUserInfoMain = ({ userData }: { userData: UserType }) => {
         </Link>
         <div className="pt-6 w-[360px]">
           <div className="flex">
-            <Avatar src={profileLink} alt={'User Photo'} height={60} width={60} />
+            <Placeholder
+              src={profileLink}
+              alt={'User Photo'}
+              className="rounded-full"
+              height={60}
+              width={60}
+            />
             <div className="pl-6 flex flex-col ">
               <span className="text-xl font-bold leading-9">{userName}</span>
               <Link href={'/'}>

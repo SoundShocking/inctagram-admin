@@ -1,12 +1,10 @@
-import React, { useMemo, useState } from 'react'
+import React, { useState } from 'react'
 
 import { useQuery } from '@apollo/client'
 import {
   getCoreRowModel,
   useReactTable,
-  PaginationState,
   getSortedRowModel,
-  getPaginationRowModel,
   ColumnDef,
   Table,
 } from '@tanstack/react-table'
@@ -14,6 +12,7 @@ import { useRouter } from 'next/router'
 
 import { capitalizeFirstLetter, dateChangesFormat } from '@/common'
 import { ErrorComponent } from '@/components'
+import { TablePagination } from '@/components/table-pagination'
 import {
   GET_USER_PAYMENTS,
   ItemsUserPaymentsType,
@@ -29,17 +28,8 @@ export const UserPayments = () => {
   const { userId } = router.query
   const [paymentsData, setPaymentsData] = useState<PaymentsUser>()
   const [myPaymentsData, setMyPaymentsData] = useState<ItemsUserPaymentsType[]>([])
-  const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({
-    pageIndex: 0,
-    pageSize: 10,
-  })
-  const pagination: { pageIndex: number; pageSize: number } = useMemo(
-    () => ({
-      pageIndex,
-      pageSize,
-    }),
-    [pageIndex, pageSize]
-  )
+  const [pageIndex, setPageIndex] = useState(0)
+  const [pageSize, setPageSize] = useState(10)
 
   const { loading, error } = useQuery<UserPaymentsType>(GET_USER_PAYMENTS, {
     variables: {
@@ -90,15 +80,10 @@ export const UserPayments = () => {
   const tableProps: Table<ItemsUserPaymentsType> = useReactTable({
     data: myPaymentsData,
     columns: columns,
-    state: {
-      pagination,
-    },
     enableSorting: false,
     pageCount: pageCount,
     manualPagination: true,
-    onPaginationChange: setPagination,
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
   })
 
@@ -108,7 +93,16 @@ export const UserPayments = () => {
 
   return (
     <div className=" text-accent-500 p-2 block w-full ">
-      <UserPaymentsTable tableProps={tableProps} loading={loading} />
+      <UserPaymentsTable tableProps={tableProps} />
+      {paymentsData?.pagesCount ? (
+        <TablePagination
+          pagesCount={paymentsData?.pagesCount}
+          pageIndex={pageIndex}
+          setPageIndex={setPageIndex}
+          pageSize={pageSize}
+          setPageSize={setPageSize}
+        />
+      ) : null}
     </div>
   )
 }

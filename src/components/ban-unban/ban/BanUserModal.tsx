@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { useTranslation } from 'react-i18next'
 
+import { changingTheReasonForTheBanOrBlockingEffect } from '@/common'
 import { ModalWithContent } from '@/components/modals'
 import { GET_POSTS_LIST } from '@/modules/posts'
 import { BanReasonInputType, UPDATE_USER_STATUS } from '@/queries/delete-ban'
@@ -43,6 +44,10 @@ export const BanUserModal = ({ isBanUserOpen, setIsBanUserOpen, userId, userName
   const [banDetails, setBanDetails] = useState('')
   const [error, setError] = useState('')
 
+  changingTheReasonForTheBanOrBlockingEffect({
+    setBanReasonName,
+    defaultReason: defaultText,
+  })
   const onDropdownClick = () => {
     setIsOpen(!isOpen)
   }
