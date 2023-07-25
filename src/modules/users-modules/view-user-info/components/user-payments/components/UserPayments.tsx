@@ -1,12 +1,10 @@
-import React, { useMemo, useState } from 'react'
+import React, { useState } from 'react'
 
 import { useQuery } from '@apollo/client'
 import {
   getCoreRowModel,
   useReactTable,
-  PaginationState,
   getSortedRowModel,
-  getPaginationRowModel,
   ColumnDef,
   Table,
 } from '@tanstack/react-table'
