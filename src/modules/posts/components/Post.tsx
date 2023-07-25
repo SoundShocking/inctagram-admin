@@ -59,7 +59,7 @@ export const Post = ({
               locale: locale,
             })}
           </span>
-          <p className="text-sm text-light-100 overflow-hidden max-w-full leading-6 font-normal">
+          <p className="text-sm text-light-100 break-words max-w-full leading-6 font-normal">
             {/* eslint-disable-next-line no-nested-ternary */}
             {post.description ? (
               showMore ? (
