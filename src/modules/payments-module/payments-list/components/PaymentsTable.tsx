@@ -1,59 +1,38 @@
-import { Dispatch, FC, SetStateAction, useMemo } from 'react'
+import { Dispatch, FC, SetStateAction } from 'react'
 
 import {
   flexRender,
   getCoreRowModel,
   getSortedRowModel,
-  PaginationState,
   SortingState,
   useReactTable,
 } from '@tanstack/react-table'
 import { createColumnHelper } from '@tanstack/table-core'
 import dayjs from 'dayjs'
-import { t } from 'i18next'
 
+import { PaymentsTableUserNameCell } from '@/modules/payments-module/payments-list/components/PaymentsTableUserNameCell'
 import { PaymentsListViewModel } from '@/types'
 
-type PaymentsItem = Pick<
+export type PaymentsItem = Pick<
   PaymentsListViewModel,
-  'userName' | 'createdAt' | 'amount' | 'typeSubscription' | 'paymentMethod'
+  'urlAvatar' | 'userName' | 'createdAt' | 'amount' | 'typeSubscription' | 'paymentType'
 >
 
 const columnHelper = createColumnHelper<PaymentsItem>()
 
 interface Props {
   payments: PaymentsItem[]
-  pagesCount: number
-  pageIndex: number
-  pageSize: number
-  setPagination: Dispatch<SetStateAction<PaginationState>>
   sorting: SortingState
   setSorting: Dispatch<SetStateAction<SortingState>>
 }
 
-export const PaymentsTable: FC<Props> = ({
-  payments,
-  pagesCount,
-  pageSize,
-  pageIndex,
-  setPagination,
-  sorting,
-  setSorting,
-}) => {
-  const pagination = useMemo(
-    () => ({
-      pageIndex,
-      pageSize,
-    }),
-    [pageIndex, pageSize]
-  )
-
+export const PaymentsTable: FC<Props> = ({ payments, sorting, setSorting }) => {
   const columns = [
     columnHelper.accessor('userName', {
       id: 'username',
       header: 'Username',
-      cell: info => info.getValue(),
-      enableSorting: true,
+      cell: info => <PaymentsTableUserNameCell row={info.row} />,
+      enableSorting: false,
     }),
     columnHelper.accessor('createdAt', {
       id: 'createdAt',
@@ -73,8 +52,8 @@ export const PaymentsTable: FC<Props> = ({
       cell: info => info.getValue(),
       enableSorting: false,
     }),
-    columnHelper.accessor('paymentMethod', {
-      id: 'paymentMethod',
+    columnHelper.accessor('paymentType', {
+      id: 'paymentType',
       header: 'Payment Method',
       cell: info => info.getValue(),
       enableSorting: true,
@@ -86,13 +65,9 @@ export const PaymentsTable: FC<Props> = ({
     columns,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
-    pageCount: pagesCount,
     state: {
-      pagination,
       sorting,
     },
-    onPaginationChange: setPagination,
-    manualPagination: true,
     onSortingChange: setSorting,
     manualSorting: true,
   })
@@ -156,51 +131,6 @@ export const PaymentsTable: FC<Props> = ({
               })}
             </tbody>
           </table>
-
-          <div className="h-2" />
-          <div className="pt-2 flex items-center gap-2 text-light-100 font-normal text-sm">
-            <button
-              className="border rounded p-1"
-              onClick={() => table.setPageIndex(0)}
-              disabled={!table.getCanPreviousPage()}
-            >
-              {'<<'}
-            </button>
-            <button
-              className="border rounded p-1"
-              onClick={() => table.previousPage()}
-              disabled={!table.getCanPreviousPage()}
-            >
-              {'<'}
-            </button>
-            <button
-              className="border rounded p-1"
-              onClick={() => table.nextPage()}
-              disabled={!table.getCanNextPage()}
-            >
-              {'>'}
-            </button>
-            <button
-              className="border rounded p-1"
-              onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-              disabled={!table.getCanNextPage()}
-            >
-              {'>>'}
-            </button>
-            <select
-              className={'bg-dark-500 text-light-100 text-sm font-normal'}
-              value={table.getState().pagination.pageSize}
-              onChange={e => {
-                table.setPageSize(Number(e.target.value))
-              }}
-            >
-              {[10, 20, 30, 40, 50].map(pageSize => (
-                <option key={pageSize} value={pageSize}>
-                  {t('userList.show')} {pageSize}
-                </option>
-              ))}
-            </select>
-          </div>
         </div>
       </div>
     </>

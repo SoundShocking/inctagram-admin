@@ -20,6 +20,20 @@ export type Scalars = {
   Timestamp: { input: any; output: any }
 }
 
+/** Reasons for banning a post */
+export enum BanReasonForPostInputType {
+  ControversialTopics = 'CONTROVERSIAL_TOPICS',
+  CopyrightInfringement = 'COPYRIGHT_INFRINGEMENT',
+  DiscriminationAndHate = 'DISCRIMINATION_AND_HATE',
+  IllegalActivities = 'ILLEGAL_ACTIVITIES',
+  InappropriateBehavior = 'INAPPROPRIATE_BEHAVIOR',
+  PrivacyViolation = 'PRIVACY_VIOLATION',
+  SexualContent = 'SEXUAL_CONTENT',
+  ShockingOrDisturbingContent = 'SHOCKING_OR_DISTURBING_CONTENT',
+  SpamAndScams = 'SPAM_AND_SCAMS',
+  ViolenceAndCruelty = 'VIOLENCE_AND_CRUELTY',
+}
+
 /** Reasons for banning a user */
 export enum BanReasonInputType {
   AdvertisingPlacement = 'Advertising_placement',
@@ -29,11 +43,11 @@ export enum BanReasonInputType {
 
 export type ImageForSuperAdminViewModel = {
   __typename?: 'ImageForSuperAdminViewModel'
-  createdAt?: Maybe<Scalars['DateTime']['output']>
-  fileSize?: Maybe<Scalars['Int']['output']>
-  ownerId?: Maybe<Scalars['Int']['output']>
-  updatedAt?: Maybe<Scalars['DateTime']['output']>
-  url?: Maybe<Scalars['String']['output']>
+  createdAt: Scalars['DateTime']['output']
+  fileSize: Scalars['Int']['output']
+  ownerId: Scalars['Int']['output']
+  updatedAt: Scalars['DateTime']['output']
+  url: Scalars['String']['output']
 }
 
 export type ImagesWithPaginationViewModel = {
@@ -48,11 +62,19 @@ export type ImagesWithPaginationViewModel = {
 export type Mutation = {
   __typename?: 'Mutation'
   deleteUser: Scalars['Boolean']['output']
+  updatePostStatus: Scalars['Boolean']['output']
   updateUserStatus: Scalars['Boolean']['output']
 }
 
 export type MutationDeleteUserArgs = {
   userId: Scalars['Float']['input']
+}
+
+export type MutationUpdatePostStatusArgs = {
+  banReason?: InputMaybe<BanReasonForPostInputType>
+  details?: InputMaybe<Scalars['String']['input']>
+  isBanned: Scalars['Boolean']['input']
+  postId: Scalars['Int']['input']
 }
 
 export type MutationUpdateUserStatusArgs = {
@@ -70,13 +92,13 @@ export enum PaymentMethod {
 
 export type PaymentsListViewModel = {
   __typename?: 'PaymentsListViewModel'
-  amount?: Maybe<Scalars['Float']['output']>
-  createdAt?: Maybe<Scalars['DateTime']['output']>
-  paymentMethod?: Maybe<PaymentMethod>
-  status?: Maybe<StatusSubscriptionType>
-  typeSubscription?: Maybe<SubscriptionType>
+  amount: Scalars['Float']['output']
+  createdAt: Scalars['DateTime']['output']
+  paymentType: PaymentMethod
+  status: StatusSubscriptionType
+  typeSubscription: SubscriptionType
   urlAvatar?: Maybe<Scalars['String']['output']>
-  userName?: Maybe<Scalars['String']['output']>
+  userName: Scalars['String']['output']
 }
 
 export type PaymentsListWithPaginationViewModel = {
@@ -99,33 +121,40 @@ export type PaymentsWithPaginationViewModel = {
 
 export type PostForSuperAdminViewModel = {
   __typename?: 'PostForSuperAdminViewModel'
-  createdAt?: Maybe<Scalars['DateTime']['output']>
-  id?: Maybe<Scalars['Int']['output']>
+  createdAt: Scalars['DateTime']['output']
+  id: Scalars['Int']['output']
   images: Array<PostImageForSuperAdminViewModel>
-  ownerId?: Maybe<Scalars['Int']['output']>
-  updatedAt?: Maybe<Scalars['DateTime']['output']>
+  ownerId: Scalars['Int']['output']
+  updatedAt: Scalars['DateTime']['output']
 }
 
 export type PostImageForSuperAdminViewModel = {
   __typename?: 'PostImageForSuperAdminViewModel'
-  createdAt?: Maybe<Scalars['DateTime']['output']>
-  fileSize?: Maybe<Scalars['Int']['output']>
-  postId?: Maybe<Scalars['Int']['output']>
-  status?: Maybe<Scalars['String']['output']>
-  updatedAt?: Maybe<Scalars['DateTime']['output']>
-  url?: Maybe<Scalars['String']['output']>
+  createdAt: Scalars['DateTime']['output']
+  fileSize: Scalars['Int']['output']
+  postId: Scalars['Int']['output']
+  status: Scalars['String']['output']
+  updatedAt: Scalars['DateTime']['output']
+  url: Scalars['String']['output']
+}
+
+/** Post Status [published, banned] */
+export enum PostStatusForPostsListInputType {
+  Banned = 'BANNED',
+  Published = 'PUBLISHED',
 }
 
 export type PostsListViewModel = {
   __typename?: 'PostsListViewModel'
-  createdAt?: Maybe<Scalars['DateTime']['output']>
+  createdAt: Scalars['DateTime']['output']
   description?: Maybe<Scalars['String']['output']>
-  postId?: Maybe<Scalars['Float']['output']>
-  status?: Maybe<UserStatusType>
+  postId: Scalars['Float']['output']
+  postStatus: PostStatusForPostsListInputType
+  status: UserStatusType
   urlAvatar?: Maybe<Scalars['String']['output']>
   urlsPostsImages?: Maybe<Array<Scalars['String']['output']>>
-  userId?: Maybe<Scalars['Float']['output']>
-  userName?: Maybe<Scalars['String']['output']>
+  userId: Scalars['Float']['output']
+  userName: Scalars['String']['output']
 }
 
 export type PostsListWithPaginationViewModel = {
@@ -159,8 +188,9 @@ export type QueryPostsListArgs = {
   pageNumber?: InputMaybe<Scalars['Int']['input']>
   pageSize?: InputMaybe<Scalars['Int']['input']>
   search?: InputMaybe<Scalars['String']['input']>
-  sortBy?: InputMaybe<SortByForPaymentsListInputType>
+  sortBy?: InputMaybe<SortByForPostsListInputType>
   sortDirection?: InputMaybe<SortDirectionType>
+  status?: InputMaybe<PostStatusForPostsListInputType>
 }
 
 export type QueryStatisticsPaidAccountsArgs = {
@@ -194,14 +224,18 @@ export type QueryUsersArgs = {
   status?: InputMaybe<UserStatusInputType>
 }
 
-/** Sort By [id, username, createdAt, price, typeSubscription, paymentMethod] */
+/** Sort By [id, createdAt, price,  paymentType] */
 export enum SortByForPaymentsListInputType {
   CreatedAt = 'createdAt',
   Id = 'id',
-  PaymentMethod = 'paymentMethod',
+  PaymentType = 'paymentType',
   Price = 'price',
-  TypeSubscription = 'typeSubscription',
-  Username = 'username',
+}
+
+/** Sort By [id, createdAt] */
+export enum SortByForPostsListInputType {
+  CreatedAt = 'createdAt',
+  Id = 'id',
 }
 
 /** Sort By [id, createdAt] */
@@ -231,8 +265,8 @@ export type StatisticsData = {
 
 export type StatisticsForGraphicsAdminViewModel = {
   __typename?: 'StatisticsForGraphicsAdminViewModel'
-  data: StatisticsData
-  query: StatisticsQuery
+  data?: Maybe<StatisticsData>
+  query?: Maybe<StatisticsQuery>
 }
 
 export type StatisticsMetrics = {
@@ -263,12 +297,12 @@ export enum StatusSubscriptionType {
 
 export type SubscriptionForSuperAdminViewModel = {
   __typename?: 'SubscriptionForSuperAdminViewModel'
-  dataOfPayment?: Maybe<Scalars['DateTime']['output']>
-  endDateOfSubscription?: Maybe<Scalars['DateTime']['output']>
-  ownerId?: Maybe<Scalars['Float']['output']>
-  paymentType?: Maybe<PaymentMethod>
-  price?: Maybe<Scalars['Float']['output']>
-  type?: Maybe<SubscriptionType>
+  dataOfPayment: Scalars['DateTime']['output']
+  endDateOfSubscription: Scalars['DateTime']['output']
+  ownerId: Scalars['Float']['output']
+  paymentType: PaymentMethod
+  price: Scalars['Float']['output']
+  type: SubscriptionType
 }
 
 /** Subscription Type [MONTHLY, SEMI_ANNUALLY, YEARLY] */
@@ -292,11 +326,12 @@ export type UserForSuperAdminViewModel = {
   userName: Scalars['String']['output']
 }
 
-/** User Status [all, active, banned] */
+/** User Status [all, active, banned, pending] */
 export enum UserStatusInputType {
   Active = 'active',
   All = 'all',
   Banned = 'banned',
+  Pending = 'pending',
 }
 
 /** User Status PENDING - user registered but not activated; ACTIVE - user registered and activated; BANNED - user banned by admin; DELETED - user deleted by admin */

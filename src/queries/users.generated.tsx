@@ -24,6 +24,7 @@ export type GetAllUsersQuery = {
       userId: number
       userName: string
       createdAt: any
+      status: Types.UserStatusType
     }>
   }
 }

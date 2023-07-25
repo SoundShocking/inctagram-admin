@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 
-import { PaginationState, SortingState } from '@tanstack/react-table'
+import { SortingState } from '@tanstack/react-table'
 import { useDebounce } from 'usehooks-ts'
 
+import { TablePagination } from '@/components/table-pagination'
 import { UsersTable } from '@/modules/users-modules/users-list/components/UsersTable'
 import { UsersTableToolbar } from '@/modules/users-modules/users-list/components/UsersTableToolbar'
 import { getUsersSorting } from '@/modules/users-modules/users-list/helpers/getUsersSorting'
@@ -10,10 +11,8 @@ import { useGetAllUsersQuery } from '@/queries/users.generated'
 import { UserStatusInputType } from '@/types'
 
 export const UsersList = () => {
-  const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({
-    pageIndex: 0,
-    pageSize: 10,
-  })
+  const [pageIndex, setPageIndex] = useState(0)
+  const [pageSize, setPageSize] = useState(10)
   const [sorting, setSorting] = useState<SortingState>([])
 
   const [status, setStatus] = useState<UserStatusInputType>(UserStatusInputType.All)
@@ -21,7 +20,7 @@ export const UsersList = () => {
   const search = useDebounce(searchInput, 500)
 
   useEffect(() => {
-    setPagination(prev => ({ ...prev, pageIndex: 0 }))
+    setPageIndex(0)
   }, [search, pageSize])
 
   const { loading, error, data } = useGetAllUsersQuery({
@@ -41,24 +40,28 @@ export const UsersList = () => {
 
   if (data?.users) {
     return (
-      <div className="bg-accent-100w-full pt-16 pl-6 pr-16">
+      <>
         <UsersTableToolbar
           searchInput={searchInput}
           setSearchInput={setSearchInput}
           status={status}
           setStatus={setStatus}
         />
-
         <UsersTable
           users={data.users.items}
           pagesCount={data.users.pagesCount}
-          pageIndex={pageIndex}
-          pageSize={pageSize}
-          setPagination={setPagination}
           sorting={sorting}
           setSorting={setSorting}
         />
-      </div>
+
+        <TablePagination
+          pagesCount={data.users.pagesCount}
+          pageIndex={pageIndex}
+          setPageIndex={setPageIndex}
+          pageSize={pageSize}
+          setPageSize={setPageSize}
+        />
+      </>
     )
   }
 }

@@ -21,11 +21,11 @@ export type GetAllPaymentsQuery = {
     items: Array<{
       __typename?: 'PaymentsListViewModel'
       urlAvatar?: string | null
-      userName?: string | null
-      createdAt?: any | null
-      amount?: number | null
-      typeSubscription?: Types.SubscriptionType | null
-      paymentMethod?: Types.PaymentMethod | null
+      userName: string
+      createdAt: any
+      amount: number
+      typeSubscription: Types.SubscriptionType
+      paymentType: Types.PaymentMethod
     }>
   }
 }
@@ -53,7 +53,7 @@ export const GetAllPaymentsDocument = gql`
         createdAt
         amount
         typeSubscription
-        paymentMethod
+        paymentType
       }
     }
   }

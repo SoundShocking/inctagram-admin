@@ -1,10 +1,9 @@
-import { Dispatch, FC, SetStateAction, useMemo } from 'react'
+import { Dispatch, FC, SetStateAction } from 'react'
 
 import {
   flexRender,
   getCoreRowModel,
   getSortedRowModel,
-  PaginationState,
   SortingState,
   useReactTable,
 } from '@tanstack/react-table'
@@ -12,44 +11,32 @@ import { createColumnHelper } from '@tanstack/table-core'
 import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next'
 
+import { UsersTableUserIdCell } from '@/modules/users-modules/users-list/components/UsersTableUserIdCell'
 import { UserForSuperAdminViewModel } from '@/types'
 import { TableActionsDropdown } from '@/ui/dropdown/TableActionsDropdown'
 
-const columnHelper =
-  createColumnHelper<Pick<UserForSuperAdminViewModel, 'userId' | 'userName' | 'createdAt'>>()
+export type UsersItem = Pick<
+  UserForSuperAdminViewModel,
+  'userId' | 'userName' | 'createdAt' | 'status'
+>
+
+const columnHelper = createColumnHelper<UsersItem>()
 
 interface Props {
-  users: Pick<UserForSuperAdminViewModel, 'userId' | 'userName' | 'createdAt'>[]
+  users: UsersItem[]
   pagesCount: number
-  pageIndex: number
-  pageSize: number
-  setPagination: Dispatch<SetStateAction<PaginationState>>
   sorting: SortingState
   setSorting: Dispatch<SetStateAction<SortingState>>
 }
 
-export const UsersTable: FC<Props> = ({
-  users,
-  pagesCount,
-  pageSize,
-  pageIndex,
-  setPagination,
-  sorting,
-  setSorting,
-}) => {
+export const UsersTable: FC<Props> = ({ users, pagesCount, sorting, setSorting }) => {
   const { t } = useTranslation()
-  const pagination = useMemo(
-    () => ({
-      pageIndex,
-      pageSize,
-    }),
-    [pageIndex, pageSize]
-  )
+
   const columns = [
     columnHelper.accessor('userId', {
       id: 'id',
       header: t('userList.table.userId'),
-      cell: info => info.getValue(),
+      cell: props => <UsersTableUserIdCell row={props.row} />,
       enableSorting: true,
     }),
     columnHelper.accessor('userName', {
@@ -76,13 +63,9 @@ export const UsersTable: FC<Props> = ({
     columns,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
-    pageCount: pagesCount,
     state: {
-      pagination,
       sorting,
     },
-    onPaginationChange: setPagination,
-    manualPagination: true,
     onSortingChange: setSorting,
     manualSorting: true,
   })
@@ -148,51 +131,6 @@ export const UsersTable: FC<Props> = ({
               })}
             </tbody>
           </table>
-
-          <div className="h-2" />
-          <div className="pt-2 flex items-center gap-2 text-light-100 font-normal text-sm">
-            <button
-              className="border rounded p-1"
-              onClick={() => table.setPageIndex(0)}
-              disabled={!table.getCanPreviousPage()}
-            >
-              {'<<'}
-            </button>
-            <button
-              className="border rounded p-1"
-              onClick={() => table.previousPage()}
-              disabled={!table.getCanPreviousPage()}
-            >
-              {'<'}
-            </button>
-            <button
-              className="border rounded p-1"
-              onClick={() => table.nextPage()}
-              disabled={!table.getCanNextPage()}
-            >
-              {'>'}
-            </button>
-            <button
-              className="border rounded p-1"
-              onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-              disabled={!table.getCanNextPage()}
-            >
-              {'>>'}
-            </button>
-            <select
-              className={'bg-dark-500 text-light-100 text-sm font-normal'}
-              value={table.getState().pagination.pageSize}
-              onChange={e => {
-                table.setPageSize(Number(e.target.value))
-              }}
-            >
-              {[10, 20, 30, 40, 50].map(pageSize => (
-                <option key={pageSize} value={pageSize}>
-                  {t('userList.show')} {pageSize}
-                </option>
-              ))}
-            </select>
-          </div>
         </div>
       </div>
     </>
