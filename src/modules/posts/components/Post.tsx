@@ -1,13 +1,11 @@
 import { clsx } from 'clsx'
 import { formatDistance, parseISO } from 'date-fns'
-import Image from 'next/image'
 import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
 
 import { PostsItemsType } from '@/modules/posts/type/postsType'
-import { routes } from '@/routing/router.js'
 import { Placeholder } from '@/ui'
-import { IconStatus, localTimeDisplayLanguageInThePost, PostsActionsDropDown } from 'modules/posts'
+import { localTimeDisplayLanguageInThePost, PostsActionsDropDown } from 'modules/posts'
 
 export const Post = ({
   post,
