@@ -94,7 +94,7 @@ export const UserPayments = () => {
   return (
     <div className=" text-accent-500 p-2 block w-full ">
       <UserPaymentsTable tableProps={tableProps} />
-      {paymentsData?.pagesCount && (
+      {paymentsData?.pagesCount ? (
         <TablePagination
           pagesCount={paymentsData?.pagesCount}
           pageIndex={pageIndex}
@@ -102,7 +102,7 @@ export const UserPayments = () => {
           pageSize={pageSize}
           setPageSize={setPageSize}
         />
-      )}
+      ) : null}
     </div>
   )
 }
