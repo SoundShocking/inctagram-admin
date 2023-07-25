@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 
 import { PostsItemsType } from '@/modules/posts/type/postsType'
 import { Avatar } from '@/ui'
-import { IconStatus, PostsActionsDropDown } from 'modules/posts'
+import { IconStatus, localTimeDisplayLanguageInThePost, PostsActionsDropDown } from 'modules/posts'
 
 export const Post = ({
   post,
@@ -18,7 +18,8 @@ export const Post = ({
   getStatusColor: (status: string) => string
   setShowMoreId: (postId: number) => void
 }) => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const locale: Locale | undefined = localTimeDisplayLanguageInThePost[i18n.language]
 
   return (
     <>
@@ -55,6 +56,7 @@ export const Post = ({
           <span className="pt-3 font-normal text-light-100 leading-4 text-xs">
             {formatDistance(parseISO(post.createdAt), new Date(), {
               addSuffix: true,
+              locale: locale,
             })}
           </span>
           <p className="text-sm text-light-100 overflow-hidden max-w-full leading-6 font-normal">
