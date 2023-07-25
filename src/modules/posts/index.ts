@@ -18,7 +18,6 @@ export * from './queries/banUnbanPostUserMutatuion'
 
 //custom
 export * from '@/modules/posts/custom/icon/IconStatus'
-export * from '@/modules/posts/custom/utils/getStatusColor'
 export * from '@/modules/posts/custom/utils/updateCachePostsList'
 export * from '@/modules/posts/custom/constatns/localTimeDisplayLanguageInThePost'
 //effect

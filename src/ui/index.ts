@@ -1,4 +1,3 @@
-export * from './avatar/Avatar'
 export * from './buttons/GlobalButton'
 
 //date picker
@@ -24,3 +23,4 @@ export * from './spinner/Spinner'
 //image
 export * from './image-selector/ImageSelector'
 export * from './image-selector/image-option/ImageOption'
+export * from './placeholder/Placeholder'
