@@ -2,7 +2,11 @@ import React, { useState } from 'react'
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import { useTranslation } from 'react-i18next'
+import { AiFillUnlock } from 'react-icons/ai'
+import { CgUnblock } from 'react-icons/cg'
+import { FaEye, FaUnlock } from 'react-icons/fa'
 import { FaEllipsis, FaBan, FaUserLock } from 'react-icons/fa6'
+import { ImEye, ImEyeBlocked } from 'react-icons/im'
 
 import { BanUserModal } from '@/components/ban-unban/ban/BanUserModal'
 import { UnbanUserModal } from '@/components/ban-unban/unban/UnbanUserModal'
@@ -55,7 +59,7 @@ export const PostsActionsDropDown = ({
                 className="flex items-center mb-3 cursor-pointer"
                 onSelect={() => onBanPostClick()}
               >
-                <FaBan size={24} className="mr-3" />
+                <FaUserLock size={24} className="mr-3" />
                 {t('userList.banUser')}
               </DropdownMenu.Item>
             )}
@@ -65,7 +69,7 @@ export const PostsActionsDropDown = ({
                 className="flex items-center mb-3 cursor-pointer"
                 onSelect={() => onUnbanPostClick()}
               >
-                <FaUserLock size={24} className="mr-3" />
+                <AiFillUnlock size={24} className="mr-3" />
                 {t('userList.unbanUser')}
               </DropdownMenu.Item>
             )}
@@ -75,7 +79,7 @@ export const PostsActionsDropDown = ({
                 className="flex items-center mb-3 cursor-pointer"
                 onSelect={() => onBanClick()}
               >
-                <FaBan size={24} className="mr-3" />
+                <ImEyeBlocked size={24} className="mr-3" />
                 {t('postsList.banPost')}
               </DropdownMenu.Item>
             )}
@@ -85,7 +89,7 @@ export const PostsActionsDropDown = ({
                 className="flex items-center mb-3 cursor-pointer"
                 onSelect={() => onUnbanClick()}
               >
-                <FaBan size={24} className="mr-3" />
+                <ImEye size={24} className="mr-3" />
                 {t('postsList.unbanPost')}
               </DropdownMenu.Item>
             )}
