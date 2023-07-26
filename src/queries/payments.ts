@@ -20,6 +20,7 @@ export const GET_ALL_PAYMENTS = gql`
       items {
         urlAvatar
         userName
+        userId
         createdAt
         amount
         typeSubscription

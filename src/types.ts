@@ -98,6 +98,7 @@ export type PaymentsListViewModel = {
   status: StatusSubscriptionType
   typeSubscription: SubscriptionType
   urlAvatar?: Maybe<Scalars['String']['output']>
+  userId: Scalars['Float']['output']
   userName: Scalars['String']['output']
 }
 
