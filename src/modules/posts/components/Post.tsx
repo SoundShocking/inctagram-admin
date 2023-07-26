@@ -22,7 +22,7 @@ export const Post = ({
     border: clsx(
       post.status === 'ACTIVE' ? 'border-2 border-emerald-700' : '',
       post.status === 'PENDING' ? 'border-2 border-amber-700' : '',
-      post.status === 'BANNED' ? 'border-2 border-accent-700' : ''
+      post.status === 'BANNED' ? 'border-2 border-danger-700' : ''
     ),
   }
 
@@ -38,7 +38,7 @@ export const Post = ({
             src={post.urlsPostsImages[0]}
           />
           <div className="flex flex-wrap pt-1.5 gap-1 align-middle content-center justify-between">
-            <div className="flex w-full flex-wrap h-full justify-around gap-3 align-middle">
+            <div className="flex w-full items-center flex-wrap h-full justify-around gap-3 align-middle">
               <Placeholder
                 className={`cursor-default rounded-full ${className.border}`}
                 src={post.urlAvatar}

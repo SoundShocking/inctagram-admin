@@ -28,6 +28,20 @@ i18n.use(initReactI18next).init({
           paymentsList: 'Payments list',
           logout: 'Logout',
         },
+        userInfo: {
+          userInfoMain: {
+            backUsersList: 'Back to Users List',
+            linkProfile: 'Link profile',
+            userID: 'UserId',
+            profileCreationDate: 'Profile Creation Date',
+          },
+          tabs: {
+            uploadPhotos: 'Upload Photos',
+            payments: 'Payments',
+            followers: 'Followers',
+            following: 'Following',
+          },
+        },
         postsList: {
           publishedPosts: 'Published posts',
           bannedPosts: 'Banned posts',
@@ -134,6 +148,20 @@ i18n.use(initReactI18next).init({
           postList: 'Список постов',
           paymentsList: 'Список платежей',
           logout: 'Выйти',
+        },
+        userInfo: {
+          userInfoMain: {
+            backUsersList: 'Вернуться к списку пользователей',
+            linkProfile: 'Ссылка на профиль',
+            userID: 'Идентификатор пользователя',
+            profileCreationDate: 'Дата создания профиля',
+          },
+          tabs: {
+            uploadPhotos: 'Загрузить фото',
+            payments: 'Платежи',
+            followers: 'Подписчики',
+            following: 'Подписки',
+          },
         },
         postsList: {
           publishedPosts: 'Опубликованные посты',
@@ -242,6 +270,20 @@ i18n.use(initReactI18next).init({
           paymentsList: 'Список платежів',
           logout: 'Вийти',
         },
+        userInfo: {
+          userInfoMain: {
+            backUsersList: 'Повернутися до списку користувачів',
+            linkProfile: 'Посилання на профіль',
+            userID: 'Ідентифікатор користувача',
+            profileCreationDate: 'Дата створення профілю',
+          },
+          tabs: {
+            uploadPhotos: 'Завантажити Фото',
+            payments: 'Платежі',
+            followers: ' Підписники ',
+            following: ' Підписатися ',
+          },
+        },
         postsList: {
           publishedPosts: 'Опубліковані пости',
           bannedPosts: 'Заборонені пости',
@@ -349,6 +391,20 @@ i18n.use(initReactI18next).init({
           paymentsList: 'Спіс плацяжоў',
           logout: 'Выйсці',
         },
+        userInfo: {
+          userInfoMain: {
+            backUsersList: 'Вярнуцца да спiсу карыстальнiкоў',
+            linkProfile: 'Спасылка на прафайл',
+            userID: 'Ідэнтыфікатар карыстальнiка',
+            profileCreationDate: 'Дата стварэння прафайла',
+          },
+          tabs: {
+            uploadPhotos: 'Загрузце Фатаграфіі',
+            payments: 'Аплата',
+            followers: 'Наконт',
+            following: 'Сачыць',
+          },
+        },
         postsList: {
           publishedPosts: 'Опубликованные посты',
           bannedPosts: 'Заблокированные посты',
@@ -455,6 +511,20 @@ i18n.use(initReactI18next).init({
           postList: 'Rrwggwwr wrr',
           paymentsList: 'Urggghh wrr',
           logout: 'grrrwahh',
+        },
+        userInfo: {
+          userInfoMain: {
+            backUsersList: 'Rruurh rrragwah aarh ruuwoor ururrrgh!',
+            linkProfile: 'Graaawoo roo aaarghrooworraggwoo!',
+            userID: 'Roowoorc ruuruugh argh woorarrggch awwrroooc?',
+            profileCreationDate: 'Woorac raaghrugwaa oohra grawoo!',
+          },
+          tabs: {
+            uploadPhotos: 'Grahhgggghhrrr gruhhgah',
+            payments: 'Ryyyrgh grawwwwww',
+            followers: 'Grrruuugh rarghhh',
+            following: 'Ryyyrgg rrararaghh',
+          },
         },
         postsList: {
           publishedPosts: 'Wrrraaarghbaaaarrrrgh! Ggggrrwwaahhh!',
