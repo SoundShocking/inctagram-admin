@@ -28,6 +28,14 @@ i18n.use(initReactI18next).init({
           paymentsList: 'Payments list',
           logout: 'Logout',
         },
+        userInfo: {
+          tabs: {
+            uploadPhotos: 'Upload Photos',
+            payments: 'Payments',
+            followers: 'Followers',
+            following: 'Following',
+          },
+        },
         postsList: {
           publishedPosts: 'Published posts',
           bannedPosts: 'Banned posts',
@@ -134,6 +142,14 @@ i18n.use(initReactI18next).init({
           postList: 'Список постов',
           paymentsList: 'Список платежей',
           logout: 'Выйти',
+        },
+        userInfo: {
+          tabs: {
+            uploadPhotos: 'Загрузить фото',
+            payments: 'Платежи',
+            followers: 'Подписчики',
+            following: 'Подписки',
+          },
         },
         postsList: {
           publishedPosts: 'Опубликованные посты',
@@ -242,6 +258,14 @@ i18n.use(initReactI18next).init({
           paymentsList: 'Список платежів',
           logout: 'Вийти',
         },
+        userInfo: {
+          tabs: {
+            uploadPhotos: 'Завантажити Фото',
+            payments: 'Платежі',
+            followers: ' Підписники ',
+            following: ' Підписатися ',
+          },
+        },
         postsList: {
           publishedPosts: 'Опубліковані пости',
           bannedPosts: 'Заборонені пости',
@@ -349,6 +373,14 @@ i18n.use(initReactI18next).init({
           paymentsList: 'Спіс плацяжоў',
           logout: 'Выйсці',
         },
+        userInfo: {
+          tabs: {
+            uploadPhotos: 'Загрузце Фатаграфіі',
+            payments: 'Аплата',
+            followers: 'Наконт',
+            following: 'Сачыць',
+          },
+        },
         postsList: {
           publishedPosts: 'Опубликованные посты',
           bannedPosts: 'Заблокированные посты',
@@ -455,6 +487,14 @@ i18n.use(initReactI18next).init({
           postList: 'Rrwggwwr wrr',
           paymentsList: 'Urggghh wrr',
           logout: 'grrrwahh',
+        },
+        userInfo: {
+          tabs: {
+            uploadPhotos: 'Grahhgggghhrrr gruhhgah',
+            payments: 'Ryyyrgh grawwwwww',
+            followers: 'Grrruuugh rarghhh',
+            following: 'Ryyyrgg rrararaghh',
+          },
         },
         postsList: {
           publishedPosts: 'Wrrraaarghbaaaarrrrgh! Ggggrrwwaahhh!',
