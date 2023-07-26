@@ -29,6 +29,12 @@ i18n.use(initReactI18next).init({
           logout: 'Logout',
         },
         userInfo: {
+          userInfoMain: {
+            backUsersList: 'Back to Users List',
+            linkProfile: 'Link profile',
+            userID: 'UserId',
+            profileCreationDate: 'Profile Creation Date',
+          },
           tabs: {
             uploadPhotos: 'Upload Photos',
             payments: 'Payments',
@@ -144,6 +150,12 @@ i18n.use(initReactI18next).init({
           logout: 'Выйти',
         },
         userInfo: {
+          userInfoMain: {
+            backUsersList: 'Вернуться к списку пользователей',
+            linkProfile: 'Ссылка на профиль',
+            userID: 'Идентификатор пользователя',
+            profileCreationDate: 'Дата создания профиля',
+          },
           tabs: {
             uploadPhotos: 'Загрузить фото',
             payments: 'Платежи',
@@ -259,6 +271,12 @@ i18n.use(initReactI18next).init({
           logout: 'Вийти',
         },
         userInfo: {
+          userInfoMain: {
+            backUsersList: 'Повернутися до списку користувачів',
+            linkProfile: 'Посилання на профіль',
+            userID: 'Ідентифікатор користувача',
+            profileCreationDate: 'Дата створення профілю',
+          },
           tabs: {
             uploadPhotos: 'Завантажити Фото',
             payments: 'Платежі',
@@ -374,6 +392,12 @@ i18n.use(initReactI18next).init({
           logout: 'Выйсці',
         },
         userInfo: {
+          userInfoMain: {
+            backUsersList: 'Вярнуцца да спiсу карыстальнiкоў',
+            linkProfile: 'Спасылка на прафайл',
+            userID: 'Ідэнтыфікатар карыстальнiка',
+            profileCreationDate: 'Дата стварэння прафайла',
+          },
           tabs: {
             uploadPhotos: 'Загрузце Фатаграфіі',
             payments: 'Аплата',
@@ -489,6 +513,12 @@ i18n.use(initReactI18next).init({
           logout: 'grrrwahh',
         },
         userInfo: {
+          userInfoMain: {
+            backUsersList: 'Rruurh rrragwah aarh ruuwoor ururrrgh!',
+            linkProfile: 'Graaawoo roo aaarghrooworraggwoo!',
+            userID: 'Roowoorc ruuruugh argh woorarrggch awwrroooc?',
+            profileCreationDate: 'Woorac raaghrugwaa oohra grawoo!',
+          },
           tabs: {
             uploadPhotos: 'Grahhgggghhrrr gruhhgah',
             payments: 'Ryyyrgh grawwwwww',
