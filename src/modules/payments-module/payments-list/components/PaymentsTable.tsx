@@ -15,7 +15,7 @@ import { PaymentsListViewModel } from '@/types'
 
 export type PaymentsItem = Pick<
   PaymentsListViewModel,
-  'urlAvatar' | 'userName' | 'createdAt' | 'amount' | 'typeSubscription' | 'paymentType'
+  'urlAvatar' | 'userName' | 'userId' | 'createdAt' | 'amount' | 'typeSubscription' | 'paymentType'
 >
 
 const columnHelper = createColumnHelper<PaymentsItem>()

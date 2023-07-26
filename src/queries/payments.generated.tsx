@@ -22,6 +22,7 @@ export type GetAllPaymentsQuery = {
       __typename?: 'PaymentsListViewModel'
       urlAvatar?: string | null
       userName: string
+      userId: number
       createdAt: any
       amount: number
       typeSubscription: Types.SubscriptionType
@@ -50,6 +51,7 @@ export const GetAllPaymentsDocument = gql`
       items {
         urlAvatar
         userName
+        userId
         createdAt
         amount
         typeSubscription
