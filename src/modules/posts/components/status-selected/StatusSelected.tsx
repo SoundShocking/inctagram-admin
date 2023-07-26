@@ -8,6 +8,7 @@ export const StatusSelected: FC<StatusSelectedType> = ({ refetch, status, setSta
   const { t } = useTranslation()
   const callBackOnChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setStatus(e.target.value as PostStatusForPostsListInputType)
+    refetch()
   }
 
   return (

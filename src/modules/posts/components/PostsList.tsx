@@ -30,7 +30,6 @@ export const PostsList = () => {
   const [showMoreIds, setShowMoreIds] = useState<number[]>([])
   const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false)
   const [pageNumber, setPageNumber] = useState<number>(1)
-  // const { postStatusBannedDeleted } = useContext(AuthContext)
   const { loading, error, fetchMore, refetch } = useQuery<PostsType>(GET_POSTS_LIST, {
     variables: {
       search: debounce,
