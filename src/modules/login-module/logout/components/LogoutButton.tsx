@@ -1,5 +1,6 @@
 import { FC } from 'react'
 
+import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'react-i18next'
 import { FaSignOutAlt } from 'react-icons/fa'
@@ -9,7 +10,7 @@ import { routes } from '@/routing/router.js'
 export const LogoutButton: FC = () => {
   const router = useRouter()
   const handleLogout = () => {
-    localStorage.removeItem('authorization')
+    Cookies.remove('authToken')
     router.push(routes.logout)
   }
   const { t } = useTranslation()

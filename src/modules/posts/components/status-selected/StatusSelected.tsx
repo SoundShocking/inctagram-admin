@@ -4,11 +4,10 @@ import { useTranslation } from 'react-i18next'
 
 import { PostStatusForPostsListInputType, StatusSelectedType } from 'modules/posts'
 
-export const StatusSelected: FC<StatusSelectedType> = ({ refetch, status, setStatus }) => {
+export const StatusSelected: FC<StatusSelectedType> = ({ status, setStatus }) => {
   const { t } = useTranslation()
   const callBackOnChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setStatus(e.target.value as PostStatusForPostsListInputType)
-    refetch()
   }
 
   return (
@@ -21,9 +20,7 @@ export const StatusSelected: FC<StatusSelectedType> = ({ refetch, status, setSta
         <option value={PostStatusForPostsListInputType.PUBLISHED}>
           {t('postsList.publishedPosts')}
         </option>
-        <option onChange={() => refetch()} value={PostStatusForPostsListInputType.BANNED}>
-          {t('postsList.bannedPosts')}
-        </option>
+        <option value={PostStatusForPostsListInputType.BANNED}>{t('postsList.bannedPosts')}</option>
       </select>
     </div>
   )

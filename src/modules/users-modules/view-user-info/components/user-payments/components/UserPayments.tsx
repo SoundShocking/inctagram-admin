@@ -11,7 +11,7 @@ import {
 import { useRouter } from 'next/router'
 
 import { capitalizeFirstLetter, dateChangesFormat } from '@/common'
-import { ErrorComponent } from '@/components'
+import { ErrorMessage } from '@/components'
 import { TablePagination } from '@/components/table-pagination'
 import {
   GET_USER_PAYMENTS,
@@ -87,12 +87,9 @@ export const UserPayments = () => {
     getSortedRowModel: getSortedRowModel(),
   })
 
-  if (error && !loading) {
-    return <ErrorComponent error={error} />
-  }
-
   return (
     <div className=" text-accent-500 p-2 block w-full ">
+      <ErrorMessage errorMessage={error?.message} />
       <UserPaymentsTable tableProps={tableProps} />
       {paymentsData?.pagesCount ? (
         <TablePagination

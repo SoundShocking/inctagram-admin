@@ -1,11 +1,12 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 
 import { useQuery } from '@apollo/client'
 import { useInView } from 'react-intersection-observer'
 
-import { ErrorComponent, NotFoundComponent } from '@/components'
+import { ErrorMessage, NotFoundComponent } from '@/components'
 import { GlobalInput, Spinner } from '@/ui'
 import {
+  addNewPostSubscriptionsEffect,
   GET_POSTS_LIST,
   handleSearchDebounceEffect,
   infinityScrollForPostsEffect,
@@ -16,7 +17,7 @@ import {
   PostsType,
   SkeletonPost,
   StatusSelected,
-  updateCachePostsList,
+  useStatusPostRefetchEffect,
 } from 'modules/posts'
 
 export const PostsList = () => {
@@ -30,39 +31,23 @@ export const PostsList = () => {
   const [showMoreIds, setShowMoreIds] = useState<number[]>([])
   const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false)
   const [pageNumber, setPageNumber] = useState<number>(1)
-  const { loading, error, fetchMore, refetch } = useQuery<PostsType>(GET_POSTS_LIST, {
-    variables: {
-      search: debounce,
-      status: status,
-    },
-    onCompleted: (data: PostsType) => {
-      setPostsData(data?.postsList)
-    },
-    onError: error => console.error('error', error),
-  })
-
-  const handleScroll = () => {
-    if (
-      !isLoadingMore &&
-      inView &&
-      postsData &&
-      postsData.items.length + 1 < postsData.totalCount
-    ) {
-      setIsLoadingMore(true)
-      const newPageNumber = pageNumber + 1
-
-      setPageNumber(newPageNumber)
-      fetchMore({
-        variables: { pageNumber: newPageNumber },
-        updateQuery: (prev, { fetchMoreResult }) =>
-          updateCachePostsList(prev, { fetchMoreResult }, setIsLoadingMore),
-      })
-    }
-  }
-
   const { ref, inView } = useInView({
     threshold: 0.1,
   })
+
+  const { loading, error, fetchMore, refetch, subscribeToMore } = useQuery<PostsType>(
+    GET_POSTS_LIST,
+    {
+      variables: {
+        search: debounce,
+        status: status,
+      },
+      onCompleted: (data: PostsType) => {
+        setPostsData(data?.postsList)
+      },
+      onError: error => console.error('error', error),
+    }
+  )
 
   const handleCallBackShowMore = (postId: number) => {
     if (showMoreIds.includes(postId)) {
@@ -78,17 +63,25 @@ export const PostsList = () => {
     setSearch(target)
   }
 
-  infinityScrollForPostsEffect({ inView, isLoadingMore, handleScroll, loading })
+  useStatusPostRefetchEffect({ status, refetch })
+  addNewPostSubscriptionsEffect(subscribeToMore)
+  infinityScrollForPostsEffect({
+    inView,
+    isLoadingMore,
+    loading,
+    fetchMore,
+    setIsLoadingMore,
+    pageNumber,
+    postsData,
+    setPageNumber,
+  })
   handleSearchDebounceEffect({ loading, timerId, setTimerId, setDebounce, search })
-
-  if (error && !loading) {
-    return <ErrorComponent error={error} />
-  }
 
   return (
     <div className="w-full pt-16 pl-6 pr-16 flex flex-col">
+      <ErrorMessage errorMessage={error?.message} />
       <div>
-        <StatusSelected refetch={refetch} status={status} setStatus={setStatus} />
+        <StatusSelected status={status} setStatus={setStatus} />
       </div>
       <div className="pb-9 w-full">
         <GlobalInput
