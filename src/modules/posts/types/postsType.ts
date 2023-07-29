@@ -35,14 +35,15 @@ export type TableActionsDropDownType = {
 }
 
 //Status Selected
-export enum PostStatusForPostsListInputType {
+export enum PostStatusForPostsLisType {
   PUBLISHED = 'PUBLISHED',
   BANNED = 'BANNED',
 }
 
 export type StatusSelectedType = {
-  status: PostStatusForPostsListInputType
-  setStatus: (status: PostStatusForPostsListInputType) => void
+  refetch: () => void
+  status: PostStatusForPostsLisType
+  setStatus: (status: PostStatusForPostsLisType) => void
 }
 
 //ban unban post
