@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 
 import { useQuery } from '@apollo/client'
+import Cookies from 'js-cookie'
 import { FieldValues } from 'react-hook-form'
 import { toast } from 'react-toastify'
 
@@ -8,7 +9,6 @@ import { useGlobalForm } from '@/common'
 import { GET_DATA, loadingEffect, LoginEffect, schemaLogin } from '@/modules/login-module/login'
 import { AuthContext } from '@/store/store'
 import { GlobalButton, GlobalInput, InputWithEye, Preloader } from '@/ui'
-
 export const LoginForm = () => {
   const { login, logout, setLoading, auth } = useContext(AuthContext)
   const { refetch, data, loading } = useQuery(GET_DATA, {
@@ -21,7 +21,7 @@ export const LoginForm = () => {
     refetch()
       .then()
       .catch(() => toast.error('Bad request'))
-    localStorage.setItem('authorization', authorization)
+    Cookies.set('authToken', authorization)
   }
 
   LoginEffect({ data, login, logout })

@@ -1,2 +1,2 @@
-export * from './render-error-message/RenderErrorMessage'
+export * from '@/components/error-message/ErrorMessage'
 export * from './not-found/NotFound'
