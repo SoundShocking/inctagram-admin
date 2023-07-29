@@ -11,7 +11,7 @@ const httpLink = createHttpLink({
 
 const wsLink = new GraphQLWsLink(
   createClient({
-    url: 'ws://api.cygan.lol/subscriptions',
+    url: 'wws://api.cygan.lol/subscriptions',
     connectionParams: () => {
       return {
         headers: {
