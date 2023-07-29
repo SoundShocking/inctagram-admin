@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 
 import { useQuery } from '@apollo/client'
 import { useInView } from 'react-intersection-observer'
