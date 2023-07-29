@@ -1,5 +1,9 @@
 export type StatusType = 'PENDING' | 'ACTIVE' | 'BANNED' | 'DELETED'
 
+export type SubscriptionData = {
+  createdPost: PostsItemsType
+}
+
 export type PostsItemsType = {
   createdAt: string
   userId: number
@@ -39,7 +43,6 @@ export enum PostStatusForPostsListInputType {
 export type StatusSelectedType = {
   status: PostStatusForPostsListInputType
   setStatus: (status: PostStatusForPostsListInputType) => void
-  refetch: () => void
 }
 
 //ban unban post

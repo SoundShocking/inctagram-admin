@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { useInView } from 'react-intersection-observer'
 
-import { ErrorComponent, NotFoundComponent } from '@/components'
+import { ErrorMessage, NotFoundComponent } from '@/components'
 import {
   GET_USER_IMAGES,
   ImagesUserType,
@@ -62,12 +62,9 @@ export const UserPhotos = () => {
 
   useInViewScrollHandlerEffect({ inView, isLoadingMore, loading, handleScroll })
 
-  if (error && !loading) {
-    return <ErrorComponent error={error} />
-  }
-
   return (
     <div className="mt-14">
+      <ErrorMessage errorMessage={error?.message}></ErrorMessage>
       <div className="grid w-full grid-cols-4 gap-3 md:grid-cols-3 sm:grid-cols-2">
         {loading ? (
           usedToDrawArraysOfSkeletons(32)

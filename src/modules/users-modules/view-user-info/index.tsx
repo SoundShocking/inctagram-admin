@@ -7,8 +7,6 @@ export * from './components/ViewUserInformationInTabs'
 export * from './components/user-photos/components/UserPhoto'
 export * from '@/modules/users-modules/view-user-info/components/user-payments/components/UserPayments'
 export * from '@/modules/users-modules/view-user-info/components/user-payments/components/UserPaymentsTable'
-//Constants
-export * from './constants/viewUserInfoForTabs'
 //Queries
 export * from './queries/viewUserInfoQueries'
 export * from './components/user-payments/queries/viewUserPaymentsQueries'

@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 
+import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
 
 import { AuthContextType } from '@/store/storeTypes/storeTypes'
@@ -10,7 +11,7 @@ export const accessTokenVerificationEffect = ({ logout }: handleAuthRedirectEffe
   const { route } = useRouter()
 
   useEffect(() => {
-    const accessToken: string | null = localStorage?.getItem('authorization') || null
+    const accessToken: string | null = Cookies.get('authToken') || null
 
     accessToken ? accessToken : logout()
   }, [route])
