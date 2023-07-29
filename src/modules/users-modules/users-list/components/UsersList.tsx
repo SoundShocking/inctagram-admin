@@ -47,12 +47,7 @@ export const UsersList = () => {
           status={status}
           setStatus={setStatus}
         />
-        <UsersTable
-          users={data.users.items}
-          pagesCount={data.users.pagesCount}
-          sorting={sorting}
-          setSorting={setSorting}
-        />
+        <UsersTable users={data.users.items} sorting={sorting} setSorting={setSorting} />
 
         <TablePagination
           pagesCount={data.users.pagesCount}

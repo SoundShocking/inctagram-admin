@@ -4,9 +4,11 @@ import { SortingState } from '@tanstack/react-table'
 import { t } from 'i18next'
 import { useDebounce } from 'usehooks-ts'
 
+import { getPaymentsSorting } from '../helpers/getPaymentsSorting'
+
+import { PaymentsTable } from './PaymentsTable'
+
 import { TablePagination } from '@/components/table-pagination'
-import { PaymentsTable } from '@/modules/payments-module/payments-list/components/PaymentsTable'
-import { getPaymentsSorting } from '@/modules/payments-module/payments-list/getPaymentsSorting'
 import { useGetAllPaymentsQuery } from '@/queries/payments.generated'
 
 export const PaymentsList: FC = () => {

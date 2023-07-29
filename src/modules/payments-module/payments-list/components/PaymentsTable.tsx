@@ -10,7 +10,8 @@ import {
 import { createColumnHelper } from '@tanstack/table-core'
 import dayjs from 'dayjs'
 
-import { PaymentsTableUserNameCell } from '@/modules/payments-module/payments-list/components/PaymentsTableUserNameCell'
+import { PaymentsTableUserNameCell } from './PaymentsTableUserNameCell'
+
 import { PaymentsListViewModel } from '@/types'
 
 export type PaymentsItem = Pick<

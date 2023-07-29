@@ -1,6 +1,6 @@
 import { Dispatch, FC, SetStateAction } from 'react'
 
-import { t } from 'i18next'
+import { useTranslation } from 'react-i18next'
 
 interface Props {
   pageSize: number
@@ -10,6 +10,8 @@ interface Props {
 const perPageVariants = [10, 20, 30, 40, 50]
 
 export const ItemsPerPageSelector: FC<Props> = ({ setPageSize, pageSize }) => {
+  const { i18n } = useTranslation()
+
   return (
     <>
       <select
@@ -21,7 +23,7 @@ export const ItemsPerPageSelector: FC<Props> = ({ setPageSize, pageSize }) => {
       >
         {perPageVariants.map(pageSize => (
           <option key={pageSize} value={pageSize}>
-            {t('userList.show')} {pageSize}
+            {i18n.t('userList.show')} {pageSize}
           </option>
         ))}
       </select>

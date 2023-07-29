@@ -11,9 +11,10 @@ import { createColumnHelper } from '@tanstack/table-core'
 import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next'
 
-import { UsersTableUserIdCell } from '@/modules/users-modules/users-list/components/UsersTableUserIdCell'
+import { UsersTableUserActions } from './UsersTableUserActions'
+import { UsersTableUserIdCell } from './UsersTableUserIdCell'
+
 import { UserForSuperAdminViewModel } from '@/types'
-import { TableActionsDropdown } from '@/ui/dropdown/TableActionsDropdown'
 
 export type UsersItem = Pick<
   UserForSuperAdminViewModel,
@@ -24,12 +25,11 @@ const columnHelper = createColumnHelper<UsersItem>()
 
 interface Props {
   users: UsersItem[]
-  pagesCount: number
   sorting: SortingState
   setSorting: Dispatch<SetStateAction<SortingState>>
 }
 
-export const UsersTable: FC<Props> = ({ users, pagesCount, sorting, setSorting }) => {
+export const UsersTable: FC<Props> = ({ users, sorting, setSorting }) => {
   const { t } = useTranslation()
 
   const columns = [
@@ -53,7 +53,7 @@ export const UsersTable: FC<Props> = ({ users, pagesCount, sorting, setSorting }
     }),
     columnHelper.display({
       id: 'actions',
-      cell: props => <TableActionsDropdown viewInfo={true} row={props.row} />,
+      cell: props => <UsersTableUserActions viewInfo={true} row={props.row} />,
       enableSorting: false,
     }),
   ]
