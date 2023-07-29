@@ -13,19 +13,18 @@ import {
   Post,
   PostsItemsType,
   PostsListType,
-  PostStatusForPostsListInputType,
+  PostStatusForPostsLisType,
   PostsType,
   SkeletonPost,
   StatusSelected,
-  useStatusPostRefetchEffect,
 } from 'modules/posts'
 
 export const PostsList = () => {
   const [timerId, setTimerId] = useState<NodeJS.Timeout | undefined>(undefined)
   const [search, setSearch] = useState<string>('')
   const [debounce, setDebounce] = useState<string>('')
-  const [status, setStatus] = useState<PostStatusForPostsListInputType>(
-    PostStatusForPostsListInputType.PUBLISHED
+  const [status, setStatus] = useState<PostStatusForPostsLisType>(
+    PostStatusForPostsLisType.PUBLISHED
   )
   const [postsData, setPostsData] = useState<PostsListType | undefined>()
   const [showMoreIds, setShowMoreIds] = useState<number[]>([])
@@ -63,7 +62,6 @@ export const PostsList = () => {
     setSearch(target)
   }
 
-  useStatusPostRefetchEffect({ status, refetch })
   addNewPostSubscriptionsEffect(subscribeToMore)
   infinityScrollForPostsEffect({
     inView,
@@ -81,7 +79,7 @@ export const PostsList = () => {
     <div className="w-full pt-16 pl-6 pr-16 flex flex-col">
       <ErrorMessage errorMessage={error?.message} />
       <div>
-        <StatusSelected status={status} setStatus={setStatus} />
+        <StatusSelected refetch={refetch} status={status} setStatus={setStatus} />
       </div>
       <div className="pb-9 w-full">
         <GlobalInput

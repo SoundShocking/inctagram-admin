@@ -3,7 +3,7 @@ import { formatDistance, parseISO } from 'date-fns'
 import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
 
-import { PostsItemsType } from '@/modules/posts/type/postsType'
+import { PostsItemsType } from '@/modules/posts/types/postsType'
 import { Placeholder } from '@/ui'
 import { localTimeDisplayLanguageInThePost, PostsActionsDropDown } from 'modules/posts'
 
