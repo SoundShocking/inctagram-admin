@@ -1,6 +1,6 @@
 export type StatusType = 'PENDING' | 'ACTIVE' | 'BANNED' | 'DELETED'
 
-export type SubscriptionData = {
+export type SubscriptionDataPost = {
   createdPost: PostsItemsType
 }
 
@@ -32,6 +32,10 @@ export type PostsType =
 
 export type TableActionsDropDownType = {
   post: Pick<PostsItemsType, 'userName' | 'status' | 'postId' | 'postStatus' | 'userId'>
+}
+
+export interface deletePostDataInterface {
+  postDeleted: Pick<PostsItemsType, 'postId' | 'userId'>
 }
 
 //Status Selected
@@ -67,13 +71,9 @@ export type ReasonType = {
 export type BanPostModalType = {
   isBanUserOpen: boolean
   setIsBanUserOpen: (isBanUserOpen: boolean) => void
-  postId: number
-  userName: string
-}
+} & Pick<PostsItemsType, 'userName' | 'postId'>
 
 export type UnBanPostModalType = {
   isUnbanUserOpen: boolean
   setIsUnbanUserOpen: (isUnbanUserOpen: boolean) => void
-  userName: string
-  postId: number
-}
+} & Pick<PostsItemsType, 'userName' | 'postId'>

@@ -4,6 +4,7 @@ import { useQuery } from '@apollo/client'
 import { useInView } from 'react-intersection-observer'
 
 import { ErrorMessage, NotFoundComponent } from '@/components'
+import { deletePostSubscriptionsEffect } from '@/modules/posts/custom/useEffect/deletePostSubscriptionsEffect'
 import { GlobalInput, Spinner } from '@/ui'
 import {
   addNewPostSubscriptionsEffect,
@@ -62,6 +63,7 @@ export const PostsList = () => {
     setSearch(target)
   }
 
+  deletePostSubscriptionsEffect(subscribeToMore)
   addNewPostSubscriptionsEffect(subscribeToMore)
   infinityScrollForPostsEffect({
     inView,
