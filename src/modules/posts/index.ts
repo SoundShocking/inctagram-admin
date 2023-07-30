@@ -5,9 +5,11 @@ export * from './components/PostsList'
 export * from './components/Post'
 export * from './components/PostsActionsDropDown'
 export * from './components/status-selected/StatusSelected'
+export * from './components/slider/SliderImagesPosts'
+export * from './components/slider/ButtonNextPrev'
 
-//type
-export * from './type/postsType'
+//types
+export * from '@/modules/posts/types/postsType'
 
 export * from './skeleton/SkeletonUsersPosts'
 export * from './skeleton/SkeletonPost'
@@ -23,4 +25,3 @@ export * from '@/modules/posts/custom/constatns/localTimeDisplayLanguageInThePos
 export * from './custom/useEffect/handleSearchDebounceEffect'
 export * from './custom/useEffect/infinityScrollForPostsEffect'
 export * from './custom/useEffect/addNewPostSubscriptionsEffect'
-export * from './custom/useEffect/useStatusPostRefetchEffect'

@@ -3,9 +3,13 @@ import { formatDistance, parseISO } from 'date-fns'
 import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
 
-import { PostsItemsType } from '@/modules/posts/type/postsType'
+import { PostsItemsType } from '@/modules/posts/types/postsType'
 import { Placeholder } from '@/ui'
-import { localTimeDisplayLanguageInThePost, PostsActionsDropDown } from 'modules/posts'
+import {
+  localTimeDisplayLanguageInThePost,
+  PostsActionsDropDown,
+  SliderImagesPost,
+} from 'modules/posts'
 
 export const Post = ({
   post,
@@ -29,14 +33,8 @@ export const Post = ({
   return (
     <>
       <div className="max-w-56 flex flex-col h-auto">
-        <div className="w-full">
-          <Placeholder
-            alt={'Post image'}
-            className="bg-dark-300"
-            width={234}
-            height={240}
-            src={post.urlsPostsImages[0]}
-          />
+        <div className="w-full h-full ">
+          <SliderImagesPost postImages={post.urlsPostsImages} />
           <div className="flex flex-wrap pt-1.5 gap-1 align-middle content-center justify-between">
             <div className="flex w-full items-center flex-wrap h-full justify-around gap-3 align-middle">
               <Placeholder
