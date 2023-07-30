@@ -6,8 +6,6 @@ export const DELETE_USER = gql`
   }
 `
 
-export type BanReasonInputType = 'Bad_behavior' | 'Advertising_placement' | 'Another_reason'
-
 export const UPDATE_USER_STATUS = gql`
   mutation updateUserStatus(
     $userId: Int!

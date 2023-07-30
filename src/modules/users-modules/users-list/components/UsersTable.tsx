@@ -8,12 +8,15 @@ import {
   useReactTable,
 } from '@tanstack/react-table'
 import { createColumnHelper } from '@tanstack/table-core'
+import { clsx } from 'clsx'
 import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next'
 
-import { UsersTableUserIdCell } from '@/modules/users-modules/users-list/components/UsersTableUserIdCell'
+import { UsersTableUserActions } from './UsersTableUserActions'
+import { UsersTableUserIdCell } from './UsersTableUserIdCell'
+
+import { TableSortIcon } from '@/components/table-sort-icon'
 import { UserForSuperAdminViewModel } from '@/types'
-import { TableActionsDropdown } from '@/ui/dropdown/TableActionsDropdown'
 
 export type UsersItem = Pick<
   UserForSuperAdminViewModel,
@@ -24,12 +27,11 @@ const columnHelper = createColumnHelper<UsersItem>()
 
 interface Props {
   users: UsersItem[]
-  pagesCount: number
   sorting: SortingState
   setSorting: Dispatch<SetStateAction<SortingState>>
 }
 
-export const UsersTable: FC<Props> = ({ users, pagesCount, sorting, setSorting }) => {
+export const UsersTable: FC<Props> = ({ users, sorting, setSorting }) => {
   const { t } = useTranslation()
 
   const columns = [
@@ -53,7 +55,7 @@ export const UsersTable: FC<Props> = ({ users, pagesCount, sorting, setSorting }
     }),
     columnHelper.display({
       id: 'actions',
-      cell: props => <TableActionsDropdown viewInfo={true} row={props.row} />,
+      cell: props => <UsersTableUserActions viewInfo={true} row={props.row} />,
       enableSorting: false,
     }),
   ]
@@ -86,18 +88,17 @@ export const UsersTable: FC<Props> = ({ users, pagesCount, sorting, setSorting }
                     <th key={header.id} colSpan={header.colSpan}>
                       {header.isPlaceholder ? null : (
                         <div
-                          {...{
-                            className: header.column.getCanSort()
-                              ? 'cursor-pointer select-none'
-                              : '',
-                            onClick: header.column.getToggleSortingHandler(),
-                          }}
+                          className={clsx('flex items-center justify-center select-none', {
+                            'cursor-pointer': header.column.getCanSort(),
+                          })}
+                          onClick={header.column.getToggleSortingHandler()}
                         >
                           {flexRender(header.column.columnDef.header, header.getContext())}
-                          {{
-                            asc: ' 🔼',
-                            desc: ' 🔽',
-                          }[header.column.getIsSorted() as string] ?? null}
+
+                          <TableSortIcon
+                            isCanSort={header.column.getCanSort()}
+                            isSorted={header.column.getIsSorted()}
+                          />
                         </div>
                       )}
                     </th>

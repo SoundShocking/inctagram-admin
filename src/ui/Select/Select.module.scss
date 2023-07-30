@@ -1,0 +1,20 @@
+.SelectTrigger {
+  @apply flex items-center bg-dark-500 border border-dark-100 px-3 text-sm text-white h-9 w-[168px] outline-none;
+}
+
+.SelectTriggerIcon {
+  @apply ml-auto;
+}
+
+.SelectContent {
+  @apply overflow-hidden bg-dark-500 border border-dark-100 py-1 px-3 text-sm text-white;
+  width: var(--radix-select-trigger-width);
+}
+
+.SelectScrollButton {
+  @apply flex items-center justify-center h-[25px] bg-white text-black cursor-default;
+}
+
+.SelectItem {
+  @apply flex items-center my-2 cursor-pointer hover:text-accent-500 transition-colors data-[highlighted]:outline-none select-none;
+}
