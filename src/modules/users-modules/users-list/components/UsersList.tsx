@@ -12,7 +12,7 @@ import { UserStatusInputType } from '@/types'
 
 export const UsersList = () => {
   const [pageIndex, setPageIndex] = useState(0)
-  const [pageSize, setPageSize] = useState(10)
+  const [pageSize, setPageSize] = useState('10')
   const [sorting, setSorting] = useState<SortingState>([])
 
   const [status, setStatus] = useState<UserStatusInputType>(UserStatusInputType.All)
@@ -25,7 +25,7 @@ export const UsersList = () => {
 
   const { loading, error, data, previousData } = useGetAllUsersQuery({
     variables: {
-      pageSize,
+      pageSize: +pageSize,
       pageNumber: pageIndex + 1,
       status,
       search,

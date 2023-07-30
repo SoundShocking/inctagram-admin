@@ -7,72 +7,72 @@ import React, {
   SetStateAction,
 } from 'react'
 
-import * as Select from '@radix-ui/react-select'
-import { SelectItemProps } from '@radix-ui/react-select'
+import * as SelectPrimitive from '@radix-ui/react-select'
+import { SelectItemProps as SelectPrimitiveItemProps } from '@radix-ui/react-select'
 import { clsx } from 'clsx'
-import { useTranslation } from 'react-i18next'
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa6'
 
 import styles from './Select.module.scss'
 
-import { UserStatusInputType } from '@/types'
-
-interface CustomSelectProps extends PropsWithChildren {
+interface SelectProps<T> extends PropsWithChildren {
   value: string
-  setValue: Dispatch<SetStateAction<UserStatusInputType>>
+  setValue: Dispatch<SetStateAction<T>>
+  fullWidth?: boolean
 }
 
-export const CustomSelect: FC<CustomSelectProps> = ({ value, setValue, children }) => {
-  const { t } = useTranslation()
-
-  const onValueChange = (value: UserStatusInputType) => {
-    setValue(value)
+export const Select = <T,>({ value, setValue, fullWidth = false, children }: SelectProps<T>) => {
+  const onValueChange = (value: string) => {
+    setValue(value as T)
   }
 
   return (
-    <Select.Root value={value} onValueChange={onValueChange}>
-      <Select.Trigger className={styles.SelectTrigger}>
-        <Select.Value />
-        <Select.Icon className={styles.SelectTriggerIcon}>
+    <SelectPrimitive.Root value={value} onValueChange={onValueChange}>
+      <SelectPrimitive.Trigger className={clsx(styles.SelectTrigger, { '!w-full': fullWidth })}>
+        <SelectPrimitive.Value />
+        <SelectPrimitive.Icon className={styles.SelectTriggerIcon}>
           <FaChevronDown size={16} />
-        </Select.Icon>
-      </Select.Trigger>
-      <Select.Portal>
-        <Select.Content
+        </SelectPrimitive.Icon>
+      </SelectPrimitive.Trigger>
+      <SelectPrimitive.Portal className="z-[100]">
+        <SelectPrimitive.Content
           position="popper"
-          className={styles.SelectContent}
+          className={clsx([styles.SelectContent, { '!w-full': fullWidth }])}
           hideWhenDetached={true}
           sideOffset={-1}
         >
-          <Select.ScrollUpButton className={styles.SelectScrollButton}>
+          <SelectPrimitive.ScrollUpButton className={styles.SelectScrollButton}>
             <FaChevronUp />
-          </Select.ScrollUpButton>
+          </SelectPrimitive.ScrollUpButton>
 
-          <Select.Viewport>
-            <Select.Group>{children}</Select.Group>
-          </Select.Viewport>
+          <SelectPrimitive.Viewport>
+            <SelectPrimitive.Group>{children}</SelectPrimitive.Group>
+          </SelectPrimitive.Viewport>
 
-          <Select.ScrollDownButton className={styles.SelectScrollButton}>
+          <SelectPrimitive.ScrollDownButton className={styles.SelectScrollButton}>
             <FaChevronDown />
-          </Select.ScrollDownButton>
-        </Select.Content>
-      </Select.Portal>
-    </Select.Root>
+          </SelectPrimitive.ScrollDownButton>
+        </SelectPrimitive.Content>
+      </SelectPrimitive.Portal>
+    </SelectPrimitive.Root>
   )
 }
 
-type SelectProps = {
+type SelectItemProps = {
   children: ReactNode
   className?: string
-} & SelectItemProps &
+} & SelectPrimitiveItemProps &
   React.RefAttributes<HTMLDivElement>
 
-export const SelectItem: FC<SelectProps> = forwardRef(
+export const SelectItem: FC<SelectItemProps> = forwardRef(
   ({ children, className, ...props }, forwardedRef) => {
     return (
-      <Select.Item className={clsx(styles.SelectItem, className)} {...props} ref={forwardedRef}>
-        <Select.ItemText>{children}</Select.ItemText>
-      </Select.Item>
+      <SelectPrimitive.Item
+        className={clsx(styles.SelectItem, className)}
+        {...props}
+        ref={forwardedRef}
+      >
+        <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
+      </SelectPrimitive.Item>
     )
   }
 )

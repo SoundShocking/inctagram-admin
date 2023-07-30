@@ -9,8 +9,8 @@ interface Props {
   pagesCount: number
   pageIndex: number
   setPageIndex: Dispatch<SetStateAction<number>>
-  pageSize: number
-  setPageSize: Dispatch<SetStateAction<number>>
+  pageSize: string
+  setPageSize: Dispatch<SetStateAction<string>>
 }
 
 export const TablePagination: FC<Props> = ({
@@ -34,8 +34,8 @@ export const TablePagination: FC<Props> = ({
         pageClassName="text-white"
         pageLinkClassName="flex items-center justify-center h-6 px-1 min-w-[24px] rounded-sm text-sm select-none"
         activeLinkClassName="bg-white text-black"
-        previousLinkClassName="h-6 w-6 flex items-center justify-center"
-        nextLinkClassName="h-6 w-6 flex items-center justify-center"
+        previousLinkClassName="h-6 w-6 flex items-center justify-center text-white"
+        nextLinkClassName="h-6 w-6 flex items-center justify-center text-white"
         disabledLinkClassName="opacity-20 cursor-not-allowed"
         previousLabel={<FaChevronLeft size={14} />}
         nextLabel={<FaChevronRight size={14} />}

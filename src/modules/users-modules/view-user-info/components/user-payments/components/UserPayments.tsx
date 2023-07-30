@@ -29,13 +29,13 @@ export const UserPayments = () => {
   const [paymentsData, setPaymentsData] = useState<PaymentsUser>()
   const [myPaymentsData, setMyPaymentsData] = useState<ItemsUserPaymentsType[]>([])
   const [pageIndex, setPageIndex] = useState(0)
-  const [pageSize, setPageSize] = useState(10)
+  const [pageSize, setPageSize] = useState('10')
 
   const { loading, error } = useQuery<UserPaymentsType>(GET_USER_PAYMENTS, {
     variables: {
       userId: Number(userId),
       pageNumber: pageIndex + 1,
-      pageSize: pageSize,
+      pageSize: +pageSize,
     },
     onCompleted: (data: UserPaymentsType) => setPaymentsData(data.user.paymentsUser),
     onError: error => console.error('error', error),

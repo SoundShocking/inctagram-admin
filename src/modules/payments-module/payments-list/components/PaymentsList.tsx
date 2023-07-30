@@ -13,7 +13,7 @@ import { useGetAllPaymentsQuery } from '@/queries/payments.generated'
 
 export const PaymentsList: FC = () => {
   const [pageIndex, setPageIndex] = useState(0)
-  const [pageSize, setPageSize] = useState(10)
+  const [pageSize, setPageSize] = useState('10')
   const [sorting, setSorting] = useState<SortingState>([])
 
   const [searchInput, setSearchInput] = useState('')
@@ -25,7 +25,7 @@ export const PaymentsList: FC = () => {
 
   const { loading, error, data, previousData } = useGetAllPaymentsQuery({
     variables: {
-      pageSize,
+      pageSize: +pageSize,
       pageNumber: pageIndex + 1,
       search,
       ...getPaymentsSorting(sorting),

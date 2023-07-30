@@ -3,7 +3,7 @@ import React, { Dispatch, FC, SetStateAction } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { UserStatusInputType } from '@/types'
-import { CustomSelect, SelectItem } from '@/ui/Select/Select'
+import { Select, SelectItem } from '@/ui/Select/Select'
 
 interface Props {
   searchInput: string
@@ -31,12 +31,12 @@ export const UsersTableToolbar: FC<Props> = ({
           onChange={e => setSearchInput(e.target.value)}
         />
 
-        <CustomSelect value={status} setValue={setStatus}>
+        <Select<UserStatusInputType> value={status} setValue={setStatus}>
           <SelectItem value={UserStatusInputType.All}>{t('userList.notSelected')}</SelectItem>
           <SelectItem value={UserStatusInputType.Banned}>{t('userList.blocked')}</SelectItem>
           <SelectItem value={UserStatusInputType.Active}>{t('userList.notBlocked')}</SelectItem>
           <SelectItem value={UserStatusInputType.Pending}>Pending</SelectItem>
-        </CustomSelect>
+        </Select>
       </div>
     </>
   )
