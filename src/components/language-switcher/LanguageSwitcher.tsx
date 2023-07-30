@@ -6,6 +6,8 @@ import Image, { StaticImageData } from 'next/image'
 import { useTranslation } from 'react-i18next'
 import { FaChevronDown } from 'react-icons/fa6'
 
+import styles from './LanguageSwitcher.module.scss'
+
 import be from '@/assets/icons/flags/be.png'
 import en from '@/assets/icons/flags/en.png'
 import ru from '@/assets/icons/flags/ru.png'
@@ -43,11 +45,8 @@ export const LanguageSwitcher: FC = () => {
     <>
       <DropdownMenu.Root modal={false} onOpenChange={onOpenChange}>
         <DropdownMenu.Trigger asChild>
-          <button
-            className="flex items-center bg-dark-500 border border-dark-100 py-1 px-3 text-sm w-[168px]"
-            aria-label="Customise options"
-          >
-            <div className="h-5 w-5 flex items-center justify-center mr-3">
+          <button className={styles.DropDownMenuTrigger}>
+            <div className={styles.DropDownMenuFlag}>
               <Image src={currentLanguage!.flag} alt={currentLanguage!.name} />
             </div>
 
@@ -65,15 +64,15 @@ export const LanguageSwitcher: FC = () => {
             side={'bottom'}
             align={'start'}
             sideOffset={-1}
-            className="bg-dark-500 border border-dark-100 py-1 px-3 text-sm text-white w-[168px]"
+            className={styles.DropDownMenuContent}
           >
             {languages.map(lang => (
               <DropdownMenu.Item
-                className="flex items-center my-2 cursor-pointer hover:text-accent-500 transition-colors"
+                className={styles.DropDownMenuItem}
                 onSelect={() => onSelectLanguage(lang.slug)}
                 key={lang.slug}
               >
-                <div className="h-5 w-5 flex items-center justify-center mr-3">
+                <div className={styles.DropDownMenuFlag}>
                   <Image src={lang.flag} alt={lang.name} />
                 </div>
                 {lang.name}

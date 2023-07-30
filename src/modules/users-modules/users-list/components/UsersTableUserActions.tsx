@@ -4,13 +4,14 @@ import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import { Row } from '@tanstack/react-table'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'react-i18next'
-import { FaEllipsis, FaUserLock, FaUserXmark } from 'react-icons/fa6'
+import { FaEllipsis, FaUserCheck, FaUserLock, FaUserXmark } from 'react-icons/fa6'
 
 import { DeleteModal } from './delete-modal/DeleteModal'
 import { UsersItem } from './UsersTable'
 
 import { BanUserModal } from '@/components/ban-unban/ban/BanUserModal'
 import { UnbanUserModal } from '@/components/ban-unban/unban/UnbanUserModal'
+import { UserStatusType } from '@/types'
 
 interface Props {
   row: Row<UsersItem>
@@ -46,7 +47,7 @@ export const UsersTableUserActions: FC<Props> = ({ row, viewInfo }) => {
     <div className="flex">
       <DropdownMenu.Root modal={false}>
         <DropdownMenu.Trigger asChild className="flex w-full align-middle">
-          <button className="flex align-center" aria-label="Customise options">
+          <button className="flex align-center">
             <FaEllipsis size={24} className="text-white hover:text-accent-500 transition-colors" />
           </button>
         </DropdownMenu.Trigger>
@@ -57,16 +58,16 @@ export const UsersTableUserActions: FC<Props> = ({ row, viewInfo }) => {
             className="bg-dark-500 border border-dark-100 p-3 text-sm text-white"
           >
             <DropdownMenu.Item
-              className="flex items-center mb-3 cursor-pointer hover:text-accent-500 transition-colors"
+              className="flex items-center mb-3 cursor-pointer text-danger-500 hover:text-accent-500 transition-colors outline-none"
               onSelect={() => onDeleteClick()}
             >
               <FaUserXmark size={24} className="mr-3" />
               {t('userList.deleteUser')}
             </DropdownMenu.Item>
 
-            {userStatus === 'ACTIVE' && (
+            {userStatus === UserStatusType.Active && (
               <DropdownMenu.Item
-                className="flex items-center mb-3 cursor-pointer hover:text-accent-500 transition-colors"
+                className="flex items-center mb-3 cursor-pointer text-danger-500 hover:text-accent-500 transition-colors outline-none"
                 onSelect={() => onBanClick()}
               >
                 <FaUserLock size={24} className="mr-3" />
@@ -74,19 +75,19 @@ export const UsersTableUserActions: FC<Props> = ({ row, viewInfo }) => {
               </DropdownMenu.Item>
             )}
 
-            {userStatus === 'BANNED' && (
+            {userStatus === UserStatusType.Banned && (
               <DropdownMenu.Item
-                className="flex items-center mb-3 cursor-pointer hover:text-accent-500 transition-colors"
+                className="flex items-center mb-3 cursor-pointer text-success-500 hover:text-accent-500 transition-colors outline-none"
                 onSelect={() => onUnbanClick()}
               >
-                <FaUserLock size={24} className="mr-3" />
+                <FaUserCheck size={24} className="mr-3" />
                 {t('userList.unbanUser')}
               </DropdownMenu.Item>
             )}
 
             {viewInfo && (
               <DropdownMenu.Item
-                className="flex items-center cursor-pointer hover:text-accent-500 transition-colors"
+                className="flex items-center cursor-pointer hover:text-accent-500 transition-colors outline-none"
                 onSelect={() => handleMenuItemClickMoreInformation()}
               >
                 <FaEllipsis size={24} className="mr-3" />

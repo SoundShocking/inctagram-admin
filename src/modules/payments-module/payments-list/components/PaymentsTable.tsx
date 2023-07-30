@@ -8,10 +8,12 @@ import {
   useReactTable,
 } from '@tanstack/react-table'
 import { createColumnHelper } from '@tanstack/table-core'
+import { clsx } from 'clsx'
 import dayjs from 'dayjs'
 
 import { PaymentsTableUserNameCell } from './PaymentsTableUserNameCell'
 
+import { TableSortIcon } from '@/components/table-sort-icon'
 import { PaymentsListViewModel } from '@/types'
 
 export type PaymentsItem = Pick<
@@ -89,18 +91,17 @@ export const PaymentsTable: FC<Props> = ({ payments, sorting, setSorting }) => {
                     <th key={header.id} colSpan={header.colSpan}>
                       {header.isPlaceholder ? null : (
                         <div
-                          {...{
-                            className: header.column.getCanSort()
-                              ? 'cursor-pointer select-none'
-                              : '',
-                            onClick: header.column.getToggleSortingHandler(),
-                          }}
+                          className={clsx('flex items-center justify-center select-none', {
+                            'cursor-pointer': header.column.getCanSort(),
+                          })}
+                          onClick={header.column.getToggleSortingHandler()}
                         >
                           {flexRender(header.column.columnDef.header, header.getContext())}
-                          {{
-                            asc: ' 🔼',
-                            desc: ' 🔽',
-                          }[header.column.getIsSorted() as string] ?? null}
+
+                          <TableSortIcon
+                            isCanSort={header.column.getCanSort()}
+                            isSorted={header.column.getIsSorted()}
+                          />
                         </div>
                       )}
                     </th>
