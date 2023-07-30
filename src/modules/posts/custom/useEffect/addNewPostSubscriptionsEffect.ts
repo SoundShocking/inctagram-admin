@@ -2,8 +2,7 @@ import { useEffect } from 'react'
 
 import { SubscribeToMoreOptions } from '@apollo/client'
 
-import { PostsType, SubscriptionData } from '@/modules/posts'
-import { SUBSCRIPTIONS_ADD_POST_ADDITIONAL } from '@/modules/posts/queries/addAdditionalPostSubscriptions'
+import { PostsType, SubscriptionDataPost, SUBSCRIPTIONS_ADD_POST_ADDITIONAL } from '@/modules/posts'
 
 export const addNewPostSubscriptionsEffect = (
   subscribeToMore: (options: SubscribeToMoreOptions<any, any, any>) => () => void
@@ -15,7 +14,7 @@ export const addNewPostSubscriptionsEffect = (
       document: SUBSCRIPTIONS_ADD_POST_ADDITIONAL,
       updateQuery: (
         prev: PostsType,
-        { subscriptionData }: { subscriptionData: { data: SubscriptionData } }
+        { subscriptionData }: { subscriptionData: { data: SubscriptionDataPost } }
       ) => {
         if (!subscriptionData?.data?.createdPost) return prev
         if (subscriptionData?.data?.createdPost && prev?.postsList?.items) {

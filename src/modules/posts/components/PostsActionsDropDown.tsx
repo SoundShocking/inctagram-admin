@@ -50,7 +50,7 @@ export const PostsActionsDropDown = ({
           <DropdownMenu.Content
             side={'bottom'}
             align={'end'}
-            className="bg-dark-500 border border-dark-100 p-3 text-sm"
+            className="bg-dark-500 border z-10 border-dark-100 p-3 text-sm"
           >
             {status === 'ACTIVE' && (
               <DropdownMenu.Item
