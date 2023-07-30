@@ -31,19 +31,6 @@ export const UsersTableToolbar: FC<Props> = ({
           onChange={e => setSearchInput(e.target.value)}
         />
 
-        <select
-          className="bg-dark-500 text-light-100 text-sm font-normal"
-          value={status}
-          onChange={e => setStatus(e.target.value as UserStatusInputType)}
-        >
-          <option value={UserStatusInputType.All}>{t('userList.notSelected')}</option>
-          <option value={UserStatusInputType.Banned}>{t('userList.blocked')}</option>
-          <option value={UserStatusInputType.Active}>{t('userList.notBlocked')}</option>
-          <option value={UserStatusInputType.Pending}>Pending</option>
-        </select>
-      </div>
-
-      <div className="mt-10 inline-flex w[200px]">
         <CustomSelect value={status} setValue={setStatus}>
           <SelectItem value={UserStatusInputType.All}>{t('userList.notSelected')}</SelectItem>
           <SelectItem value={UserStatusInputType.Banned}>{t('userList.blocked')}</SelectItem>

@@ -6,8 +6,9 @@ import { useTranslation } from 'react-i18next'
 import { changingTheReasonForTheBanOrBlockingEffect } from '@/common'
 import { ModalWithContent } from '@/components/modals'
 import { GET_POSTS_LIST } from '@/modules/posts'
-import { BanReasonInputType, UPDATE_USER_STATUS } from '@/queries/delete-ban'
+import { UPDATE_USER_STATUS } from '@/queries/delete-ban'
 import { GetAllUsersDocument } from '@/queries/users.generated'
+import { BanReasonInputType } from '@/types'
 import { ImageOption } from '@/ui/image-selector/image-option/ImageOption'
 import { ImageSelector } from '@/ui/image-selector/ImageSelector'
 import { DetailsInput } from '@/ui/inputs/details-input/DetailsInput'
@@ -31,16 +32,18 @@ export const BanUserModal = ({ isBanUserOpen, setIsBanUserOpen, userId, userName
   const ADVERTISING_PLACEMENT = t('userList.ban.reason.advertising')
 
   const reasons: ReasonType[] = [
-    { text: ANOTHER_REASON, value: 'Another_reason' },
-    { text: BAD_BEHAVIOR, value: 'Bad_behavior' },
-    { text: ADVERTISING_PLACEMENT, value: 'Advertising_placement' },
+    { text: ANOTHER_REASON, value: BanReasonInputType.AnotherReason },
+    { text: BAD_BEHAVIOR, value: BanReasonInputType.BadBehavior },
+    { text: ADVERTISING_PLACEMENT, value: BanReasonInputType.AdvertisingPlacement },
   ]
 
   const defaultText = BAD_BEHAVIOR
 
   const [isOpen, setIsOpen] = useState(false)
   const [banReasonName, setBanReasonName] = useState(defaultText)
-  const [banReasonValue, setBanReasonValue] = useState<BanReasonInputType>('Bad_behavior')
+  const [banReasonValue, setBanReasonValue] = useState<BanReasonInputType>(
+    BanReasonInputType.BadBehavior
+  )
   const [banDetails, setBanDetails] = useState('')
   const [error, setError] = useState('')
 

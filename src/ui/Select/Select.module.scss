@@ -7,7 +7,7 @@
 }
 
 .SelectContent {
-  @apply bg-dark-500 border border-dark-100 py-1 px-3 text-sm text-white;
+  @apply overflow-hidden bg-dark-500 border border-dark-100 py-1 px-3 text-sm text-white;
   width: var(--radix-select-trigger-width);
 }
 
@@ -16,6 +16,5 @@
 }
 
 .SelectItem {
-  //@apply text-[13px] leading-none text-black rounded-[3px] flex items-center h-[25px] pr-[35px] pl-[25px] relative select-none data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none data-[highlighted]:outline-none data-[highlighted]:bg-violet9 data-[highlighted]:text-black;
-  @apply flex items-center my-2 cursor-pointer hover:text-accent-500 transition-colors data-[highlighted]:outline-none;
+  @apply flex items-center my-2 cursor-pointer hover:text-accent-500 transition-colors data-[highlighted]:outline-none select-none;
 }

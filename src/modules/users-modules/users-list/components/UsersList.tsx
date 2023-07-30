@@ -23,7 +23,7 @@ export const UsersList = () => {
     setPageIndex(0)
   }, [search, pageSize])
 
-  const { loading, error, data } = useGetAllUsersQuery({
+  const { loading, error, data, previousData } = useGetAllUsersQuery({
     variables: {
       pageSize,
       pageNumber: pageIndex + 1,
@@ -34,29 +34,34 @@ export const UsersList = () => {
     fetchPolicy: 'cache-and-network',
   })
 
-  if (loading) return <p>Loading...</p>
+  return (
+    <div className="pt-16 px-6">
+      <UsersTableToolbar
+        searchInput={searchInput}
+        setSearchInput={setSearchInput}
+        status={status}
+        setStatus={setStatus}
+      />
 
-  if (error) return <p>Error : {error.message}</p>
-
-  if (data?.users) {
-    return (
-      <>
-        <UsersTableToolbar
-          searchInput={searchInput}
-          setSearchInput={setSearchInput}
-          status={status}
-          setStatus={setStatus}
+      {error ? (
+        <p>Error : {error.message}</p>
+      ) : (
+        <UsersTable
+          users={data?.users.items || previousData?.users.items || []}
+          sorting={sorting}
+          setSorting={setSorting}
         />
-        <UsersTable users={data.users.items} sorting={sorting} setSorting={setSorting} />
+      )}
 
+      {!error && (
         <TablePagination
-          pagesCount={data.users.pagesCount}
+          pagesCount={data?.users.pagesCount || previousData?.users.pagesCount || 1}
           pageIndex={pageIndex}
           setPageIndex={setPageIndex}
           pageSize={pageSize}
           setPageSize={setPageSize}
         />
-      </>
-    )
-  }
+      )}
+    </div>
+  )
 }

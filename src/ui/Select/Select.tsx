@@ -48,7 +48,9 @@ export const CustomSelect: FC<CustomSelectProps> = ({ value, setValue, children 
             <FaChevronUp />
           </Select.ScrollUpButton>
 
-          <Select.Viewport>{children}</Select.Viewport>
+          <Select.Viewport>
+            <Select.Group>{children}</Select.Group>
+          </Select.Viewport>
 
           <Select.ScrollDownButton className={styles.SelectScrollButton}>
             <FaChevronDown />
