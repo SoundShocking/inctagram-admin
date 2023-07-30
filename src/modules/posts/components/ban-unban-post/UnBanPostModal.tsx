@@ -13,9 +13,9 @@ export const UnBanPostUserModal = ({
   postId,
 }: UnBanPostModalType) => {
   const { t } = useTranslation()
-  const [updateUserStatus] = useMutation(BAN_UN_BAN_POST)
+  const [updatePostStatus] = useMutation(BAN_UN_BAN_POST)
   const onConfirm = () => {
-    updateUserStatus({ variables: { postId, isBanned: false }, refetchQueries: [GET_POSTS_LIST] })
+    updatePostStatus({ variables: { postId, isBanned: false }, refetchQueries: [GET_POSTS_LIST] })
       .then(() => {
         console.log('Post unbanned successfully')
       })
