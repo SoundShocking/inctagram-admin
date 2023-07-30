@@ -36,7 +36,7 @@ export const Select = <T,>({ value, setValue, fullWidth = false, children }: Sel
       <SelectPrimitive.Portal className="z-[100]">
         <SelectPrimitive.Content
           position="popper"
-          className={clsx([styles.SelectContent, { '!w-full': fullWidth }])}
+          className={clsx([styles.SelectContent, { 'w-full': fullWidth }])}
           hideWhenDetached={true}
           sideOffset={-1}
         >
