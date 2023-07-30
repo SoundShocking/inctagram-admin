@@ -5,6 +5,8 @@ export * from './components/PostsList'
 export * from './components/Post'
 export * from './components/PostsActionsDropDown'
 export * from './components/status-selected/StatusSelected'
+export * from './components/slider/SliderImagesPosts'
+export * from './components/slider/ButtonNextPrev'
 
 //types
 export * from '@/modules/posts/types/postsType'

@@ -44,7 +44,7 @@ export const BanUserPostModal = ({
     { text: SHOCKING_OR_DISTURBING_CONTENT, value: 'CONTROVERSIAL_TOPICS' },
     { text: CONTROVERSIAL_TOPICS, value: 'CONTROVERSIAL_TOPICS' },
   ]
-  const [updateUserStatus] = useMutation(BAN_UN_BAN_POST)
+  const [updatePostStatus] = useMutation(BAN_UN_BAN_POST)
 
   const [isOpen, setIsOpen] = useState(false)
   const [banReasonName, setBanReasonName] = useState(defaultReason)
@@ -68,9 +68,9 @@ export const BanUserPostModal = ({
   }
 
   const onConfirm = () => {
-    updateUserStatus({
+    updatePostStatus({
       variables: {
-        postId,
+        postId: postId,
         banReason: banReasonValue,
         isBanned: true,
         details: banDetails,
