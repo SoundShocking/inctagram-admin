@@ -14,9 +14,11 @@ export * from '@/modules/posts/types/postsType'
 export * from './skeleton/SkeletonUsersPosts'
 export * from './skeleton/SkeletonPost'
 
-//queries and mutations
-export * from './queries/postsListQueries'
-export * from './queries/banUnbanPostUserMutatuion'
+//services
+export * from '@/modules/posts/services/queries/postsListQueries'
+export * from '@/modules/posts/services/mutatuions/banUnbanPostUserMutatuion'
+export * from '@/modules/posts/services/subscriptions/deletePostSubscriptions'
+export * from '@/modules/posts/services/subscriptions/addAdditionalPostSubscriptions'
 
 //custom
 export * from '@/modules/posts/custom/icon/IconStatus'
