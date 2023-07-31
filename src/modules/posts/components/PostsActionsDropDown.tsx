@@ -22,19 +22,19 @@ export const PostsActionsDropDown = ({
   //Ban unBan User
   const [isUnbanUserOpen, setIsUnbanUserOpen] = useState(false)
   const [isBanUserOpen, setIsBanUserOpen] = useState(false)
-  const onBanClick = () => {
+  const onBanPostClick = () => {
     setIsBanPostOpen(true)
   }
 
-  const onUnbanClick = () => {
+  const onUnbanPostClick = () => {
     setIsUnBanPostOpen(true)
   }
 
-  const onBanPostClick = () => {
+  const onBanClick = () => {
     setIsBanUserOpen(true)
   }
 
-  const onUnbanPostClick = () => {
+  const onUnbanClick = () => {
     setIsUnbanUserOpen(true)
   }
 
@@ -54,8 +54,8 @@ export const PostsActionsDropDown = ({
           >
             {status === 'ACTIVE' && (
               <DropdownMenu.Item
-                className="flex items-center mb-3 cursor-pointer"
-                onSelect={() => onBanPostClick()}
+                className="flex items-center mb-3 cursor-pointer hover:text-accent-500 transition-colors outline-none "
+                onSelect={() => onBanClick()}
               >
                 <FaUserLock size={24} className="mr-3" />
                 {t('userList.banUser')}
@@ -64,8 +64,8 @@ export const PostsActionsDropDown = ({
 
             {status === 'BANNED' && (
               <DropdownMenu.Item
-                className="flex items-center mb-3 cursor-pointer"
-                onSelect={() => onUnbanPostClick()}
+                className="flex items-center mb-3 cursor-pointer hover:text-accent-500 transition-colors outline-none"
+                onSelect={() => onUnbanClick()}
               >
                 <AiFillUnlock size={24} className="mr-3" />
                 {t('userList.unbanUser')}
@@ -74,8 +74,8 @@ export const PostsActionsDropDown = ({
 
             {postStatus === 'PUBLISHED' && (
               <DropdownMenu.Item
-                className="flex items-center mb-3 cursor-pointer"
-                onSelect={() => onBanClick()}
+                className="flex items-center mb-3 cursor-pointer hover:text-accent-500 transition-colors outline-none"
+                onSelect={() => onBanPostClick()}
               >
                 <ImEyeBlocked size={24} className="mr-3" />
                 {t('postsList.banPost')}
@@ -84,8 +84,8 @@ export const PostsActionsDropDown = ({
 
             {postStatus === 'BANNED' && (
               <DropdownMenu.Item
-                className="flex items-center mb-3 cursor-pointer"
-                onSelect={() => onUnbanClick()}
+                className="flex items-center mb-3 cursor-pointer hover:text-accent-500 transition-colors outline-none"
+                onSelect={() => onUnbanPostClick()}
               >
                 <ImEye size={24} className="mr-3" />
                 {t('postsList.unbanPost')}

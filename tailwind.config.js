@@ -6,13 +6,14 @@ module.exports = {
       sans: ['Inter', 'sans-serif'],
     },
     screens: {
+      //(usually mobile devices in portrait orientation)
       sm: { max: '560px' },
-      md: { max: '850px' },
-      // => @media (min-width: 768px and max-width: 1023px) { ... }
-      lg: { max: '1024px' },
-      // => @media (min-width: 1024px and max-width: 1279px) { ... }
-      xl: { min: '1280px', max: '1535px' },
-      // => @media (min-width: 1280px and max-width: 1535px) { ... }
+      //(tablets and small laptops)
+      md: { min: '560px', max: '850px' },
+      //(average size of laptops and desktops)
+      lg: { min: '850px', max: '1024px' },
+      //(large screens, such as large desktop monitors)
+      xl: { min: '1024px', max: '1535px' },
     },
     extend: {
       colors: {
