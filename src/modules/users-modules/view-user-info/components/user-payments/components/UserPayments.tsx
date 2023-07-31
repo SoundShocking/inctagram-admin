@@ -88,7 +88,7 @@ export const UserPayments = () => {
   })
 
   return (
-    <div className=" text-accent-500 p-2 block w-full ">
+    <div className="mt-9 text-accent-500 p-2 block w-full ">
       <ErrorMessage errorMessage={error?.message} />
       <UserPaymentsTable tableProps={tableProps} />
       {paymentsData?.pagesCount ? (

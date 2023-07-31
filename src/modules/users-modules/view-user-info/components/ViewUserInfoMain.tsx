@@ -19,7 +19,7 @@ export const ViewUserInfoMain = ({ userData }: { userData: UserType }) => {
           </span>
         </Link>
         <div className="pt-6 w-[360px]">
-          <div className="flex">
+          <div className="flex w-14 h-14">
             <Placeholder
               src={profileLink}
               alt={'User Photo'}

@@ -36,14 +36,16 @@ export const Post = ({
         <div className="w-full h-full ">
           <SliderImagesPost postImages={post.urlsPostsImages} />
           <div className="flex flex-wrap pt-1.5 gap-1 align-middle content-center justify-between">
-            <div className="flex w-full items-center flex-wrap h-full justify-around gap-3 align-middle">
-              <Placeholder
-                className={`cursor-default object-cover rounded-full ${className.border}`}
-                src={post.urlAvatar}
-                alt={'User image post'}
-                height={36}
-                width={36}
-              />
+            <div className="flex w-full items-center flex-wrap h-full justify-between gap-3 align-middle">
+              <div className="w-9 h-9">
+                <Placeholder
+                  className={`cursor-default object-cover rounded-full ${className.border}`}
+                  src={post.urlAvatar}
+                  alt={'User image post'}
+                  height={36}
+                  width={36}
+                />
+              </div>
               <Link href={`/users/` + post.userId}>
                 <div className="font-semibold w-24 overflow-hidden text-ellipsis whitespace-nowrap leading-6 text-base hover:text-accent-500 transition-colors outline-none">
                   {post.userName}

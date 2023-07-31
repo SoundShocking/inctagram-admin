@@ -63,9 +63,9 @@ export const UserPhotos = () => {
   useInViewScrollHandlerEffect({ inView, isLoadingMore, loading, handleScroll })
 
   return (
-    <div className="mt-14">
+    <div className="mt-9">
       <ErrorMessage errorMessage={error?.message}></ErrorMessage>
-      <div className="grid w-full grid-cols-4 gap-3 md:grid-cols-3 sm:grid-cols-2">
+      <div className="grid w-full grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
         {loading ? (
           usedToDrawArraysOfSkeletons(32)
         ) : (

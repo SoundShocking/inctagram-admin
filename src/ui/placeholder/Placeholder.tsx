@@ -16,7 +16,7 @@ export const Placeholder = ({ src, alt, height = 192, width = 192, className }: 
     <Image
       src={src ? src : placeholder}
       alt={alt}
-      className={`${className}`}
+      className={`${className} h-auto w-auto`}
       width={width}
       height={height}
     />
