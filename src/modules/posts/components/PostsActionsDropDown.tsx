@@ -54,7 +54,7 @@ export const PostsActionsDropDown = ({
           >
             {status === 'ACTIVE' && (
               <DropdownMenu.Item
-                className="flex items-center mb-3 cursor-pointer"
+                className="flex items-center mb-3 cursor-pointer hover:text-accent-500 transition-colors outline-none "
                 onSelect={() => onBanClick()}
               >
                 <FaUserLock size={24} className="mr-3" />
@@ -64,7 +64,7 @@ export const PostsActionsDropDown = ({
 
             {status === 'BANNED' && (
               <DropdownMenu.Item
-                className="flex items-center mb-3 cursor-pointer"
+                className="flex items-center mb-3 cursor-pointer hover:text-accent-500 transition-colors outline-none"
                 onSelect={() => onUnbanClick()}
               >
                 <AiFillUnlock size={24} className="mr-3" />
@@ -74,7 +74,7 @@ export const PostsActionsDropDown = ({
 
             {postStatus === 'PUBLISHED' && (
               <DropdownMenu.Item
-                className="flex items-center mb-3 cursor-pointer"
+                className="flex items-center mb-3 cursor-pointer hover:text-accent-500 transition-colors outline-none"
                 onSelect={() => onBanPostClick()}
               >
                 <ImEyeBlocked size={24} className="mr-3" />
@@ -84,7 +84,7 @@ export const PostsActionsDropDown = ({
 
             {postStatus === 'BANNED' && (
               <DropdownMenu.Item
-                className="flex items-center mb-3 cursor-pointer"
+                className="flex items-center mb-3 cursor-pointer hover:text-accent-500 transition-colors outline-none"
                 onSelect={() => onUnbanPostClick()}
               >
                 <ImEye size={24} className="mr-3" />

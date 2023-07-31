@@ -14,7 +14,7 @@ export const ViewUserInfoMain = ({ userData }: { userData: UserType }) => {
       <div className="pt-6 leading-6 font-normal text-sm">
         <Link href={'/'} className="flex">
           <ArrowBack />
-          <span className="сurosor-pointer pl-2 font-medium">
+          <span className="сurosor-pointer hover:text-accent-500 transition-colors outline-none pl-2 font-medium">
             {t('userInfo.userInfoMain.backUsersList')}
           </span>
         </Link>
@@ -30,7 +30,9 @@ export const ViewUserInfoMain = ({ userData }: { userData: UserType }) => {
             <div className="pl-6 flex flex-col ">
               <span className="text-xl font-bold leading-9">{userName}</span>
               <Link href={'/'}>
-                <span>{t('userInfo.userInfoMain.linkProfile')}</span>
+                <span className="hover:text-accent-500 transition-colors outline-none">
+                  {t('userInfo.userInfoMain.linkProfile')}
+                </span>
               </Link>
             </div>
           </div>
