@@ -42,6 +42,7 @@ export const PostsList = () => {
         search: debounce,
         status: status,
       },
+      fetchPolicy: 'cache-and-network',
       onCompleted: (data: PostsType) => {
         setPostsData(data?.postsList)
       },
@@ -81,7 +82,7 @@ export const PostsList = () => {
     <div className="w-full pt-16 pl-6 pr-16 flex flex-col">
       <ErrorMessage errorMessage={error?.message} />
       <div>
-        <StatusSelected refetch={refetch} status={status} setStatus={setStatus} />
+        <StatusSelected status={status} setStatus={setStatus} />
       </div>
       <div className="pb-9 w-full">
         <GlobalInput

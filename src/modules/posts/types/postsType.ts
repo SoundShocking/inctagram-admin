@@ -45,7 +45,6 @@ export enum PostStatusForPostsLisType {
 }
 
 export type StatusSelectedType = {
-  refetch: () => void
   status: PostStatusForPostsLisType
   setStatus: (status: PostStatusForPostsLisType) => void
 }

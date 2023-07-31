@@ -22,19 +22,19 @@ export const PostsActionsDropDown = ({
   //Ban unBan User
   const [isUnbanUserOpen, setIsUnbanUserOpen] = useState(false)
   const [isBanUserOpen, setIsBanUserOpen] = useState(false)
-  const onBanClick = () => {
+  const onBanPostClick = () => {
     setIsBanPostOpen(true)
   }
 
-  const onUnbanClick = () => {
+  const onUnbanPostClick = () => {
     setIsUnBanPostOpen(true)
   }
 
-  const onBanPostClick = () => {
+  const onBanClick = () => {
     setIsBanUserOpen(true)
   }
 
-  const onUnbanPostClick = () => {
+  const onUnbanClick = () => {
     setIsUnbanUserOpen(true)
   }
 
@@ -55,7 +55,7 @@ export const PostsActionsDropDown = ({
             {status === 'ACTIVE' && (
               <DropdownMenu.Item
                 className="flex items-center mb-3 cursor-pointer"
-                onSelect={() => onBanPostClick()}
+                onSelect={() => onBanClick()}
               >
                 <FaUserLock size={24} className="mr-3" />
                 {t('userList.banUser')}
@@ -65,7 +65,7 @@ export const PostsActionsDropDown = ({
             {status === 'BANNED' && (
               <DropdownMenu.Item
                 className="flex items-center mb-3 cursor-pointer"
-                onSelect={() => onUnbanPostClick()}
+                onSelect={() => onUnbanClick()}
               >
                 <AiFillUnlock size={24} className="mr-3" />
                 {t('userList.unbanUser')}
@@ -75,7 +75,7 @@ export const PostsActionsDropDown = ({
             {postStatus === 'PUBLISHED' && (
               <DropdownMenu.Item
                 className="flex items-center mb-3 cursor-pointer"
-                onSelect={() => onBanClick()}
+                onSelect={() => onBanPostClick()}
               >
                 <ImEyeBlocked size={24} className="mr-3" />
                 {t('postsList.banPost')}
@@ -85,7 +85,7 @@ export const PostsActionsDropDown = ({
             {postStatus === 'BANNED' && (
               <DropdownMenu.Item
                 className="flex items-center mb-3 cursor-pointer"
-                onSelect={() => onUnbanClick()}
+                onSelect={() => onUnbanPostClick()}
               >
                 <ImEye size={24} className="mr-3" />
                 {t('postsList.unbanPost')}
