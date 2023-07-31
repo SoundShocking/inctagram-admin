@@ -1,4 +1,4 @@
-import { CSSProperties, FC } from 'react'
+import { FC } from 'react'
 
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
