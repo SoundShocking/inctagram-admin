@@ -9,7 +9,7 @@ export const ButtonNextPrev = () => {
     <div
       style={
         {
-          '--swiper-navigation-size': '25px',
+          '--swiper-navigation-size': '30px',
         } as CustomStyle
       }
     >

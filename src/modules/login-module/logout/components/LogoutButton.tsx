@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { CSSProperties, FC } from 'react'
 
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
@@ -19,7 +19,7 @@ export const LogoutButton: FC = () => {
     <div>
       <button onClick={handleLogout} className="flex items-center">
         <FaSignOutAlt className="mr-4" />
-        <span className={'lg:hidden font-bold'}>{t('navigation.logout')}</span>
+        <span className={'sm:hidden md:hidden  font-bold'}>{t('navigation.logout')}</span>
       </button>
     </div>
   )

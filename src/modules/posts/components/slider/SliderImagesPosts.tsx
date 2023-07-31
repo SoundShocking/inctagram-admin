@@ -27,7 +27,7 @@ export const SliderImagesPost = ({ postImages }: { postImages: string[] }) => {
           <SwiperSlide key={index}>
             <Placeholder
               alt={'Post image'}
-              className="bg-dark-300"
+              className="bg-dark-300 h-[240px] object-cover "
               width={234}
               height={240}
               src={image}

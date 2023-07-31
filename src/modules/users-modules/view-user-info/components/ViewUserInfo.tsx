@@ -25,7 +25,7 @@ export const ViewUserInfo = () => {
   })
 
   return (
-    <div className="flex w-full pl-60 pr-16 pb-10">
+    <div className="flex w-full pl-60 sm:pl-10 md:pl-10 pr-16 pb-10">
       <ErrorMessage errorMessage={error?.message} />
       <div className="flex flex-col w-full">
         {/* eslint-disable-next-line no-nested-ternary */}

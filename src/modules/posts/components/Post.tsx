@@ -38,7 +38,7 @@ export const Post = ({
           <div className="flex flex-wrap pt-1.5 gap-1 align-middle content-center justify-between">
             <div className="flex w-full items-center flex-wrap h-full justify-around gap-3 align-middle">
               <Placeholder
-                className={`cursor-default rounded-full ${className.border}`}
+                className={`cursor-default object-cover rounded-full ${className.border}`}
                 src={post.urlAvatar}
                 alt={'User image post'}
                 height={36}
@@ -52,7 +52,7 @@ export const Post = ({
               <PostsActionsDropDown post={post} />
             </div>
           </div>
-          <span className="pt-3 font-normal text-light-100 leading-4 text-xs">
+          <span className="pt-6 font-normal text-light-100 leading-4 text-xs">
             {formatDistance(parseISO(post.createdAt), new Date(), {
               addSuffix: true,
               locale: locale,
@@ -69,7 +69,10 @@ export const Post = ({
             ) : (
               <span className="text-base font-normal leading-6">No description </span>
             )}
-            <button className="text-accent-700 pl-1" onClick={() => setShowMoreId(post.postId)}>
+            <button
+              className="text-accent-700 pl-1 underline"
+              onClick={() => setShowMoreId(post.postId)}
+            >
               {showMore ? t('postsList.post.showHide') : t('postsList.post.showMore')}
             </button>
           </p>

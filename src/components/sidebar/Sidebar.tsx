@@ -35,11 +35,11 @@ export const Sidebar: FC = () => {
     ),
     posts: clsx(pathname === routes.posts ? 'text-accent-500' : '', 'flex gap-[15px] items-center'),
 
-    hidden: 'lg:hidden font-bold',
+    hidden: 'md:hidden sm:hidden font-bold',
   }
 
   return (
-    <aside className="h-screen sticky top-0 max-w-[320px] w-full border-r-[1px] border-r-bgLogBorder lg:max-w-[50px]">
+    <aside className="h-screen sticky top-0 max-w-[320px] w-full border-r-[1px] border-r-bgLogBorder sm:max-w-[50px] md:max-w-[50px]">
       <div className="text-light-100 font-medium flex flex-col items-center justify-between py-[72px] h-full">
         <ul className="list-none flex gap-6 flex-col">
           <li>

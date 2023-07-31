@@ -76,7 +76,7 @@ export const PostsList = () => {
   handleSearchDebounceEffect({ loading, timerId, setTimerId, setDebounce, search })
 
   return (
-    <div className="w-full pt-16 pl-6 pr-16 flex flex-col">
+    <div className="w-full pt-16 pl-6 pr-16 sm:pr-4 md:pr-4 flex flex-col">
       <ErrorMessage errorMessage={error?.message} />
       <div>
         <StatusSelected status={status} setStatus={setStatus} />
@@ -90,7 +90,7 @@ export const PostsList = () => {
           callBack={handleCallBackSearch}
         />
       </div>
-      <div className="grid grid-cols-4 sm:grid-cols-2  lg:grid-cols-3  gap-3">
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 grid-cols-4  gap-3">
         {loading ? (
           SkeletonPost(32)
         ) : (
