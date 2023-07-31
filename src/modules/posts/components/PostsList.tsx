@@ -35,20 +35,17 @@ export const PostsList = () => {
     threshold: 0.1,
   })
 
-  const { loading, error, fetchMore, refetch, subscribeToMore } = useQuery<PostsType>(
-    GET_POSTS_LIST,
-    {
-      variables: {
-        search: debounce,
-        status: status,
-      },
-      fetchPolicy: 'cache-and-network',
-      onCompleted: (data: PostsType) => {
-        setPostsData(data?.postsList)
-      },
-      onError: error => console.error('error', error),
-    }
-  )
+  const { loading, error, fetchMore, subscribeToMore } = useQuery<PostsType>(GET_POSTS_LIST, {
+    variables: {
+      search: debounce,
+      status: status,
+    },
+    fetchPolicy: 'cache-and-network',
+    onCompleted: (data: PostsType) => {
+      setPostsData(data?.postsList)
+    },
+    onError: error => console.error('error', error),
+  })
 
   const handleCallBackShowMore = (postId: number) => {
     if (showMoreIds.includes(postId)) {

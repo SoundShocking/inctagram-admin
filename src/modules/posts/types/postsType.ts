@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react'
+
 export type StatusType = 'PENDING' | 'ACTIVE' | 'BANNED' | 'DELETED'
 
 export type SubscriptionDataPost = {
@@ -46,7 +48,7 @@ export enum PostStatusForPostsLisType {
 
 export type StatusSelectedType = {
   status: PostStatusForPostsLisType
-  setStatus: (status: PostStatusForPostsLisType) => void
+  setStatus: Dispatch<SetStateAction<PostStatusForPostsLisType>>
 }
 
 //ban unban post
