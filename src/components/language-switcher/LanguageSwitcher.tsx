@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import { clsx } from 'clsx'
@@ -37,8 +37,17 @@ export const LanguageSwitcher: FC = () => {
     setIsOpen(open)
   }
 
+  useEffect(() => {
+    const lastLanguage = localStorage.getItem('language')
+
+    if (lastLanguage && i18n.language !== lastLanguage) {
+      i18n.changeLanguage(lastLanguage)
+    }
+  }, [])
+
   const onSelectLanguage = (slug: string) => {
     i18n.changeLanguage(slug)
+    localStorage.setItem('language', slug)
   }
 
   return (
