@@ -8,7 +8,9 @@ import { CustomOption } from '@/ui/custom-selector/custom-option/CustomOption'
 import { CustomSelector } from '@/ui/custom-selector/CustomSelector'
 import { DateCalendar } from '@/ui/date-picker/DatePicker'
 
-function formatDate(year, month, day) {
+const MAX_DAYS = 31
+
+function formatDate(year: number, month: number, day: number) {
   const monthStr = String(month + 1).padStart(2, '0')
   const dayStr = String(day).padStart(2, '0')
 
@@ -50,11 +52,14 @@ function formatDate(year, month, day) {
 //   return { comparisonStartDateFormatted, comparisonEndDateFormatted }
 // }
 
-function getLastDayOfMonth(year, month) {
+function getLastDayOfMonth(year: number, month: number) {
   return new Date(year, month + 1, 0).getDate()
 }
 
-function getDifferenceInDays(endDate, startDate) {
+function getDifferenceInDays(startDateStr: Date, endDateStr: Date) {
+  const startDate = new Date(startDateStr)
+  const endDate = new Date(endDateStr)
+
   // Calculate the difference between end date and start date in milliseconds
   const differenceInMs = endDate - startDate
 
@@ -83,13 +88,12 @@ const comparePeriod2023 = createComparePeriod(2023)
 
 const comparePeriod = comparePeriod2023
 
-function isPeriodWithinMaxDays(startDateStr: string, endDateStr: string, max: number) {
+function isPeriodWithinMaxDays(startDate: Date, endDate: Date, max: number) {
   // Convert date strings to Date objects
-  const startDate = new Date(startDateStr)
-  const endDate = new Date(endDateStr)
-  const differenceInDays = getDifferenceInDays(endDate, startDate)
 
-  // Check if the period is not more than 31 days
+  const differenceInDays = getDifferenceInDays(startDate, endDate)
+
+  // Check if the period is not more than max days
   return differenceInDays <= max
 }
 
@@ -97,6 +101,7 @@ export const NewUsersChart = () => {
   const [data, setData] = useState<number[]>([])
   const [compareData, setCompareData] = useState<number[]>([])
   const [labels, setLabels] = useState<string[]>([])
+  const [compareLabels, setCompareLabels] = useState<string[]>([])
 
   const [startDate, setStartDate] = useState<Date | null>(null)
   const [endDate, setEndDate] = useState<Date | null>(null)
@@ -104,8 +109,8 @@ export const NewUsersChart = () => {
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
-  const [compareStartDate, setCompareStartDate] = useState<Date | null>(new Date())
-  const [compareEndDate, setCompareEndDate] = useState<Date | null>(new Date())
+  const [compareStartDate, setCompareStartDate] = useState<Date | null>(null)
+  const [compareEndDate, setCompareEndDate] = useState<Date | null>(null)
   const [compareErrorMessage, setCompareErrorMessage] = useState<string>('')
 
   const [maxComparedPeriod, setMaxComparedPeriod] = useState(0)
@@ -116,12 +121,15 @@ export const NewUsersChart = () => {
   }
 
   const setEndDateHandler = (date: Date | null) => {
-    setEndDate(date)
-
-    if (!isPeriodWithinMaxDays(startDate, date, 31)) {
-      setErrorMessage('Max date is 31 days')
+    if (startDate && date && !isPeriodWithinMaxDays(startDate, date, MAX_DAYS - 1)) {
+      setErrorMessage(`Max date is ${MAX_DAYS} days`)
     } else {
-      setMaxComparedPeriod()
+      setEndDate(date)
+      if (startDate && date) {
+        const maxDays = getDifferenceInDays(startDate, date)
+
+        setMaxComparedPeriod(maxDays)
+      }
     }
   }
 
@@ -133,7 +141,11 @@ export const NewUsersChart = () => {
   const setCompareEndDateHandler = (date: Date | null) => {
     setCompareEndDate(date)
 
-    if (!isPeriodWithinMaxDays(compareStartDate, date, maxComparedPeriod)) {
+    if (
+      compareStartDate &&
+      date &&
+      !isPeriodWithinMaxDays(compareStartDate, date, maxComparedPeriod)
+    ) {
       setCompareErrorMessage(`Max date is ${maxComparedPeriod} days`)
     }
   }
@@ -156,13 +168,21 @@ export const NewUsersChart = () => {
       const formedDate = await dateConverter(data?.statisticsUsers.data.metrics.time_intervals)
 
       setData(data?.statisticsUsers.data.metrics.countUsers)
+      //@ts-ignore
       setLabels(formedDate)
-      let comparedDate = [0, 0, 0, 0, 0, 0, 0]
+      let comparedDate: number[] = []
+
+      let seconedLabelsDate: number[] = []
 
       if (data?.statisticsUsers.data.metricsComparison?.countUsers) {
         comparedDate = data?.statisticsUsers.data.metricsComparison?.countUsers
+        seconedLabelsDate = await dateConverter(
+          data?.statisticsUsers.data.metricsComparison?.time_intervals
+        )
       }
       setCompareData(comparedDate)
+      //@ts-ignore
+      setCompareLabels(seconedLabelsDate)
     },
   })
 
@@ -211,23 +231,16 @@ export const NewUsersChart = () => {
               setStartDate={setCompareStartDateHandler}
               startDate={compareStartDate}
             />
-
-            {/*<CustomSelector isOpen={isOpen} setIsOpen={setIsOpen}>*/}
-            {/*  {comparePeriod.map(({ text, startDate, endDate }) => {*/}
-            {/*    return (*/}
-            {/*      <CustomOption*/}
-            {/*        onOptionClick={() => onComparedMonthClick(text, startDate, endDate)}*/}
-            {/*        text={text}*/}
-            {/*        key={text}*/}
-            {/*      />*/}
-            {/*    )*/}
-            {/*  })}*/}
-            {/*</CustomSelector>*/}
           </div>
         )}
       </div>
       <div className={'w-[900px]'}>
-        <Chart labels={labels} data={data} comparisonData={compareData} />
+        <Chart
+          labels={labels}
+          data={data}
+          comparisonData={compareData}
+          secondLabels={compareLabels}
+        />
       </div>
     </div>
   )
