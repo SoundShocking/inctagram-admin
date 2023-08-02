@@ -29,3 +29,17 @@ export const GET_ALL_PAYMENTS = gql`
     }
   }
 `
+
+export const PAYMENTS_SUBSCRIPTION = gql`
+  subscription createdSubscription {
+    createdSubscription {
+      urlAvatar
+      userName
+      userId
+      createdAt
+      amount
+      typeSubscription
+      paymentType
+    }
+  }
+`

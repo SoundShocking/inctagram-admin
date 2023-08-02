@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from 'react'
 
 import { SortingState } from '@tanstack/react-table'
 import { t } from 'i18next'
+import { toast } from 'react-toastify'
 import { useDebounce } from 'usehooks-ts'
 
 import { getPaymentsSorting } from '../helpers/getPaymentsSorting'
@@ -9,7 +10,12 @@ import { getPaymentsSorting } from '../helpers/getPaymentsSorting'
 import { PaymentsTable } from './PaymentsTable'
 
 import { TablePagination } from '@/components/table-pagination'
-import { useGetAllPaymentsQuery } from '@/queries/payments.generated'
+import { PAYMENTS_SUBSCRIPTION } from '@/queries/payments'
+import {
+  CreatedSubscriptionSubscription,
+  useCreatedSubscriptionSubscription,
+  useGetAllPaymentsQuery,
+} from '@/queries/payments.generated'
 
 export const PaymentsList: FC = () => {
   const [pageIndex, setPageIndex] = useState(0)
@@ -23,14 +29,66 @@ export const PaymentsList: FC = () => {
     setPageIndex(0)
   }, [search, pageSize])
 
-  const { loading, error, data, previousData } = useGetAllPaymentsQuery({
+  const { loading, error, data, previousData, subscribeToMore, refetch } = useGetAllPaymentsQuery({
     variables: {
       pageSize: +pageSize,
       pageNumber: pageIndex + 1,
       search,
       ...getPaymentsSorting(sorting),
     },
+    fetchPolicy: 'cache-and-network',
   })
+
+  useCreatedSubscriptionSubscription({
+    onData: options => {
+      const newSubscription = options.data.data?.createdSubscription
+
+      toast.success(
+        `added new subscription: ${newSubscription?.userName} - ${newSubscription?.amount}$`
+      )
+
+      refetch()
+    },
+  })
+
+  // useEffect(() => {
+  //   console.log('effect')
+  //
+  //   let unsubscribe: () => void
+  //
+  //   unsubscribe = subscribeToMore<CreatedSubscriptionSubscription>({
+  //     document: PAYMENTS_SUBSCRIPTION,
+  //     variables: {
+  //       pageSize: +pageSize,
+  //       pageNumber: pageIndex + 1,
+  //       search,
+  //     },
+  //     updateQuery: (previousQueryResult, { subscriptionData, variables }) => {
+  //       console.log(previousQueryResult)
+  //       console.log(subscriptionData)
+  //       console.log(variables)
+  //
+  //       refetch()
+  //       if (!subscriptionData.data) return previousQueryResult
+  //
+  //       return previousQueryResult
+  //
+  //       // const newSubscription = [subscriptionData.data.createdSubscription]
+  //       //
+  //       // return Object.assign({}, previousQueryResult, {
+  //       //   ...previousQueryResult,
+  //       //   paymentsList: {
+  //       //     ...previousQueryResult.paymentsList,
+  //       //     items: [...newSubscription, ...previousQueryResult.paymentsList.items],
+  //       //   },
+  //       // })
+  //
+  //       // return previousQueryResult
+  //     },
+  //   })
+  //
+  //   return () => unsubscribe()
+  // }, [subscribeToMore])
 
   return (
     <div className="pt-16 px-6">

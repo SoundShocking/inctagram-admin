@@ -96,7 +96,7 @@ export type PaymentsListViewModel = {
   createdAt: Scalars['DateTime']['output']
   paymentType: PaymentMethod
   status: StatusSubscriptionType
-  typeSubscription: SubscriptionType
+  typeSubscription: Scalars['String']['output']
   urlAvatar?: Maybe<Scalars['String']['output']>
   userId: Scalars['Float']['output']
   userName: Scalars['String']['output']
@@ -118,6 +118,12 @@ export type PaymentsWithPaginationViewModel = {
   pageSize: Scalars['Int']['output']
   pagesCount: Scalars['Int']['output']
   totalCount: Scalars['Int']['output']
+}
+
+export type PostDeletedViewModel = {
+  __typename?: 'PostDeletedViewModel'
+  postId: Scalars['Float']['output']
+  userId: Scalars['Float']['output']
 }
 
 export type PostForSuperAdminViewModel = {
@@ -296,6 +302,13 @@ export enum StatusSubscriptionType {
   Pending = 'PENDING',
 }
 
+export type Subscription = {
+  __typename?: 'Subscription'
+  createdPost: PostsListViewModel
+  createdSubscription: PaymentsListViewModel
+  postDeleted: PostDeletedViewModel
+}
+
 export type SubscriptionForSuperAdminViewModel = {
   __typename?: 'SubscriptionForSuperAdminViewModel'
   dataOfPayment: Scalars['DateTime']['output']
@@ -316,6 +329,7 @@ export enum SubscriptionType {
 export type UserForSuperAdminViewModel = {
   __typename?: 'UserForSuperAdminViewModel'
   createdAt: Scalars['DateTime']['output']
+  fullName: Scalars['String']['output']
   imagesCount: Scalars['Float']['output']
   imagesUser: ImagesWithPaginationViewModel
   paymentsUser: PaymentsWithPaginationViewModel

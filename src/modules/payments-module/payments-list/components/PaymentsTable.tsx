@@ -40,7 +40,7 @@ export const PaymentsTable: FC<Props> = ({ payments, sorting, setSorting }) => {
     columnHelper.accessor('createdAt', {
       id: 'createdAt',
       header: 'Date added',
-      cell: info => dayjs(info.getValue()).format('DD.MM.YYYY'),
+      cell: info => dayjs(info.getValue()).format('DD.MM.YYYY H:mm'),
       enableSorting: true,
     }),
     columnHelper.accessor('amount', {
