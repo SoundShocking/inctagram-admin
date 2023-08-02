@@ -2,10 +2,12 @@ import { getGlobalLayout } from '@/components/layout'
 import { NewUsersChart } from '@/modules/statistics/new-users/chart/NewUsersChart'
 
 const Statistics = () => {
-  return <div>
+  return (
+    <div>
       {'Statistics'}
       <NewUsersChart />
-  </div>
+    </div>
+  )
 }
 
 Statistics.getLayout = getGlobalLayout
