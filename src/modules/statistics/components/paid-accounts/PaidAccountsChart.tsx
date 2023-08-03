@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 
 import { useQuery } from '@apollo/client'
+import { useTranslation } from 'react-i18next'
 
-import { ChartSettings } from '@/components/chart/chart-settings/ChartSettings'
+import { ChartSettings } from '@/modules/statistics/components/chart-settings/ChartSettings'
 import { dateConverter } from '@/modules/statistics/utils/dateConverter'
 import { GET_PAID_ACCOUNTS_STATISTICS } from '@/queries/statistics-paid-accounts'
 import { Chart } from '@/ui/chart/Chart'
 
 export const PaidAccountsChart = () => {
+  const { t } = useTranslation()
+
   const [data, setData] = useState<number[]>([])
   const [compareData, setCompareData] = useState<number[]>([])
   const [labels, setLabels] = useState<string[]>([])
@@ -30,7 +33,9 @@ export const PaidAccountsChart = () => {
     },
     onCompleted: async (data: any) => {
       console.log('data', data.statisticsPaidAccounts.data)
-      const formedDate = await dateConverter(data?.statisticsPaidAccounts.data.metrics.time_intervals)
+      const formedDate = await dateConverter(
+        data?.statisticsPaidAccounts.data.metrics.time_intervals
+      )
 
       setData(data?.statisticsPaidAccounts.data.metrics.countUsers)
       //@ts-ignore
@@ -53,7 +58,7 @@ export const PaidAccountsChart = () => {
 
   return (
     <div className={'p-3'}>
-      <h2 className={'text-[20px]'}>Paid accounts</h2>
+      <h2 className={'text-[20px]'}>{t('statistics.users.paidAccounts')}</h2>
       <ChartSettings
         errorMessage={errorMessage}
         endDate={endDate}

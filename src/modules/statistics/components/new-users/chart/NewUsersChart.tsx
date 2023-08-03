@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 
 import { useQuery } from '@apollo/client'
+import { useTranslation } from 'react-i18next'
 
-import { ChartSettings } from '@/components/chart/chart-settings/ChartSettings'
+import { ChartSettings } from '@/modules/statistics/components/chart-settings/ChartSettings'
 import { dateConverter } from '@/modules/statistics/utils/dateConverter'
 import { GET_NEW_USERS_STATISTICS } from '@/queries/statistics-users'
 import { Chart } from '@/ui/chart/Chart'
 
 export const NewUsersChart = () => {
+  const { t } = useTranslation()
+
   const [data, setData] = useState<number[]>([])
   const [compareData, setCompareData] = useState<number[]>([])
   const [labels, setLabels] = useState<string[]>([])
@@ -29,7 +32,6 @@ export const NewUsersChart = () => {
       comparisonEndDate: compareEndDate,
     },
     onCompleted: async (data: any) => {
-      console.log('data', data.statisticsUsers.data)
       const formedDate = await dateConverter(data?.statisticsUsers.data.metrics.time_intervals)
 
       setData(data?.statisticsUsers.data.metrics.countUsers)
@@ -53,7 +55,7 @@ export const NewUsersChart = () => {
 
   return (
     <div className={'p-3'}>
-      <h2 className={'text-[20px]'}>New Users</h2>
+      <h2 className={'text-[20px]'}>{t('statistics.users.newUsers')}</h2>
       <ChartSettings
         errorMessage={errorMessage}
         endDate={endDate}

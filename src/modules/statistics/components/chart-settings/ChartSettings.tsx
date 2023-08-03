@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 
+import { useTranslation } from 'react-i18next'
+
 import { getDifferenceInDays } from '@/modules/statistics/utils/getDifferenceInDays'
 import { isPeriodWithinMaxDays } from '@/modules/statistics/utils/isPeriodWithinMaxDays'
 import { DateCalendar } from '@/ui'
@@ -35,6 +37,8 @@ export const ChartSettings = ({
   setErrorMessage,
   setCompareEndDate,
 }: PropsType) => {
+  const { t } = useTranslation()
+
   const [maxComparedPeriod, setMaxComparedPeriod] = useState(0)
 
   const setStartDateHandler = (date: Date | null) => {
@@ -44,7 +48,7 @@ export const ChartSettings = ({
 
   const setEndDateHandler = (date: Date | null) => {
     if (startDate && date && !isPeriodWithinMaxDays(startDate, date, MAX_DAYS - 1)) {
-      setErrorMessage(`Max date is ${MAX_DAYS} days`)
+      setErrorMessage(`Max date range is ${MAX_DAYS} days`)
     } else {
       setEndDate(date)
       if (startDate && date) {
@@ -75,7 +79,7 @@ export const ChartSettings = ({
     <div>
       <div className={'flex justify-end'}>
         <div className={'m-3'}>
-          <div className={'text-light-900 text-sm'}>Date range </div>
+          <div className={'text-light-900 text-sm'}>{t('statistics.dateRange')}</div>
           <DateCalendar
             errorMessage={errorMessage}
             isRange={true}
@@ -88,7 +92,7 @@ export const ChartSettings = ({
         </div>
         {startDate && (
           <div className={'m-3'}>
-            <div className={'text-light-900 text-sm'}>Compared period</div>
+            <div className={'text-light-900 text-sm'}>{t('statistics.comparedPeriod')}</div>
 
             <DateCalendar
               errorMessage={compareErrorMessage}

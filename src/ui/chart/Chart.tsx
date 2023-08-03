@@ -2,6 +2,7 @@ import React from 'react'
 
 import { CategoryScale, Chart as ChartJS, Legend, Tooltip, BarElement, LinearScale } from 'chart.js'
 import { Bar, Line } from 'react-chartjs-2'
+import { useTranslation } from 'react-i18next'
 
 ChartJS.register(BarElement, Tooltip, Legend, CategoryScale, LinearScale)
 
@@ -42,16 +43,21 @@ export const Chart = ({
   labels = [],
   secondLabels = [],
   data = [],
-  legend = 'Date range',
+  legend,
   borderColor = defaultBorderColor,
   backgroundColor = defaultBackgroundColor,
   borderWidth = 0,
-  legendComparisonData = 'Compared period',
+  legendComparisonData,
   comparisonData = [],
   borderWidthComparisonData = 0,
   borderColorComparisonData = defaultComparisonBorderColor,
   backgroundColorComparisonData = defaultComparisonBackgroundColor,
 }: PropsType) => {
+  const { t } = useTranslation()
+
+  legend = legend || t('statistics.dateRange')
+  legendComparisonData = legendComparisonData || t('statistics.comparedPeriod')
+
   const firstData = {
     labels: labels,
     datasets: [
