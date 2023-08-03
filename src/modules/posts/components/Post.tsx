@@ -73,12 +73,14 @@ export const Post = ({
             ) : (
               <span className="text-base font-normal leading-6">No description </span>
             )}
-            <button
-              className="text-accent-700 pl-1 underline"
-              onClick={() => setShowMoreId(post.postId)}
-            >
-              {showMore ? t('postsList.post.showHide') : t('postsList.post.showMore')}
-            </button>
+            {post.description && (
+              <button
+                className="text-accent-700 pl-1 underline"
+                onClick={() => setShowMoreId(post.postId)}
+              >
+                {showMore ? t('postsList.post.showHide') : t('postsList.post.showMore')}
+              </button>
+            )}
           </p>
         </div>
       </div>
