@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 
 import { TabsTitle } from '@/components/users'
 import {
-  callWhenUrlChangesEffect,
+  changingTabsActivityWhenChangingTheLanguage,
   changingTabsParametersUrlEffect,
   UserFollowers,
   UserFollowing,
@@ -15,8 +15,9 @@ import {
 import { UserPhotos } from '@/modules/users-modules/view-user-info/components/user-photos/components/UserPhotos'
 
 export const ViewUserInformationInTabs = () => {
-  const [activeTab, setActiveTab] = useState('Upload Photos')
   const { t } = useTranslation()
+  const defaultTabs = t('userInfo.tabs.uploadPhotos')
+  const [activeTab, setActiveTab] = useState(defaultTabs)
 
   const router = useRouter()
   const { userId } = router.query
@@ -25,9 +26,9 @@ export const ViewUserInformationInTabs = () => {
     userId,
     activeTab,
   })
-  callWhenUrlChangesEffect({
-    router,
+  changingTabsActivityWhenChangingTheLanguage({
     setActiveTab,
+    defaultTabs,
   })
 
   const onChangeTab = (tabLabel: string | undefined) => {
