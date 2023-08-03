@@ -65,7 +65,7 @@ export const UserPhotos = () => {
   return (
     <div className="mt-9">
       <ErrorMessage errorMessage={error?.message}></ErrorMessage>
-      <div className="grid w-full grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
+      <div className="grid w-full grid-cols-5 md:grid-cols-3 gap-3 sm:grid-cols-2">
         {loading ? (
           usedToDrawArraysOfSkeletons(32)
         ) : (

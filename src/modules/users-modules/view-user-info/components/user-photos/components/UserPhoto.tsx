@@ -3,7 +3,7 @@ import { Placeholder } from '@/ui'
 
 export const UserPhoto = ({ item }: { item: ItemsImagesType }) => {
   return (
-    <div className="cursor-default w-[234px] h-[228px] flex gap-3 aspect-square relative">
+    <div className="cursor-default max-w-[234px] max-h-[228px] flex gap-3 aspect-square relative">
       <Placeholder
         alt="User photo"
         src={item.url}
