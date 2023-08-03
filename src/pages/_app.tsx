@@ -154,7 +154,7 @@ i18n.use(initReactI18next).init({
           paymentsList: 'Список платежей',
           logout: 'Выйти',
         },
-        signIn: { SignIn: 'Войти', email: 'Электронная почта', password: 'Пароль' },
+        login: { signIn: 'Войти', email: 'Электронная почта', password: 'Пароль' },
         userInfo: {
           userInfoMain: {
             backUsersList: 'Вернуться к списку пользователей',
@@ -276,7 +276,7 @@ i18n.use(initReactI18next).init({
           paymentsList: 'Список платежів',
           logout: 'Вийти',
         },
-        signIn: { SignIn: 'Увійти', email: 'Електронна пошта', password: 'Пароль' },
+        login: { signIn: 'Увійти', email: 'Електронна пошта', password: 'Пароль' },
         userInfo: {
           userInfoMain: {
             backUsersList: 'Повернутися до списку користувачів',
@@ -398,7 +398,7 @@ i18n.use(initReactI18next).init({
           paymentsList: 'Спіс плацяжоў',
           logout: 'Выйсці',
         },
-        signIn: { SignIn: 'Увайсці', email: 'Электронная пошта', password: ' Пароль' },
+        login: { signIn: 'Увайсці', email: 'Электронная пошта', password: ' Пароль' },
         userInfo: {
           userInfoMain: {
             backUsersList: 'Вярнуцца да спiсу карыстальнiкоў',
@@ -520,7 +520,7 @@ i18n.use(initReactI18next).init({
           paymentsList: 'Urggghh wrr',
           logout: 'grrrwahh',
         },
-        signIn: { SignIn: 'Ruurh', email: 'Shirwoorlakoorl', password: 'Rakkrorrl' },
+        login: { signIn: 'Ruurh', email: 'Shirwoorlakoorl', password: 'Rakkrorrl' },
         userInfo: {
           userInfoMain: {
             backUsersList: 'Rruurh rrragwah aarh ruuwoor ururrrgh!',

@@ -31,7 +31,6 @@ export const LoginForm = () => {
 
   loadingEffect({ loading, setLoading })
   if (auth) return <Preloader />
-  const signInLanguage = t('login.signIn')
 
   return (
     <>
@@ -47,19 +46,19 @@ export const LoginForm = () => {
             id="email"
             value="admin@admin.me"
             placeholder={t('signIn.email')}
-            label={t('signIn.email')}
+            label={t('login.email')}
             error={errors?.email?.message}
             {...register('email')}
           />
           <InputWithEye
             id="password"
             placeholder={t('signIn.password')}
-            label={t('signIn.password')}
+            label={t('login.password')}
             error={errors?.password?.message}
             {...register('password')}
           />
           <GlobalButton variant="default" type="submit">
-            {signInLanguage}
+            {t('login.signIn')}
           </GlobalButton>
         </form>
       )}
