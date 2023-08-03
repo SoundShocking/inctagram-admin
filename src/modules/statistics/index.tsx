@@ -1,1 +1,1 @@
-export * from './new-users/chart/NewUsersChart'
+export * from './components/Statistics'

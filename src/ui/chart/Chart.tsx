@@ -42,11 +42,11 @@ export const Chart = ({
   labels = [],
   secondLabels = [],
   data = [],
-  legend = 'Chosen Period',
+  legend = 'Date range',
   borderColor = defaultBorderColor,
   backgroundColor = defaultBackgroundColor,
   borderWidth = 0,
-  legendComparisonData = 'Compared Period',
+  legendComparisonData = 'Compared period',
   comparisonData = [],
   borderWidthComparisonData = 0,
   borderColorComparisonData = defaultComparisonBorderColor,
@@ -84,14 +84,16 @@ export const Chart = ({
         display: true, // Show the main x-axis
         position: 'bottom', // Position it at the bottom (default)
         ticks: {
+          //@ts-ignore
           callback: function (label) {
+            //@ts-ignore
             return `${this.getLabelForValue(label)}`
           },
         },
       },
       x1: {
-        display: true, // Show the second x-axis
-        position: 'bottom', // Position it at the top
+        display: true,
+        position: 'bottom',
         axis: 'x',
         labels: secondLabels,
         grid: {
@@ -120,91 +122,14 @@ export const Chart = ({
       },
     ],
   }
-  //
-  // options = {
-  //   scales: {
-  //     x: {
-  //       ticks: {
-  //         callback: function(label) {
-  //           return `\$${this.getLabelForValue(label)}`
-  //         }
-  //       }
-  //     },
-  //     secondXAxis: {
-  //       axis: 'x',
-  //       labels: ['V2', 'syntax', 'in', 'v3'],
-  //       grid: {
-  //         drawOnChartArea: false
-  //       }
-  //     }
-  //   }
-  // }
 
   return (
     <div>
-      <Bar data={chartData} options={options} />
+      <Bar
+        data={chartData}
+        //@ts-ignore
+        options={options}
+      />
     </div>
   )
-
-  // const data = {
-  //   labels: ['Label1', 'Label2', 'Label3', 'Label4', 'Label5'],
-  //   datasets: [
-  //     {
-  //       label: 'Data for X-axis',
-  //       data: [10, 20, 30, 40, 50],
-  //       backgroundColor: 'rgba(75,192,192,0.4)',
-  //     },
-  //   ],
-  // }
-  //
-  // // Sample data for the second x-axis
-  // const secondXAxisData = {
-  //   labels: ['SecondLabel1', 'SecondLabel2', 'SecondLabel3', 'SecondLabel4', 'SecondLabel5'],
-  //   datasets: [
-  //     {
-  //       label: 'Data for Second X-axis',
-  //       data: [5, 10, 15, 20, 25],
-  //       backgroundColor: 'rgba(255, 99, 132, 0.4)',
-  //     },
-  //   ],
-  // }
-  //
-  // // Define the options for the chart
-  // const options = {
-  //   scales: {
-  //     x: {
-  //       display: true, // Show the main x-axis
-  //       position: 'bottom', // Position it at the bottom (default)
-  //     },
-  //     x1: {
-  //       display: true, // Show the second x-axis
-  //       position: 'bottom', // Position it at the top
-  //     },
-  //   },
-  // }
-  //
-  // return (
-  //   <div>
-  //     <Bar
-  //       data={{
-  //         labels: data.labels,
-  //         datasets: [
-  //           {
-  //             label: data.datasets[0].label,
-  //             data: data.datasets[0].data,
-  //             backgroundColor: data.datasets[0].backgroundColor,
-  //             yAxisID: 'y',
-  //           },
-  //           {
-  //             label: secondXAxisData.datasets[0].label,
-  //             data: secondXAxisData.datasets[0].data,
-  //             backgroundColor: secondXAxisData.datasets[0].backgroundColor,
-  //             yAxisID: 'y1',
-  //           },
-  //         ],
-  //       }}
-  //       options={options}
-  //     />
-  //   </div>
-  // )
 }
