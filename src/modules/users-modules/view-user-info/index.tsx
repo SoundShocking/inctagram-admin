@@ -17,7 +17,7 @@ export * from './components/user-payments/types/UserPaymentsType'
 export * from './components/user-photos/types/UserImagesType'
 //Custom Effect
 export * from './custom/useEffect/changingTabsParametersUrlEffect'
-export * from './custom/useEffect/callWhenUrlChangesEffect'
+export * from './custom/useEffect/changingTabsActivityWhenChangingTheLanguage'
 export * from '@/modules/users-modules/view-user-info/components/user-payments/custom/useEffect/setUserPaymentsDataEffect'
 export * from './components/user-photos/custom/useEffect/infinity-scroll-handler/useInViewScrollHandlerEffect'
 export * from './custom/utils/ArrowBack'
