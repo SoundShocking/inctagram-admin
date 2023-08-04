@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 
 import { changingTheReasonForTheBanOrBlockingEffect } from '@/common'
 import { ModalWithContent } from '@/components/modals'
-import { DetailsInput, ImageOption, ImageSelector } from '@/ui'
+import { DetailsInput, CustomOption, CustomSelector } from '@/ui'
 import {
   BAN_UN_BAN_POST,
   BanPostModalType,
@@ -110,18 +110,18 @@ export const BanUserPostModal = ({
         <div className={'mt-3'}>{`${t('postsList.ban.reason.title')}:`}</div>
 
         <div className={'mt-1'}>
-          <ImageSelector isOpen={isOpen} setIsOpen={onDropdownClick} chosenText={banReasonName}>
+          <CustomSelector isOpen={isOpen} setIsOpen={onDropdownClick} chosenText={banReasonName}>
             {banReasons.map(({ text, value }) => {
               return (
-                <ImageOption
+                <CustomOption
                   key={text}
                   text={text}
                   onOptionClick={() => onOptionClick(text, value)}
                 />
               )
             })}
-          </ImageSelector>
-          <div className={'mt-4 -z-10 relative'}>
+          </CustomSelector>
+          <div className={'mt-4'}>
             <DetailsInput
               banDetails={banDetails}
               setBanDetails={setBanDetails}

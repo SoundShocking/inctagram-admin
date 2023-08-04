@@ -13,6 +13,7 @@ export const DetailsInput = ({ setError, error, setBanDetails }: PropsType) => {
   const { t } = useTranslation()
 
   const onInputChange = (value: string) => {
+    debugger
     const MAX_LENGTH = 100
 
     if (value.length < MAX_LENGTH) {
@@ -25,7 +26,7 @@ export const DetailsInput = ({ setError, error, setBanDetails }: PropsType) => {
 
   return (
     <GlobalInput
-      className={'my-3 absolute -z-10 text-light-100'}
+      className={'my-3 text-light-100'}
       type={'text'}
       label={t('userList.ban.reason.add')}
       error={error}

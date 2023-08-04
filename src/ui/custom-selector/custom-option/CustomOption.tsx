@@ -8,7 +8,7 @@ type PropsType = {
   imgSrc?: string | StaticImageData
 }
 
-export const ImageOption = ({ onOptionClick, text = '', imgSrc = '' }: PropsType) => {
+export const CustomOption = ({ onOptionClick, text = '', imgSrc = '' }: PropsType) => {
   return (
     <div
       className="py-1.5 px-3 text-white text-sm cursor-pointer flex items-center justify-between whitespace-nowrap"
