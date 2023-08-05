@@ -1,9 +1,14 @@
 import { getGlobalLayout } from '@/components/layout'
+import { Statistics } from '@/modules/statistics'
 
-const Statistics = () => {
-  return <div>{'Statistics'}</div>
+const StatisticsPage = () => {
+  return (
+    <div>
+      <Statistics />
+    </div>
+  )
 }
 
-Statistics.getLayout = getGlobalLayout
+StatisticsPage.getLayout = getGlobalLayout
 
-export default Statistics
+export default StatisticsPage

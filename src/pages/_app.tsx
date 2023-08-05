@@ -28,6 +28,11 @@ i18n.use(initReactI18next).init({
           paymentsList: 'Payments list',
           logout: 'Logout',
         },
+        login: {
+          signIn: 'Sign In',
+          email: 'Email',
+          password: 'Password',
+        },
         userInfo: {
           userInfoMain: {
             backUsersList: 'Back to Users List',
@@ -138,6 +143,19 @@ i18n.use(initReactI18next).init({
           ],
           dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
         },
+        statistics: {
+          dateRange: 'Date range',
+          comparedPeriod: 'Compared period',
+          users: {
+            users: 'Users',
+            newUsers: 'New users',
+            paidAccounts: 'Paid accounts',
+          },
+          photos: {
+            photos: 'Photos',
+            uploadedPhotos: 'Uploaded photos',
+          },
+        },
       },
     },
     ru: {
@@ -149,6 +167,7 @@ i18n.use(initReactI18next).init({
           paymentsList: 'Список платежей',
           logout: 'Выйти',
         },
+        login: { signIn: 'Войти', email: 'Электронная почта', password: 'Пароль' },
         userInfo: {
           userInfoMain: {
             backUsersList: 'Вернуться к списку пользователей',
@@ -259,6 +278,20 @@ i18n.use(initReactI18next).init({
           ],
           dayNamesShort: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
         },
+        statistics: {
+          dateRange: 'Период',
+          comparedPeriod: 'Сравниваемый период',
+
+          users: {
+            users: 'Пользователи',
+            newUsers: 'Новые пользователи',
+            paidAccounts: 'Платные аккаунты',
+          },
+          photos: {
+            photos: 'Фотографии',
+            uploadedPhotos: 'Загруженные фотографии',
+          },
+        },
       },
     },
     uk: {
@@ -270,6 +303,7 @@ i18n.use(initReactI18next).init({
           paymentsList: 'Список платежів',
           logout: 'Вийти',
         },
+        login: { signIn: 'Увійти', email: 'Електронна пошта', password: 'Пароль' },
         userInfo: {
           userInfoMain: {
             backUsersList: 'Повернутися до списку користувачів',
@@ -380,6 +414,19 @@ i18n.use(initReactI18next).init({
           ],
           dayNamesShort: ['Нд', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
         },
+        statistics: {
+          dateRange: 'Діапазон дат',
+          comparedPeriod: 'Порівняльний період',
+          users: {
+            users: 'Користувачі',
+            newUsers: 'Нові користувачі',
+            paidAccounts: 'Платні акаунти',
+          },
+          photos: {
+            photos: 'Фотографії',
+            uploadedPhotos: 'Завантажені фотографії',
+          },
+        },
       },
     },
     be: {
@@ -391,6 +438,7 @@ i18n.use(initReactI18next).init({
           paymentsList: 'Спіс плацяжоў',
           logout: 'Выйсці',
         },
+        login: { signIn: 'Увайсці', email: 'Электронная пошта', password: ' Пароль' },
         userInfo: {
           userInfoMain: {
             backUsersList: 'Вярнуцца да спiсу карыстальнiкоў',
@@ -501,6 +549,19 @@ i18n.use(initReactI18next).init({
           ],
           dayNamesShort: ['Нд', 'Пн', 'Аў', 'Ср', 'Чц', 'Пт', 'Сб'],
         },
+        statistics: {
+          dateRange: 'Дыяпазон дат',
+          comparedPeriod: 'Параўнальны перыяд',
+          users: {
+            users: 'Карыстальнікі',
+            newUsers: 'Новыя карыстальнікі',
+            paidAccounts: 'Платныя акаўнты',
+          },
+          photos: {
+            photos: 'Фатаграфіі',
+            uploadedPhotos: 'Загружаныя фатаграфіі',
+          },
+        },
       },
     },
     wookie: {
@@ -512,6 +573,7 @@ i18n.use(initReactI18next).init({
           paymentsList: 'Urggghh wrr',
           logout: 'grrrwahh',
         },
+        login: { signIn: 'Ruurh', email: 'Shirwoorlakoorl', password: 'Rakkrorrl' },
         userInfo: {
           userInfoMain: {
             backUsersList: 'Rruurh rrragwah aarh ruuwoor ururrrgh!',
@@ -621,6 +683,19 @@ i18n.use(initReactI18next).init({
             "'Wooroon",
           ],
           dayNamesShort: ['Sha', 'Gaw', 'Dal', 'Eem', 'Nyo', 'Vok', 'Oow'],
+        },
+        statistics: {
+          dateRange: 'Rrruurgh oooaaah aroo!',
+          comparedPeriod: 'Mwaaah muuh uhrrraaah!',
+          users: {
+            users: 'Wrrrooaaarrgh!',
+            newUsers: 'Aaarrwwgh!',
+            paidAccounts: 'Oooaaah uhrr!',
+          },
+          photos: {
+            photos: 'Ooaaah oooaaa aaaooa!',
+            uploadedPhotos: 'Mwoooaah oohwah oooaaah!',
+          },
         },
       },
     },

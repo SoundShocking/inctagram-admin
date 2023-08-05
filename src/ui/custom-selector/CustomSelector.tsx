@@ -2,7 +2,7 @@ import React, { Dispatch, FC, PropsWithChildren, SetStateAction } from 'react'
 
 import { StaticImageData } from 'next/image'
 
-import { ImageOption } from '@/ui/image-selector/image-option/ImageOption'
+import { CustomOption } from '@/ui/custom-selector/custom-option/CustomOption'
 
 interface Props {
   isOpen: boolean
@@ -11,7 +11,7 @@ interface Props {
   chosenText?: string
 }
 
-export const ImageSelector: FC<PropsWithChildren<Props>> = ({
+export const CustomSelector: FC<PropsWithChildren<Props>> = ({
   children,
   chosenText = '',
   chosenImage = '',
@@ -25,7 +25,7 @@ export const ImageSelector: FC<PropsWithChildren<Props>> = ({
         onClick={() => setIsOpen(prev => !prev)}
       >
         <>
-          <ImageOption
+          <CustomOption
             onOptionClick={() => setIsOpen(true)}
             imgSrc={chosenImage}
             text={chosenText}

@@ -21,6 +21,6 @@ export * from './skeletons/Skeleton'
 export * from './title_h2/nameTitle'
 export * from './spinner/Spinner'
 //image
-export * from './image-selector/ImageSelector'
-export * from './image-selector/image-option/ImageOption'
+export * from './custom-selector/custom-option/CustomOption'
+export * from './custom-selector/CustomSelector'
 export * from './placeholder/Placeholder'
