@@ -27,9 +27,10 @@ interface Props {
   payments: PaymentsItem[]
   sorting: SortingState
   setSorting: Dispatch<SetStateAction<SortingState>>
+  loading: boolean
 }
 
-export const PaymentsTable: FC<Props> = ({ payments, sorting, setSorting }) => {
+export const PaymentsTable: FC<Props> = ({ payments, sorting, setSorting, loading }) => {
   const columns = [
     columnHelper.accessor('userName', {
       id: 'username',
@@ -78,7 +79,17 @@ export const PaymentsTable: FC<Props> = ({ payments, sorting, setSorting }) => {
   return (
     <>
       <div className=" text-accent-500 p-2 block max-w-full ">
-        <div className={`max-w-[972px]`}>
+        <div className={`max-w-[972px] relative`}>
+          {loading && (
+            <div
+              className="absolute top-0 w-full h-0.5 animate-animateRainbowBorder"
+              style={{
+                backgroundImage:
+                  'linear-gradient(45deg, #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000)',
+                backgroundSize: '800% 100%',
+              }}
+            ></div>
+          )}
           <table>
             <thead
               className={

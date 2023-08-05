@@ -64,6 +64,15 @@ module.exports = {
         bgLog: '#101010',
         bgLogBorder: '#333333',
       },
+      keyframes: {
+        animateRainbowBorder: {
+          '0%': { 'background-position': '0% 50%' },
+          '100%': { 'background-position': '100% 50%' },
+        },
+      },
+      animation: {
+        animateRainbowBorder: 'animateRainbowBorder 1s ease-in-out infinite',
+      },
     },
   },
   plugins: [],

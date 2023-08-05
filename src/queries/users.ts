@@ -22,6 +22,8 @@ export const GET_ALL_USERS = gql`
       items {
         userId
         userName
+        fullName
+        lastSeen
         createdAt
         status
       }
