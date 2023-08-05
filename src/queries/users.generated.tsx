@@ -23,6 +23,8 @@ export type GetAllUsersQuery = {
       __typename?: 'UserForSuperAdminViewModel'
       userId: number
       userName: string
+      fullName: string
+      lastSeen?: any | null
       createdAt: any
       status: Types.UserStatusType
     }>
@@ -51,6 +53,8 @@ export const GetAllUsersDocument = gql`
       items {
         userId
         userName
+        fullName
+        lastSeen
         createdAt
         status
       }

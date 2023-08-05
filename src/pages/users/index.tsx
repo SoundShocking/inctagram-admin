@@ -9,7 +9,7 @@ const UsersPage: NextPageWithLayout = () => {
   return (
     <main className="w-full">
       <Head>
-        <title>Users list</title>
+        <title>Users</title>
       </Head>
       <UsersList />
     </main>

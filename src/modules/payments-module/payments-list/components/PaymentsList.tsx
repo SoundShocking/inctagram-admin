@@ -10,12 +10,11 @@ import { getPaymentsSorting } from '../helpers/getPaymentsSorting'
 import { PaymentsTable } from './PaymentsTable'
 
 import { TablePagination } from '@/components/table-pagination'
-import { PAYMENTS_SUBSCRIPTION } from '@/queries/payments'
 import {
-  CreatedSubscriptionSubscription,
   useCreatedSubscriptionSubscription,
   useGetAllPaymentsQuery,
 } from '@/queries/payments.generated'
+import { Switch } from '@/ui/switch'
 
 export const PaymentsList: FC = () => {
   const [pageIndex, setPageIndex] = useState(0)
@@ -25,11 +24,13 @@ export const PaymentsList: FC = () => {
   const [searchInput, setSearchInput] = useState('')
   const search = useDebounce(searchInput, 500)
 
+  const [autoUpdate, setAutoUpdate] = useState(true)
+
   useEffect(() => {
     setPageIndex(0)
   }, [search, pageSize])
 
-  const { loading, error, data, previousData, subscribeToMore, refetch } = useGetAllPaymentsQuery({
+  const { loading, error, data, previousData, refetch } = useGetAllPaymentsQuery({
     variables: {
       pageSize: +pageSize,
       pageNumber: pageIndex + 1,
@@ -40,6 +41,7 @@ export const PaymentsList: FC = () => {
   })
 
   useCreatedSubscriptionSubscription({
+    skip: !autoUpdate,
     onData: options => {
       const newSubscription = options.data.data?.createdSubscription
 
@@ -49,46 +51,22 @@ export const PaymentsList: FC = () => {
 
       refetch()
     },
+    onComplete: () => {
+      console.log('on complete')
+    },
   })
 
-  // useEffect(() => {
-  //   console.log('effect')
-  //
-  //   let unsubscribe: () => void
-  //
-  //   unsubscribe = subscribeToMore<CreatedSubscriptionSubscription>({
-  //     document: PAYMENTS_SUBSCRIPTION,
-  //     variables: {
-  //       pageSize: +pageSize,
-  //       pageNumber: pageIndex + 1,
-  //       search,
-  //     },
-  //     updateQuery: (previousQueryResult, { subscriptionData, variables }) => {
-  //       console.log(previousQueryResult)
-  //       console.log(subscriptionData)
-  //       console.log(variables)
-  //
-  //       refetch()
-  //       if (!subscriptionData.data) return previousQueryResult
-  //
-  //       return previousQueryResult
-  //
-  //       // const newSubscription = [subscriptionData.data.createdSubscription]
-  //       //
-  //       // return Object.assign({}, previousQueryResult, {
-  //       //   ...previousQueryResult,
-  //       //   paymentsList: {
-  //       //     ...previousQueryResult.paymentsList,
-  //       //     items: [...newSubscription, ...previousQueryResult.paymentsList.items],
-  //       //   },
-  //       // })
-  //
-  //       // return previousQueryResult
-  //     },
-  //   })
-  //
-  //   return () => unsubscribe()
-  // }, [subscribeToMore])
+  useEffect(() => {
+    if (autoUpdate) {
+      toast.success('auto update on', {
+        toastId: 'paymentsAutoUpdateOn',
+      })
+    } else {
+      toast.success('auto update off', {
+        toastId: 'paymentsAutoUpdateOff',
+      })
+    }
+  }, [autoUpdate])
 
   return (
     <div className="pt-16 px-6">
@@ -100,6 +78,8 @@ export const PaymentsList: FC = () => {
           value={searchInput}
           onChange={e => setSearchInput(e.target.value)}
         />
+
+        <Switch text={'Auto-update'} checked={autoUpdate} setChecked={setAutoUpdate} />
       </div>
 
       {error ? (
@@ -109,6 +89,7 @@ export const PaymentsList: FC = () => {
           payments={data?.paymentsList.items || previousData?.paymentsList.items || []}
           sorting={sorting}
           setSorting={setSorting}
+          loading={loading}
         />
       )}
 
