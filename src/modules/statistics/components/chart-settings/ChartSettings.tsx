@@ -39,8 +39,6 @@ export const ChartSettings = ({
 }: PropsType) => {
   const { t } = useTranslation()
 
-  const [maxComparedPeriod, setMaxComparedPeriod] = useState(0)
-
   const setStartDateHandler = (date: Date | null) => {
     setErrorMessage('')
     setStartDate(date)
@@ -51,11 +49,6 @@ export const ChartSettings = ({
       setErrorMessage(`Max date range is ${MAX_DAYS} days`)
     } else {
       setEndDate(date)
-      if (startDate && date) {
-        const maxDays = getDifferenceInDays(startDate, date)
-
-        setMaxComparedPeriod(maxDays)
-      }
     }
   }
 
@@ -66,13 +59,14 @@ export const ChartSettings = ({
   const setCompareEndDateHandler = (date: Date | null) => {
     setCompareEndDate(date)
 
-    if (
-      compareStartDate &&
-      date &&
-      !isPeriodWithinMaxDays(compareStartDate, date, maxComparedPeriod)
-    ) {
-      setCompareErrorMessage(`Max date is ${maxComparedPeriod} days`)
+    if (compareStartDate && date && !isPeriodWithinMaxDays(compareStartDate, date, MAX_DAYS)) {
+      setCompareErrorMessage(`Max date is ${MAX_DAYS} days`)
     }
+  }
+
+  const clearComparedPeriod = () => {
+    setCompareStartDate(null)
+    setCompareEndDate(null)
   }
 
   return (
@@ -90,21 +84,20 @@ export const ChartSettings = ({
             startDate={startDate}
           />
         </div>
-        {startDate && (
-          <div className={'m-3'}>
-            <div className={'text-light-900 text-sm'}>{t('statistics.comparedPeriod')}</div>
+        <div className={'m-3'}>
+          <div className={'text-light-900 text-sm'}>{t('statistics.comparedPeriod')}</div>
 
-            <DateCalendar
-              errorMessage={compareErrorMessage}
-              isRange={true}
-              maxDate={new Date()}
-              endDate={compareEndDate}
-              setEndDate={setCompareEndDateHandler}
-              setStartDate={setCompareStartDateHandler}
-              startDate={compareStartDate}
-            />
-          </div>
-        )}
+          <DateCalendar
+            errorMessage={compareErrorMessage}
+            isRange={true}
+            maxDate={new Date()}
+            endDate={compareEndDate}
+            setEndDate={setCompareEndDateHandler}
+            setStartDate={setCompareStartDateHandler}
+            startDate={compareStartDate}
+          />
+        </div>
+        <button onClick={clearComparedPeriod}>X</button>
       </div>
     </div>
   )
