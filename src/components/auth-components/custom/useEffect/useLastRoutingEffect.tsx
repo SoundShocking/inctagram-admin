@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 
 import { useRouter } from 'next/router'
 
-import { routes } from '@/routing/router.js'
+import { routes } from '@/routing/router'
 
 export const useLastRoutingEffect = () => {
   const { asPath } = useRouter()

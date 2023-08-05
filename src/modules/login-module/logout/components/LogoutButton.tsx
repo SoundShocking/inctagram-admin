@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'react-i18next'
 import { FaSignOutAlt } from 'react-icons/fa'
 
-import { routes } from '@/routing/router.js'
+import { routes } from '@/routing/router'
 
 export const LogoutButton: FC = () => {
   const router = useRouter()
