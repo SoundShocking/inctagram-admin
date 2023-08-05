@@ -91,7 +91,6 @@ export const DateCalendar: FC<DatePickerProps> = ({
   }
   const { t } = useTranslation()
 
-  console.log(t(`datePicker.monthNames`))
   const locale: Locale | string | undefined = {
     localize: {
       day: (n: string): any => t(`datePicker.dayNamesShort.${n}`),
