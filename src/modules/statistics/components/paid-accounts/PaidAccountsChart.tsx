@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 
 import { ChartSettings } from '@/modules/statistics/components/chart-settings/ChartSettings'
 import { dateConverter } from '@/modules/statistics/utils/dateConverter'
+import { getDateDaysAgo } from '@/modules/statistics/utils/getDateDaysAgo'
 import { GET_PAID_ACCOUNTS_STATISTICS } from '@/queries/statistics-paid-accounts'
 import { Chart } from '@/ui/chart/Chart'
 
@@ -16,8 +17,8 @@ export const PaidAccountsChart = () => {
   const [labels, setLabels] = useState<string[]>([])
   const [compareLabels, setCompareLabels] = useState<string[]>([])
 
-  const [startDate, setStartDate] = useState<Date | null>(null)
-  const [endDate, setEndDate] = useState<Date | null>(null)
+  const [startDate, setStartDate] = useState<Date | null>(getDateDaysAgo(30))
+  const [endDate, setEndDate] = useState<Date | null>(new Date())
   const [errorMessage, setErrorMessage] = useState<string>('')
 
   const [compareStartDate, setCompareStartDate] = useState<Date | null>(null)
