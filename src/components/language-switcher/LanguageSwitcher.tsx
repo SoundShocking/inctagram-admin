@@ -53,7 +53,7 @@ export const LanguageSwitcher: FC = () => {
   return (
     <>
       <DropdownMenu.Root modal={false} onOpenChange={onOpenChange}>
-        <DropdownMenu.Trigger asChild>
+        <DropdownMenu.Trigger className={'z-40'} asChild>
           <button className={styles.DropDownMenuTrigger}>
             <div className={styles.DropDownMenuFlag}>
               <Image src={currentLanguage!.flag} alt={currentLanguage!.name} />

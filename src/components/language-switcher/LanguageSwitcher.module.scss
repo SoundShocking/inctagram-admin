@@ -3,7 +3,7 @@
 }
 
 .DropDownMenuContent {
-  @apply bg-dark-500 border border-dark-100 py-1 px-3 text-sm text-white select-none;
+  @apply bg-dark-500 border z-10 border-dark-100 py-1 px-3 text-sm text-white select-none;
   width: var(--radix-dropdown-menu-trigger-width);
 }
 
