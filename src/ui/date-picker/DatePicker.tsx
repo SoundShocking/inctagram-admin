@@ -2,8 +2,10 @@ import 'react-datepicker/dist/react-datepicker.css'
 
 import { FC } from 'react'
 
-import clsx from 'clsx'
 // eslint-disable-next-line import/no-named-as-default
+import clsx from 'clsx'
+import { getYear } from 'date-fns'
+import { range } from 'lodash'
 import ReactDatePicker from 'react-datepicker'
 import { useTranslation } from 'react-i18next'
 
@@ -89,6 +91,7 @@ export const DateCalendar: FC<DatePickerProps> = ({
   }
   const { t } = useTranslation()
 
+  console.log(t(`datePicker.monthNames`))
   const locale: Locale | string | undefined = {
     localize: {
       day: (n: string): any => t(`datePicker.dayNamesShort.${n}`),
@@ -104,9 +107,38 @@ export const DateCalendar: FC<DatePickerProps> = ({
       dateTime: (): string => 'dd/mm/yyyy hh:mm:ss',
     },
   }
+  const years = range(1900, getYear(new Date()) + 1, 1)
+  const months = [
+    t(`datePicker.monthNames.${0}`),
+    t(`datePicker.monthNames.${1}`),
+    t(`datePicker.monthNames.${2}`),
+    t(`datePicker.monthNames.${3}`),
+    t(`datePicker.monthNames.${4}`),
+    t(`datePicker.monthNames.${5}`),
+    t(`datePicker.monthNames.${6}`),
+    t(`datePicker.monthNames.${7}`),
+    t(`datePicker.monthNames.${8}`),
+    t(`datePicker.monthNames.${9}`),
+    t(`datePicker.monthNames.${10}`),
+    t(`datePicker.monthNames.${11}`),
+  ]
+
+  const numDaysSelected = () => {
+    if (startDate && endDate && typeof startDate === 'object' && typeof endDate === 'object') {
+      const diffInMilliseconds = Math.abs(endDate.getTime() - startDate.getTime())
+      const diffInDays = Math.ceil(diffInMilliseconds / (1000 * 60 * 60 * 24))
+
+      return diffInDays
+    }
+
+    return 0
+  }
 
   return (
     <div {...rest}>
+      <p className="text-light-100 leading-6 font-normal text-xs">
+        Количество выбранных дней: {numDaysSelected()}
+      </p>
       <ReactDatePicker
         locale={locale || undefined}
         maxDate={maxDate}
@@ -117,8 +149,26 @@ export const DateCalendar: FC<DatePickerProps> = ({
         monthsShown={12}
         preventOpenOnFocus={true}
         selectsRange={isRange}
-        renderCustomHeader={({ date, decreaseMonth, increaseMonth }) => (
-          <CustomHeader date={date} decreaseMonth={decreaseMonth} increaseMonth={increaseMonth} />
+        renderCustomHeader={({
+          date,
+          changeYear,
+          changeMonth,
+          decreaseMonth,
+          increaseMonth,
+          monthDate,
+        }) => (
+          <CustomHeader
+            date={date}
+            numDaysSelected={numDaysSelected}
+            locale={locale}
+            monthDate={monthDate}
+            decreaseMonth={decreaseMonth}
+            years={years}
+            months={months}
+            increaseMonth={increaseMonth}
+            changeYear={changeYear}
+            changeMonth={changeMonth}
+          />
         )}
         onChange={(dates: [Date | null, Date | null] | Date | null) => DatePickerHandler(dates)}
         customInput={
@@ -135,12 +185,13 @@ export const DateCalendar: FC<DatePickerProps> = ({
         popperClassName={classNames.popper}
         showPopperArrow={false}
         calendarStartDay={1}
+        showYearDropdown
         disabled={disabled}
         popperModifiers={[
           {
             name: 'offset',
             options: {
-              offset: [0, 0],
+              offset: [0, 30],
             },
           },
         ]}
