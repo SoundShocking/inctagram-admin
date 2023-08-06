@@ -12,7 +12,7 @@ type DataChartType = {
 }
 
 type DatasetsType = {
-  label: string
+  label: string | undefined
   data: number[]
   backgroundColor: string
   borderColor: string

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 
 import { useQuery } from '@apollo/client'
-import { useTranslation } from 'react-i18next'
 
+import { useTranslation } from '@/components'
 import { ChartSettings } from '@/modules/statistics/components/chart-settings/ChartSettings'
 import { dateConverter } from '@/modules/statistics/utils/dateConverter'
 import { GET_NEW_USERS_STATISTICS } from '@/queries/statistics-users'
@@ -55,7 +55,7 @@ export const NewUsersChart = () => {
 
   return (
     <div className={'p-3'}>
-      <h2 className={'text-[20px]'}>{t('statistics.users.newUsers')}</h2>
+      <h2 className={'text-[20px]'}>{t.translation.statistics.users.newUsers}</h2>
       <ChartSettings
         errorMessage={errorMessage}
         endDate={endDate}

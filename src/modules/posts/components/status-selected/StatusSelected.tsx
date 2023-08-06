@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 
-import { useTranslation } from 'react-i18next'
-
+import { useTranslation } from '@/components'
 import { Select, SelectItem } from '@/ui/Select/Select'
 import { PostStatusForPostsLisType, StatusSelectedType } from 'modules/posts'
 
@@ -13,10 +12,10 @@ export const StatusSelected: FC<StatusSelectedType> = ({ status, setStatus }) =>
       <div className="max-w-[30%]">
         <Select<PostStatusForPostsLisType> fullWidth={true} value={status} setValue={setStatus}>
           <SelectItem value={PostStatusForPostsLisType.PUBLISHED}>
-            {t('postsList.publishedPosts')}
+            {t.translation.postsList.publishedPosts}
           </SelectItem>
           <SelectItem value={PostStatusForPostsLisType.BANNED}>
-            {t('postsList.bannedPosts')}
+            {t.translation.postsList.bannedPosts}
           </SelectItem>
         </Select>
       </div>

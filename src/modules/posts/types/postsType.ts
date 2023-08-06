@@ -23,6 +23,8 @@ export type PostsListType = {
   pageSize: number
   pagesCount: number
   totalCount: number
+  prevCursor: number
+  nextCursor: number
   items: PostsItemsType[]
 }
 

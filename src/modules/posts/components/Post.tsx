@@ -1,8 +1,8 @@
 import { clsx } from 'clsx'
 import { formatDistance, parseISO } from 'date-fns'
 import Link from 'next/link'
-import { useTranslation } from 'react-i18next'
 
+import { useTranslation } from '@/components'
 import { PostsItemsType } from '@/modules/posts/types/postsType'
 import { Placeholder } from '@/ui'
 import {
@@ -20,8 +20,9 @@ export const Post = ({
   showMore: boolean
   setShowMoreId: (postId: number) => void
 }) => {
-  const { t, i18n } = useTranslation()
-  const locale: Locale | undefined = localTimeDisplayLanguageInThePost[i18n.language]
+  const { t, locale } = useTranslation()
+  const localeTime: Locale | undefined = localTimeDisplayLanguageInThePost[locale || 'en']
+
   const className = {
     border: clsx(
       post.status === 'ACTIVE' ? 'border-2 border-emerald-700' : '',
@@ -59,7 +60,7 @@ export const Post = ({
           <span className="pt-6 font-normal text-light-100 leading-4 text-xs">
             {formatDistance(parseISO(post.createdAt), new Date(), {
               addSuffix: true,
-              locale: locale,
+              locale: localeTime,
             })}
           </span>
           <p className="text-sm text-light-100 break-words max-w-full leading-6 font-normal">
@@ -78,7 +79,9 @@ export const Post = ({
                 className="text-accent-700 pl-1 underline"
                 onClick={() => setShowMoreId(post.postId)}
               >
-                {showMore ? t('postsList.post.showHide') : t('postsList.post.showMore')}
+                {showMore
+                  ? t.translation.postsList.post.showHide
+                  : t.translation.postsList.post.showMore}
               </button>
             )}
           </p>

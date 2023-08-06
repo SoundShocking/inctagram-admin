@@ -4,7 +4,6 @@ import { clsx } from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useTranslation } from 'react-i18next'
 
 import paymentsOutline from '../../assets/icons/payments-outline.svg'
 import payments from '../../assets/icons/payments.svg'
@@ -15,6 +14,7 @@ import statistics from '../../assets/icons/statistics.svg'
 import usersOutline from '../../assets/icons/users-outline.svg'
 import users from '../../assets/icons/users.svg'
 
+import { useTranslation } from '@/components'
 import { LogoutButton } from '@/modules/login-module/logout'
 import { routes } from '@/routing/router.js'
 
@@ -50,7 +50,7 @@ export const Sidebar: FC = () => {
                 height={24}
                 width={24}
               />
-              <span className={className.hidden}> {t('navigation.userList')}</span>
+              <span className={className.hidden}> {t.translation.navigation.userList}</span>
             </Link>
           </li>
           <li>
@@ -61,7 +61,7 @@ export const Sidebar: FC = () => {
                 height={24}
                 width={24}
               />
-              <span className={className.hidden}>{t('navigation.statistics')}</span>
+              <span className={className.hidden}>{t.translation.navigation.statistics}</span>
             </Link>
           </li>
           <li className="">
@@ -72,7 +72,7 @@ export const Sidebar: FC = () => {
                 height={24}
                 width={24}
               />
-              <span className={className.hidden}>{t('navigation.paymentsList')}</span>
+              <span className={className.hidden}>{t.translation.navigation.paymentsList}</span>
             </Link>
           </li>
           <li className="">
@@ -83,7 +83,7 @@ export const Sidebar: FC = () => {
                 height={24}
                 width={24}
               />
-              <span className={className.hidden}>{t('navigation.postList')}</span>
+              <span className={className.hidden}>{t.translation.navigation.postList}</span>
             </Link>
           </li>
         </ul>

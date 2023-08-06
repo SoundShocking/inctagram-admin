@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 
 import { useMutation } from '@apollo/client'
-import { useTranslation } from 'react-i18next'
 
 import { changingTheReasonForTheBanOrBlockingEffect } from '@/common'
+import { useTranslation } from '@/components'
 import { ModalWithContent } from '@/components/modals'
 import { DetailsInput, CustomOption, CustomSelector } from '@/ui'
 import {
@@ -21,16 +21,17 @@ export const BanUserPostModal = ({
   userName,
 }: BanPostModalType) => {
   const { t } = useTranslation()
-  const SEXUAL_CONTENT = t('postsList.ban.reason.SEXUAL_CONTENT')
-  const VIOLENCE_AND_CRUELTY = t('postsList.ban.reason.VIOLENCE_AND_CRUELTY')
-  const DISCRIMINATION_AND_HATE = t('postsList.ban.reason.DISCRIMINATION_AND_HATE')
-  const SPAM_AND_SCAMS = t('postsList.ban.reason.SPAM_AND_SCAMS')
-  const COPYRIGHT_INFRINGEMENT = t('postsList.ban.reason.COPYRIGHT_INFRINGEMENT')
-  const INAPPROPRIATE_BEHAVIOR = t('postsList.ban.reason.INAPPROPRIATE_BEHAVIOR')
-  const PRIVACY_VIOLATION = t('postsList.ban.reason.PRIVACY_VIOLATION')
-  const ILLEGAL_ACTIVITIES = t('postsList.ban.reason.ILLEGAL_ACTIVITIES')
-  const SHOCKING_OR_DISTURBING_CONTENT = t('postsList.ban.reason.SHOCKING_OR_DISTURBING_CONTENT')
-  const CONTROVERSIAL_TOPICS = t('postsList.ban.reason.CONTROVERSIAL_TOPICS')
+  const SEXUAL_CONTENT = t.translation.postsList.ban.reason.SEXUAL_CONTENT
+  const VIOLENCE_AND_CRUELTY = t.translation.postsList.ban.reason.VIOLENCE_AND_CRUELTY
+  const DISCRIMINATION_AND_HATE = t.translation.postsList.ban.reason.DISCRIMINATION_AND_HATE
+  const SPAM_AND_SCAMS = t.translation.postsList.ban.reason.SPAM_AND_SCAMS
+  const COPYRIGHT_INFRINGEMENT = t.translation.postsList.ban.reason.COPYRIGHT_INFRINGEMENT
+  const INAPPROPRIATE_BEHAVIOR = t.translation.postsList.ban.reason.INAPPROPRIATE_BEHAVIOR
+  const PRIVACY_VIOLATION = t.translation.postsList.ban.reason.PRIVACY_VIOLATION
+  const ILLEGAL_ACTIVITIES = t.translation.postsList.ban.reason.ILLEGAL_ACTIVITIES
+  const SHOCKING_OR_DISTURBING_CONTENT =
+    t.translation.postsList.ban.reason.SHOCKING_OR_DISTURBING_CONTENT
+  const CONTROVERSIAL_TOPICS = t.translation.postsList.ban.reason.CONTROVERSIAL_TOPICS
   const defaultReason = CONTROVERSIAL_TOPICS
   const banReasons: ReasonType[] = [
     { text: SEXUAL_CONTENT, value: 'SEXUAL_CONTENT' },
@@ -97,17 +98,17 @@ export const BanUserPostModal = ({
     <ModalWithContent
       isOpen={isBanUserOpen}
       onClose={onDecline}
-      title={t('postsList.ban.title')}
-      confirmButtonText={t('postsList.ban.confirm')}
-      declineButtonText={t('postsList.ban.cancel')}
+      title={t.translation.postsList.ban.title}
+      confirmButtonText={t.translation.postsList.ban.confirm}
+      declineButtonText={t.translation.postsList.ban.cancel}
       onConfirm={onConfirm}
       onDecline={onDecline}
       disabled={error.length > 0}
     >
       <div>
-        <h3>{t('postsList.ban.description') + ' ' + userName + '?'}</h3>
+        <h3>{t.translation.postsList.ban.description + ' ' + userName + '?'}</h3>
 
-        <div className={'mt-3'}>{`${t('postsList.ban.reason.title')}:`}</div>
+        <div className={'mt-3'}>{`${t.translation.postsList.ban.reason.title}:`}</div>
 
         <div className={'mt-1'}>
           <CustomSelector isOpen={isOpen} setIsOpen={onDropdownClick} chosenText={banReasonName}>

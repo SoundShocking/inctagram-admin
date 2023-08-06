@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 
 import { useQuery } from '@apollo/client'
-import { useTranslation } from 'react-i18next'
 
+import { useTranslation } from '@/components'
 import { ChartSettings } from '@/modules/statistics/components/chart-settings/ChartSettings'
 import { dateConverter } from '@/modules/statistics/utils/dateConverter'
 import { GET_PAID_ACCOUNTS_STATISTICS } from '@/queries/statistics-paid-accounts'
@@ -58,7 +58,7 @@ export const PaidAccountsChart = () => {
 
   return (
     <div className={'p-3'}>
-      <h2 className={'text-[20px]'}>{t('statistics.users.paidAccounts')}</h2>
+      <h2 className={'text-[20px]'}>{t.translation.statistics.users.paidAccounts}</h2>
       <ChartSettings
         errorMessage={errorMessage}
         endDate={endDate}

@@ -3,12 +3,12 @@ import React, { FC, useState } from 'react'
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import { Row } from '@tanstack/react-table'
 import { useRouter } from 'next/router'
-import { useTranslation } from 'react-i18next'
 import { FaEllipsis, FaUserCheck, FaUserLock, FaUserXmark } from 'react-icons/fa6'
 
 import { DeleteModal } from './delete-modal/DeleteModal'
 import { UsersItem } from './UsersTable'
 
+import { useTranslation } from '@/components'
 import { BanUserModal } from '@/components/ban-unban/ban/BanUserModal'
 import { UnbanUserModal } from '@/components/ban-unban/unban/UnbanUserModal'
 import { UserStatusType } from '@/types'
@@ -62,7 +62,7 @@ export const UsersTableUserActions: FC<Props> = ({ row, viewInfo }) => {
               onSelect={() => onDeleteClick()}
             >
               <FaUserXmark size={24} className="mr-3" />
-              {t('userList.deleteUser')}
+              {t.translation.userList.deleteUser}
             </DropdownMenu.Item>
 
             {userStatus === UserStatusType.Active && (
@@ -71,7 +71,7 @@ export const UsersTableUserActions: FC<Props> = ({ row, viewInfo }) => {
                 onSelect={() => onBanClick()}
               >
                 <FaUserLock size={24} className="mr-3" />
-                {t('userList.banUser')}
+                {t.translation.userList.banUser}
               </DropdownMenu.Item>
             )}
 
@@ -81,7 +81,7 @@ export const UsersTableUserActions: FC<Props> = ({ row, viewInfo }) => {
                 onSelect={() => onUnbanClick()}
               >
                 <FaUserCheck size={24} className="mr-3" />
-                {t('userList.unbanUser')}
+                {t.translation.userList.unbanUser}
               </DropdownMenu.Item>
             )}
 
@@ -91,7 +91,7 @@ export const UsersTableUserActions: FC<Props> = ({ row, viewInfo }) => {
                 onSelect={() => handleMenuItemClickMoreInformation()}
               >
                 <FaEllipsis size={24} className="mr-3" />
-                {t('userList.moreInfo')}
+                {t.translation.userList.moreInfo}
               </DropdownMenu.Item>
             )}
           </DropdownMenu.Content>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { LanguageSwitcher } from '@/components/language-switcher'
+import { LanguageSwitcher } from '@/components'
 
 export const Header = () => {
   return (

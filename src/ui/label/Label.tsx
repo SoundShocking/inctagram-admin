@@ -4,7 +4,7 @@ import { ComponentPropsWithoutRef, FC, ReactNode } from 'react'
 import clsx from 'clsx'
 
 export type LabelProps = {
-  label?: ReactNode
+  label?: any
   disabledLabelText?: boolean
 } & ComponentPropsWithoutRef<'label'>
 

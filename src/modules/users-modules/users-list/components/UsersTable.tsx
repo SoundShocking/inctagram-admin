@@ -10,11 +10,11 @@ import {
 import { createColumnHelper } from '@tanstack/table-core'
 import { clsx } from 'clsx'
 import dayjs from 'dayjs'
-import { useTranslation } from 'react-i18next'
 
 import { UsersTableUserActions } from './UsersTableUserActions'
 import { UsersTableUserIdCell } from './UsersTableUserIdCell'
 
+import { useTranslation } from '@/components'
 import { TableSortIcon } from '@/components/table-sort-icon'
 import { UserForSuperAdminViewModel } from '@/types'
 
@@ -37,19 +37,19 @@ export const UsersTable: FC<Props> = ({ users, sorting, setSorting }) => {
   const columns = [
     columnHelper.accessor('userId', {
       id: 'id',
-      header: t('userList.table.userId'),
+      header: t.translation.userList.table.userId,
       cell: props => <UsersTableUserIdCell row={props.row} />,
       enableSorting: true,
     }),
     columnHelper.accessor('userName', {
       id: 'userName',
-      header: t('userList.table.username'),
+      header: t.translation.userList.table.username,
       cell: info => info.getValue(),
       enableSorting: true,
     }),
     columnHelper.accessor('createdAt', {
       id: 'createdAt',
-      header: t('userList.table.dateAdded'),
+      header: t.translation.userList.table.dateAdded,
       cell: info => dayjs(info.getValue()).format('DD.MM.YYYY'),
       enableSorting: true,
     }),

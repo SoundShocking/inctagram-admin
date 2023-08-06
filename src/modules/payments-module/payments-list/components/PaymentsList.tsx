@@ -1,7 +1,6 @@
 import { FC, useEffect, useState } from 'react'
 
 import { SortingState } from '@tanstack/react-table'
-import { t } from 'i18next'
 import { toast } from 'react-toastify'
 import { useDebounce } from 'usehooks-ts'
 
@@ -9,6 +8,7 @@ import { getPaymentsSorting } from '../helpers/getPaymentsSorting'
 
 import { PaymentsTable } from './PaymentsTable'
 
+import { useTranslation } from '@/components'
 import { TablePagination } from '@/components/table-pagination'
 import { PAYMENTS_SUBSCRIPTION } from '@/queries/payments'
 import {
@@ -18,6 +18,7 @@ import {
 } from '@/queries/payments.generated'
 
 export const PaymentsList: FC = () => {
+  const { t } = useTranslation()
   const [pageIndex, setPageIndex] = useState(0)
   const [pageSize, setPageSize] = useState('10')
   const [sorting, setSorting] = useState<SortingState>([])
@@ -96,7 +97,7 @@ export const PaymentsList: FC = () => {
         <input
           className="w-full h-9 bg-transparent text-light-100 text-sm outline-none border border-dark-100 px-10"
           type="text"
-          placeholder={t('userList.search')}
+          placeholder={t.translation.userList.search}
           value={searchInput}
           onChange={e => setSearchInput(e.target.value)}
         />
