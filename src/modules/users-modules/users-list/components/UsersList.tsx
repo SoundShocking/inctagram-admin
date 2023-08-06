@@ -23,7 +23,7 @@ export const UsersList = () => {
     setPageIndex(0)
   }, [search, pageSize])
 
-  const { loading, error, data, previousData } = useGetAllUsersQuery({
+  const { error, data, previousData } = useGetAllUsersQuery({
     variables: {
       pageSize: +pageSize,
       pageNumber: pageIndex + 1,
@@ -35,7 +35,7 @@ export const UsersList = () => {
   })
 
   return (
-    <div className="pt-16 px-6">
+    <div>
       <UsersTableToolbar
         searchInput={searchInput}
         setSearchInput={setSearchInput}

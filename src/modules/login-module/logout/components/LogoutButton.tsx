@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'react-i18next'
 import { FaSignOutAlt } from 'react-icons/fa'
 
-import { routes } from '@/routing/router.js'
+import { routes } from '@/routing/router'
 
 export const LogoutButton: FC = () => {
   const router = useRouter()
@@ -17,9 +17,15 @@ export const LogoutButton: FC = () => {
 
   return (
     <div>
-      <button onClick={handleLogout} className="flex items-center">
-        <FaSignOutAlt className="mr-4" />
-        <span className={'sm:hidden md:hidden  font-bold'}>{t('navigation.logout')}</span>
+      <button
+        onClick={handleLogout}
+        className="flex items-center hover:text-accent-500 transition-colors font-bold"
+      >
+        <div className="text-2xl leading-none mr-3">
+          <FaSignOutAlt />
+        </div>
+
+        <div className="md:hidden sm:hidden">{t('navigation.logout')}</div>
       </button>
     </div>
   )

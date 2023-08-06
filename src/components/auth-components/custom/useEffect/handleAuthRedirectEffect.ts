@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 import { unProtectedPaths } from '@/components/auth-components'
-import { routes } from '@/routing/router.js'
+import { routes } from '@/routing/router'
 import { AuthContextType } from '@/store/storeTypes/storeTypes'
 
 type handleAuthRedirectEffectType = Pick<AuthContextType, 'auth'>

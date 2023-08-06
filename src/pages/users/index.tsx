@@ -7,12 +7,13 @@ import { UsersList } from '@/modules/users-modules/users-list'
 
 const UsersPage: NextPageWithLayout = () => {
   return (
-    <main className="w-full">
+    <>
       <Head>
         <title>Users</title>
       </Head>
+
       <UsersList />
-    </main>
+    </>
   )
 }
 

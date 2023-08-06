@@ -6,12 +6,13 @@ import { NextPageWithLayout } from '@/pages/_app'
 
 const PaymentsPage: NextPageWithLayout = () => {
   return (
-    <main>
+    <>
       <Head>
         <title>Payments</title>
       </Head>
+
       <PaymentsList />
-    </main>
+    </>
   )
 }
 
