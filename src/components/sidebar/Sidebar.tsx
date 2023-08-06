@@ -43,7 +43,7 @@ export const Sidebar: FC = () => {
   ]
 
   return (
-    <aside className="border-r border-dark-100 pt-16">
+    <aside className="border-r border-dark-100 pt-16 pr-6">
       <div className="sticky top-0">
         <ul className="list-none flex gap-6 flex-col text-white leading-none">
           {menu.map((item, idx) => (

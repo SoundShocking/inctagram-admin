@@ -11,7 +11,7 @@ export const GlobalLayout: NextPage<PropsWithChildren> = ({ children }) => {
     <LayoutWithHeader>
       <main>
         <Container>
-          <div className="grid grid-cols-[200px_1fr] min-h-[calc(100vh-60px)]">
+          <div className="grid grid-cols-[220px_1fr] min-h-[calc(100vh-60px)]">
             <Sidebar />
 
             <div className="pt-16 pl-6">{children}</div>
