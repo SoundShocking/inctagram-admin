@@ -1,9 +1,10 @@
 import { useEffect } from 'react'
 
-import { PostsListType, PostsType } from '@/modules/posts'
+import { PostsListType } from '@/modules/posts'
+import { PostsListViewModel } from '@/types'
 
 interface FetchMoreVariables {
-  pageNumber: number
+  cursor: number
 }
 
 interface FetchMoreOptions {
@@ -13,7 +14,9 @@ interface FetchMoreOptions {
 
 interface FetchMoreResult {
   postsList: {
-    items: PostsType[]
+    items: PostsListViewModel[]
+    prevCursor: number
+    nextCursor: number
   }
 }
 
@@ -22,45 +25,44 @@ export const infinityScrollForPostsEffect = ({
   loading,
   isLoadingMore,
   fetchMore,
-  postsData,
+  data,
   setIsLoadingMore,
-  pageNumber,
-  setPageNumber,
 }: {
-  postsData: PostsListType | undefined
+  data: PostsListType | undefined
   inView: boolean
   loading: boolean
   isLoadingMore: boolean
   setIsLoadingMore: (isLoadingMore: boolean) => void
   fetchMore(options: FetchMoreOptions): Promise<any>
-  pageNumber: number
-  setPageNumber: (page: number) => void
 }) => {
   useEffect(() => {
     if (inView && !loading && !isLoadingMore) {
       if (
         !isLoadingMore &&
         inView &&
-        postsData &&
-        postsData.items.length + 1 < postsData.totalCount
+        data &&
+        data.postsList.items?.length + 1 < data.postsList.totalCount
       ) {
         setIsLoadingMore(true)
-        const newPageNumber = pageNumber + 1
+        const cursor = data.postsList.nextCursor
 
-        setPageNumber(newPageNumber)
         fetchMore({
-          variables: { pageNumber: newPageNumber },
+          variables: { cursor: cursor },
           updateQuery: (
-            prev: PostsType,
+            prev: PostsListType,
             { fetchMoreResult }: { fetchMoreResult?: FetchMoreResult }
           ) => {
             setIsLoadingMore(false)
             if (!fetchMoreResult) return prev
             if (prev?.postsList?.items) {
+              const fetchPostsList = fetchMoreResult.postsList
+
               return {
                 ...prev,
                 postsList: {
                   ...prev.postsList,
+                  nextCursor: fetchPostsList.nextCursor,
+                  prevCursor: fetchPostsList.prevCursor,
                   items: [...prev.postsList.items, ...fetchMoreResult.postsList.items],
                 },
               }

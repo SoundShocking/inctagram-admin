@@ -10,9 +10,10 @@ export const SliderImagesPost = ({ postImages }: { postImages: string[] }) => {
   return (
     <>
       <Swiper
+        className="aspect-square"
         style={
           {
-            '--swiper-pagination-color': '#2f68cc',
+            '--swiper-pagination-color': '#397DF6',
           } as any
         }
         modules={[Navigation, Pagination]}
@@ -24,10 +25,10 @@ export const SliderImagesPost = ({ postImages }: { postImages: string[] }) => {
         spaceBetween={50}
       >
         {postImages.map((image, index) => (
-          <SwiperSlide key={index}>
+          <SwiperSlide key={index} className=" flex align-middle items-center">
             <Placeholder
               alt={'Post image'}
-              className="bg-dark-300 h-[240px] object-cover "
+              className="bg-dark-300 h-full w-full object-contain felx align-middle items-center "
               width={234}
               height={240}
               src={image}

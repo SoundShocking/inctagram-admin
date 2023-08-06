@@ -9,12 +9,12 @@ export const ButtonNextPrev = () => {
     <div
       style={
         {
-          '--swiper-navigation-size': '30px',
+          '--swiper-navigation-size': '24px',
         } as CustomStyle
       }
     >
-      <div className="swiper-button-next after:text-dark-700"></div>
-      <div className="swiper-button-prev after:text-dark-700"></div>
+      <div className="swiper-button-next after:text-light-100"></div>
+      <div className="swiper-button-prev after:text-light-100"></div>
       <div className="swiper-pagination "></div>
     </div>
   )

@@ -9,6 +9,7 @@ export * from './components/slider/SliderImagesPosts'
 export * from './components/slider/ButtonNextPrev'
 
 //types
+// eslint-disable-next-line import/export
 export * from '@/modules/posts/types/postsType'
 
 export * from './skeleton/SkeletonUsersPosts'
