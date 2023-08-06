@@ -3,7 +3,7 @@ import React, { ChangeEvent, useState } from 'react'
 import { useQuery } from '@apollo/client'
 import { useInView } from 'react-intersection-observer'
 
-import { ErrorMessage, NotFoundComponent } from '@/components'
+import { ErrorMessage, NotFoundComponent, useTranslation } from '@/components'
 import { deletePostSubscriptionsEffect } from '@/modules/posts/custom/useEffect/deletePostSubscriptionsEffect'
 import { GlobalInput, Spinner } from '@/ui'
 import {
@@ -33,7 +33,7 @@ export const PostsList = () => {
   const { ref, inView } = useInView({
     threshold: 0.1,
   })
-
+  const { t } = useTranslation()
   const { loading, error, fetchMore, subscribeToMore } = useQuery<PostsType>(GET_POSTS_LIST, {
     variables: {
       search: debounce,
@@ -82,7 +82,7 @@ export const PostsList = () => {
         <GlobalInput
           className="w-[972px] pb-9 h-9"
           type={'text'}
-          placeholder={'Search'}
+          placeholder={t.translation.userList.search}
           value={search}
           callBack={handleCallBackSearch}
         />
