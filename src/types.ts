@@ -41,6 +41,23 @@ export enum BanReasonInputType {
   BadBehavior = 'Bad_behavior',
 }
 
+export type FollowingForSuperAdminViewModel = {
+  __typename?: 'FollowingForSuperAdminViewModel'
+  fullName: Scalars['String']['output']
+  subscriptionDate: Scalars['DateTime']['output']
+  userId: Scalars['Float']['output']
+  userName: Scalars['String']['output']
+}
+
+export type FollowingWithPaginationViewModel = {
+  __typename?: 'FollowingWithPaginationViewModel'
+  items: Array<FollowingForSuperAdminViewModel>
+  page: Scalars['Int']['output']
+  pageSize: Scalars['Int']['output']
+  pagesCount: Scalars['Int']['output']
+  totalCount: Scalars['Int']['output']
+}
+
 export type ImageForSuperAdminViewModel = {
   __typename?: 'ImageForSuperAdminViewModel'
   createdAt: Scalars['DateTime']['output']
@@ -151,6 +168,17 @@ export enum PostStatusForPostsListInputType {
   Published = 'PUBLISHED',
 }
 
+export type PostsListCursorPaginationViewModel = {
+  __typename?: 'PostsListCursorPaginationViewModel'
+  items: Array<PostsListViewModel>
+  nextCursor: Scalars['Int']['output']
+  page: Scalars['Int']['output']
+  pageSize: Scalars['Int']['output']
+  pagesCount: Scalars['Int']['output']
+  prevCursor: Scalars['Int']['output']
+  totalCount: Scalars['Int']['output']
+}
+
 export type PostsListViewModel = {
   __typename?: 'PostsListViewModel'
   createdAt: Scalars['DateTime']['output']
@@ -164,20 +192,12 @@ export type PostsListViewModel = {
   userName: Scalars['String']['output']
 }
 
-export type PostsListWithPaginationViewModel = {
-  __typename?: 'PostsListWithPaginationViewModel'
-  items: Array<PostsListViewModel>
-  page: Scalars['Int']['output']
-  pageSize: Scalars['Int']['output']
-  pagesCount: Scalars['Int']['output']
-  totalCount: Scalars['Int']['output']
-}
-
 export type Query = {
   __typename?: 'Query'
   paymentsList: PaymentsListWithPaginationViewModel
-  postsList: PostsListWithPaginationViewModel
+  postsList: PostsListCursorPaginationViewModel
   statisticsPaidAccounts: StatisticsForGraphicsAdminViewModel
+  statisticsUploadedImages: StatisticsForGraphicsByImagesAdminViewModel
   statisticsUsers: StatisticsForGraphicsAdminViewModel
   user: UserForSuperAdminViewModel
   users: UsersWithPaginationViewModel
@@ -192,6 +212,7 @@ export type QueryPaymentsListArgs = {
 }
 
 export type QueryPostsListArgs = {
+  cursor?: InputMaybe<Scalars['Int']['input']>
   pageNumber?: InputMaybe<Scalars['Int']['input']>
   pageSize?: InputMaybe<Scalars['Int']['input']>
   search?: InputMaybe<Scalars['String']['input']>
@@ -201,6 +222,13 @@ export type QueryPostsListArgs = {
 }
 
 export type QueryStatisticsPaidAccountsArgs = {
+  comparisonEndDate?: InputMaybe<Scalars['Timestamp']['input']>
+  comparisonStartDate?: InputMaybe<Scalars['Timestamp']['input']>
+  endDate: Scalars['Timestamp']['input']
+  startDate: Scalars['Timestamp']['input']
+}
+
+export type QueryStatisticsUploadedImagesArgs = {
   comparisonEndDate?: InputMaybe<Scalars['Timestamp']['input']>
   comparisonStartDate?: InputMaybe<Scalars['Timestamp']['input']>
   endDate: Scalars['Timestamp']['input']
@@ -245,10 +273,11 @@ export enum SortByForPostsListInputType {
   Id = 'id',
 }
 
-/** Sort By [id, createdAt] */
+/** Sort By [id, createdAt, userName] */
 export enum SortByForUser {
   CreatedAt = 'createdAt',
   Id = 'id',
+  UserName = 'userName',
 }
 
 /** Sort By [id, userName, createdAt, lastSeen] */
@@ -265,20 +294,42 @@ export enum SortDirectionType {
   Desc = 'Desc',
 }
 
-export type StatisticsData = {
-  __typename?: 'StatisticsData'
-  metrics: StatisticsMetrics
-  metricsComparison?: Maybe<StatisticsMetrics>
+export type StatisticsDataByImages = {
+  __typename?: 'StatisticsDataByImages'
+  metrics: StatisticsMetricsImages
+  metricsComparison?: Maybe<StatisticsMetricsImages>
+}
+
+export type StatisticsDataByUsers = {
+  __typename?: 'StatisticsDataByUsers'
+  metrics: StatisticsMetricsUsers
+  metricsComparison?: Maybe<StatisticsMetricsUsers>
 }
 
 export type StatisticsForGraphicsAdminViewModel = {
   __typename?: 'StatisticsForGraphicsAdminViewModel'
-  data?: Maybe<StatisticsData>
+  data?: Maybe<StatisticsDataByUsers>
   query?: Maybe<StatisticsQuery>
 }
 
-export type StatisticsMetrics = {
-  __typename?: 'StatisticsMetrics'
+export type StatisticsForGraphicsByImagesAdminViewModel = {
+  __typename?: 'StatisticsForGraphicsByImagesAdminViewModel'
+  data?: Maybe<StatisticsDataByImages>
+  query?: Maybe<StatisticsQuery>
+}
+
+export type StatisticsMetricsImages = {
+  __typename?: 'StatisticsMetricsImages'
+  countImages?: Maybe<Array<Scalars['Float']['output']>>
+  maxCountImages: Scalars['Float']['output']
+  maxRoundImages: Scalars['Float']['output']
+  sumImages: Scalars['Float']['output']
+  time_intervals: Array<Scalars['DateTime']['output']>
+  total_rows: Scalars['Float']['output']
+}
+
+export type StatisticsMetricsUsers = {
+  __typename?: 'StatisticsMetricsUsers'
   countUsers?: Maybe<Array<Scalars['Float']['output']>>
   maxCountUsers: Scalars['Float']['output']
   maxRoundUsers: Scalars['Float']['output']
@@ -332,7 +383,9 @@ export type UserForSuperAdminViewModel = {
   __typename?: 'UserForSuperAdminViewModel'
   createdAt: Scalars['DateTime']['output']
   followerCount?: Maybe<Scalars['Int']['output']>
+  followersUser: FollowingWithPaginationViewModel
   followingCount?: Maybe<Scalars['Int']['output']>
+  followingUser: FollowingWithPaginationViewModel
   fullName: Scalars['String']['output']
   imagesCount: Scalars['Float']['output']
   imagesUser: ImagesWithPaginationViewModel
@@ -372,3 +425,5 @@ export type UsersWithPaginationViewModel = {
   pagesCount: Scalars['Int']['output']
   totalCount: Scalars['Int']['output']
 }
+
+export class PostsListWithPaginationViewModel {}

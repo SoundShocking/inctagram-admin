@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 
-import { PostsListType, PostsType } from '@/modules/posts'
+import { PostsListType } from '@/modules/posts'
+import { PostsListViewModel } from '@/types'
 
 interface FetchMoreVariables {
   cursor: number
@@ -13,7 +14,7 @@ interface FetchMoreOptions {
 
 interface FetchMoreResult {
   postsList: {
-    items: PostsType[]
+    items: PostsListViewModel[]
     prevCursor: number
     nextCursor: number
   }
@@ -24,10 +25,10 @@ export const infinityScrollForPostsEffect = ({
   loading,
   isLoadingMore,
   fetchMore,
-  postsData,
+  data,
   setIsLoadingMore,
 }: {
-  postsData: PostsListType | undefined
+  data: PostsListType | undefined
   inView: boolean
   loading: boolean
   isLoadingMore: boolean
@@ -39,16 +40,16 @@ export const infinityScrollForPostsEffect = ({
       if (
         !isLoadingMore &&
         inView &&
-        postsData &&
-        postsData.items.length + 1 < postsData.totalCount
+        data &&
+        data.postsList.items?.length + 1 < data.postsList.totalCount
       ) {
         setIsLoadingMore(true)
-        const cursor = postsData.nextCursor
+        const cursor = data.postsList.nextCursor
 
         fetchMore({
           variables: { cursor: cursor },
           updateQuery: (
-            prev: PostsType,
+            prev: PostsListType,
             { fetchMoreResult }: { fetchMoreResult?: FetchMoreResult }
           ) => {
             setIsLoadingMore(false)

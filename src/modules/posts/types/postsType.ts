@@ -18,22 +18,6 @@ export type PostsItemsType = {
   postStatus: 'PUBLISHED' | 'BANNED'
 }
 
-export type PostsListType = {
-  page: number
-  pageSize: number
-  pagesCount: number
-  totalCount: number
-  prevCursor: number
-  nextCursor: number
-  items: PostsItemsType[]
-}
-
-export type PostsType =
-  | {
-      postsList: PostsListType
-    }
-  | undefined
-
 export type TableActionsDropDownType = {
   post: Pick<PostsItemsType, 'userName' | 'status' | 'postId' | 'postStatus' | 'userId'>
 }

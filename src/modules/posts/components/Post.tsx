@@ -2,8 +2,8 @@ import { clsx } from 'clsx'
 import { formatDistance, parseISO } from 'date-fns'
 import Link from 'next/link'
 
-import { useTranslation } from '@/components'
-import { PostsItemsType } from '@/modules/posts/types/postsType'
+import { NotFoundComponent, useTranslation } from '@/components'
+import { PostsListViewModel } from '@/types'
 import { Placeholder } from '@/ui'
 import {
   localTimeDisplayLanguageInThePost,
@@ -16,7 +16,7 @@ export const Post = ({
   showMore,
   setShowMoreId,
 }: {
-  post: PostsItemsType
+  post: PostsListViewModel
   showMore: boolean
   setShowMoreId: (postId: number) => void
 }) => {
@@ -35,14 +35,18 @@ export const Post = ({
     <>
       <div className="max-w-56 flex flex-col h-auto">
         <div className="w-full h-full ">
-          <SliderImagesPost postImages={post.urlsPostsImages} />
+          {post.urlsPostsImages ? (
+            <SliderImagesPost postImages={post.urlsPostsImages} />
+          ) : (
+            <NotFoundComponent message={'No images'} />
+          )}
           <div className="flex flex-wrap pt-1.5 gap-1 align-middle content-center justify-between">
             <div className="flex w-full items-center flex-wrap h-full justify-between gap-3 align-middle">
               <div className="flex gap-2 items-center flex-wrap">
                 <div className="w-9 h-9">
                   <Placeholder
                     className={`cursor-default object-cover rounded-full ${className.border}`}
-                    src={post.urlAvatar}
+                    src={post.urlAvatar || ''}
                     alt={'User image post'}
                     height={36}
                     width={36}
@@ -74,7 +78,7 @@ export const Post = ({
             ) : (
               <span className="text-base font-normal leading-6">No description </span>
             )}
-            {post.description?.length > 83 && (
+            {post.description && post.description?.length > 83 && (
               <button
                 className="text-accent-700 pl-1 underline"
                 onClick={() => setShowMoreId(post.postId)}

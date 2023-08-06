@@ -5,6 +5,12 @@ import { useInView } from 'react-intersection-observer'
 
 import { ErrorMessage, NotFoundComponent, useTranslation } from '@/components'
 import { deletePostSubscriptionsEffect } from '@/modules/posts/custom/useEffect/deletePostSubscriptionsEffect'
+import {
+  PostsListCursorPaginationViewModel,
+  PostsListViewModel,
+  PostsListWithPaginationViewModel,
+  Query,
+} from '@/types'
 import { GlobalInput, Spinner } from '@/ui'
 import {
   addNewPostSubscriptionsEffect,
@@ -13,13 +19,11 @@ import {
   infinityScrollForPostsEffect,
   Post,
   PostsItemsType,
-  PostsListType,
   PostStatusForPostsLisType,
-  PostsType,
   SkeletonPost,
   StatusSelected,
 } from 'modules/posts'
-
+export type PostsListType = Pick<Query, 'postsList'>
 export const PostsList = () => {
   const [timerId, setTimerId] = useState<NodeJS.Timeout | undefined>(undefined)
   const [search, setSearch] = useState<string>('')
@@ -27,24 +31,23 @@ export const PostsList = () => {
   const [status, setStatus] = useState<PostStatusForPostsLisType>(
     PostStatusForPostsLisType.PUBLISHED
   )
-  const [postsData, setPostsData] = useState<PostsListType | undefined>()
   const [showMoreIds, setShowMoreIds] = useState<number[]>([])
   const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false)
   const { ref, inView } = useInView({
     threshold: 0.1,
   })
   const { t } = useTranslation()
-  const { loading, error, fetchMore, subscribeToMore } = useQuery<PostsType>(GET_POSTS_LIST, {
-    variables: {
-      search: debounce,
-      status: status,
-    },
-    fetchPolicy: 'cache-and-network',
-    onCompleted: (data: PostsType) => {
-      setPostsData(data?.postsList)
-    },
-    onError: error => console.error('error', error),
-  })
+  const { data, loading, error, fetchMore, subscribeToMore } = useQuery<PostsListType>(
+    GET_POSTS_LIST,
+    {
+      variables: {
+        search: debounce,
+        status: status,
+      },
+      fetchPolicy: 'cache-and-network',
+      onError: error => console.error('error', error),
+    }
+  )
 
   const handleCallBackShowMore = (postId: number) => {
     if (showMoreIds.includes(postId)) {
@@ -68,7 +71,7 @@ export const PostsList = () => {
     loading,
     fetchMore,
     setIsLoadingMore,
-    postsData,
+    data,
   })
   handleSearchDebounceEffect({ loading, timerId, setTimerId, setDebounce, search })
 
@@ -92,8 +95,8 @@ export const PostsList = () => {
           SkeletonPost(32)
         ) : (
           <>
-            {postsData !== undefined ? (
-              postsData.items.map((post: PostsItemsType, index: number) => (
+            {data !== undefined ? (
+              data.postsList.items?.map((post: PostsListViewModel, index: number) => (
                 <Post
                   post={post}
                   key={index}
