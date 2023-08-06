@@ -118,16 +118,10 @@ export const UsersTable: FC<Props> = ({ users, sorting, setSorting }) => {
                     <th key={header.id} colSpan={header.colSpan}>
                       {header.isPlaceholder ? null : (
                         <div
-                          // className={clsx('flex items-center justify-center select-none', {
-                          //   'cursor-pointer': header.column.getCanSort(),
-                          // })}
-                          // onClick={header.column.getToggleSortingHandler()}
-                          {...{
-                            className: clsx('flex items-center justify-center select-none', {
-                              'cursor-pointer': header.column.getCanSort(),
-                            }),
-                            onClick: header.column.getToggleSortingHandler(),
-                          }}
+                          className={clsx('flex items-center justify-center select-none', {
+                            'cursor-pointer': header.column.getCanSort(),
+                          })}
+                          onClick={header.column.getToggleSortingHandler()}
                         >
                           {flexRender(header.column.columnDef.header, header.getContext())}
 
