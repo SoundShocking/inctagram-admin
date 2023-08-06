@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
-import { useTranslation } from 'react-i18next'
 import { AiFillUnlock } from 'react-icons/ai'
 import { FaEllipsis, FaUserLock } from 'react-icons/fa6'
 import { ImEye, ImEyeBlocked } from 'react-icons/im'
 
+import { useTranslation } from '@/components'
 import { BanUserModal } from '@/components/ban-unban/ban/BanUserModal'
 import { UnbanUserModal } from '@/components/ban-unban/unban/UnbanUserModal'
 import { BanUserPostModal, TableActionsDropDownType, UnBanPostUserModal } from 'modules/posts'
@@ -58,7 +58,7 @@ export const PostsActionsDropDown = ({
                 onSelect={() => onBanClick()}
               >
                 <FaUserLock size={24} className="mr-3" />
-                {t('userList.banUser')}
+                {t.translation.userList.banUser}
               </DropdownMenu.Item>
             )}
 
@@ -68,7 +68,7 @@ export const PostsActionsDropDown = ({
                 onSelect={() => onUnbanClick()}
               >
                 <AiFillUnlock size={24} className="mr-3" />
-                {t('userList.unbanUser')}
+                {t.translation.userList.unbanUser}
               </DropdownMenu.Item>
             )}
 
@@ -78,7 +78,7 @@ export const PostsActionsDropDown = ({
                 onSelect={() => onBanPostClick()}
               >
                 <ImEyeBlocked size={24} className="mr-3" />
-                {t('postsList.banPost')}
+                {t.translation.postsList.banPost}
               </DropdownMenu.Item>
             )}
 
@@ -88,7 +88,7 @@ export const PostsActionsDropDown = ({
                 onSelect={() => onUnbanPostClick()}
               >
                 <ImEye size={24} className="mr-3" />
-                {t('postsList.unbanPost')}
+                {t.translation.postsList.unbanPost}
               </DropdownMenu.Item>
             )}
           </DropdownMenu.Content>

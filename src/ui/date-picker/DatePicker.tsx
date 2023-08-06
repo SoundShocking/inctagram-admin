@@ -7,10 +7,10 @@ import clsx from 'clsx'
 import { getYear } from 'date-fns'
 import { range } from 'lodash'
 import ReactDatePicker from 'react-datepicker'
-import { useTranslation } from 'react-i18next'
 
 import s from '../date-picker/datePicker.module.scss'
 
+import { useTranslation } from '@/components'
 import { CustomHeader, CustomInput } from '@/ui'
 
 type CommonProps = {
@@ -91,11 +91,10 @@ export const DateCalendar: FC<DatePickerProps> = ({
   }
   const { t } = useTranslation()
 
-  console.log(t(`datePicker.monthNames`))
   const locale: Locale | string | undefined = {
     localize: {
-      day: (n: string): any => t(`datePicker.dayNamesShort.${n}`),
-      month: (n: string): any => t(`datePicker.monthNames.${n}`),
+      day: (n: number): any => t.translation.datePicker.dayNamesShort[n],
+      month: (n: number): any => t.translation.datePicker.monthNames[n],
       ordinalNumber: (): any => undefined,
       era: (): any => undefined,
       quarter: (): any => undefined,
@@ -109,18 +108,18 @@ export const DateCalendar: FC<DatePickerProps> = ({
   }
   const years = range(1900, getYear(new Date()) + 1, 1)
   const months = [
-    t(`datePicker.monthNames.${0}`),
-    t(`datePicker.monthNames.${1}`),
-    t(`datePicker.monthNames.${2}`),
-    t(`datePicker.monthNames.${3}`),
-    t(`datePicker.monthNames.${4}`),
-    t(`datePicker.monthNames.${5}`),
-    t(`datePicker.monthNames.${6}`),
-    t(`datePicker.monthNames.${7}`),
-    t(`datePicker.monthNames.${8}`),
-    t(`datePicker.monthNames.${9}`),
-    t(`datePicker.monthNames.${10}`),
-    t(`datePicker.monthNames.${11}`),
+    t.translation.datePicker.monthNames[0],
+    t.translation.datePicker.monthNames[1],
+    t.translation.datePicker.monthNames[2],
+    t.translation.datePicker.monthNames[3],
+    t.translation.datePicker.monthNames[4],
+    t.translation.datePicker.monthNames[5],
+    t.translation.datePicker.monthNames[6],
+    t.translation.datePicker.monthNames[7],
+    t.translation.datePicker.monthNames[8],
+    t.translation.datePicker.monthNames[9],
+    t.translation.datePicker.monthNames[10],
+    t.translation.datePicker.monthNames[11],
   ]
 
   const numDaysSelected = () => {

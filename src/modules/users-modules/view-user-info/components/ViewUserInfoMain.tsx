@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import { useTranslation } from 'react-i18next'
 
 import { dateChangesFormat } from '@/common'
+import { useTranslation } from '@/components'
 import { ArrowBack, UserType } from '@/modules/users-modules/view-user-info'
 import { Placeholder } from '@/ui'
 
@@ -15,7 +15,7 @@ export const ViewUserInfoMain = ({ userData }: { userData: UserType }) => {
         <Link href={'/'} className="flex">
           <ArrowBack />
           <span className="сurosor-pointer hover:text-accent-500 transition-colors outline-none pl-2 font-medium">
-            {t('userInfo.userInfoMain.backUsersList')}
+            {t.translation.userInfo.userInfoMain.backUsersList}
           </span>
         </Link>
         <div className="pt-6 w-[360px]">
@@ -31,19 +31,19 @@ export const ViewUserInfoMain = ({ userData }: { userData: UserType }) => {
               <span className="text-xl font-bold leading-9">{userName}</span>
               <Link href={'/'}>
                 <span className="hover:text-accent-500 transition-colors outline-none">
-                  {t('userInfo.userInfoMain.linkProfile')}
+                  {t.translation.userInfo.userInfoMain.linkProfile}
                 </span>
               </Link>
             </div>
           </div>
           <div className="flex justify-between pt-6">
             <div className="flex flex-col w-[172px]">
-              <span className="text-light-900">{t('userInfo.userInfoMain.userID')}</span>
+              <span className="text-light-900">{t.translation.userInfo.userInfoMain.userID}</span>
               <span>{userId}</span>
             </div>
             <div className="flex pl-3 w-3/6 flex-col">
               <span className="text-light-900">
-                {t('userInfo.userInfoMain.profileCreationDate')}
+                {t.translation.userInfo.userInfoMain.profileCreationDate}
               </span>
               <span>{dateChangesFormat(createdAt)}</span>
             </div>

@@ -1,8 +1,8 @@
 import React from 'react'
 
 import { useMutation } from '@apollo/client'
-import { useTranslation } from 'react-i18next'
 
+import { useTranslation } from '@/components'
 import { Confirm } from '@/components/modals'
 import { BAN_UN_BAN_POST, GET_POSTS_LIST, UnBanPostModalType } from 'modules/posts'
 
@@ -35,10 +35,10 @@ export const UnBanPostUserModal = ({
       onConfirm={onConfirm}
       onClose={onDecline}
       onDecline={onDecline}
-      confirmButtonText={t('postsList.unban.confirm')}
-      declineButtonText={t('postsList.unban.cancel')}
-      title={t('postsList.unban.title')}
-      text={t('postsList.unban.description') + ' ' + userName + '?'}
+      confirmButtonText={t.translation.postsList.unban.confirm}
+      declineButtonText={t.translation.postsList.unban.cancel}
+      title={t.translation.postsList.unban.title}
+      text={t.translation.postsList.unban.description + ' ' + userName + '?'}
     />
   )
 }

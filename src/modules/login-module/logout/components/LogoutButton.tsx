@@ -2,9 +2,9 @@ import { FC } from 'react'
 
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
-import { useTranslation } from 'react-i18next'
 import { FaSignOutAlt } from 'react-icons/fa'
 
+import { useTranslation } from '@/components'
 import { routes } from '@/routing/router'
 
 export const LogoutButton: FC = () => {
@@ -25,7 +25,7 @@ export const LogoutButton: FC = () => {
           <FaSignOutAlt />
         </div>
 
-        <div className="md:hidden sm:hidden">{t('navigation.logout')}</div>
+        <div className="md:hidden sm:hidden">{t.translation.navigation.logout}</div>
       </button>
     </div>
   )

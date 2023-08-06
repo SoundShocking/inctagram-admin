@@ -2,8 +2,8 @@ import { useState } from 'react'
 
 import { nanoid } from 'nanoid'
 import { useRouter } from 'next/router'
-import { useTranslation } from 'react-i18next'
 
+import { useTranslation } from '@/components'
 import { TabsTitle } from '@/components/users'
 import {
   changingTabsActivityWhenChangingTheLanguage,
@@ -16,7 +16,7 @@ import { UserPhotos } from '@/modules/users-modules/view-user-info/components/us
 
 export const ViewUserInformationInTabs = () => {
   const { t } = useTranslation()
-  const defaultTabs = t('userInfo.tabs.uploadPhotos')
+  const defaultTabs = t.translation.userInfo.tabs.uploadPhotos
   const [activeTab, setActiveTab] = useState(defaultTabs)
 
   const router = useRouter()
@@ -36,20 +36,20 @@ export const ViewUserInformationInTabs = () => {
   }
 
   const view_user_info_tabs = [
-    { id: nanoid(), label: t('userInfo.tabs.uploadPhotos'), content: UserPhotos },
+    { id: nanoid(), label: t.translation.userInfo.tabs.uploadPhotos, content: UserPhotos },
     {
       id: nanoid(),
-      label: t('userInfo.tabs.payments'),
+      label: t.translation.userInfo.tabs.payments,
       content: UserPayments,
     },
     {
       id: nanoid(),
-      label: t('userInfo.tabs.followers'),
+      label: t.translation.userInfo.tabs.followers,
       content: UserFollowers,
     },
     {
       id: nanoid(),
-      label: t('userInfo.tabs.following'),
+      label: t.translation.userInfo.tabs.following,
       content: UserFollowing,
     },
   ]

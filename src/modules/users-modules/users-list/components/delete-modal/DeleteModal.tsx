@@ -1,8 +1,8 @@
 import React from 'react'
 
 import { useMutation } from '@apollo/client'
-import { useTranslation } from 'react-i18next'
 
+import { useTranslation } from '@/components'
 import { Confirm } from '@/components/modals'
 import { DELETE_USER } from '@/queries/delete-ban'
 
@@ -41,10 +41,10 @@ export const DeleteModal = ({
       onConfirm={onConfirm}
       onClose={onDecline}
       onDecline={onDecline}
-      confirmButtonText={t('userList.delete.confirm')}
-      declineButtonText={t('userList.delete.cancel')}
-      title={t('userList.delete.title')}
-      text={t('userList.delete.description') + ' ' + userName + '?'}
+      confirmButtonText={t.translation.userList.delete.confirm}
+      declineButtonText={t.translation.userList.delete.cancel}
+      title={t.translation.userList.delete.title}
+      text={t.translation.userList.delete.description + ' ' + userName + '?'}
     />
   )
 }

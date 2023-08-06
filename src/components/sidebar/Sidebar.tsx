@@ -3,9 +3,9 @@ import { FC, ReactNode } from 'react'
 import { clsx } from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useTranslation } from 'react-i18next'
 import { FaArrowTrendUp, FaRegCreditCard, FaRegImages, FaUsers } from 'react-icons/fa6'
 
+import { useTranslation } from '@/components'
 import { LogoutButton } from '@/modules/login-module/logout'
 import { routes } from '@/routing/router'
 
@@ -22,22 +22,22 @@ export const Sidebar: FC = () => {
   const menu: MenuItem[] = [
     {
       url: routes.users,
-      name: t('navigation.userList'),
+      name: t.translation.navigation.userList,
       icon: <FaUsers />,
     },
     {
       url: routes.statistics,
-      name: t('navigation.statistics'),
+      name: t.translation.navigation.statistics,
       icon: <FaArrowTrendUp />,
     },
     {
       url: routes.payments,
-      name: t('navigation.paymentsList'),
+      name: t.translation.navigation.paymentsList,
       icon: <FaRegCreditCard />,
     },
     {
       url: routes.posts,
-      name: t('navigation.postList'),
+      name: t.translation.navigation.postList,
       icon: <FaRegImages />,
     },
   ]

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 
 import { useMutation } from '@apollo/client'
-import { useTranslation } from 'react-i18next'
 
+import { useTranslation } from '@/components'
 import { ModalWithContent } from '@/components/modals'
 import { GET_POSTS_LIST } from '@/modules/posts'
 import { UPDATE_USER_STATUS } from '@/queries/delete-ban'
@@ -25,9 +25,9 @@ type ReasonType = {
 export const BanUserModal = ({ isBanUserOpen, setIsBanUserOpen, userId, userName }: PropsType) => {
   const { t } = useTranslation()
   const [updateUserStatus] = useMutation(UPDATE_USER_STATUS)
-  const ANOTHER_REASON = t('userList.ban.reason.anotherReason')
-  const BAD_BEHAVIOR = t('userList.ban.reason.behavior')
-  const ADVERTISING_PLACEMENT = t('userList.ban.reason.advertising')
+  const ANOTHER_REASON = t.translation.userList.ban.reason.anotherReason
+  const BAD_BEHAVIOR = t.translation.userList.ban.reason.behavior
+  const ADVERTISING_PLACEMENT = t.translation.userList.ban.reason.advertising
 
   const reasons: ReasonType[] = [
     { text: ANOTHER_REASON, value: BanReasonInputType.AnotherReason },
@@ -63,17 +63,17 @@ export const BanUserModal = ({ isBanUserOpen, setIsBanUserOpen, userId, userName
     <ModalWithContent
       isOpen={isBanUserOpen}
       onClose={onDecline}
-      title={t('userList.ban.title')}
-      confirmButtonText={t('userList.ban.confirm')}
-      declineButtonText={t('userList.ban.cancel')}
+      title={t.translation.userList.ban.title}
+      confirmButtonText={t.translation.userList.ban.confirm}
+      declineButtonText={t.translation.userList.ban.cancel}
       onConfirm={onConfirm}
       onDecline={onDecline}
       disabled={error.length > 0}
     >
       <div>
-        <h3>{t('userList.ban.description') + ' ' + userName + '?'}</h3>
+        <h3>{t.translation.userList.ban.description + ' ' + userName + '?'}</h3>
 
-        <div className={'mt-3'}>{`${t('userList.ban.reason.title')}:`}</div>
+        <div className={'mt-3'}>{`${t.translation.userList.ban.reason.title}:`}</div>
 
         <div className={'mt-4'}>
           <Select<BanReasonInputType> value={banReason} setValue={setBanReason} fullWidth>

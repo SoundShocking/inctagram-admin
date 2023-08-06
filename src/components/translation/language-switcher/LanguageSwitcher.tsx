@@ -1,9 +1,9 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useState } from 'react'
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import { clsx } from 'clsx'
 import Image, { StaticImageData } from 'next/image'
-import { useTranslation } from 'react-i18next'
+import { useRouter } from 'next/router'
 import { FaChevronDown } from 'react-icons/fa6'
 
 import styles from './LanguageSwitcher.module.scss'
@@ -29,25 +29,16 @@ const languages: Language[] = [
 ]
 
 export const LanguageSwitcher: FC = () => {
-  const { i18n } = useTranslation()
-  const currentLanguage = languages.find(lang => lang.slug === i18n.language)
+  const { locale, push, pathname, query, asPath } = useRouter()
+  const currentLanguage = languages.find(lang => lang.slug === locale)
   const [isOpen, setIsOpen] = useState(false)
 
   const onOpenChange = (open: boolean) => {
     setIsOpen(open)
   }
 
-  useEffect(() => {
-    const lastLanguage = localStorage.getItem('language')
-
-    if (lastLanguage && i18n.language !== lastLanguage) {
-      i18n.changeLanguage(lastLanguage)
-    }
-  }, [])
-
-  const onSelectLanguage = (slug: string) => {
-    i18n.changeLanguage(slug)
-    localStorage.setItem('language', slug)
+  const onSelectLanguage = (locale: string) => {
+    push({ pathname, query }, asPath, { locale: locale })
   }
 
   return (
