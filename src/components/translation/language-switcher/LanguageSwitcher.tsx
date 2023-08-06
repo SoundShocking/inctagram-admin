@@ -29,7 +29,7 @@ const languages: Language[] = [
 ]
 
 export const LanguageSwitcher: FC = () => {
-  const { locale, push, pathname, query, asPath, locales } = useRouter()
+  const { locale, push, pathname, query, asPath } = useRouter()
   const currentLanguage = languages.find(lang => lang.slug === locale)
   const [isOpen, setIsOpen] = useState(false)
 
@@ -38,9 +38,6 @@ export const LanguageSwitcher: FC = () => {
   }
 
   const onSelectLanguage = (locale: string) => {
-    push({ pathname, query }, asPath, { locale: locale })
-  }
-  const changeLangHandler = (locale: string): void => {
     push({ pathname, query }, asPath, { locale: locale })
   }
 

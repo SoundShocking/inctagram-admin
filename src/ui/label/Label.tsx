@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, FC, ReactNode } from 'react'
+import { ComponentPropsWithoutRef, FC } from 'react'
 
 // eslint-disable-next-line import/no-named-as-default
 import clsx from 'clsx'

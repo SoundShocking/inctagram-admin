@@ -10,9 +10,7 @@ import { PaymentsTable } from './PaymentsTable'
 
 import { useTranslation } from '@/components'
 import { TablePagination } from '@/components/table-pagination'
-import { PAYMENTS_SUBSCRIPTION } from '@/queries/payments'
 import {
-  CreatedSubscriptionSubscription,
   useCreatedSubscriptionSubscription,
   useGetAllPaymentsQuery,
 } from '@/queries/payments.generated'
@@ -30,7 +28,7 @@ export const PaymentsList: FC = () => {
     setPageIndex(0)
   }, [search, pageSize])
 
-  const { loading, error, data, previousData, subscribeToMore, refetch } = useGetAllPaymentsQuery({
+  const { error, data, previousData, subscribeToMore, refetch } = useGetAllPaymentsQuery({
     variables: {
       pageSize: +pageSize,
       pageNumber: pageIndex + 1,
