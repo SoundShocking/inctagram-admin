@@ -5,12 +5,7 @@ import { useInView } from 'react-intersection-observer'
 
 import { ErrorMessage, NotFoundComponent, useTranslation } from '@/components'
 import { deletePostSubscriptionsEffect } from '@/modules/posts/custom/useEffect/deletePostSubscriptionsEffect'
-import {
-  PostsListCursorPaginationViewModel,
-  PostsListViewModel,
-  PostsListWithPaginationViewModel,
-  Query,
-} from '@/types'
+import { PostsListViewModel, Query } from '@/types'
 import { GlobalInput, Spinner } from '@/ui'
 import {
   addNewPostSubscriptionsEffect,
@@ -18,7 +13,6 @@ import {
   handleSearchDebounceEffect,
   infinityScrollForPostsEffect,
   Post,
-  PostsItemsType,
   PostStatusForPostsLisType,
   SkeletonPost,
   StatusSelected,

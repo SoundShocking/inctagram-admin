@@ -2,12 +2,7 @@ import { useEffect } from 'react'
 
 import { SubscribeToMoreOptions } from '@apollo/client'
 
-import {
-  deletePostDataInterface,
-  PostsItemsType,
-  PostsListType,
-  SUBSCRIPTIONS_DELETE_POST,
-} from '@/modules/posts'
+import { deletePostDataInterface, PostsListType, SUBSCRIPTIONS_DELETE_POST } from '@/modules/posts'
 import { PostsListViewModel } from '@/types'
 
 export const deletePostSubscriptionsEffect = (
