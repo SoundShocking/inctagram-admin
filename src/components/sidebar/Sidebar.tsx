@@ -43,15 +43,15 @@ export const Sidebar: FC = () => {
   ]
 
   return (
-    <aside className="h-screen sticky top-0 max-w-[320px] w-full border-r-[1px] border-r-bgLogBorder sm:max-w-[50px] md:max-w-[50px]">
-      <div className="text-light-100 font-medium flex flex-col items-center justify-between py-[72px] h-full">
-        <ul className="list-none flex gap-6 flex-col text-white">
+    <aside className="border-r border-dark-100 pt-16">
+      <div className="sticky top-0">
+        <ul className="list-none flex gap-6 flex-col text-white leading-none">
           {menu.map((item, idx) => (
             <li key={idx}>
               <Link
                 href={item.url}
                 className={clsx(
-                  'flex items-center  hover:text-accent-500 transition-colors font-bold',
+                  'flex items-center hover:text-accent-500 transition-colors font-bold',
                   {
                     'text-accent-500': pathname === item.url,
                   }
@@ -63,8 +63,10 @@ export const Sidebar: FC = () => {
               </Link>
             </li>
           ))}
+          <li>
+            <LogoutButton />
+          </li>
         </ul>
-        <LogoutButton />
       </div>
     </aside>
   )

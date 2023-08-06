@@ -3,7 +3,7 @@ import { FC, useEffect, useState } from 'react'
 import { SortingState } from '@tanstack/react-table'
 import { t } from 'i18next'
 import { toast } from 'react-toastify'
-import { useDebounce } from 'usehooks-ts'
+import { useDebounce, useUpdateEffect } from 'usehooks-ts'
 
 import { getPaymentsSorting } from '../helpers/getPaymentsSorting'
 
@@ -56,7 +56,7 @@ export const PaymentsList: FC = () => {
     },
   })
 
-  useEffect(() => {
+  useUpdateEffect(() => {
     if (autoUpdate) {
       toast.success('auto update on', {
         toastId: 'paymentsAutoUpdateOn',
@@ -69,7 +69,7 @@ export const PaymentsList: FC = () => {
   }, [autoUpdate])
 
   return (
-    <div className="pt-16 px-6">
+    <div>
       <div className="flex justify-between gap-8">
         <input
           className="w-full h-9 bg-transparent text-light-100 text-sm outline-none border border-dark-100 px-10"
