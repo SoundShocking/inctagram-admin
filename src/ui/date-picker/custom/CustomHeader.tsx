@@ -1,10 +1,8 @@
 import { format, getMonth, getYear } from 'date-fns'
 import { ReactDatePickerCustomHeaderProps } from 'react-datepicker'
-import { useTranslation } from 'react-i18next'
 
 import s from './customHeader.module.scss'
 
-import { capitalizeFirstLetter } from '@/common'
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@/ui'
 
 type CustomHeaderType = {

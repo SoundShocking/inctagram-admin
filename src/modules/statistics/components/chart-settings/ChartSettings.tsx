@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { useTranslation } from '@/components'
 import { isPeriodWithinMaxDays } from '@/modules/statistics/utils/isPeriodWithinMaxDays'
@@ -71,7 +71,7 @@ export const ChartSettings = ({
     <div>
       <div className={'flex justify-end'}>
         <div className={'m-3'}>
-          <div className={'text-light-900 text-sm'}>{t('statistics.dateRange')}</div>
+          <div className={'text-light-900 text-sm'}>{t.translation.statistics.dateRange}</div>
           <DateCalendar
             errorMessage={errorMessage}
             isRange={true}
@@ -82,11 +82,8 @@ export const ChartSettings = ({
             startDate={startDate}
           />
         </div>
-        {startDate && (
-          <div className={'m-3'}>
-            <div className={'text-light-900 text-sm'}>
-              {t.translation.statistics.comparedPeriod}
-            </div>
+        <div className={'m-3'}>
+          <div className={'text-light-900 text-sm'}>{t.translation.statistics.comparedPeriod}</div>
 
           <DateCalendar
             errorMessage={compareErrorMessage}

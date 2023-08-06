@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useQuery } from '@apollo/client'
 
 import { useTranslation } from '@/components'
+// eslint-disable-next-line import/namespace
 import { ChartSettings } from '@/modules/statistics/components/chart-settings/ChartSettings'
 import { dateConverter } from '@/modules/statistics/utils/dateConverter'
 import { getDateDaysAgo } from '@/modules/statistics/utils/getDateDaysAgo'

@@ -2,10 +2,9 @@ import { FC } from 'react'
 
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
-import { useTranslation } from '@/components'
-
 import { FaSignOutAlt } from 'react-icons/fa'
 
+import { useTranslation } from '@/components'
 import { routes } from '@/routing/router'
 
 export const LogoutButton: FC = () => {

@@ -1,10 +1,10 @@
 import React from 'react'
 
-import { LanguageSwitcher } from '@/components'
 import Image from 'next/image'
 import Link from 'next/link'
 
 import logo from '@/assets/images/logo.png'
+import { LanguageSwitcher } from '@/components'
 import { Container } from '@/components/container'
 
 export const Header = () => {

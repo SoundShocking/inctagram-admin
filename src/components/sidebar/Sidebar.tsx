@@ -5,9 +5,9 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FaArrowTrendUp, FaRegCreditCard, FaRegImages, FaUsers } from 'react-icons/fa6'
 
+import { useTranslation } from '@/components'
 import { LogoutButton } from '@/modules/login-module/logout'
 import { routes } from '@/routing/router'
-import { useTranslation } from '@/components'
 
 interface MenuItem {
   url: string

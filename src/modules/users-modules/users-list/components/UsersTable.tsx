@@ -15,9 +15,9 @@ import Link from 'next/link'
 import { UsersTableUserActions } from './UsersTableUserActions'
 import { UsersTableUserIdCell } from './UsersTableUserIdCell'
 
+import { useTranslation } from '@/components'
 import { TableSortIcon } from '@/components/table-sort-icon'
 import { UserForSuperAdminViewModel } from '@/types'
-import { useTranslation } from '@/components'
 
 export type UsersItem = Pick<
   UserForSuperAdminViewModel,

@@ -1,7 +1,6 @@
 import React from 'react'
 
-import { useTranslation } from 'react-i18next'
-
+import { useTranslation } from '@/components'
 import { GlobalInput } from '@/ui/inputs/input/Input'
 type PropsType = {
   setError: (error: string) => void
@@ -28,7 +27,7 @@ export const DetailsInput = ({ setError, error, setBanDetails }: PropsType) => {
     <GlobalInput
       className={'my-3 text-light-100'}
       type={'text'}
-      label={t('userList.ban.reason.add')}
+      label={t.translation.userList.ban.reason.add}
       error={error}
       onChange={event => {
         onInputChange(event.target.value)
