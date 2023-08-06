@@ -28,7 +28,7 @@ export const PaymentsTableUserNameCell: FC<Props> = ({ row }) => {
           )}
         </div>
 
-        <div className="underline underline-offset-4 ">{row.original.userName}</div>
+        <div className="underline underline-offset-4">{row.original.userName}</div>
       </Link>
     </div>
   )

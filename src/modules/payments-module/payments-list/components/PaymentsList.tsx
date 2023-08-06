@@ -1,22 +1,24 @@
 import { FC, useEffect, useState } from 'react'
 
 import { SortingState } from '@tanstack/react-table'
+import { useTranslation } from '@/components'
+
 import { toast } from 'react-toastify'
-import { useDebounce } from 'usehooks-ts'
+import { useDebounce, useUpdateEffect } from 'usehooks-ts'
 
 import { getPaymentsSorting } from '../helpers/getPaymentsSorting'
 
 import { PaymentsTable } from './PaymentsTable'
 
-import { useTranslation } from '@/components'
 import { TablePagination } from '@/components/table-pagination'
 import {
+  CreatedSubscriptionSubscription,
   useCreatedSubscriptionSubscription,
   useGetAllPaymentsQuery,
 } from '@/queries/payments.generated'
+import { Switch } from '@/ui/switch'
 
 export const PaymentsList: FC = () => {
-  const { t } = useTranslation()
   const [pageIndex, setPageIndex] = useState(0)
   const [pageSize, setPageSize] = useState('10')
   const [sorting, setSorting] = useState<SortingState>([])
@@ -24,11 +26,13 @@ export const PaymentsList: FC = () => {
   const [searchInput, setSearchInput] = useState('')
   const search = useDebounce(searchInput, 500)
 
+  const [autoUpdate, setAutoUpdate] = useState(true)
+const {t} = useTranslation()
   useEffect(() => {
     setPageIndex(0)
   }, [search, pageSize])
 
-  const { error, data, previousData, subscribeToMore, refetch } = useGetAllPaymentsQuery({
+  const { loading, error, data, previousData, refetch } = useGetAllPaymentsQuery({
     variables: {
       pageSize: +pageSize,
       pageNumber: pageIndex + 1,
@@ -39,6 +43,7 @@ export const PaymentsList: FC = () => {
   })
 
   useCreatedSubscriptionSubscription({
+    skip: !autoUpdate,
     onData: options => {
       const newSubscription = options.data.data?.createdSubscription
 
@@ -48,49 +53,25 @@ export const PaymentsList: FC = () => {
 
       refetch()
     },
+    onComplete: () => {
+      console.log('on complete')
+    },
   })
 
-  // useEffect(() => {
-  //   console.log('effect')
-  //
-  //   let unsubscribe: () => void
-  //
-  //   unsubscribe = subscribeToMore<CreatedSubscriptionSubscription>({
-  //     document: PAYMENTS_SUBSCRIPTION,
-  //     variables: {
-  //       pageSize: +pageSize,
-  //       pageNumber: pageIndex + 1,
-  //       search,
-  //     },
-  //     updateQuery: (previousQueryResult, { subscriptionData, variables }) => {
-  //       console.log(previousQueryResult)
-  //       console.log(subscriptionData)
-  //       console.log(variables)
-  //
-  //       refetch()
-  //       if (!subscriptionData.data) return previousQueryResult
-  //
-  //       return previousQueryResult
-  //
-  //       // const newSubscription = [subscriptionData.data.createdSubscription]
-  //       //
-  //       // return Object.assign({}, previousQueryResult, {
-  //       //   ...previousQueryResult,
-  //       //   paymentsList: {
-  //       //     ...previousQueryResult.paymentsList,
-  //       //     items: [...newSubscription, ...previousQueryResult.paymentsList.items],
-  //       //   },
-  //       // })
-  //
-  //       // return previousQueryResult
-  //     },
-  //   })
-  //
-  //   return () => unsubscribe()
-  // }, [subscribeToMore])
+  useUpdateEffect(() => {
+    if (autoUpdate) {
+      toast.success('auto update on', {
+        toastId: 'paymentsAutoUpdateOn',
+      })
+    } else {
+      toast.success('auto update off', {
+        toastId: 'paymentsAutoUpdateOff',
+      })
+    }
+  }, [autoUpdate])
 
   return (
-    <div className="pt-16 px-6">
+    <div>
       <div className="flex justify-between gap-8">
         <input
           className="w-full h-9 bg-transparent text-light-100 text-sm outline-none border border-dark-100 px-10"
@@ -99,6 +80,8 @@ export const PaymentsList: FC = () => {
           value={searchInput}
           onChange={e => setSearchInput(e.target.value)}
         />
+
+        <Switch text={'Auto-update'} checked={autoUpdate} setChecked={setAutoUpdate} />
       </div>
 
       {error ? (
@@ -108,6 +91,7 @@ export const PaymentsList: FC = () => {
           payments={data?.paymentsList.items || previousData?.paymentsList.items || []}
           sorting={sorting}
           setSorting={setSorting}
+          loading={loading}
         />
       )}
 

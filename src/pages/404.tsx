@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { routes } from '@/routing/router.js'
+import { routes } from '@/routing/router'
 
 const NotFound = () => {
   return (

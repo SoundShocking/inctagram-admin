@@ -251,10 +251,11 @@ export enum SortByForUser {
   Id = 'id',
 }
 
-/** Sort By [id, userName, createdAt] */
+/** Sort By [id, userName, createdAt, lastSeen] */
 export enum SortByForUsers {
   CreatedAt = 'createdAt',
   Id = 'id',
+  LastSeen = 'lastSeen',
   UserName = 'userName',
 }
 
@@ -316,6 +317,7 @@ export type SubscriptionForSuperAdminViewModel = {
   ownerId: Scalars['Float']['output']
   paymentType: PaymentMethod
   price: Scalars['Float']['output']
+  subscription: Scalars['String']['output']
   type: SubscriptionType
 }
 
@@ -329,13 +331,18 @@ export enum SubscriptionType {
 export type UserForSuperAdminViewModel = {
   __typename?: 'UserForSuperAdminViewModel'
   createdAt: Scalars['DateTime']['output']
+  followerCount?: Maybe<Scalars['Int']['output']>
+  followingCount?: Maybe<Scalars['Int']['output']>
   fullName: Scalars['String']['output']
   imagesCount: Scalars['Float']['output']
   imagesUser: ImagesWithPaginationViewModel
+  lastSeen?: Maybe<Scalars['DateTime']['output']>
+  likePostsCount?: Maybe<Scalars['Int']['output']>
   paymentsUser: PaymentsWithPaginationViewModel
   posts: Array<PostForSuperAdminViewModel>
   postsCount: Scalars['Float']['output']
   profileLink?: Maybe<Scalars['String']['output']>
+  publicationCount?: Maybe<Scalars['Int']['output']>
   status: UserStatusType
   userId: Scalars['Int']['output']
   userName: Scalars['String']['output']

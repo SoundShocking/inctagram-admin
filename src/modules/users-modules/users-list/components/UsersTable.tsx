@@ -10,17 +10,18 @@ import {
 import { createColumnHelper } from '@tanstack/table-core'
 import { clsx } from 'clsx'
 import dayjs from 'dayjs'
+import Link from 'next/link'
 
 import { UsersTableUserActions } from './UsersTableUserActions'
 import { UsersTableUserIdCell } from './UsersTableUserIdCell'
 
-import { useTranslation } from '@/components'
 import { TableSortIcon } from '@/components/table-sort-icon'
 import { UserForSuperAdminViewModel } from '@/types'
+import { useTranslation } from '@/components'
 
 export type UsersItem = Pick<
   UserForSuperAdminViewModel,
-  'userId' | 'userName' | 'createdAt' | 'status'
+  'userId' | 'userName' | 'fullName' | 'lastSeen' | 'createdAt' | 'status'
 >
 
 const columnHelper = createColumnHelper<UsersItem>()
@@ -40,18 +41,47 @@ export const UsersTable: FC<Props> = ({ users, sorting, setSorting }) => {
       header: t.translation.userList.table.userId,
       cell: props => <UsersTableUserIdCell row={props.row} />,
       enableSorting: true,
+      sortDescFirst: false,
+    }),
+    columnHelper.accessor('fullName', {
+      id: 'fullName',
+      header: 'Full Name',
+      cell: info => info.getValue(),
+      enableSorting: false,
     }),
     columnHelper.accessor('userName', {
       id: 'userName',
       header: t.translation.userList.table.username,
-      cell: info => info.getValue(),
+      cell: info => (
+        <Link
+          className="underline underline-offset-4 hover:text-accent-500 transition-colors"
+          href={`/users/${info.row.original.userId}`}
+        >
+          {info.getValue()}
+        </Link>
+      ),
       enableSorting: true,
     }),
     columnHelper.accessor('createdAt', {
       id: 'createdAt',
       header: t.translation.userList.table.dateAdded,
-      cell: info => dayjs(info.getValue()).format('DD.MM.YYYY'),
+      cell: info => dayjs(info.getValue()).format('DD.MM.YYYY HH:mm'),
       enableSorting: true,
+    }),
+    columnHelper.accessor('lastSeen', {
+      id: 'lastSeen',
+      header: 'Last Seen',
+      cell: info => {
+        const date = dayjs(info.getValue())
+
+        if (date.isValid()) {
+          return date.format('DD.MM.YYYY HH:mm')
+        }
+
+        return null
+      },
+      enableSorting: true,
+      sortDescFirst: false,
     }),
     columnHelper.display({
       id: 'actions',
@@ -83,15 +113,21 @@ export const UsersTable: FC<Props> = ({ users, sorting, setSorting }) => {
               }
             >
               {table.getHeaderGroups().map((headerGroup, key) => (
-                <tr key={key}>
+                <tr key={key} data-key={key}>
                   {headerGroup.headers.map(header => (
                     <th key={header.id} colSpan={header.colSpan}>
                       {header.isPlaceholder ? null : (
                         <div
-                          className={clsx('flex items-center justify-center select-none', {
-                            'cursor-pointer': header.column.getCanSort(),
-                          })}
-                          onClick={header.column.getToggleSortingHandler()}
+                          // className={clsx('flex items-center justify-center select-none', {
+                          //   'cursor-pointer': header.column.getCanSort(),
+                          // })}
+                          // onClick={header.column.getToggleSortingHandler()}
+                          {...{
+                            className: clsx('flex items-center justify-center select-none', {
+                              'cursor-pointer': header.column.getCanSort(),
+                            }),
+                            onClick: header.column.getToggleSortingHandler(),
+                          }}
                         >
                           {flexRender(header.column.columnDef.header, header.getContext())}
 

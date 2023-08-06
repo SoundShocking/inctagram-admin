@@ -48,7 +48,7 @@ const AuthProvider = ({ children, ...props }: AuthProviderType) => {
       type: 'LOGIN',
       payload: auth,
     })
-    toast.success('success')
+    // toast.success('success')
   }
 
   const logout = () => {
