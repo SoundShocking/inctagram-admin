@@ -8,9 +8,11 @@ export const GET_POSTS_LIST = gql`
     $sortBy: SortByForPostsListInputType
     $sortDirection: SortDirectionType
     $status: PostStatusForPostsListInputType
+    $cursor: Int
   ) {
     postsList(
       search: $search
+      cursor: $cursor
       status: $status
       pageNumber: $pageNumber
       pageSize: $pageSize
@@ -21,6 +23,8 @@ export const GET_POSTS_LIST = gql`
       pageSize
       pagesCount
       totalCount
+      nextCursor
+      prevCursor
       items {
         createdAt
         userId

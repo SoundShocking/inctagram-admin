@@ -30,7 +30,6 @@ export const PostsList = () => {
   const [postsData, setPostsData] = useState<PostsListType | undefined>()
   const [showMoreIds, setShowMoreIds] = useState<number[]>([])
   const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false)
-  const [pageNumber, setPageNumber] = useState<number>(1)
   const { ref, inView } = useInView({
     threshold: 0.1,
   })
@@ -69,9 +68,7 @@ export const PostsList = () => {
     loading,
     fetchMore,
     setIsLoadingMore,
-    pageNumber,
     postsData,
-    setPageNumber,
   })
   handleSearchDebounceEffect({ loading, timerId, setTimerId, setDebounce, search })
 

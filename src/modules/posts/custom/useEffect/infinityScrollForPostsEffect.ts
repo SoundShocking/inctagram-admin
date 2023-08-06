@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { PostsListType, PostsType } from '@/modules/posts'
 
 interface FetchMoreVariables {
-  pageNumber: number
+  cursor: number
 }
 
 interface FetchMoreOptions {
@@ -14,6 +14,8 @@ interface FetchMoreOptions {
 interface FetchMoreResult {
   postsList: {
     items: PostsType[]
+    prevCursor: number
+    nextCursor: number
   }
 }
 
@@ -24,8 +26,6 @@ export const infinityScrollForPostsEffect = ({
   fetchMore,
   postsData,
   setIsLoadingMore,
-  pageNumber,
-  setPageNumber,
 }: {
   postsData: PostsListType | undefined
   inView: boolean
@@ -33,8 +33,6 @@ export const infinityScrollForPostsEffect = ({
   isLoadingMore: boolean
   setIsLoadingMore: (isLoadingMore: boolean) => void
   fetchMore(options: FetchMoreOptions): Promise<any>
-  pageNumber: number
-  setPageNumber: (page: number) => void
 }) => {
   useEffect(() => {
     if (inView && !loading && !isLoadingMore) {
@@ -45,11 +43,10 @@ export const infinityScrollForPostsEffect = ({
         postsData.items.length + 1 < postsData.totalCount
       ) {
         setIsLoadingMore(true)
-        const newPageNumber = pageNumber + 1
+        const cursor = postsData.nextCursor
 
-        setPageNumber(newPageNumber)
         fetchMore({
-          variables: { pageNumber: newPageNumber },
+          variables: { cursor: cursor },
           updateQuery: (
             prev: PostsType,
             { fetchMoreResult }: { fetchMoreResult?: FetchMoreResult }
@@ -57,10 +54,14 @@ export const infinityScrollForPostsEffect = ({
             setIsLoadingMore(false)
             if (!fetchMoreResult) return prev
             if (prev?.postsList?.items) {
+              const fetchPostsList = fetchMoreResult.postsList
+
               return {
                 ...prev,
                 postsList: {
                   ...prev.postsList,
+                  nextCursor: fetchPostsList.nextCursor,
+                  prevCursor: fetchPostsList.prevCursor,
                   items: [...prev.postsList.items, ...fetchMoreResult.postsList.items],
                 },
               }
