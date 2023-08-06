@@ -74,7 +74,7 @@ export const Post = ({
             ) : (
               <span className="text-base font-normal leading-6">No description </span>
             )}
-            {post.description && (
+            {post.description?.length > 83 && (
               <button
                 className="text-accent-700 pl-1 underline"
                 onClick={() => setShowMoreId(post.postId)}
