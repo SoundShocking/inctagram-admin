@@ -53,7 +53,7 @@ export const Post = ({
                   />
                 </div>
                 <Link href={`/users/` + post.userId}>
-                  <div className="font-semibold w-24 overflow-hidden text-ellipsis whitespace-nowrap leading-6 text-base hover:text-accent-500 transition-colors outline-none">
+                  <div className="font-semibold w-24 h-full overflow-hidden text-ellipsis whitespace-nowrap leading-6 text-base hover:text-accent-500 transition-colors outline-none">
                     {post.userName}
                   </div>
                 </Link>

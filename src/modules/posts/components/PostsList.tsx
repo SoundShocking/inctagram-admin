@@ -69,14 +69,15 @@ export const PostsList = () => {
     data,
   })
   handleSearchDebounceEffect({ loading, timerId, setTimerId, setDebounce, search })
-  console.log(autoUpdate)
 
   return (
     <div className="w-full pt-16 pl-6 pr-16 sm:pr-4 md:pr-4 flex flex-col">
       <ErrorMessage errorMessage={error?.message} />
-      <div className="flex gap-3 items-center justify-center w-full h-full">
+      <div className="flex flex-col-reverse gap-4 justify-end w-full h-full">
         <StatusSelected status={status} setStatus={setStatus} />
-        <Switch text={'Auto-update'} checked={autoUpdate} setChecked={setAutoUpdate} />
+        <div className="flex-row-reverse flex">
+          <Switch text={'Auto-update'} checked={autoUpdate} setChecked={setAutoUpdate} />
+        </div>
       </div>
       <div className="pb-9 w-full">
         <GlobalInput
@@ -87,7 +88,7 @@ export const PostsList = () => {
           callBack={handleCallBackSearch}
         />
       </div>
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 grid-cols-4  gap-3">
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 grid-cols-4 gap-3">
         {loading ? (
           SkeletonPost(32)
         ) : (
