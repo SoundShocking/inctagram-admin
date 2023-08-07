@@ -28,7 +28,7 @@ export const SliderImagesPost = ({ postImages }: { postImages: string[] }) => {
           <SwiperSlide key={index} className=" flex align-middle items-center">
             <Placeholder
               alt={'Post image'}
-              className="bg-dark-300 h-full w-full object-contain felx align-middle items-center "
+              className="bg-dark-500 h-full w-full object-contain felx align-middle items-center "
               width={234}
               height={240}
               src={image}

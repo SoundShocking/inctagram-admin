@@ -24,7 +24,7 @@ export const GET_USER_PAYMENTS = gql`
           dataOfPayment
           endDateOfSubscription
           price
-          type
+          subscription
           paymentType
         }
       }

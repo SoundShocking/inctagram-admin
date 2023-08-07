@@ -6,27 +6,12 @@ import { routes } from '@/routing/router'
 
 export const useLastRoutingEffect = () => {
   const { asPath } = useRouter()
-  // const { userId } = query
 
+  console.log(asPath)
   useEffect(() => {
-    if (asPath !== routes.unprotected) {
+    if (asPath !== routes.unprotected && undefined) {
       localStorage.removeItem('lastRouting')
       localStorage.setItem('lastRouting', asPath)
     }
   }, [asPath])
-
-  // useEffect(() => {
-  //   const handleRouteChange = () => {
-  //     if (asPath !== routes.unprotected) {
-  //       localStorage.removeItem('lastRouting')
-  //       localStorage.setItem('lastRouting', asPath)
-  //     }
-  //   }
-  //
-  //   events.on('routeChangeComplete', handleRouteChange)
-  //
-  //   return () => {
-  //     events.off('routeChangeComplete', handleRouteChange)
-  //   }
-  // }, [asPath, route, userId])
 }

@@ -60,14 +60,14 @@ export const UserPayments = () => {
     },
     {
       header: 'Price',
-      cell: (params: any) => (loading ? <SkeletonUserPayments /> : '$' + params.getValue()),
+      cell: (params: any) => (loading ? <SkeletonUserPayments /> : params.getValue()),
       accessorKey: 'price',
     },
     {
       header: 'Subscription Type',
       cell: (params: any) =>
         loading ? <SkeletonUserPayments /> : capitalizeFirstLetter(params.getValue()),
-      accessorKey: 'type',
+      accessorKey: 'subscription',
     },
     {
       header: 'Payment Type',
