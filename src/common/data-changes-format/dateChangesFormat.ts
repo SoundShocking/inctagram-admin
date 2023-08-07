@@ -4,6 +4,6 @@ export const dateChangesFormat = (text: string | undefined) => {
   if (text) {
     const date = new Date(text)
 
-    return format(date, 'dd.MM.yyyy')
+    return format(date, 'dd.MM.yyyy H:mm')
   }
 }
