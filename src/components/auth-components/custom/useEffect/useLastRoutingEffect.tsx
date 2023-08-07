@@ -9,9 +9,9 @@ export const useLastRoutingEffect = () => {
 
   useEffect(() => {
     if (asPath !== routes.unprotected) {
-      console.log('in', asPath)
-      localStorage.removeItem('lastRouting')
-      localStorage.setItem('lastRouting', asPath)
+      asPath !== '/users/[userId]'
+        ? localStorage.setItem('lastRouting', asPath)
+        : localStorage.setItem('lastRouting', routes.users)
     }
   }, [asPath])
 }
