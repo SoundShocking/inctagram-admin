@@ -24,8 +24,6 @@ export const ViewUserInfo = () => {
     fetchPolicy: 'cache-and-network',
   })
 
-  console.log(router.locale)
-
   return (
     <div className="flex w-full pl-60 sm:pl-10 md:pl-10 pr-16 pb-10">
       <ErrorMessage errorMessage={error?.message} />
