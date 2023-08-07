@@ -7,6 +7,7 @@ import { ErrorMessage, NotFoundComponent, useTranslation } from '@/components'
 import { deletePostSubscriptionsEffect } from '@/modules/posts/custom/useEffect/deletePostSubscriptionsEffect'
 import { PostsListViewModel, Query } from '@/types'
 import { GlobalInput, Spinner } from '@/ui'
+import { Switch } from '@/ui/switch'
 import {
   addNewPostSubscriptionsEffect,
   GET_POSTS_LIST,
@@ -31,6 +32,7 @@ export const PostsList = () => {
     threshold: 0.1,
   })
   const { t } = useTranslation()
+  const [autoUpdate, setAutoUpdate] = useState(true)
   const { data, loading, error, fetchMore, subscribeToMore } = useQuery<PostsListType>(
     GET_POSTS_LIST,
     {
@@ -42,7 +44,6 @@ export const PostsList = () => {
       onError: error => console.error('error', error),
     }
   )
-
   const handleCallBackShowMore = (postId: number) => {
     if (showMoreIds.includes(postId)) {
       setShowMoreIds(showMoreIds.filter(item => item !== postId))
@@ -58,7 +59,7 @@ export const PostsList = () => {
   }
 
   deletePostSubscriptionsEffect(subscribeToMore)
-  addNewPostSubscriptionsEffect(subscribeToMore)
+  addNewPostSubscriptionsEffect(autoUpdate, subscribeToMore)
   infinityScrollForPostsEffect({
     inView,
     isLoadingMore,
@@ -68,12 +69,14 @@ export const PostsList = () => {
     data,
   })
   handleSearchDebounceEffect({ loading, timerId, setTimerId, setDebounce, search })
+  console.log(autoUpdate)
 
   return (
     <div className="w-full pt-16 pl-6 pr-16 sm:pr-4 md:pr-4 flex flex-col">
       <ErrorMessage errorMessage={error?.message} />
-      <div>
+      <div className="flex gap-3 items-center justify-center w-full h-full">
         <StatusSelected status={status} setStatus={setStatus} />
+        <Switch text={'Auto-update'} checked={autoUpdate} setChecked={setAutoUpdate} />
       </div>
       <div className="pb-9 w-full">
         <GlobalInput
