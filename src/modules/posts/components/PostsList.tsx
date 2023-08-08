@@ -31,7 +31,7 @@ export const PostsList = () => {
   const { ref, inView } = useInView({
     threshold: 0.1,
   })
-  const { t } = useTranslation()
+  const { t, locale } = useTranslation()
   const [autoUpdate, setAutoUpdate] = useState(true)
   const { data, loading, error, fetchMore, subscribeToMore } = useQuery<PostsListType>(
     GET_POSTS_LIST,
@@ -76,7 +76,11 @@ export const PostsList = () => {
       <div className="flex flex-col-reverse gap-4 justify-end w-full h-full">
         <StatusSelected status={status} setStatus={setStatus} />
         <div className="flex-row-reverse flex">
-          <Switch text={'Auto-update'} checked={autoUpdate} setChecked={setAutoUpdate} />
+          <Switch
+            text={t.translation.postsList.selectedBox}
+            checked={autoUpdate}
+            setChecked={setAutoUpdate}
+          />
         </div>
       </div>
       <div className="pb-9 w-full">
@@ -96,6 +100,8 @@ export const PostsList = () => {
             {data !== undefined ? (
               data.postsList.items?.map((post: PostsListViewModel, index: number) => (
                 <Post
+                  locale={locale}
+                  t={t}
                   post={post}
                   key={index}
                   showMore={showMoreIds.includes(post.postId)}

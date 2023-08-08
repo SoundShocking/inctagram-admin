@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import { useTranslation } from '@/components'
 import { TabsTitle } from '@/components/users'
 import {
-  changingTabsActivityWhenChangingTheLanguage,
+  callWhenUrlChangesEffect,
   changingTabsParametersUrlEffect,
   UserFollowers,
   UserFollowing,
@@ -17,7 +17,7 @@ import { UserPhotos } from '@/modules/users-modules/view-user-info/components/us
 export const ViewUserInformationInTabs = () => {
   const { t } = useTranslation()
   const defaultTabs = t.translation.userInfo.tabs.uploadPhotos
-  const [activeTab, setActiveTab] = useState(defaultTabs)
+  const [activeTab, setActiveTab] = useState<any>()
 
   const router = useRouter()
   const { userId } = router.query
@@ -26,11 +26,12 @@ export const ViewUserInformationInTabs = () => {
     userId,
     activeTab,
   })
-  changingTabsActivityWhenChangingTheLanguage({
+  callWhenUrlChangesEffect({
     setActiveTab,
     defaultTabs,
+    router,
+    activeTab,
   })
-
   const onChangeTab = (tabLabel: string | undefined) => {
     setActiveTab(tabLabel ?? '')
   }

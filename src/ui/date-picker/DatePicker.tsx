@@ -136,7 +136,7 @@ export const DateCalendar: FC<DatePickerProps> = ({
   return (
     <div {...rest}>
       <p className="text-light-100 leading-6 font-normal text-xs">
-        Количество выбранных дней: {numDaysSelected()}
+        {t.translation.datePicker.NumberDayOfSelected} {numDaysSelected()}
       </p>
       <ReactDatePicker
         locale={locale || undefined}

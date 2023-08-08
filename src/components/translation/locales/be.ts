@@ -29,9 +29,11 @@ export const be: LocaleType = {
       bannedPosts: 'Заблокированные посты',
       banPost: 'Заблокировать пост',
       unbanPost: 'Разблокировать пост',
+      selectedBox: 'Аўтаматычнае абнаўленне',
       post: {
         showMore: 'Паказаць больш',
         showHide: 'Схаваць',
+        description: 'Апісанне адсутнічае',
       },
       ban: {
         title: 'Блокировка поста',
@@ -119,6 +121,7 @@ export const be: LocaleType = {
         'Снежань',
       ],
       dayNamesShort: ['Нд', 'Пн', 'Аў', 'Ср', 'Чц', 'Пт', 'Сб'],
+      NumberDayOfSelected: 'Колькасць абраных дзён:',
     },
     statistics: {
       dateRange: 'Дыяпазон дат',

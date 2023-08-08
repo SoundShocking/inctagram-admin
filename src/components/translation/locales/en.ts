@@ -31,9 +31,11 @@ export const en = {
       bannedPosts: 'Banned posts',
       banPost: 'Block post',
       unbanPost: 'Unblock post',
+      selectedBox: 'Auto update',
       post: {
         showMore: 'Show more',
         showHide: 'Show hide',
+        description: 'No description',
       },
       ban: {
         title: 'Ban post',
@@ -121,6 +123,7 @@ export const en = {
         'December',
       ],
       dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+      NumberDayOfSelected: 'Number of selected days:',
     },
     statistics: {
       dateRange: 'Date range',

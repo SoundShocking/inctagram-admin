@@ -29,9 +29,11 @@ export const uk: LocaleType = {
       bannedPosts: 'Заборонені пости',
       banPost: 'Заблокувати пост',
       unbanPost: 'Розблокувати пост',
+      selectedBox: 'Автоматичне оновлення',
       post: {
         showMore: 'Показати більше',
         showHide: 'Cховати',
+        description: 'Немає опису',
       },
       ban: {
         title: 'Заборона поста',
@@ -119,6 +121,7 @@ export const uk: LocaleType = {
         'Грудень',
       ],
       dayNamesShort: ['Нд', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+      NumberDayOfSelected: 'Кількість обраних днів:',
     },
     statistics: {
       dateRange: 'Діапазон дат',
