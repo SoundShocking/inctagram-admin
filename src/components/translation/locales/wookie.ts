@@ -119,6 +119,7 @@ export const wookie: LocaleType = {
         "'Wooroon",
       ],
       dayNamesShort: ['Sha', 'Gaw', 'Dal', 'Eem', 'Nyo', 'Vok', 'Oow'],
+      NumberDayOfSelected: 'Graaarrggghh arrgghhh graaaarrrrghhrgg:',
     },
     statistics: {
       dateRange: 'Rrruurgh oooaaah aroo!',

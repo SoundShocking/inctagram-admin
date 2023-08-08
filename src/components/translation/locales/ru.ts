@@ -119,6 +119,7 @@ export const ru: LocaleType = {
         'Декабрь',
       ],
       dayNamesShort: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+      NumberDayOfSelected: 'Количество выбранных дней:',
     },
     statistics: {
       dateRange: 'Период',

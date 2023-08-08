@@ -119,6 +119,7 @@ export const be: LocaleType = {
         'Снежань',
       ],
       dayNamesShort: ['Нд', 'Пн', 'Аў', 'Ср', 'Чц', 'Пт', 'Сб'],
+      NumberDayOfSelected: 'Колькасць абраных дзён:',
     },
     statistics: {
       dateRange: 'Дыяпазон дат',

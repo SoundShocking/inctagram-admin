@@ -119,6 +119,7 @@ export const uk: LocaleType = {
         'Грудень',
       ],
       dayNamesShort: ['Нд', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+      NumberDayOfSelected: 'Кількість обраних днів:',
     },
     statistics: {
       dateRange: 'Діапазон дат',

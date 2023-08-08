@@ -121,6 +121,7 @@ export const en = {
         'December',
       ],
       dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+      NumberDayOfSelected: 'Number of selected days:',
     },
     statistics: {
       dateRange: 'Date range',
