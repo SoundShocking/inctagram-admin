@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { SortingState } from '@tanstack/react-table'
 import { useDebounce } from 'usehooks-ts'
 
-import { TablePagination } from '@/components/table-pagination'
+import { TablePagination } from '@/components/Tables/table-pagination'
 import { UsersTable } from '@/modules/users-modules/users-list/components/UsersTable'
 import { UsersTableToolbar } from '@/modules/users-modules/users-list/components/UsersTableToolbar'
 import { getUsersSorting } from '@/modules/users-modules/users-list/helpers/getUsersSorting'

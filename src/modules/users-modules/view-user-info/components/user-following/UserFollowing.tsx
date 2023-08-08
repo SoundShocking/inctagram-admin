@@ -14,7 +14,6 @@ import { useRouter } from 'next/router'
 import { dateChangesFormat } from '@/common'
 import { ErrorMessage, TableSortingCol } from '@/components'
 import { SkeletonUserPayments, UserPaymentsTable } from '@/modules/users-modules/view-user-info'
-import { GET_USER_FOLLOWS } from '@/modules/users-modules/view-user-info/components/user-payments/queries/viewUserFollowersQueries'
 import { GET_USER_FOLLOWING } from '@/modules/users-modules/view-user-info/components/user-payments/queries/viewUserFollowingQueries'
 import {
   FollowingForSuperAdminViewModel,
@@ -85,7 +84,7 @@ export const UserFollowing = () => {
   const tableProps: Table<FollowingForSuperAdminViewModel> = useReactTable({
     data: myPaymentsData,
     columns: columns,
-    // pageCount: pageCount,
+    pageCount: pageCount,
     state: {
       sorting,
     },
