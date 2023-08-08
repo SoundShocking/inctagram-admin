@@ -29,9 +29,11 @@ export const wookie: LocaleType = {
       bannedPosts: 'Gggwwoooorrgghhhh! Bbbbrrraaarrrrghhh!',
       banPost: 'Bbbbbbwwwwwaaaaarrrrgghhhaaaaaaaa!',
       unbanPost: 'Rrwarrggaawwrrooowwwwww!',
+      selectedBox: 'Rrwowwrr rwaahraa',
       post: {
         showMore: 'Rrworr! Rwoooaarrgh!',
         showHide: 'Rrroowwrrgg!',
+        description: 'Rrruurrggghhh... ur rrraghhh!',
       },
       ban: {
         title: 'Rrwowwrrr woorwoorwor',

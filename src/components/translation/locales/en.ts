@@ -31,9 +31,11 @@ export const en = {
       bannedPosts: 'Banned posts',
       banPost: 'Block post',
       unbanPost: 'Unblock post',
+      selectedBox: 'Auto update',
       post: {
         showMore: 'Show more',
         showHide: 'Show hide',
+        description: 'No description',
       },
       ban: {
         title: 'Ban post',

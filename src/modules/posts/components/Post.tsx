@@ -2,7 +2,7 @@ import { clsx } from 'clsx'
 import { formatDistance, parseISO } from 'date-fns'
 import Link from 'next/link'
 
-import { NotFoundComponent, useTranslation } from '@/components'
+import { LocaleType, NotFoundComponent } from '@/components'
 import { PostsListViewModel } from '@/types'
 import { Placeholder } from '@/ui'
 import {
@@ -15,12 +15,15 @@ export const Post = ({
   post,
   showMore,
   setShowMoreId,
+  t,
+  locale,
 }: {
+  locale: string | undefined
+  t: LocaleType
   post: PostsListViewModel
   showMore: boolean
   setShowMoreId: (postId: number) => void
 }) => {
-  const { t, locale } = useTranslation()
   const localeTime: Locale | undefined = localTimeDisplayLanguageInThePost[locale || 'en']
 
   const className = {
@@ -76,7 +79,9 @@ export const Post = ({
                 <span>{post.description.substring(0, 83)}</span>
               )
             ) : (
-              <span className="text-base font-normal leading-6">No description </span>
+              <span className="text-base font-normal leading-6">
+                {t.translation.postsList.post.description}
+              </span>
             )}
             {post.description && post.description?.length > 83 && (
               <button

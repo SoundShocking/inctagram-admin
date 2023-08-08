@@ -29,9 +29,11 @@ export const uk: LocaleType = {
       bannedPosts: 'Заборонені пости',
       banPost: 'Заблокувати пост',
       unbanPost: 'Розблокувати пост',
+      selectedBox: 'Автоматичне оновлення',
       post: {
         showMore: 'Показати більше',
         showHide: 'Cховати',
+        description: 'Немає опису',
       },
       ban: {
         title: 'Заборона поста',

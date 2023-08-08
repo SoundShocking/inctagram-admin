@@ -29,9 +29,11 @@ export const ru: LocaleType = {
       bannedPosts: 'Заблокированные посты',
       banPost: 'Заблокировать пост',
       unbanPost: 'Разблокировать пост',
+      selectedBox: 'Автоматическое обновление',
       post: {
         showMore: 'Показать больше',
         showHide: 'Cкрыть',
+        description: 'Jписание отсутствует',
       },
       ban: {
         title: 'Блокировка поста',
