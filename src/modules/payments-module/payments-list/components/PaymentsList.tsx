@@ -9,9 +9,8 @@ import { getPaymentsSorting } from '../helpers/getPaymentsSorting'
 import { PaymentsTable } from './PaymentsTable'
 
 import { useTranslation } from '@/components'
-import { TablePagination } from '@/components/table-pagination'
+import { TablePagination } from '@/components/Tables/table-pagination'
 import {
-  CreatedSubscriptionSubscription,
   useCreatedSubscriptionSubscription,
   useGetAllPaymentsQuery,
 } from '@/queries/payments.generated'

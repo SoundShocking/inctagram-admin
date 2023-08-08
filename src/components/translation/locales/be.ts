@@ -18,10 +18,29 @@ export const be: LocaleType = {
         profileCreationDate: 'Дата стварэння прафайла',
       },
       tabs: {
-        uploadPhotos: 'Загрузце Фатаграфіі',
+        uploadPhotos: 'Загружаныя фатаграфіі',
         payments: 'Аплата',
         followers: 'Наконт',
         following: 'Сачыць',
+      },
+      userPaymentsTable: {
+        dataOfPayment: 'Дата аплаты',
+        endDateOfSubscription: 'Крайнi тэрмiн падпiскi',
+        price: 'Кошт',
+        subscription: 'Тып падпiскi',
+        paymentType: 'Метад аплаты',
+      },
+      userFollowersTable: {
+        userId: 'Ідэнтыфікатар карыстальніка',
+        fullName: 'Поўнае імя',
+        userName: 'Імя карыстальніка',
+        subscriptionDate: 'Дата падпіскі',
+      },
+      userFollowingTable: {
+        userId: 'Ідэнтыфікатар карыстальніка',
+        fullName: 'Поўнае імя',
+        userName: 'Імя карыстальніка',
+        subscriptionDate: 'Дата падпiскi',
       },
     },
     postsList: {

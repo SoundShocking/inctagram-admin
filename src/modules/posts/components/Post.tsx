@@ -3,7 +3,7 @@ import { formatDistance, parseISO } from 'date-fns'
 import Link from 'next/link'
 
 import { LocaleType, NotFoundComponent } from '@/components'
-import { PostsListViewModel } from '@/types'
+import { PostListViewModel } from '@/types'
 import { Placeholder } from '@/ui'
 import {
   localTimeDisplayLanguageInThePost,
@@ -20,7 +20,7 @@ export const Post = ({
 }: {
   locale: string | undefined
   t: LocaleType
-  post: PostsListViewModel
+  post: PostListViewModel
   showMore: boolean
   setShowMoreId: (postId: number) => void
 }) => {

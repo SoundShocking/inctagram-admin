@@ -19,12 +19,12 @@ export type GetAllPaymentsQuery = {
     totalCount: number
     pagesCount: number
     items: Array<{
-      __typename?: 'PaymentsListViewModel'
+      __typename?: 'PaymentListViewModel'
       urlAvatar?: string | null
       userName: string
       userId: number
       createdAt: any
-      amount: number
+      amount: string
       typeSubscription: string
       paymentType: Types.PaymentMethod
     }>
@@ -36,12 +36,12 @@ export type CreatedSubscriptionSubscriptionVariables = Types.Exact<{ [key: strin
 export type CreatedSubscriptionSubscription = {
   __typename?: 'Subscription'
   createdSubscription: {
-    __typename?: 'PaymentsListViewModel'
+    __typename?: 'PaymentListViewModel'
     urlAvatar?: string | null
     userName: string
     userId: number
     createdAt: any
-    amount: number
+    amount: string
     typeSubscription: string
     paymentType: Types.PaymentMethod
   }

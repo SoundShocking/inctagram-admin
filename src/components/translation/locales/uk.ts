@@ -18,10 +18,29 @@ export const uk: LocaleType = {
         profileCreationDate: 'Дата створення профілю',
       },
       tabs: {
-        uploadPhotos: 'Завантажити Фото',
+        uploadPhotos: 'Завантажені фотографії',
         payments: 'Платежі',
         followers: ' Підписники ',
         following: ' Підписатися ',
+      },
+      userPaymentsTable: {
+        dataOfPayment: 'Дата платежу',
+        endDateOfSubscription: 'Дата закінчення підписки',
+        price: 'Ціна',
+        subscription: 'Тип підписки',
+        paymentType: 'Тип оплати',
+      },
+      userFollowersTable: {
+        userId: 'Ідентифікатор користувача',
+        fullName: "Повне ім'я",
+        userName: "Ім'я користувача",
+        subscriptionDate: 'Дата підписки',
+      },
+      userFollowingTable: {
+        userId: 'Ідентифікатор користувача',
+        fullName: "Повне ім'я",
+        userName: "Ім'я користувача",
+        subscriptionDate: 'Дата підписки',
       },
     },
     postsList: {

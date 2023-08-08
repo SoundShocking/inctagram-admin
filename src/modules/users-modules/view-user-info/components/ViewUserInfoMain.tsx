@@ -1,3 +1,4 @@
+import { clsx } from 'clsx'
 import Link from 'next/link'
 
 import { dateChangesFormat } from '@/common'
@@ -8,6 +9,13 @@ import { Placeholder } from '@/ui'
 export const ViewUserInfoMain = ({ userData }: { userData: UserType }) => {
   const { createdAt, profileLink, userName, userId } = userData
   const { t } = useTranslation()
+  const className = {
+    border: clsx(
+      userData.status === 'ACTIVE' ? 'border-2 border-emerald-700' : '',
+      userData.status === 'PENDING' ? 'border-2 border-amber-700' : '',
+      userData.status === 'BANNED' ? 'border-2 border-danger-700' : ''
+    ),
+  }
 
   return (
     <>
@@ -23,7 +31,7 @@ export const ViewUserInfoMain = ({ userData }: { userData: UserType }) => {
             <Placeholder
               src={profileLink}
               alt={'User Photo'}
-              className="rounded-full"
+              className={`rounded-full ${className.border}`}
               height={60}
               width={60}
             />
