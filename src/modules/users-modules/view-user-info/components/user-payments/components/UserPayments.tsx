@@ -12,7 +12,6 @@ import { useRouter } from 'next/router'
 
 import { capitalizeFirstLetter, dateChangesFormat } from '@/common'
 import { ErrorMessage } from '@/components'
-import { TablePagination } from '@/components/table-pagination'
 import {
   GET_USER_PAYMENTS,
   ItemsUserPaymentsType,
@@ -22,6 +21,7 @@ import {
   UserPaymentsTable,
   UserPaymentsType,
 } from '@/modules/users-modules/view-user-info'
+import { TablePagination } from 'components/Tables/table-pagination'
 
 export const UserPayments = () => {
   const router = useRouter()
@@ -90,7 +90,7 @@ export const UserPayments = () => {
   return (
     <div className="mt-9 text-accent-500 p-2 block w-full ">
       <ErrorMessage errorMessage={error?.message} />
-      <UserPaymentsTable tableProps={tableProps} />
+      <UserPaymentsTable<ItemsUserPaymentsType> tableProps={tableProps} />
       {paymentsData?.pagesCount ? (
         <TablePagination
           pagesCount={paymentsData?.pagesCount}

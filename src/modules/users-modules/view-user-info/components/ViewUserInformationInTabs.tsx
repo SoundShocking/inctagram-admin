@@ -8,10 +8,10 @@ import { TabsTitle } from '@/components/users'
 import {
   callWhenUrlChangesEffect,
   changingTabsParametersUrlEffect,
-  UserFollowers,
   UserFollowing,
   UserPayments,
 } from '@/modules/users-modules/view-user-info'
+import { UserFollowers } from '@/modules/users-modules/view-user-info/components/user-followers/UserFollowers'
 import { UserPhotos } from '@/modules/users-modules/view-user-info/components/user-photos/components/UserPhotos'
 
 export const ViewUserInformationInTabs = () => {

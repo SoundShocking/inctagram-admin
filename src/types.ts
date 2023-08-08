@@ -41,6 +41,15 @@ export enum BanReasonInputType {
   BadBehavior = 'Bad_behavior',
 }
 
+export type ColumnHeaders = {
+  __typename?: 'ColumnHeaders'
+  be: Array<Scalars['String']['output']>
+  en: Array<Scalars['String']['output']>
+  ru: Array<Scalars['String']['output']>
+  uk: Array<Scalars['String']['output']>
+  wookie: Array<Scalars['String']['output']>
+}
+
 export type FollowingForSuperAdminViewModel = {
   __typename?: 'FollowingForSuperAdminViewModel'
   fullName: Scalars['String']['output']
@@ -51,6 +60,7 @@ export type FollowingForSuperAdminViewModel = {
 
 export type FollowingWithPaginationViewModel = {
   __typename?: 'FollowingWithPaginationViewModel'
+  columnHeaders: ColumnHeaders
   items: Array<FollowingForSuperAdminViewModel>
   page: Scalars['Int']['output']
   pageSize: Scalars['Int']['output']
@@ -109,7 +119,7 @@ export enum PaymentMethod {
 
 export type PaymentsListViewModel = {
   __typename?: 'PaymentsListViewModel'
-  amount: Scalars['Float']['output']
+  amount: Scalars['String']['output']
   createdAt: Scalars['DateTime']['output']
   paymentType: PaymentMethod
   status: StatusSubscriptionType
@@ -366,8 +376,8 @@ export type SubscriptionForSuperAdminViewModel = {
   dataOfPayment: Scalars['DateTime']['output']
   endDateOfSubscription: Scalars['DateTime']['output']
   ownerId: Scalars['Float']['output']
-  paymentType: PaymentMethod
-  price: Scalars['Float']['output']
+  paymentType: Scalars['String']['output']
+  price: Scalars['String']['output']
   subscription: Scalars['String']['output']
   type: SubscriptionType
 }
@@ -425,5 +435,3 @@ export type UsersWithPaginationViewModel = {
   pagesCount: Scalars['Int']['output']
   totalCount: Scalars['Int']['output']
 }
-
-export class PostsListWithPaginationViewModel {}

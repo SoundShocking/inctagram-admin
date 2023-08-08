@@ -24,7 +24,7 @@ export type GetAllPaymentsQuery = {
       userName: string
       userId: number
       createdAt: any
-      amount: number
+      amount: string
       typeSubscription: string
       paymentType: Types.PaymentMethod
     }>
@@ -41,7 +41,7 @@ export type CreatedSubscriptionSubscription = {
     userName: string
     userId: number
     createdAt: any
-    amount: number
+    amount: string
     typeSubscription: string
     paymentType: Types.PaymentMethod
   }
