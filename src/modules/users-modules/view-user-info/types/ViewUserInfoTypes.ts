@@ -3,6 +3,7 @@ export type UserType = {
   userName: string
   profileLink: string
   createdAt: string
+  status: string
 }
 export interface UserDataType {
   user: UserType

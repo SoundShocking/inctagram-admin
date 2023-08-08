@@ -11,7 +11,7 @@ import {
 import { useRouter } from 'next/router'
 
 import { capitalizeFirstLetter, dateChangesFormat } from '@/common'
-import { ErrorMessage } from '@/components'
+import { ErrorMessage, useTranslation } from '@/components'
 import {
   GET_USER_PAYMENTS,
   ItemsUserPaymentsType,
@@ -30,7 +30,7 @@ export const UserPayments = () => {
   const [myPaymentsData, setMyPaymentsData] = useState<ItemsUserPaymentsType[]>([])
   const [pageIndex, setPageIndex] = useState(0)
   const [pageSize, setPageSize] = useState('10')
-
+  const { t } = useTranslation()
   const { loading, error } = useQuery<UserPaymentsType>(GET_USER_PAYMENTS, {
     variables: {
       userId: Number(userId),
@@ -47,30 +47,30 @@ export const UserPayments = () => {
 
   const columns: ColumnDef<ItemsUserPaymentsType>[] = [
     {
-      header: 'Date of Payment',
+      header: t.translation.userInfo.userPaymentsTable.dataOfPayment,
       cell: (params: any) =>
         loading ? <SkeletonUserPayments /> : dateChangesFormat(params.getValue()),
       accessorKey: 'dataOfPayment',
     },
     {
-      header: 'End date of subscription',
+      header: t.translation.userInfo.userPaymentsTable.endDateOfSubscription,
       cell: (params: any) =>
         loading ? <SkeletonUserPayments /> : dateChangesFormat(params.getValue()),
       accessorKey: 'endDateOfSubscription',
     },
     {
-      header: 'Price',
+      header: t.translation.userInfo.userPaymentsTable.price,
       cell: (params: any) => (loading ? <SkeletonUserPayments /> : params.getValue()),
       accessorKey: 'price',
     },
     {
-      header: 'Subscription Type',
+      header: t.translation.userInfo.userPaymentsTable.subscription,
       cell: (params: any) =>
         loading ? <SkeletonUserPayments /> : capitalizeFirstLetter(params.getValue()),
       accessorKey: 'subscription',
     },
     {
-      header: 'Payment Type',
+      header: t.translation.userInfo.userPaymentsTable.paymentType,
       cell: (params: any) =>
         loading ? <SkeletonUserPayments /> : capitalizeFirstLetter(params.getValue()),
       accessorKey: 'paymentType',

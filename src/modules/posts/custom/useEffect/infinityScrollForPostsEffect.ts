@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
 import { PostsListType } from '@/modules/posts'
-import { PostsListViewModel } from '@/types'
+import { PostListViewModel } from '@/types'
 
 interface FetchMoreVariables {
   cursor: number
@@ -14,7 +14,7 @@ interface FetchMoreOptions {
 
 interface FetchMoreResult {
   postsList: {
-    items: PostsListViewModel[]
+    items: PostListViewModel[]
     prevCursor: number
     nextCursor: number
   }

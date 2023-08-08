@@ -18,10 +18,29 @@ export const ru: LocaleType = {
         profileCreationDate: 'Дата создания профиля',
       },
       tabs: {
-        uploadPhotos: 'Загрузить фото',
+        uploadPhotos: 'Загруженные фотографии',
         payments: 'Платежи',
         followers: 'Подписчики',
         following: 'Подписки',
+      },
+      userPaymentsTable: {
+        dataOfPayment: 'Дата платежа',
+        endDateOfSubscription: 'Дата окончания подписки',
+        price: 'Цена',
+        subscription: 'Тип подписки',
+        paymentType: 'Тип оплаты',
+      },
+      userFollowersTable: {
+        userId: 'Идентификатор пользователя',
+        fullName: 'Полное имя',
+        userName: 'Имя пользователя',
+        subscriptionDate: 'Дата подписки',
+      },
+      userFollowingTable: {
+        userId: 'Идентификатор пользователя',
+        fullName: 'Полное имя',
+        userName: 'Имя пользователя',
+        subscriptionDate: 'Дата подписки',
       },
     },
     postsList: {
@@ -33,7 +52,7 @@ export const ru: LocaleType = {
       post: {
         showMore: 'Показать больше',
         showHide: 'Cкрыть',
-        description: 'Jписание отсутствует',
+        description: 'Описание отсутствует',
       },
       ban: {
         title: 'Блокировка поста',

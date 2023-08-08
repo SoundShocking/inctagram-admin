@@ -20,18 +20,11 @@ export const GET_USER_FOLLOWING = gql`
         pageSize
         pagesCount
         totalCount
-        columnHeaders {
-          en
-          uk
-          be
-          ru
-          wookie
-        }
         items {
           userId
           userName
           fullName
-          subscriptionDate
+          createdAt
         }
       }
     }

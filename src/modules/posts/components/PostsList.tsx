@@ -5,7 +5,7 @@ import { useInView } from 'react-intersection-observer'
 
 import { ErrorMessage, NotFoundComponent, useTranslation } from '@/components'
 import { deletePostSubscriptionsEffect } from '@/modules/posts/custom/useEffect/deletePostSubscriptionsEffect'
-import { PostsListViewModel, Query } from '@/types'
+import { PostListViewModel, Query } from '@/types'
 import { GlobalInput, Spinner } from '@/ui'
 import { Switch } from '@/ui/switch'
 import {
@@ -71,34 +71,32 @@ export const PostsList = () => {
   handleSearchDebounceEffect({ loading, timerId, setTimerId, setDebounce, search })
 
   return (
-    <div className="w-full pt-16 pl-6 pr-16 sm:pr-4 md:pr-4 flex flex-col">
+    <div className="w-full relative sm:pr-4 md:pr-4 flex flex-col">
       <ErrorMessage errorMessage={error?.message} />
-      <div className="flex flex-col-reverse gap-4 justify-end w-full h-full">
-        <StatusSelected status={status} setStatus={setStatus} />
-        <div className="flex-row-reverse flex">
-          <Switch
-            text={t.translation.postsList.selectedBox}
-            checked={autoUpdate}
-            setChecked={setAutoUpdate}
-          />
-        </div>
-      </div>
-      <div className="pb-9 w-full">
-        <GlobalInput
-          className="w-[972px] pb-9 h-9"
-          type={'text'}
+      <div className="absolute right-0 top-[-40px]"></div>
+      <div className="flex justify-between gap-8 pb-9">
+        <input
+          className="w-full h-9 bg-transparent text-light-100 text-sm outline-none border border-dark-100 px-10"
+          type="text"
           placeholder={t.translation.userList.search}
           value={search}
-          callBack={handleCallBackSearch}
+          onChange={handleCallBackSearch}
+        />
+        <StatusSelected status={status} setStatus={setStatus} />
+        <Switch
+          text={t.translation.postsList.selectedBox}
+          checked={autoUpdate}
+          setChecked={setAutoUpdate}
         />
       </div>
+      <div className="flex justify-between gap-8"></div>
       <div className="grid sm:grid-cols-2 md:grid-cols-3 grid-cols-4 gap-3">
         {loading ? (
           SkeletonPost(32)
         ) : (
           <>
             {data !== undefined ? (
-              data.postsList.items?.map((post: PostsListViewModel, index: number) => (
+              data.postsList.items?.map((post: PostListViewModel, index: number) => (
                 <Post
                   locale={locale}
                   t={t}

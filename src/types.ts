@@ -41,51 +41,6 @@ export enum BanReasonInputType {
   BadBehavior = 'Bad_behavior',
 }
 
-export type ColumnHeaders = {
-  __typename?: 'ColumnHeaders'
-  be: Array<Scalars['String']['output']>
-  en: Array<Scalars['String']['output']>
-  ru: Array<Scalars['String']['output']>
-  uk: Array<Scalars['String']['output']>
-  wookie: Array<Scalars['String']['output']>
-}
-
-export type FollowingForSuperAdminViewModel = {
-  __typename?: 'FollowingForSuperAdminViewModel'
-  fullName: Scalars['String']['output']
-  subscriptionDate: Scalars['DateTime']['output']
-  userId: Scalars['Float']['output']
-  userName: Scalars['String']['output']
-}
-
-export type FollowingWithPaginationViewModel = {
-  __typename?: 'FollowingWithPaginationViewModel'
-  columnHeaders: ColumnHeaders
-  items: Array<FollowingForSuperAdminViewModel>
-  page: Scalars['Int']['output']
-  pageSize: Scalars['Int']['output']
-  pagesCount: Scalars['Int']['output']
-  totalCount: Scalars['Int']['output']
-}
-
-export type ImageForSuperAdminViewModel = {
-  __typename?: 'ImageForSuperAdminViewModel'
-  createdAt: Scalars['DateTime']['output']
-  fileSize: Scalars['Int']['output']
-  ownerId: Scalars['Int']['output']
-  updatedAt: Scalars['DateTime']['output']
-  url: Scalars['String']['output']
-}
-
-export type ImagesWithPaginationViewModel = {
-  __typename?: 'ImagesWithPaginationViewModel'
-  items: Array<ImageForSuperAdminViewModel>
-  page: Scalars['Int']['output']
-  pageSize: Scalars['Int']['output']
-  pagesCount: Scalars['Int']['output']
-  totalCount: Scalars['Int']['output']
-}
-
 export type Mutation = {
   __typename?: 'Mutation'
   deleteUser: Scalars['Boolean']['output']
@@ -111,17 +66,12 @@ export type MutationUpdateUserStatusArgs = {
   userId: Scalars['Int']['input']
 }
 
-/** Payment Method [STRIPE, PAYPAL] */
-export enum PaymentMethod {
-  Paypal = 'PAYPAL',
-  Stripe = 'STRIPE',
-}
-
-export type PaymentsListViewModel = {
-  __typename?: 'PaymentsListViewModel'
+export type PaymentListViewModel = {
+  __typename?: 'PaymentListViewModel'
   amount: Scalars['String']['output']
   createdAt: Scalars['DateTime']['output']
   paymentType: PaymentMethod
+  paymentTypeText: Scalars['String']['output']
   status: StatusSubscriptionType
   typeSubscription: Scalars['String']['output']
   urlAvatar?: Maybe<Scalars['String']['output']>
@@ -129,18 +79,15 @@ export type PaymentsListViewModel = {
   userName: Scalars['String']['output']
 }
 
-export type PaymentsListWithPaginationViewModel = {
-  __typename?: 'PaymentsListWithPaginationViewModel'
-  items: Array<PaymentsListViewModel>
-  page: Scalars['Int']['output']
-  pageSize: Scalars['Int']['output']
-  pagesCount: Scalars['Int']['output']
-  totalCount: Scalars['Int']['output']
+/** Payment Method [STRIPE, PAYPAL] */
+export enum PaymentMethod {
+  Paypal = 'PAYPAL',
+  Stripe = 'STRIPE',
 }
 
-export type PaymentsWithPaginationViewModel = {
-  __typename?: 'PaymentsWithPaginationViewModel'
-  items: Array<SubscriptionForSuperAdminViewModel>
+export type PaymentsListWithPaginationViewModel = {
+  __typename?: 'PaymentsListWithPaginationViewModel'
+  items: Array<PaymentListViewModel>
   page: Scalars['Int']['output']
   pageSize: Scalars['Int']['output']
   pagesCount: Scalars['Int']['output']
@@ -172,25 +119,8 @@ export type PostImageForSuperAdminViewModel = {
   url: Scalars['String']['output']
 }
 
-/** Post Status [published, banned] */
-export enum PostStatusForPostsListInputType {
-  Banned = 'BANNED',
-  Published = 'PUBLISHED',
-}
-
-export type PostsListCursorPaginationViewModel = {
-  __typename?: 'PostsListCursorPaginationViewModel'
-  items: Array<PostsListViewModel>
-  nextCursor: Scalars['Int']['output']
-  page: Scalars['Int']['output']
-  pageSize: Scalars['Int']['output']
-  pagesCount: Scalars['Int']['output']
-  prevCursor: Scalars['Int']['output']
-  totalCount: Scalars['Int']['output']
-}
-
-export type PostsListViewModel = {
-  __typename?: 'PostsListViewModel'
+export type PostListViewModel = {
+  __typename?: 'PostListViewModel'
   createdAt: Scalars['DateTime']['output']
   description?: Maybe<Scalars['String']['output']>
   postId: Scalars['Float']['output']
@@ -202,15 +132,32 @@ export type PostsListViewModel = {
   userName: Scalars['String']['output']
 }
 
+/** Post Status [published, banned] */
+export enum PostStatusForPostsListInputType {
+  Banned = 'BANNED',
+  Published = 'PUBLISHED',
+}
+
+export type PostsListWithCursorPaginationViewModel = {
+  __typename?: 'PostsListWithCursorPaginationViewModel'
+  items: Array<PostListViewModel>
+  nextCursor: Scalars['Int']['output']
+  page: Scalars['Int']['output']
+  pageSize: Scalars['Int']['output']
+  pagesCount: Scalars['Int']['output']
+  prevCursor: Scalars['Int']['output']
+  totalCount: Scalars['Int']['output']
+}
+
 export type Query = {
   __typename?: 'Query'
   paymentsList: PaymentsListWithPaginationViewModel
-  postsList: PostsListCursorPaginationViewModel
+  postsList: PostsListWithCursorPaginationViewModel
   statisticsPaidAccounts: StatisticsForGraphicsAdminViewModel
   statisticsUploadedImages: StatisticsForGraphicsByImagesAdminViewModel
   statisticsUsers: StatisticsForGraphicsAdminViewModel
   user: UserForSuperAdminViewModel
-  users: UsersWithPaginationViewModel
+  users: UsersListWithPaginationViewModel
 }
 
 export type QueryPaymentsListArgs = {
@@ -366,20 +313,9 @@ export enum StatusSubscriptionType {
 
 export type Subscription = {
   __typename?: 'Subscription'
-  createdPost: PostsListViewModel
-  createdSubscription: PaymentsListViewModel
+  createdPost: PostListViewModel
+  createdSubscription: PaymentListViewModel
   postDeleted: PostDeletedViewModel
-}
-
-export type SubscriptionForSuperAdminViewModel = {
-  __typename?: 'SubscriptionForSuperAdminViewModel'
-  dataOfPayment: Scalars['DateTime']['output']
-  endDateOfSubscription: Scalars['DateTime']['output']
-  ownerId: Scalars['Float']['output']
-  paymentType: Scalars['String']['output']
-  price: Scalars['String']['output']
-  subscription: Scalars['String']['output']
-  type: SubscriptionType
 }
 
 /** Subscription Type [MONTHLY, SEMI_ANNUALLY, YEARLY] */
@@ -389,19 +325,36 @@ export enum SubscriptionType {
   Yearly = 'YEARLY',
 }
 
+export type UserFollowsForSuperAdminViewModel = {
+  __typename?: 'UserFollowsForSuperAdminViewModel'
+  createdAt: Scalars['DateTime']['output']
+  fullName: Scalars['String']['output']
+  userId: Scalars['Float']['output']
+  userName: Scalars['String']['output']
+}
+
+export type UserFollowsWithPaginationViewModel = {
+  __typename?: 'UserFollowsWithPaginationViewModel'
+  items: Array<UserFollowsForSuperAdminViewModel>
+  page: Scalars['Int']['output']
+  pageSize: Scalars['Int']['output']
+  pagesCount: Scalars['Int']['output']
+  totalCount: Scalars['Int']['output']
+}
+
 export type UserForSuperAdminViewModel = {
   __typename?: 'UserForSuperAdminViewModel'
   createdAt: Scalars['DateTime']['output']
   followerCount?: Maybe<Scalars['Int']['output']>
-  followersUser: FollowingWithPaginationViewModel
+  followersUser: UserFollowsWithPaginationViewModel
   followingCount?: Maybe<Scalars['Int']['output']>
-  followingUser: FollowingWithPaginationViewModel
+  followingUser: UserFollowsWithPaginationViewModel
   fullName: Scalars['String']['output']
   imagesCount: Scalars['Float']['output']
-  imagesUser: ImagesWithPaginationViewModel
+  imagesUser: UserImagesWithPaginationViewModel
   lastSeen?: Maybe<Scalars['DateTime']['output']>
   likePostsCount?: Maybe<Scalars['Int']['output']>
-  paymentsUser: PaymentsWithPaginationViewModel
+  paymentsUser: UserPaymentsWithPaginationViewModel
   posts: Array<PostForSuperAdminViewModel>
   postsCount: Scalars['Float']['output']
   profileLink?: Maybe<Scalars['String']['output']>
@@ -409,6 +362,44 @@ export type UserForSuperAdminViewModel = {
   status: UserStatusType
   userId: Scalars['Int']['output']
   userName: Scalars['String']['output']
+}
+
+export type UserImagesForSuperAdminViewModel = {
+  __typename?: 'UserImagesForSuperAdminViewModel'
+  createdAt: Scalars['DateTime']['output']
+  fileSize: Scalars['Int']['output']
+  ownerId: Scalars['Int']['output']
+  updatedAt: Scalars['DateTime']['output']
+  url: Scalars['String']['output']
+}
+
+export type UserImagesWithPaginationViewModel = {
+  __typename?: 'UserImagesWithPaginationViewModel'
+  items: Array<UserImagesForSuperAdminViewModel>
+  page: Scalars['Int']['output']
+  pageSize: Scalars['Int']['output']
+  pagesCount: Scalars['Int']['output']
+  totalCount: Scalars['Int']['output']
+}
+
+export type UserPaymentsForSuperAdminViewModel = {
+  __typename?: 'UserPaymentsForSuperAdminViewModel'
+  dataOfPayment: Scalars['DateTime']['output']
+  endDateOfSubscription: Scalars['DateTime']['output']
+  ownerId: Scalars['Float']['output']
+  paymentType: Scalars['String']['output']
+  price: Scalars['String']['output']
+  subscription: Scalars['String']['output']
+  type: SubscriptionType
+}
+
+export type UserPaymentsWithPaginationViewModel = {
+  __typename?: 'UserPaymentsWithPaginationViewModel'
+  items: Array<UserPaymentsForSuperAdminViewModel>
+  page: Scalars['Int']['output']
+  pageSize: Scalars['Int']['output']
+  pagesCount: Scalars['Int']['output']
+  totalCount: Scalars['Int']['output']
 }
 
 /** User Status [all, active, banned, pending] */
@@ -427,8 +418,8 @@ export enum UserStatusType {
   Pending = 'PENDING',
 }
 
-export type UsersWithPaginationViewModel = {
-  __typename?: 'UsersWithPaginationViewModel'
+export type UsersListWithPaginationViewModel = {
+  __typename?: 'UsersListWithPaginationViewModel'
   items: Array<UserForSuperAdminViewModel>
   page: Scalars['Int']['output']
   pageSize: Scalars['Int']['output']

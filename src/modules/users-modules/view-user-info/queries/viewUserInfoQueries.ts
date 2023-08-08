@@ -7,6 +7,7 @@ export const GET_USER_INFO = gql`
       userName
       profileLink
       createdAt
+      status
     }
   }
 `

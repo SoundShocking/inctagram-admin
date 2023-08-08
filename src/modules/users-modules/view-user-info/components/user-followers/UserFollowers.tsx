@@ -16,21 +16,21 @@ import { ErrorMessage, TableSortingCol } from '@/components'
 import { SkeletonUserPayments, UserPaymentsTable } from '@/modules/users-modules/view-user-info'
 import { GET_USER_FOLLOWS } from '@/modules/users-modules/view-user-info/components/user-payments/queries/viewUserFollowersQueries'
 import {
-  FollowingForSuperAdminViewModel,
-  FollowingWithPaginationViewModel,
   SortByForUsers,
+  UserFollowsForSuperAdminViewModel,
+  UserFollowsWithPaginationViewModel,
 } from '@/types'
 import { TablePagination } from 'components/Tables/table-pagination'
 
 export type UserFollowingType = {
   user: {
-    followersUser: FollowingWithPaginationViewModel
+    followersUser: UserFollowsWithPaginationViewModel
   }
 }
 export const UserFollowers = () => {
   const router = useRouter()
   const { userId } = router.query
-  const [myPaymentsData, setMyPaymentsData] = useState<FollowingForSuperAdminViewModel[]>([])
+  const [myPaymentsData, setMyPaymentsData] = useState<UserFollowsForSuperAdminViewModel[]>([])
   const [pageIndex, setPageIndex] = useState(0)
   const [pageSize, setPageSize] = useState('10')
   const [sorting, setSorting] = useState<SortingState>([])
@@ -47,12 +47,13 @@ export const UserFollowers = () => {
   })
   const pageCount: number | undefined = data?.user.followersUser.pagesCount
 
+  console.log(data)
   useEffect(() => {
     data ? setMyPaymentsData(data.user.followersUser.items) : null
   }, [data])
 
   // setUserPaymentsDataEffect(data, loading, setMyPaymentsData)
-  const columns: ColumnDef<FollowingForSuperAdminViewModel>[] = [
+  const columns: ColumnDef<UserFollowsForSuperAdminViewModel>[] = [
     {
       header: 'User ID',
       cell: (params: any) => (loading ? <SkeletonUserPayments /> : params.getValue()),
@@ -75,12 +76,12 @@ export const UserFollowers = () => {
       header: 'Subscription Date',
       cell: (params: any) =>
         loading ? <SkeletonUserPayments /> : dateChangesFormat(params.getValue()),
-      accessorKey: 'subscriptionDate',
+      accessorKey: 'createdAt',
       enableSorting: true,
     },
   ]
 
-  const tableProps: Table<FollowingForSuperAdminViewModel> = useReactTable({
+  const tableProps: Table<UserFollowsForSuperAdminViewModel> = useReactTable({
     data: myPaymentsData,
     columns: columns,
     pageCount: pageCount,
@@ -96,7 +97,7 @@ export const UserFollowers = () => {
   return (
     <div className="mt-9 text-accent-500 p-2 block w-full ">
       <ErrorMessage errorMessage={error?.message} />
-      <UserPaymentsTable<FollowingForSuperAdminViewModel> tableProps={tableProps} />
+      <UserPaymentsTable<UserFollowsForSuperAdminViewModel> tableProps={tableProps} />
       {data?.user.followersUser.pagesCount ? (
         <TablePagination
           pagesCount={data.user.followersUser.pagesCount}

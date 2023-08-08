@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { SubscribeToMoreOptions } from '@apollo/client'
 
 import { deletePostDataInterface, PostsListType, SUBSCRIPTIONS_DELETE_POST } from '@/modules/posts'
-import { PostsListViewModel } from '@/types'
+import { PostListViewModel } from '@/types'
 
 export const deletePostSubscriptionsEffect = (
   subscribeToMore: (options: SubscribeToMoreOptions<any, any, any>) => () => void
@@ -21,7 +21,7 @@ export const deletePostSubscriptionsEffect = (
         const postId = subscriptionData.data.postDeleted.postId
 
         if (postId && prev?.postsList?.items) {
-          const updatedItemsAfterDeletion: PostsListViewModel[] = prev.postsList.items.filter(
+          const updatedItemsAfterDeletion: PostListViewModel[] = prev.postsList.items.filter(
             post => post.postId !== postId
           )
 
