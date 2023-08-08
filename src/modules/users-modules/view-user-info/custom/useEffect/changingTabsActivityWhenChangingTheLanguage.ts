@@ -6,7 +6,6 @@ export const callWhenUrlChangesEffect = ({
   router,
   setActiveTab,
   defaultTabs,
-  activeTab,
 }: {
   router: NextRouter
   setActiveTab: (value: string) => void
