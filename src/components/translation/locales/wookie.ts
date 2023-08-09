@@ -23,6 +23,25 @@ export const wookie: LocaleType = {
         followers: 'Grrruuugh rarghhh',
         following: 'Ryyyrgg rrararaghh',
       },
+      userPaymentsTable: {
+        dataOfPayment: 'Rrwowr of Payment',
+        endDateOfSubscription: 'Ern drrwr of subscription',
+        price: 'Pricer',
+        subscription: 'Subscrwrtion Type',
+        paymentType: 'Paworment Type',
+      },
+      userFollowersTable: {
+        userId: 'Rrwowr',
+        fullName: 'Ern Drrwr',
+        userName: 'drrwr Rer',
+        subscriptionDate: 'Rarghhh raaghrugwaa',
+      },
+      userFollowingTable: {
+        userId: 'Rrwowr',
+        fullName: 'Ern Drrwr',
+        userName: 'drrwr Rer',
+        subscriptionDate: 'Rarghhh raaghrugwaa',
+      },
     },
     postsList: {
       publishedPosts: 'Wrrraaarghbaaaarrrrgh! Ggggrrwwaahhh!',

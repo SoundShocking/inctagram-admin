@@ -1,10 +1,11 @@
 import React from 'react'
 
 import { flexRender, Table } from '@tanstack/react-table'
+import { clsx } from 'clsx'
 
-import { ItemsUserPaymentsType } from '@/modules/users-modules/view-user-info'
+import { TableSortIcon } from 'components/Tables/table-sort-icon'
 
-export const UserPaymentsTable = ({ tableProps }: { tableProps: Table<ItemsUserPaymentsType> }) => {
+export const UserPaymentsTable = <T extends {}>({ tableProps }: { tableProps: Table<T> }) => {
   return (
     <div className="w-full">
       <table className="w-full">
@@ -19,16 +20,17 @@ export const UserPaymentsTable = ({ tableProps }: { tableProps: Table<ItemsUserP
                 <th key={header.id} colSpan={header.colSpan}>
                   {header.isPlaceholder ? null : (
                     <div
-                      {...{
-                        className: header.column.getCanSort() ? 'cursor-pointer select-none' : '',
-                        onClick: header.column.getToggleSortingHandler(),
-                      }}
+                      className={clsx('flex items-center justify-center select-none', {
+                        'cursor-pointer': header.column.getCanSort(),
+                      })}
+                      onClick={header.column.getToggleSortingHandler()}
                     >
                       {flexRender(header.column.columnDef.header, header.getContext())}
-                      {{
-                        asc: ' 🔼',
-                        desc: ' 🔽',
-                      }[header.column.getIsSorted() as string] ?? null}
+
+                      <TableSortIcon
+                        isCanSort={header.column.getCanSort()}
+                        isSorted={header.column.getIsSorted()}
+                      />
                     </div>
                   )}
                 </th>

@@ -16,7 +16,7 @@ export type GetAllUsersQueryVariables = Types.Exact<{
 export type GetAllUsersQuery = {
   __typename?: 'Query'
   users: {
-    __typename?: 'UsersWithPaginationViewModel'
+    __typename?: 'UsersListWithPaginationViewModel'
     totalCount: number
     pagesCount: number
     items: Array<{

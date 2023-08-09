@@ -13,11 +13,11 @@ import dayjs from 'dayjs'
 
 import { PaymentsTableUserNameCell } from './PaymentsTableUserNameCell'
 
-import { TableSortIcon } from '@/components/table-sort-icon'
-import { PaymentsListViewModel } from '@/types'
+import { TableSortIcon } from '@/components/Tables/table-sort-icon'
+import { PaymentListViewModel } from '@/types'
 
 export type PaymentsItem = Pick<
-  PaymentsListViewModel,
+  PaymentListViewModel,
   'urlAvatar' | 'userName' | 'userId' | 'createdAt' | 'amount' | 'typeSubscription' | 'paymentType'
 >
 

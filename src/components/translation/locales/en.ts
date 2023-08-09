@@ -20,10 +20,29 @@ export const en = {
         profileCreationDate: 'Profile Creation Date',
       },
       tabs: {
-        uploadPhotos: 'Upload Photos',
+        uploadPhotos: 'Uploaded Photos',
         payments: 'Payments',
         followers: 'Followers',
         following: 'Following',
+      },
+      userPaymentsTable: {
+        dataOfPayment: 'Date of Payment',
+        endDateOfSubscription: 'End date of subscription',
+        price: 'Price',
+        subscription: 'Subscription Type',
+        paymentType: 'Payment Type',
+      },
+      userFollowersTable: {
+        userId: 'User ID',
+        fullName: 'Full Name',
+        userName: 'User Name',
+        subscriptionDate: 'Subscription Date',
+      },
+      userFollowingTable: {
+        userId: 'User ID',
+        fullName: 'Full Name',
+        userName: 'User Name',
+        subscriptionDate: 'Subscription Date',
       },
     },
     postsList: {
