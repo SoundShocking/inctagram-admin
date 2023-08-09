@@ -149,6 +149,7 @@ export const en = {
     statistics: {
       dateRange: 'Date range',
       comparedPeriod: 'Compared period',
+      error: 'Maximum date range is ',
       users: {
         users: 'Users',
         newUsers: 'New users',

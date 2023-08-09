@@ -44,7 +44,7 @@ export const ChartSettings = ({
 
   const setEndDateHandler = (date: Date | null) => {
     if (startDate && date && !isPeriodWithinMaxDays(startDate, date, MAX_DAYS - 1)) {
-      setErrorMessage(`Max date range is ${MAX_DAYS} days`)
+      setErrorMessage(`${t.translation.statistics.error} ${MAX_DAYS}`)
     } else {
       setEndDate(date)
     }
@@ -58,7 +58,7 @@ export const ChartSettings = ({
     setCompareEndDate(date)
 
     if (compareStartDate && date && !isPeriodWithinMaxDays(compareStartDate, date, MAX_DAYS)) {
-      setCompareErrorMessage(`Max date is ${MAX_DAYS} days`)
+      setCompareErrorMessage(`${t.translation.statistics.error} ${MAX_DAYS}`)
     }
   }
 
