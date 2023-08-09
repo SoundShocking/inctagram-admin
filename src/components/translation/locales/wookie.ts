@@ -95,8 +95,10 @@ export const wookie: LocaleType = {
       table: {
         profileLink: 'Rrwrrwwwr rrwwwrr',
         username: 'Rrwrrrwwwrrrr',
-        userId: 'Rrwrr ID',
+        userId: 'ID',
         dateAdded: 'Rrrr rrrrwrr',
+        fullName: "ooruh'waa hnn-rowr",
+        lastSeen: 'grrawr rruurrgh',
       },
       ban: {
         title: 'Rrwrgwwr rrwrrrr',
