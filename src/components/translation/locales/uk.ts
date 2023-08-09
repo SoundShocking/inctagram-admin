@@ -95,8 +95,10 @@ export const uk: LocaleType = {
       table: {
         profileLink: 'Посилання на профіль',
         username: "Ім'я користувача",
-        userId: 'ID користувача',
+        userId: 'ID',
         dateAdded: 'Дата додавання',
+        fullName: "Повне ім'я",
+        lastSeen: 'Востаннє бачили',
       },
       ban: {
         title: 'Заблокувати користувача',

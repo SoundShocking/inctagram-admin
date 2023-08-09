@@ -95,8 +95,10 @@ export const ru: LocaleType = {
       table: {
         profileLink: 'Ссылка на профиль',
         username: 'Имя пользователя',
-        userId: 'ID пользователя',
+        userId: 'ID',
         dateAdded: 'Дата добавления',
+        fullName: 'Полное имя',
+        lastSeen: 'Последнее посещение',
       },
       ban: {
         title: 'Заблокировать пользователя',

@@ -47,7 +47,7 @@ export const PaymentsTable: FC<Props> = ({ payments, sorting, setSorting, loadin
     columnHelper.accessor('amount', {
       id: 'price',
       header: 'Amount, $',
-      cell: info => `${info.getValue()}$`,
+      cell: info => info.getValue(),
       enableSorting: true,
     }),
     columnHelper.accessor('typeSubscription', {

@@ -97,8 +97,10 @@ export const en = {
       table: {
         profileLink: 'Profile link',
         username: 'Username',
-        userId: 'User ID',
+        userId: 'ID',
         dateAdded: 'Date added',
+        fullName: 'Full Name',
+        lastSeen: 'Last Seen',
       },
       ban: {
         title: 'Ban user',

@@ -95,8 +95,10 @@ export const be: LocaleType = {
       table: {
         profileLink: 'Спасылка на профіль',
         username: 'Імя карыстальніка',
-        userId: 'ID карыстальніка',
+        userId: 'ID',
         dateAdded: 'Дата дадання',
+        fullName: 'Поўнае імя',
+        lastSeen: 'Апошні раз',
       },
       ban: {
         title: 'Заблакаваць карыстальніка',
