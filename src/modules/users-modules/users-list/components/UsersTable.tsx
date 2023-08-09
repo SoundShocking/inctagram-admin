@@ -104,16 +104,16 @@ export const UsersTable: FC<Props> = ({ users, sorting, setSorting }) => {
 
   return (
     <>
-      <div className=" text-accent-500 p-2 block max-w-full ">
-        <div className={`max-w-[972px]`}>
-          <table className="w-full">
+      <div className="text-accent-500 mt-6">
+        <div>
+          <table className="w-full grid">
             <thead
               className={
-                'h-12 bg-dark-500 border-2 border-dark-500 border-r-2 text-light-100 font-semibold text-sm'
+                'h-12 bg-dark-500 border-2 border-dark-500 border-r-2 text-light-100 font-semibold text-sm grid'
               }
             >
               {table.getHeaderGroups().map((headerGroup, key) => (
-                <tr key={key} data-key={key}>
+                <tr key={key} data-key={key} className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr_72px]">
                   {headerGroup.headers.map(header => (
                     <th key={header.id} colSpan={header.colSpan}>
                       {header.isPlaceholder ? null : (
@@ -137,20 +137,18 @@ export const UsersTable: FC<Props> = ({ users, sorting, setSorting }) => {
               ))}
             </thead>
 
-            <tbody className="w-full">
+            <tbody className="grid">
               {table.getRowModel().rows.map(row => {
                 return (
                   <tr
-                    className={'border-[1px] border-dark-500 text-light-100 font-normal text-sm'}
+                    className={
+                      'border-[1px] border-dark-500 text-light-100 font-normal text-sm grid grid-cols-[1fr_1fr_1fr_1fr_1fr_72px]'
+                    }
                     key={row.id}
                   >
                     {row.getVisibleCells().map(cell => {
                       return (
-                        <td
-                          className={'pb-3 pt-3 text-center'}
-                          key={cell.id}
-                          style={{ width: cell.column.getSize() }}
-                        >
+                        <td className={'pb-3 pt-3 text-center'} key={cell.id}>
                           <div className="w-full flex align-middle justify-center">
                             {flexRender(cell.column.columnDef.cell, cell.getContext())}
                           </div>
