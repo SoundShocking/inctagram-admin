@@ -3,14 +3,13 @@ import React, { useState } from 'react'
 import { useQuery } from '@apollo/client'
 
 import { useTranslation } from '@/components'
-// eslint-disable-next-line import/namespace
 import { ChartSettings } from '@/modules/statistics/components/chart-settings/ChartSettings'
 import { dateConverter } from '@/modules/statistics/utils/dateConverter'
 import { getDateDaysAgo } from '@/modules/statistics/utils/getDateDaysAgo'
-import { GET_PAID_ACCOUNTS_STATISTICS } from '@/queries/statistics-paid-accounts'
+import { GET_UPLOADED_PHOTOS_STATISTICS } from '@/queries/statistics-uploaded-photos'
 import { Chart } from '@/ui/chart/Chart'
 
-export const PaidAccountsChart = () => {
+export const UploadedPhotosChart = () => {
   const { t } = useTranslation()
 
   const [data, setData] = useState<number[]>([])
@@ -26,7 +25,7 @@ export const PaidAccountsChart = () => {
   const [compareEndDate, setCompareEndDate] = useState<Date | null>(null)
   const [compareErrorMessage, setCompareErrorMessage] = useState<string>('')
 
-  const { error, loading, fetchMore } = useQuery(GET_PAID_ACCOUNTS_STATISTICS, {
+  const { error, loading, fetchMore } = useQuery(GET_UPLOADED_PHOTOS_STATISTICS, {
     variables: {
       startDate: startDate?.toISOString(),
       endDate: endDate?.toISOString(),
@@ -35,20 +34,20 @@ export const PaidAccountsChart = () => {
     },
     onCompleted: async (data: any) => {
       const formedDate = await dateConverter(
-        data?.statisticsPaidAccounts.data.metrics.time_intervals
+        data?.statisticsUploadedImages.data.metrics.time_intervals
       )
 
-      setData(data?.statisticsPaidAccounts.data.metrics.countUsers)
+      setData(data?.statisticsUploadedImages.data.metrics.countImages)
       //@ts-ignore
       setLabels(formedDate)
       let comparedDate: number[] = []
 
       let seconedLabelsDate: number[] = []
 
-      if (data?.statisticsPaidAccounts.data.metricsComparison?.countUsers) {
-        comparedDate = data?.statisticsPaidAccounts.data.metricsComparison?.countUsers
+      if (data?.statisticsUploadedImages.data.metricsComparison?.countImages) {
+        comparedDate = data?.statisticsUploadedImages.data.metricsComparison?.countImages
         seconedLabelsDate = await dateConverter(
-          data?.statisticsPaidAccounts.data.metricsComparison?.time_intervals
+          data?.statisticsUploadedImages.data.metricsComparison?.time_intervals
         )
       }
       setCompareData(comparedDate)
@@ -58,8 +57,8 @@ export const PaidAccountsChart = () => {
   })
 
   return (
-    <div className={'p-3'}>
-      <h2 className={'text-[20px]'}>{t.translation.statistics.users.paidAccounts}</h2>
+    <div>
+      <h2 className={'text-[20px]'}>{t.translation.statistics.photos.uploadedPhotos}</h2>
       <ChartSettings
         errorMessage={errorMessage}
         endDate={endDate}
