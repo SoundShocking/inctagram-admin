@@ -12,7 +12,7 @@ const UsersPage: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>{t.translation.navigation.userList}</title>
+        <title>{t.translation.navigation.users}</title>
       </Head>
 
       <UsersList />

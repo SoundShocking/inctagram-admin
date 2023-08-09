@@ -24,7 +24,7 @@ export const GET_ALL_PAYMENTS = gql`
         createdAt
         amount
         typeSubscription
-        paymentType
+        paymentTypeText
       }
     }
   }

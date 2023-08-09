@@ -11,7 +11,7 @@ const PaymentsPage: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>{t.translation.navigation.paymentsList}</title>
+        <title>{t.translation.navigation.payments}</title>
       </Head>
 
       <PaymentsList />

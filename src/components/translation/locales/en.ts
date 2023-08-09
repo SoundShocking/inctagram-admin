@@ -2,9 +2,9 @@ export const en = {
   translation: {
     navigation: {
       statistics: 'Statistics',
-      userList: 'Users list',
-      postList: 'PostsList list',
-      paymentsList: 'Payments list',
+      users: 'Users',
+      posts: 'Posts',
+      payments: 'Payments',
       logout: 'Logout',
     },
     login: {
@@ -159,6 +159,13 @@ export const en = {
         photos: 'Photos',
         uploadedPhotos: 'Uploaded photos',
       },
+    },
+    payments: {
+      userName: 'Username',
+      dateAdded: 'Date Added',
+      amount: 'Amount, $',
+      subscription: 'Subscription',
+      paymentMethod: 'Payment Method',
     },
   },
 }

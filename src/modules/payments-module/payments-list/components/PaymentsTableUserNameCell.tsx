@@ -16,9 +16,9 @@ export const PaymentsTableUserNameCell: FC<Props> = ({ row }) => {
     <div className="text-left">
       <Link
         href={`/users/${row.original.userId}`}
-        className="inline-flex items-center text-left hover:text-accent-500 transition-colors"
+        className="inline-flex items-center text-left hover:text-accent-500 transition-colors max-w-full"
       >
-        <div className="relative object-cover rounded-full overflow-hidden w-9 h-9 mr-3">
+        <div className="relative object-cover rounded-full overflow-hidden w-9 h-9 mr-3 shrink-0">
           {row.original.urlAvatar ? (
             <Image src={row.original.urlAvatar!} alt={row.original.userName} fill />
           ) : (
@@ -28,7 +28,7 @@ export const PaymentsTableUserNameCell: FC<Props> = ({ row }) => {
           )}
         </div>
 
-        <div className="underline underline-offset-4">{row.original.userName}</div>
+        <div className="underline underline-offset-4 py-1.5 truncate">{row.original.userName}</div>
       </Link>
     </div>
   )
