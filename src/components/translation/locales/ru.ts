@@ -147,7 +147,7 @@ export const ru: LocaleType = {
     statistics: {
       dateRange: 'Период',
       comparedPeriod: 'Сравниваемый период',
-
+      error: 'максимальное количество дней: ',
       users: {
         users: 'Пользователи',
         newUsers: 'Новые пользователи',

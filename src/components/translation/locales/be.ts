@@ -147,6 +147,7 @@ export const be: LocaleType = {
     statistics: {
       dateRange: 'Дыяпазон дат',
       comparedPeriod: 'Параўнальны перыяд',
+      error: 'максімальная колькасць дзён: ',
       users: {
         users: 'Карыстальнікі',
         newUsers: 'Новыя карыстальнікі',
