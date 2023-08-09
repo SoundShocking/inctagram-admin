@@ -4,9 +4,9 @@ export const be: LocaleType = {
   translation: {
     navigation: {
       statistics: 'Статыстыка',
-      userList: 'Спіс карыстальнікаў',
-      postList: 'Спіс паведамленняў',
-      paymentsList: 'Спіс плацяжоў',
+      users: 'Карыстальнікі',
+      posts: 'Паведамленні',
+      payments: 'Плацяжы',
       logout: 'Выйсці',
     },
     login: { signIn: 'Увайсці', email: 'Электронная пошта', password: ' Пароль' },
@@ -156,6 +156,13 @@ export const be: LocaleType = {
         photos: 'Фатаграфіі',
         uploadedPhotos: 'Загружаныя фатаграфіі',
       },
+    },
+    payments: {
+      userName: 'Імя карыстальніка',
+      dateAdded: 'Дата дадавання',
+      amount: 'Сума, $',
+      subscription: 'Падпіска',
+      paymentMethod: 'Метад плацежу',
     },
   },
 }

@@ -10,7 +10,7 @@ const Posts = () => {
   return (
     <>
       <Head>
-        <title>{t.translation.navigation.postList}</title>
+        <title>{t.translation.navigation.posts}</title>
       </Head>
 
       <PostsList />

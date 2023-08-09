@@ -4,9 +4,9 @@ export const ru: LocaleType = {
   translation: {
     navigation: {
       statistics: 'Статистика',
-      userList: 'Список пользователей',
-      postList: 'Список постов',
-      paymentsList: 'Список платежей',
+      users: 'Пользователи',
+      posts: 'Посты',
+      payments: 'Платежи',
       logout: 'Выйти',
     },
     login: { signIn: 'Войти', email: 'Электронная почта', password: 'Пароль' },
@@ -157,6 +157,13 @@ export const ru: LocaleType = {
         photos: 'Фотографии',
         uploadedPhotos: 'Загруженные фотографии',
       },
+    },
+    payments: {
+      userName: 'Имя пользователя',
+      dateAdded: 'Дата добавления',
+      amount: 'Сумма, $',
+      subscription: 'Подписка',
+      paymentMethod: 'Способ оплаты',
     },
   },
 }

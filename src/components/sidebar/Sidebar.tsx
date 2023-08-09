@@ -22,7 +22,7 @@ export const Sidebar: FC = () => {
   const menu: MenuItem[] = [
     {
       url: routes.users,
-      name: t.translation.navigation.userList,
+      name: t.translation.navigation.users,
       icon: <FaUsers />,
     },
     {
@@ -32,12 +32,12 @@ export const Sidebar: FC = () => {
     },
     {
       url: routes.payments,
-      name: t.translation.navigation.paymentsList,
+      name: t.translation.navigation.payments,
       icon: <FaRegCreditCard />,
     },
     {
       url: routes.posts,
-      name: t.translation.navigation.postList,
+      name: t.translation.navigation.posts,
       icon: <FaRegImages />,
     },
   ]
@@ -51,7 +51,7 @@ export const Sidebar: FC = () => {
               <Link
                 href={item.url}
                 className={clsx(
-                  'flex items-center hover:text-accent-500 transition-colors font-bold',
+                  'flex items-center hover:text-accent-500 transition-colors font-bold truncate',
                   {
                     'text-accent-500': pathname === item.url,
                   }
@@ -63,7 +63,7 @@ export const Sidebar: FC = () => {
               </Link>
             </li>
           ))}
-          <li>
+          <li className="mt-6 text-danger-500">
             <LogoutButton />
           </li>
         </ul>

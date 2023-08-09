@@ -4,9 +4,9 @@ export const wookie: LocaleType = {
   translation: {
     navigation: {
       statistics: 'Rrwgawr',
-      userList: 'Rrwrrg wrr',
-      postList: 'Rrwggwwr wrr',
-      paymentsList: 'Urggghh wrr',
+      users: 'Rrwrawrararrr',
+      posts: 'Rrwrawk',
+      payments: 'Rrwraaahworraaahnnn',
       logout: 'grrrwahh',
     },
     login: { signIn: 'Ruurh', email: 'Shirwoorlakoorl', password: 'Rakkrorrl' },
@@ -156,6 +156,13 @@ export const wookie: LocaleType = {
         photos: 'Ooaaah oooaaa aaaooa!',
         uploadedPhotos: 'Mwoooaah oohwah oooaaah!',
       },
+    },
+    payments: {
+      userName: 'Rrwrawk Rrraghaaahnr',
+      dateAdded: 'Rrwrahnrao Wwrrhanrawr',
+      amount: 'Rrwraaahworraaahnnn, $',
+      subscription: 'Rrwraaahnraraaooahoara',
+      paymentMethod: 'Rrwraaahwhrrhanrao Rrwraaahnrarrwh',
     },
   },
 }

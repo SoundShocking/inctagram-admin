@@ -54,7 +54,7 @@ export const UsersTable: FC<Props> = ({ users, sorting, setSorting }) => {
       header: t.translation.userList.table.username,
       cell: info => (
         <Link
-          className="underline underline-offset-4 hover:text-accent-500 transition-colors truncate overflow-hidden"
+          className="underline underline-offset-4 hover:text-accent-500 transition-colors truncate overflow-hidden py-1.5"
           href={`/users/${info.row.original.userId}`}
         >
           {info.getValue()}
@@ -104,10 +104,10 @@ export const UsersTable: FC<Props> = ({ users, sorting, setSorting }) => {
 
   return (
     <div className="mt-6">
-      <table className="w-full grid">
+      <table className="w-full grid text-white text-sm">
         <thead
           className={
-            'h-12 bg-dark-500 border-2 border-dark-500 border-r-2 text-light-100 font-semibold text-sm grid'
+            'h-12 bg-dark-500 border-2 border-dark-500 border-r-2 font-semibold text-sm grid'
           }
         >
           {table.getHeaderGroups().map((headerGroup, key) => (
@@ -140,13 +140,13 @@ export const UsersTable: FC<Props> = ({ users, sorting, setSorting }) => {
             return (
               <tr
                 className={
-                  'border-[1px] border-dark-500 text-light-100 font-normal text-sm grid grid-cols-[100px_1fr_1fr_160px_160px_72px]'
+                  'border-[1px] border-dark-500 grid grid-cols-[100px_1fr_1fr_160px_160px_72px] items-center'
                 }
                 key={row.id}
               >
                 {row.getVisibleCells().map(cell => {
                   return (
-                    <td className={'pb-3 pt-3 text-center'} key={cell.id}>
+                    <td className={'py-3 px-1.5 text-center overflow-hidden'} key={cell.id}>
                       <div className="w-full flex align-middle justify-center">
                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                       </div>
