@@ -147,6 +147,7 @@ export const wookie: LocaleType = {
     statistics: {
       dateRange: 'Rrruurgh oooaaah aroo!',
       comparedPeriod: 'Mwaaah muuh uhrrraaah!',
+      error: 'Rrwrr grr',
       users: {
         users: 'Wrrrooaaarrgh!',
         newUsers: 'Aaarrwwgh!',
