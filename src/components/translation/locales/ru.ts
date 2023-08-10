@@ -9,7 +9,12 @@ export const ru: LocaleType = {
       payments: 'Платежи',
       logout: 'Выйти',
     },
-    login: { signIn: 'Войти', email: 'Электронная почта', password: 'Пароль' },
+    login: {
+      signIn: 'Войти',
+      email: 'Электронная почта',
+      password: 'Пароль',
+      error: 'Поле "Пароль" обязательно для заполнения',
+    },
     userInfo: {
       userInfoMain: {
         backUsersList: 'Вернуться к списку пользователей',

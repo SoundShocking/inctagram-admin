@@ -3,7 +3,7 @@ import React from 'react'
 import { flexRender, Table } from '@tanstack/react-table'
 import { clsx } from 'clsx'
 
-import { TableSortIcon } from 'components/Tables/table-sort-icon'
+import { TableSortIcon } from '@/components/tables/table-sort-icon'
 
 export const UserPaymentsTable = <T extends {}>({ tableProps }: { tableProps: Table<T> }) => {
   return (
