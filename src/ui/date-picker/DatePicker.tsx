@@ -125,7 +125,7 @@ export const DateCalendar: FC<DatePickerProps> = ({
   const numDaysSelected = () => {
     if (startDate && endDate && typeof startDate === 'object' && typeof endDate === 'object') {
       const diffInMilliseconds = Math.abs(endDate.getTime() - startDate.getTime())
-      const diffInDays = Math.ceil(diffInMilliseconds / (1000 * 60 * 60 * 24))
+      const diffInDays = Math.ceil(diffInMilliseconds / (1000 * 60 * 60 * 24)) + 1
 
       return diffInDays
     }
