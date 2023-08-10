@@ -8,7 +8,7 @@ import { useUpdateEffect } from 'usehooks-ts'
 import { ErrorMessage, NotFoundComponent, useTranslation } from '@/components'
 import { deletePostSubscriptionsEffect } from '@/modules/posts/custom/useEffect/deletePostSubscriptionsEffect'
 import { PostListViewModel, Query } from '@/types'
-import { GlobalInput, Spinner } from '@/ui'
+import { Spinner } from '@/ui'
 import { Switch } from '@/ui/switch'
 import {
   addNewPostSubscriptionsEffect,
