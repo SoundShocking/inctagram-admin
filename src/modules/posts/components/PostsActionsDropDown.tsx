@@ -42,19 +42,19 @@ export const PostsActionsDropDown = ({
     <>
       <DropdownMenu.Root modal={false}>
         <DropdownMenu.Trigger asChild>
-          <button className="flex align-center" aria-label="Customise options">
-            <FaEllipsis size={24} color="#fff" />
+          <button className="flex align-center text-white hover:text-accent-500 transition-colors data-[state=open]:text-accent-500">
+            <FaEllipsis size={24} />
           </button>
         </DropdownMenu.Trigger>
         <DropdownMenu.Portal>
           <DropdownMenu.Content
             side={'bottom'}
             align={'end'}
-            className="bg-dark-500 border z-10 border-dark-100 p-3 text-sm"
+            className="bg-dark-500 border z-10 border-dark-100 px-3 text-sm"
           >
             {status === 'ACTIVE' && (
               <DropdownMenu.Item
-                className="flex items-center mb-3 cursor-pointer hover:text-accent-500 transition-colors outline-none "
+                className="flex items-center my-3 cursor-pointer hover:text-accent-500 transition-colors outline-none "
                 onSelect={() => onBanClick()}
               >
                 <FaUserLock size={24} className="mr-3" />
@@ -64,7 +64,7 @@ export const PostsActionsDropDown = ({
 
             {status === 'BANNED' && (
               <DropdownMenu.Item
-                className="flex items-center mb-3 cursor-pointer hover:text-accent-500 transition-colors outline-none"
+                className="flex items-center my-3 cursor-pointer hover:text-accent-500 transition-colors outline-none"
                 onSelect={() => onUnbanClick()}
               >
                 <AiFillUnlock size={24} className="mr-3" />
@@ -74,7 +74,7 @@ export const PostsActionsDropDown = ({
 
             {postStatus === 'PUBLISHED' && (
               <DropdownMenu.Item
-                className="flex items-center mb-3 cursor-pointer hover:text-accent-500 transition-colors outline-none"
+                className="flex items-center my-3 cursor-pointer hover:text-accent-500 transition-colors outline-none"
                 onSelect={() => onBanPostClick()}
               >
                 <ImEyeBlocked size={24} className="mr-3" />
@@ -84,7 +84,7 @@ export const PostsActionsDropDown = ({
 
             {postStatus === 'BANNED' && (
               <DropdownMenu.Item
-                className="flex items-center mb-3 cursor-pointer hover:text-accent-500 transition-colors outline-none"
+                className="flex items-center my-3 cursor-pointer hover:text-accent-500 transition-colors outline-none"
                 onSelect={() => onUnbanPostClick()}
               >
                 <ImEye size={24} className="mr-3" />

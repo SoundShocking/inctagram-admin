@@ -87,9 +87,10 @@ export const wookie: LocaleType = {
       unbanUser: 'Rrwrrrrrr rrwrgwwr',
       moreInfo: 'Rrwrrrw rrwrwwwr',
       search: 'Wwwrrahh',
-      notSelected: 'Rrrrrwr',
-      notBlocked: 'Rrrrrrrrrr',
-      blocked: 'Urrr',
+      all: 'Rrwrawr',
+      banned: 'Rrragnaggar',
+      active: 'Rrwrawrar',
+      pending: 'Rrrawhwharrrw',
       show: 'Rrrrwrr',
       onPage: 'Urrr',
       table: {
@@ -165,6 +166,7 @@ export const wookie: LocaleType = {
       amount: 'Rrwraaahworraaahnnn, $',
       subscription: 'Rrwraaahnraraaooahoara',
       paymentMethod: 'Rrwraaahwhrrhanrao Rrwraaahnrarrwh',
+      autoUpdate: 'Rrwraaarwrr',
     },
   },
 }

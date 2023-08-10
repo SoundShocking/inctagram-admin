@@ -89,9 +89,10 @@ export const en = {
       unbanUser: 'Unban user',
       moreInfo: 'More information',
       search: 'Search',
-      notSelected: 'Not selected',
-      notBlocked: 'Not blocked',
-      blocked: 'Blocked',
+      all: 'All',
+      banned: 'Banned',
+      active: 'Active',
+      pending: 'Unconfirmed',
       show: 'Show',
       onPage: 'on Page',
       table: {
@@ -167,6 +168,7 @@ export const en = {
       amount: 'Amount, $',
       subscription: 'Subscription',
       paymentMethod: 'Payment Method',
+      autoUpdate: 'Auto update',
     },
   },
 }

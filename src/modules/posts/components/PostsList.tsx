@@ -90,7 +90,7 @@ export const PostsList = () => {
         />
       </div>
       <div className="flex justify-between gap-8"></div>
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 grid-cols-4 gap-3">
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 grid-cols-4 gap-x-3 gap-y-8">
         {loading ? (
           SkeletonPost(32)
         ) : (

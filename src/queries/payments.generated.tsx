@@ -27,7 +27,7 @@ export type GetAllPaymentsQuery = {
       amount: string
       typeSubscription: string
       paymentTypeText: string
-      status: Types.StatusSubscriptionType
+      statusUser: Types.UserStatusType
     }>
   }
 }
@@ -73,7 +73,7 @@ export const GetAllPaymentsDocument = gql`
         amount
         typeSubscription
         paymentTypeText
-        status
+        statusUser
       }
     }
   }

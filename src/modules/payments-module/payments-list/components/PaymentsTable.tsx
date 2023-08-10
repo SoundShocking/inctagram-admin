@@ -26,7 +26,7 @@ export type PaymentsItem = Pick<
   | 'amount'
   | 'typeSubscription'
   | 'paymentTypeText'
-  | 'status'
+  | 'statusUser'
 >
 
 const columnHelper = createColumnHelper<PaymentsItem>()

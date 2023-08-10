@@ -14,6 +14,8 @@ export const SliderImagesPost = ({ postImages }: { postImages: string[] }) => {
         style={
           {
             '--swiper-pagination-color': '#397DF6',
+            '--swiper-pagination-bullet-inactive-color': '#fff',
+            '--swiper-pagination-bullet-inactive-opacity': 1,
           } as any
         }
         modules={[Navigation, Pagination]}
@@ -25,10 +27,10 @@ export const SliderImagesPost = ({ postImages }: { postImages: string[] }) => {
         spaceBetween={50}
       >
         {postImages.map((image, index) => (
-          <SwiperSlide key={index} className=" flex align-middle items-center">
+          <SwiperSlide key={index} className="flex items-center">
             <Placeholder
               alt={'Post image'}
-              className="bg-dark-500 h-full w-full object-contain felx align-middle items-center "
+              className="bg-dark-500 h-full w-full object-contain"
               width={234}
               height={240}
               src={image}
