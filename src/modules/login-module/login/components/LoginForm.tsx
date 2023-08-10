@@ -4,7 +4,6 @@ import { useQuery } from '@apollo/client'
 import Cookies from 'js-cookie'
 import { FieldValues } from 'react-hook-form'
 import { toast } from 'react-toastify'
-import { twMerge } from 'tailwind-merge'
 
 import { useGlobalForm } from '@/common'
 import { useTranslation } from '@/components'
@@ -19,7 +18,7 @@ export const LoginForm = () => {
 
   const { t } = useTranslation()
 
-  const { handleSubmit, register, errors } = useGlobalForm(schemaLogin)
+  const { handleSubmit, register } = useGlobalForm(schemaLogin)
   const handleFormSubmit = async ({ email, password }: FieldValues) => {
     const authorization = btoa(email + ':' + password)
 
