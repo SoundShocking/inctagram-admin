@@ -18,16 +18,16 @@ interface UserStatusIconProps {
 const UserStatusIcon: FC<UserStatusIconProps> = ({ status, size }) => {
   switch (status) {
     case UserStatusType.Active:
-      return <FaUserCheck size={size} color="#14CC70" />
+      return <FaUserCheck size={size} className="text-success-500" />
 
     case UserStatusType.Banned:
-      return <FaUserLock size={size} color="#CC1439" />
+      return <FaUserLock size={size} className="text-danger-500" />
 
     case UserStatusType.Deleted:
       return <FaUserXmark size={size} />
 
     case UserStatusType.Pending:
-      return <FaUserClock size={size} color="#D99000" />
+      return <FaUserClock size={size} className="text-warning-500" />
 
     default:
       return null
