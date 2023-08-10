@@ -4,9 +4,9 @@ export const ru: LocaleType = {
   translation: {
     navigation: {
       statistics: 'Статистика',
-      userList: 'Список пользователей',
-      postList: 'Список постов',
-      paymentsList: 'Список платежей',
+      users: 'Пользователи',
+      posts: 'Посты',
+      payments: 'Платежи',
       logout: 'Выйти',
     },
     login: {
@@ -153,6 +153,7 @@ export const ru: LocaleType = {
       dateRange: 'Период',
       comparedPeriod: 'Сравниваемый период',
       error: 'максимальное количество дней: ',
+      comparedError: 'Количество дней должно быть ',
       users: {
         users: 'Пользователи',
         newUsers: 'Новые пользователи',
@@ -162,6 +163,13 @@ export const ru: LocaleType = {
         photos: 'Фотографии',
         uploadedPhotos: 'Загруженные фотографии',
       },
+    },
+    payments: {
+      userName: 'Имя пользователя',
+      dateAdded: 'Дата добавления',
+      amount: 'Сумма, $',
+      subscription: 'Подписка',
+      paymentMethod: 'Способ оплаты',
     },
   },
 }

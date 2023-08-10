@@ -46,9 +46,12 @@ export const UsersTableUserActions: FC<Props> = ({ row, viewInfo }) => {
   return (
     <div className="flex">
       <DropdownMenu.Root modal={false}>
-        <DropdownMenu.Trigger asChild className="flex w-full align-middle">
+        <DropdownMenu.Trigger
+          asChild
+          className="flex w-full align-middle text-white hover:text-accent-500 transition-colors data-[state=open]:text-accent-500"
+        >
           <button className="flex align-center">
-            <FaEllipsis size={24} className="text-white hover:text-accent-500 transition-colors" />
+            <FaEllipsis size={24} className="" />
           </button>
         </DropdownMenu.Trigger>
         <DropdownMenu.Portal>

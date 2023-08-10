@@ -26,7 +26,8 @@ export type GetAllPaymentsQuery = {
       createdAt: any
       amount: string
       typeSubscription: string
-      paymentType: Types.PaymentMethod
+      paymentTypeText: string
+      status: Types.StatusSubscriptionType
     }>
   }
 }
@@ -71,7 +72,8 @@ export const GetAllPaymentsDocument = gql`
         createdAt
         amount
         typeSubscription
-        paymentType
+        paymentTypeText
+        status
       }
     }
   }

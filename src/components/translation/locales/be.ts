@@ -4,9 +4,9 @@ export const be: LocaleType = {
   translation: {
     navigation: {
       statistics: 'Статыстыка',
-      userList: 'Спіс карыстальнікаў',
-      postList: 'Спіс паведамленняў',
-      paymentsList: 'Спіс плацяжоў',
+      users: 'Карыстальнікі',
+      posts: 'Паведамленні',
+      payments: 'Плацяжы',
       logout: 'Выйсці',
     },
     login: {
@@ -153,6 +153,7 @@ export const be: LocaleType = {
       dateRange: 'Дыяпазон дат',
       comparedPeriod: 'Параўнальны перыяд',
       error: 'максімальная колькасць дзён: ',
+      comparedError: 'Колькасць дзён павінна быць ',
       users: {
         users: 'Карыстальнікі',
         newUsers: 'Новыя карыстальнікі',
@@ -162,6 +163,13 @@ export const be: LocaleType = {
         photos: 'Фатаграфіі',
         uploadedPhotos: 'Загружаныя фатаграфіі',
       },
+    },
+    payments: {
+      userName: 'Імя карыстальніка',
+      dateAdded: 'Дата дадавання',
+      amount: 'Сума, $',
+      subscription: 'Падпіска',
+      paymentMethod: 'Метад плацежу',
     },
   },
 }

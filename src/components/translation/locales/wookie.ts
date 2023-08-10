@@ -4,9 +4,9 @@ export const wookie: LocaleType = {
   translation: {
     navigation: {
       statistics: 'Rrwgawr',
-      userList: 'Rrwrrg wrr',
-      postList: 'Rrwggwwr wrr',
-      paymentsList: 'Urggghh wrr',
+      users: 'Rrwrawrararrr',
+      posts: 'Rrwrawk',
+      payments: 'Rrwraaahworraaahnnn',
       logout: 'grrrwahh',
     },
     login: {
@@ -152,7 +152,8 @@ export const wookie: LocaleType = {
     statistics: {
       dateRange: 'Rrruurgh oooaaah aroo!',
       comparedPeriod: 'Mwaaah muuh uhrrraaah!',
-      error: 'Rrwrr grr',
+      error: 'Rrwrr grr ',
+      comparedError: 'Raaarrgh rrrgghh ',
       users: {
         users: 'Wrrrooaaarrgh!',
         newUsers: 'Aaarrwwgh!',
@@ -162,6 +163,13 @@ export const wookie: LocaleType = {
         photos: 'Ooaaah oooaaa aaaooa!',
         uploadedPhotos: 'Mwoooaah oohwah oooaaah!',
       },
+    },
+    payments: {
+      userName: 'Rrwrawk Rrraghaaahnr',
+      dateAdded: 'Rrwrahnrao Wwrrhanrawr',
+      amount: 'Rrwraaahworraaahnnn, $',
+      subscription: 'Rrwraaahnraraaooahoara',
+      paymentMethod: 'Rrwraaahwhrrhanrao Rrwraaahnrarrwh',
     },
   },
 }

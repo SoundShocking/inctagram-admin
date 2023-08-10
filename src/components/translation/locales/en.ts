@@ -2,9 +2,9 @@ export const en = {
   translation: {
     navigation: {
       statistics: 'Statistics',
-      userList: 'Users list',
-      postList: 'PostsList list',
-      paymentsList: 'Payments list',
+      users: 'Users',
+      posts: 'Posts',
+      payments: 'Payments',
       logout: 'Logout',
     },
     login: {
@@ -151,6 +151,7 @@ export const en = {
       dateRange: 'Date range',
       comparedPeriod: 'Compared period',
       error: 'Maximum date range is ',
+      comparedError: 'Date range days should be equal ',
       users: {
         users: 'Users',
         newUsers: 'New users',
@@ -160,6 +161,13 @@ export const en = {
         photos: 'Photos',
         uploadedPhotos: 'Uploaded photos',
       },
+    },
+    payments: {
+      userName: 'Username',
+      dateAdded: 'Date Added',
+      amount: 'Amount, $',
+      subscription: 'Subscription',
+      paymentMethod: 'Payment Method',
     },
   },
 }

@@ -7,10 +7,10 @@ import { useTranslation } from '@/components'
 import { ChartSettings } from '@/modules/statistics/components/chart-settings/ChartSettings'
 import { dateConverter } from '@/modules/statistics/utils/dateConverter'
 import { getDateDaysAgo } from '@/modules/statistics/utils/getDateDaysAgo'
-import { GET_NEW_USERS_STATISTICS } from '@/queries/statistics-users'
+import { GET_PAID_ACCOUNTS_STATISTICS } from '@/queries/statistics-paid-accounts'
 import { Chart } from '@/ui/chart/Chart'
 
-export const NewUsersChart = () => {
+export const PaidAccountsChart = () => {
   const { t } = useTranslation()
 
   const [data, setData] = useState<number[]>([])
@@ -25,28 +25,31 @@ export const NewUsersChart = () => {
   const [compareStartDate, setCompareStartDate] = useState<Date | null>(null)
   const [compareEndDate, setCompareEndDate] = useState<Date | null>(null)
   const [compareErrorMessage, setCompareErrorMessage] = useState<string>('')
+  const [maxComparedPeriod, setMaxComparedPeriod] = useState<number>(31)
 
-  const { error, loading, fetchMore } = useQuery(GET_NEW_USERS_STATISTICS, {
+  const { error, loading, fetchMore } = useQuery(GET_PAID_ACCOUNTS_STATISTICS, {
     variables: {
-      startDate: startDate?.toISOString(),
-      endDate: endDate?.toISOString(),
+      startDate: startDate?.toDateString(),
+      endDate: endDate?.toDateString(),
       comparisonStartDate: compareStartDate,
       comparisonEndDate: compareEndDate,
     },
     onCompleted: async (data: any) => {
-      const formedDate = await dateConverter(data?.statisticsUsers.data.metrics.time_intervals)
+      const formedDate = await dateConverter(
+        data?.statisticsPaidAccounts.data.metrics.time_intervals
+      )
 
-      setData(data?.statisticsUsers.data.metrics.countUsers)
+      setData(data?.statisticsPaidAccounts.data.metrics.countUsers)
       //@ts-ignore
       setLabels(formedDate)
       let comparedDate: number[] = []
 
       let seconedLabelsDate: number[] = []
 
-      if (data?.statisticsUsers.data.metricsComparison?.countUsers) {
-        comparedDate = data?.statisticsUsers.data.metricsComparison?.countUsers
+      if (data?.statisticsPaidAccounts.data.metricsComparison?.countUsers) {
+        comparedDate = data?.statisticsPaidAccounts.data.metricsComparison?.countUsers
         seconedLabelsDate = await dateConverter(
-          data?.statisticsUsers.data.metricsComparison?.time_intervals
+          data?.statisticsPaidAccounts.data.metricsComparison?.time_intervals
         )
       }
       setCompareData(comparedDate)
@@ -57,7 +60,7 @@ export const NewUsersChart = () => {
 
   return (
     <div className={'p-3'}>
-      <h2 className={'text-[20px]'}>{t.translation.statistics.users.newUsers}</h2>
+      <h2 className={'text-[20px]'}>{t.translation.statistics.users.paidAccounts}</h2>
       <ChartSettings
         errorMessage={errorMessage}
         endDate={endDate}
@@ -71,6 +74,8 @@ export const NewUsersChart = () => {
         setCompareStartDate={setCompareStartDate}
         setErrorMessage={setErrorMessage}
         setCompareErrorMessage={setCompareErrorMessage}
+        maxComparedPeriod={maxComparedPeriod}
+        setMaxComparedPeriod={setMaxComparedPeriod}
       />
       <div className={'w-[900px]'}>
         <Chart

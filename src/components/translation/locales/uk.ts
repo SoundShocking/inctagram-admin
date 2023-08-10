@@ -4,9 +4,9 @@ export const uk: LocaleType = {
   translation: {
     navigation: {
       statistics: 'Статистика',
-      userList: 'Список користувачів',
-      postList: 'Список постів',
-      paymentsList: 'Список платежів',
+      users: 'Користувачі',
+      posts: 'Пости',
+      payments: 'Платежі',
       logout: 'Вийти',
     },
     login: {
@@ -153,6 +153,7 @@ export const uk: LocaleType = {
       dateRange: 'Діапазон дат',
       comparedPeriod: 'Порівняльний період',
       error: 'максимальна кількість днів: ',
+      comparedError: 'Кількість днів повинна бути  ',
       users: {
         users: 'Користувачі',
         newUsers: 'Нові користувачі',
@@ -162,6 +163,13 @@ export const uk: LocaleType = {
         photos: 'Фотографії',
         uploadedPhotos: 'Завантажені фотографії',
       },
+    },
+    payments: {
+      userName: "Ім'я користувача",
+      dateAdded: 'Дата додавання',
+      amount: 'Сума, $',
+      subscription: 'Підписка',
+      paymentMethod: 'Метод оплати',
     },
   },
 }
