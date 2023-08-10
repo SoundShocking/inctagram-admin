@@ -13,6 +13,7 @@ import { useRouter } from 'next/router'
 
 import { dateChangesFormat } from '@/common'
 import { ErrorMessage, TableSortingCol } from '@/components'
+import { TablePagination } from '@/components/tables/table-pagination'
 import {
   setUserSkeletonDataEffect,
   SkeletonUserPayments,
@@ -24,7 +25,6 @@ import {
   UserFollowsForSuperAdminViewModel,
   UserFollowsWithPaginationViewModel,
 } from '@/types'
-import { TablePagination } from 'components/Tables/table-pagination'
 
 export type UserFollowingType = {
   user: {

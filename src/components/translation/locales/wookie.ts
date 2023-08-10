@@ -9,7 +9,12 @@ export const wookie: LocaleType = {
       paymentsList: 'Urggghh wrr',
       logout: 'grrrwahh',
     },
-    login: { signIn: 'Ruurh', email: 'Shirwoorlakoorl', password: 'Rakkrorrl' },
+    login: {
+      signIn: 'Ruurh',
+      email: 'Shirwoorlakoorl',
+      password: 'Rakkrorrl',
+      error: 'Rwwwgggwwwh! Hnnngggrrr... Klllraawwrrr... Gwwarrrhhh!! Raaargh.',
+    },
     userInfo: {
       userInfoMain: {
         backUsersList: 'Rruurh rrragwah aarh ruuwoor ururrrgh!',

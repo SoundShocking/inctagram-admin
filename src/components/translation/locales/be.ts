@@ -9,7 +9,12 @@ export const be: LocaleType = {
       paymentsList: 'Спіс плацяжоў',
       logout: 'Выйсці',
     },
-    login: { signIn: 'Увайсці', email: 'Электронная пошта', password: ' Пароль' },
+    login: {
+      signIn: 'Увайсці',
+      email: 'Электронная пошта',
+      password: ' Пароль',
+      error: 'Поле "Пароль" абавязковае да запаўнення',
+    },
     userInfo: {
       userInfoMain: {
         backUsersList: 'Вярнуцца да спiсу карыстальнiкоў',

@@ -11,6 +11,7 @@ export const en = {
       signIn: 'Sign In',
       email: 'Email',
       password: 'Password',
+      error: 'Password is required filed',
     },
     userInfo: {
       userInfoMain: {

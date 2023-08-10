@@ -12,6 +12,7 @@ import { useRouter } from 'next/router'
 
 import { capitalizeFirstLetter, dateChangesFormat } from '@/common'
 import { ErrorMessage, useTranslation } from '@/components'
+import { TablePagination } from '@/components/tables/table-pagination'
 import {
   GET_USER_PAYMENTS,
   ItemsUserPaymentsType,
@@ -21,7 +22,6 @@ import {
   UserPaymentsTable,
   UserPaymentsType,
 } from '@/modules/users-modules/view-user-info'
-import { TablePagination } from 'components/Tables/table-pagination'
 
 export const UserPayments = () => {
   const router = useRouter()

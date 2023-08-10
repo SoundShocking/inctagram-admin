@@ -4,6 +4,7 @@ import { useQuery } from '@apollo/client'
 import Cookies from 'js-cookie'
 import { FieldValues } from 'react-hook-form'
 import { toast } from 'react-toastify'
+import { twMerge } from 'tailwind-merge'
 
 import { useGlobalForm } from '@/common'
 import { useTranslation } from '@/components'
@@ -46,19 +47,20 @@ export const LoginForm = () => {
             type="email"
             id="email"
             value="admin@admin.me"
+            className="mb-2"
             placeholder={t.translation.login.email}
             label={t.translation.login.email}
-            error={errors?.email?.message}
+            error={t.translation.login.error}
             {...register('email')}
           />
           <InputWithEye
             id="password"
             placeholder={t.translation.login.password}
             label={t.translation.login.password}
-            error={errors?.password?.message}
+            error={t.translation.login.error}
             {...register('password')}
           />
-          <GlobalButton variant="default" type="submit">
+          <GlobalButton className={'mt-4'} variant="default" type="submit">
             {t.translation.login.signIn}
           </GlobalButton>
         </form>

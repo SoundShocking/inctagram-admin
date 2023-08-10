@@ -9,7 +9,12 @@ export const uk: LocaleType = {
       paymentsList: 'Список платежів',
       logout: 'Вийти',
     },
-    login: { signIn: 'Увійти', email: 'Електронна пошта', password: 'Пароль' },
+    login: {
+      signIn: 'Увійти',
+      email: 'Електронна пошта',
+      password: 'Пароль',
+      error: 'Поле "Пароль" є обов`язковим для заповнення',
+    },
     userInfo: {
       userInfoMain: {
         backUsersList: 'Повернутися до списку користувачів',
