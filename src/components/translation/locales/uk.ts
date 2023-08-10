@@ -92,9 +92,10 @@ export const uk: LocaleType = {
       unbanUser: 'Розблокувати користувача',
       moreInfo: 'Більше інформації',
       search: 'Пошук',
-      notSelected: 'Не обрано',
-      notBlocked: 'Не заблоковано',
-      blocked: 'Заблоковано',
+      all: 'Всі',
+      banned: 'Забанені',
+      active: 'Активні',
+      pending: 'Непідтверджені',
       show: 'Показати',
       onPage: 'на сторінці',
       table: {
@@ -170,6 +171,7 @@ export const uk: LocaleType = {
       amount: 'Сума, $',
       subscription: 'Підписка',
       paymentMethod: 'Метод оплати',
+      autoUpdate: 'Автоматичне оновлення',
     },
   },
 }

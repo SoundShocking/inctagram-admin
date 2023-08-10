@@ -58,10 +58,10 @@ export const UsersTableUserActions: FC<Props> = ({ row, viewInfo }) => {
           <DropdownMenu.Content
             side={'bottom'}
             align={'end'}
-            className="bg-dark-500 border border-dark-100 p-3 text-sm text-white"
+            className="bg-dark-500 border border-dark-100 px-3 text-sm text-white"
           >
             <DropdownMenu.Item
-              className="flex items-center mb-3 cursor-pointer text-danger-500 hover:text-accent-500 transition-colors outline-none"
+              className="flex items-center my-3 cursor-pointer text-danger-500 hover:text-accent-500 transition-colors outline-none"
               onSelect={() => onDeleteClick()}
             >
               <FaUserXmark size={24} className="mr-3" />
@@ -70,7 +70,7 @@ export const UsersTableUserActions: FC<Props> = ({ row, viewInfo }) => {
 
             {userStatus === UserStatusType.Active && (
               <DropdownMenu.Item
-                className="flex items-center mb-3 cursor-pointer text-danger-500 hover:text-accent-500 transition-colors outline-none"
+                className="flex items-center my-3 cursor-pointer text-danger-500 hover:text-accent-500 transition-colors outline-none"
                 onSelect={() => onBanClick()}
               >
                 <FaUserLock size={24} className="mr-3" />
@@ -80,7 +80,7 @@ export const UsersTableUserActions: FC<Props> = ({ row, viewInfo }) => {
 
             {userStatus === UserStatusType.Banned && (
               <DropdownMenu.Item
-                className="flex items-center mb-3 cursor-pointer text-success-500 hover:text-accent-500 transition-colors outline-none"
+                className="flex items-center my-3 cursor-pointer text-success-500 hover:text-accent-500 transition-colors outline-none"
                 onSelect={() => onUnbanClick()}
               >
                 <FaUserCheck size={24} className="mr-3" />
@@ -90,7 +90,7 @@ export const UsersTableUserActions: FC<Props> = ({ row, viewInfo }) => {
 
             {viewInfo && (
               <DropdownMenu.Item
-                className="flex items-center cursor-pointer hover:text-accent-500 transition-colors outline-none"
+                className="flex items-center my-3 cursor-pointer hover:text-accent-500 transition-colors outline-none"
                 onSelect={() => handleMenuItemClickMoreInformation()}
               >
                 <FaEllipsis size={24} className="mr-3" />
