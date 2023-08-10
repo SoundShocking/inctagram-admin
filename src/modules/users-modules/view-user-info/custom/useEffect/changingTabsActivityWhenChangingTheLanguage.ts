@@ -2,8 +2,6 @@ import { useEffect } from 'react'
 
 import { NextRouter } from 'next/router'
 
-import { LocaleType, useTranslation } from '@/components'
-
 export const callWhenUrlChangesEffect = ({
   router,
   setActiveTab,

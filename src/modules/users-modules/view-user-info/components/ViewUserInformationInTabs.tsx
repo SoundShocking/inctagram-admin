@@ -6,7 +6,6 @@ import { useRouter } from 'next/router'
 import { useTranslation } from '@/components'
 import { TabsTitle } from '@/components/users'
 import {
-  callWhenUrlChangesEffect,
   changingTabsParametersUrlEffect,
   UserFollowing,
   UserPayments,
