@@ -150,6 +150,7 @@ export const en = {
       dateRange: 'Date range',
       comparedPeriod: 'Compared period',
       error: 'Maximum date range is ',
+      comparedError: 'Date range days should be equal ',
       users: {
         users: 'Users',
         newUsers: 'New users',

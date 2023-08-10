@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { useTranslation } from '@/components'
+import { getDifferenceInDays } from '@/modules/statistics/utils/getDifferenceInDays'
 import { isPeriodWithinMaxDays } from '@/modules/statistics/utils/isPeriodWithinMaxDays'
 import { DateCalendar } from '@/ui'
 
@@ -17,6 +18,8 @@ type PropsType = {
   setCompareStartDate: (date: Date | null) => void
   setErrorMessage: (message: string) => void
   setCompareErrorMessage: (message: string) => void
+  maxComparedPeriod: number
+  setMaxComparedPeriod: (dateRange: number) => void
 }
 
 const MAX_DAYS = 31
@@ -34,6 +37,8 @@ export const ChartSettings = ({
   setCompareStartDate,
   setErrorMessage,
   setCompareEndDate,
+  maxComparedPeriod,
+  setMaxComparedPeriod,
 }: PropsType) => {
   const { t } = useTranslation()
 
@@ -47,6 +52,11 @@ export const ChartSettings = ({
       setErrorMessage(`${t.translation.statistics.error} ${MAX_DAYS}`)
     } else {
       setEndDate(date)
+      if (startDate && date) {
+        const maxDays = getDifferenceInDays(startDate, date) + 1
+
+        setMaxComparedPeriod(maxDays)
+      }
     }
   }
 
@@ -55,10 +65,15 @@ export const ChartSettings = ({
     setCompareStartDate(date)
   }
   const setCompareEndDateHandler = (date: Date | null) => {
-    setCompareEndDate(date)
-
-    if (compareStartDate && date && !isPeriodWithinMaxDays(compareStartDate, date, MAX_DAYS)) {
-      setCompareErrorMessage(`${t.translation.statistics.error} ${MAX_DAYS}`)
+    if (
+      compareStartDate &&
+      date &&
+      getDifferenceInDays(compareStartDate, date) + 1 !== maxComparedPeriod
+    ) {
+      setCompareErrorMessage(`${t.translation.statistics.comparedError} ${maxComparedPeriod}`)
+    } else {
+      setCompareErrorMessage('')
+      setCompareEndDate(date)
     }
   }
 
