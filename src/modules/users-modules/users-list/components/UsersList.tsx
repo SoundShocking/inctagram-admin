@@ -21,9 +21,9 @@ export const UsersList = () => {
 
   useEffect(() => {
     setPageIndex(0)
-  }, [search, pageSize])
+  }, [search, pageSize, status])
 
-  const { error, data, previousData } = useGetAllUsersQuery({
+  const { loading, error, data, previousData } = useGetAllUsersQuery({
     variables: {
       pageSize: +pageSize,
       pageNumber: pageIndex + 1,
@@ -50,12 +50,13 @@ export const UsersList = () => {
           users={data?.users.items || previousData?.users.items || []}
           sorting={sorting}
           setSorting={setSorting}
+          loading={loading}
         />
       )}
 
       {!error && (
         <TablePagination
-          pagesCount={data?.users.pagesCount || previousData?.users.pagesCount || 1}
+          pagesCount={data?.users.pagesCount || 1}
           pageIndex={pageIndex}
           setPageIndex={setPageIndex}
           pageSize={pageSize}
