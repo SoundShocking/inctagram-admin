@@ -7,7 +7,7 @@ export const changingTabsParametersUrlEffect = ({
   activeTab,
 }: {
   userId: any
-  activeTab: string | string[]
+  activeTab: string | string[] | null
 }) => {
   const router = useRouter()
 

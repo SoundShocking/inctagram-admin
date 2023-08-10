@@ -1,16 +1,17 @@
 import { useEffect } from 'react'
 
-import { ItemsUserPaymentsType, PaymentsUser } from '@/modules/users-modules/view-user-info'
-
-export const setUserPaymentsDataEffect = (
-  paymentsUser: PaymentsUser | undefined,
+export const setUserSkeletonDataEffect = <T extends { items?: U[] }, U>(
+  dataUser: T | undefined,
   isLoading: boolean,
-  setMyPaymentsData: (data: ItemsUserPaymentsType[]) => any
+  setDataUser: (data: U[]) => any
 ) => {
   return useEffect(() => {
-    isLoading ? setMyPaymentsData(Array(10).fill({})) : paymentsUser
-    !isLoading && paymentsUser && paymentsUser?.items.length > 0
-      ? setMyPaymentsData(paymentsUser.items)
-      : setMyPaymentsData(Array(1).fill({ price: 'No Payments' }))
-  }, [isLoading, paymentsUser])
+    if (isLoading) {
+      setDataUser(Array(10).fill({}))
+    } else if (!isLoading && dataUser && dataUser.items && dataUser.items.length > 0) {
+      setDataUser(dataUser.items)
+    } else {
+      setDataUser(Array(1).fill({ price: 'No Data' }))
+    }
+  }, [isLoading, dataUser])
 }

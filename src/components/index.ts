@@ -10,5 +10,5 @@ export * from '@/components/translation/locales/uk'
 export * from '@/components/translation/locales/wookie'
 export * from '@/components/translation/language-switcher/LanguageSwitcher'
 
-//Tables
-export * from '@/components/Tables/table-sorting-col/TableSortingCol'
+//tables
+export * from '@/components/tables/table-sorting-col/TableSortingCol'

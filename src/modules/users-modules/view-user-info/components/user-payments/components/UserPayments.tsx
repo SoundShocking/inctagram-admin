@@ -12,16 +12,16 @@ import { useRouter } from 'next/router'
 
 import { capitalizeFirstLetter, dateChangesFormat } from '@/common'
 import { ErrorMessage, useTranslation } from '@/components'
+import { TablePagination } from '@/components/tables/table-pagination'
 import {
   GET_USER_PAYMENTS,
   ItemsUserPaymentsType,
   PaymentsUser,
-  setUserPaymentsDataEffect,
+  setUserSkeletonDataEffect,
   SkeletonUserPayments,
   UserPaymentsTable,
   UserPaymentsType,
 } from '@/modules/users-modules/view-user-info'
-import { TablePagination } from 'components/Tables/table-pagination'
 
 export const UserPayments = () => {
   const router = useRouter()
@@ -43,7 +43,11 @@ export const UserPayments = () => {
   })
   const pageCount: number | undefined = paymentsData?.pagesCount
 
-  setUserPaymentsDataEffect(paymentsData, loading, setMyPaymentsData)
+  setUserSkeletonDataEffect<PaymentsUser, ItemsUserPaymentsType>(
+    paymentsData,
+    loading,
+    setMyPaymentsData
+  )
 
   const columns: ColumnDef<ItemsUserPaymentsType>[] = [
     {

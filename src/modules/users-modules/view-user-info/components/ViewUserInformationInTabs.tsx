@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { nanoid } from 'nanoid'
 import { useRouter } from 'next/router'
@@ -6,7 +6,6 @@ import { useRouter } from 'next/router'
 import { useTranslation } from '@/components'
 import { TabsTitle } from '@/components/users'
 import {
-  callWhenUrlChangesEffect,
   changingTabsParametersUrlEffect,
   UserFollowing,
   UserPayments,
@@ -17,21 +16,25 @@ import { UserPhotos } from '@/modules/users-modules/view-user-info/components/us
 export const ViewUserInformationInTabs = () => {
   const { t } = useTranslation()
   const defaultTabs = t.translation.userInfo.tabs.uploadPhotos
-  const [activeTab, setActiveTab] = useState<any>()
+  const [activeTab, setActiveTab] = useState<string | string[] | null>('')
 
   const router = useRouter()
   const { userId } = router.query
 
+  useEffect(() => {
+    setActiveTab(defaultTabs)
+  }, [defaultTabs])
   changingTabsParametersUrlEffect({
     userId,
     activeTab,
   })
-  callWhenUrlChangesEffect({
-    setActiveTab,
-    defaultTabs,
-    router,
-    activeTab,
-  })
+  // callWhenUrlChangesEffect({
+  //   setActiveTab,
+  //   defaultTabs,
+  //   router,
+  //   activeTab,
+  // })
+
   const onChangeTab = (tabLabel: string | undefined) => {
     setActiveTab(tabLabel ?? '')
   }

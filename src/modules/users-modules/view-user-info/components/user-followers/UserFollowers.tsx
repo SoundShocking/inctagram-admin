@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import { useQuery } from '@apollo/client'
 import {
@@ -13,14 +13,18 @@ import { useRouter } from 'next/router'
 
 import { dateChangesFormat } from '@/common'
 import { ErrorMessage, TableSortingCol } from '@/components'
-import { SkeletonUserPayments, UserPaymentsTable } from '@/modules/users-modules/view-user-info'
+import { TablePagination } from '@/components/tables/table-pagination'
+import {
+  setUserSkeletonDataEffect,
+  SkeletonUserPayments,
+  UserPaymentsTable,
+} from '@/modules/users-modules/view-user-info'
 import { GET_USER_FOLLOWS } from '@/modules/users-modules/view-user-info/components/user-payments/queries/viewUserFollowersQueries'
 import {
   SortByForUsers,
   UserFollowsForSuperAdminViewModel,
   UserFollowsWithPaginationViewModel,
 } from '@/types'
-import { TablePagination } from 'components/Tables/table-pagination'
 
 export type UserFollowingType = {
   user: {
@@ -30,29 +34,32 @@ export type UserFollowingType = {
 export const UserFollowers = () => {
   const router = useRouter()
   const { userId } = router.query
-  const [myPaymentsData, setMyPaymentsData] = useState<UserFollowsForSuperAdminViewModel[]>([])
+  const [userFollowersData, setUserFollowersData] = useState<UserFollowsWithPaginationViewModel>()
+  const [myUserFollowerData, setMyUserFollowerData] = useState<UserFollowsForSuperAdminViewModel[]>(
+    []
+  )
   const [pageIndex, setPageIndex] = useState(0)
   const [pageSize, setPageSize] = useState('10')
   const [sorting, setSorting] = useState<SortingState>([])
 
-  const { data, loading, error } = useQuery<UserFollowingType>(GET_USER_FOLLOWS, {
+  const { loading, error } = useQuery<UserFollowingType>(GET_USER_FOLLOWS, {
     variables: {
       userId: Number(userId),
       pageNumber: pageIndex + 1,
       pageSize: +pageSize,
       ...TableSortingCol<SortByForUsers>(sorting),
     },
+    onCompleted: (data: UserFollowingType) => setUserFollowersData(data.user.followersUser),
     onError: error => console.error('error', error),
     fetchPolicy: 'cache-and-network',
   })
-  const pageCount: number | undefined = data?.user.followersUser.pagesCount
+  const pageCount: number | undefined = userFollowersData?.pagesCount
 
-  console.log(data)
-  useEffect(() => {
-    data ? setMyPaymentsData(data.user.followersUser.items) : null
-  }, [data])
-
-  // setUserPaymentsDataEffect(data, loading, setMyPaymentsData)
+  setUserSkeletonDataEffect<UserFollowsWithPaginationViewModel, UserFollowsForSuperAdminViewModel>(
+    userFollowersData,
+    loading,
+    setMyUserFollowerData
+  )
   const columns: ColumnDef<UserFollowsForSuperAdminViewModel>[] = [
     {
       header: 'User ID',
@@ -70,7 +77,7 @@ export const UserFollowers = () => {
       header: 'User Name',
       cell: (params: any) => (loading ? <SkeletonUserPayments /> : params.getValue()),
       accessorKey: 'userName',
-      enableSorting: true,
+      enableSorting: false,
     },
     {
       header: 'Subscription Date',
@@ -82,7 +89,7 @@ export const UserFollowers = () => {
   ]
 
   const tableProps: Table<UserFollowsForSuperAdminViewModel> = useReactTable({
-    data: myPaymentsData,
+    data: myUserFollowerData,
     columns: columns,
     pageCount: pageCount,
     state: {
@@ -98,15 +105,19 @@ export const UserFollowers = () => {
     <div className="mt-9 text-accent-500 p-2 block w-full ">
       <ErrorMessage errorMessage={error?.message} />
       <UserPaymentsTable<UserFollowsForSuperAdminViewModel> tableProps={tableProps} />
-      {data?.user.followersUser.pagesCount ? (
+      {userFollowersData?.pagesCount ? (
         <TablePagination
-          pagesCount={data.user.followersUser.pagesCount}
+          pagesCount={userFollowersData.pagesCount}
           pageIndex={pageIndex}
           setPageIndex={setPageIndex}
           pageSize={pageSize}
           setPageSize={setPageSize}
         />
-      ) : null}
+      ) : (
+        <div className="flex justify-center items-center text-light-100 leading-6 text-sm">
+          <span>No Data</span>
+        </div>
+      )}
     </div>
   )
 }

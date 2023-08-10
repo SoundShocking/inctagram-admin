@@ -10,7 +10,7 @@ interface TabsType {
 
 interface PropsTabType {
   tabs?: Omit<TabsType, 'content'>[]
-  activeTab?: string
+  activeTab?: string | string[] | null
   setActiveTab?: (activeTab: string | undefined) => void
 }
 

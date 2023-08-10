@@ -16,7 +16,7 @@ import { UsersTableUserActions } from './UsersTableUserActions'
 import { UsersTableUserIdCell } from './UsersTableUserIdCell'
 
 import { useTranslation } from '@/components'
-import { TableSortIcon } from '@/components/Tables/table-sort-icon'
+import { TableSortIcon } from '@/components/tables/table-sort-icon'
 import { UserForSuperAdminViewModel } from '@/types'
 
 export type UsersItem = Pick<
