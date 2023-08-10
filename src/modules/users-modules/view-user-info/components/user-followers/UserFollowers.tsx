@@ -47,7 +47,6 @@ export const UserFollowers = () => {
   })
   const pageCount: number | undefined = data?.user.followersUser.pagesCount
 
-  console.log(data)
   useEffect(() => {
     data ? setMyPaymentsData(data.user.followersUser.items) : null
   }, [data])

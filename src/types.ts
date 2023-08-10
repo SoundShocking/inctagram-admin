@@ -230,11 +230,10 @@ export enum SortByForPostsListInputType {
   Id = 'id',
 }
 
-/** Sort By [id, createdAt, userName] */
+/** Sort By [id, createdAt] */
 export enum SortByForUser {
   CreatedAt = 'createdAt',
   Id = 'id',
-  UserName = 'userName',
 }
 
 /** Sort By [id, userName, createdAt, lastSeen] */

@@ -5,7 +5,7 @@ import clsx from 'clsx'
 
 interface ITabComponentType {
   label: string | undefined
-  activeTab?: string | undefined
+  activeTab?: string | null | string[]
   setActiveTab?: (activeTab: string | undefined) => void
 }
 
