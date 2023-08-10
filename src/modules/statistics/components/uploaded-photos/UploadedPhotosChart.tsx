@@ -24,11 +24,12 @@ export const UploadedPhotosChart = () => {
   const [compareStartDate, setCompareStartDate] = useState<Date | null>(null)
   const [compareEndDate, setCompareEndDate] = useState<Date | null>(null)
   const [compareErrorMessage, setCompareErrorMessage] = useState<string>('')
+  const [maxComparedPeriod, setMaxComparedPeriod] = useState<number>(31)
 
-  const { error, loading, fetchMore } = useQuery(GET_UPLOADED_PHOTOS_STATISTICS, {
+  const { loading, fetchMore } = useQuery(GET_UPLOADED_PHOTOS_STATISTICS, {
     variables: {
-      startDate: startDate?.toISOString(),
-      endDate: endDate?.toISOString(),
+      startDate: startDate?.toDateString(),
+      endDate: endDate?.toDateString(),
       comparisonStartDate: compareStartDate,
       comparisonEndDate: compareEndDate,
     },
@@ -72,6 +73,8 @@ export const UploadedPhotosChart = () => {
         setCompareStartDate={setCompareStartDate}
         setErrorMessage={setErrorMessage}
         setCompareErrorMessage={setCompareErrorMessage}
+        maxComparedPeriod={maxComparedPeriod}
+        setMaxComparedPeriod={setMaxComparedPeriod}
       />
       <div className={'w-[900px]'}>
         <Chart

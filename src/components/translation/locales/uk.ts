@@ -148,6 +148,7 @@ export const uk: LocaleType = {
       dateRange: 'Діапазон дат',
       comparedPeriod: 'Порівняльний період',
       error: 'максимальна кількість днів: ',
+      comparedError: 'Кількість днів повинна бути  ',
       users: {
         users: 'Користувачі',
         newUsers: 'Нові користувачі',
