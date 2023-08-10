@@ -18,7 +18,7 @@ export const LoginForm = () => {
 
   const { t } = useTranslation()
 
-  const { handleSubmit, register } = useGlobalForm(schemaLogin)
+  const { handleSubmit, register, errors } = useGlobalForm(schemaLogin)
   const handleFormSubmit = async ({ email, password }: FieldValues) => {
     const authorization = btoa(email + ':' + password)
 
@@ -49,14 +49,14 @@ export const LoginForm = () => {
             className="mb-2"
             placeholder={t.translation.login.email}
             label={t.translation.login.email}
-            error={t.translation.login.error}
+            error={errors?.email?.message}
             {...register('email')}
           />
           <InputWithEye
             id="password"
             placeholder={t.translation.login.password}
             label={t.translation.login.password}
-            error={t.translation.login.error}
+            error={errors?.password?.message}
             {...register('password')}
           />
           <GlobalButton className={'mt-4'} variant="default" type="submit">
