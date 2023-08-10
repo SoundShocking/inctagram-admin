@@ -100,7 +100,7 @@ export const PaymentsList: FC = () => {
 
       {!error && (
         <TablePagination
-          pagesCount={data?.paymentsList.pagesCount || previousData?.paymentsList.pagesCount || 1}
+          pagesCount={data?.paymentsList.pagesCount || 1}
           pageIndex={pageIndex}
           setPageIndex={setPageIndex}
           pageSize={pageSize}

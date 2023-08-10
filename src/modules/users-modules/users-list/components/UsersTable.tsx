@@ -30,9 +30,10 @@ interface Props {
   users: UsersItem[]
   sorting: SortingState
   setSorting: Dispatch<SetStateAction<SortingState>>
+  loading: boolean
 }
 
-export const UsersTable: FC<Props> = ({ users, sorting, setSorting }) => {
+export const UsersTable: FC<Props> = ({ users, sorting, setSorting, loading }) => {
   const { t } = useTranslation()
 
   const columns = [
@@ -103,7 +104,18 @@ export const UsersTable: FC<Props> = ({ users, sorting, setSorting }) => {
   })
 
   return (
-    <div className="mt-6">
+    <div className="mt-6 relative">
+      {loading && (
+        <div
+          className="absolute top-0 w-full h-0.5 animate-animateRainbowBorder"
+          style={{
+            backgroundImage:
+              'linear-gradient(45deg, #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000)',
+            backgroundSize: '800% 100%',
+          }}
+        ></div>
+      )}
+
       <table className="w-full grid text-white text-sm">
         <thead className="h-12 border-0 bg-dark-500 font-semibold grid">
           {table.getHeaderGroups().map((headerGroup, key) => (

@@ -98,6 +98,7 @@ export const PaymentsTable: FC<Props> = ({ payments, sorting, setSorting, loadin
           }}
         ></div>
       )}
+
       <table className="w-full grid text-white text-sm">
         <thead className="h-12 border-0 bg-dark-500 font-semibold grid">
           {table.getHeaderGroups().map((headerGroup, key) => (
