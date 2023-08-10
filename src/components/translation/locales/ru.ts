@@ -92,9 +92,10 @@ export const ru: LocaleType = {
       unbanUser: 'Разблокировать пользователя',
       moreInfo: 'Больше информации',
       search: 'Поиск',
-      notSelected: 'Не выбрано',
-      notBlocked: 'Не заблокировано',
-      blocked: 'Заблокировано',
+      all: 'Все',
+      banned: 'Заблокированные',
+      active: 'Активные',
+      pending: 'Неподтвержденные',
       show: 'Показать',
       onPage: 'на странице',
       table: {
@@ -170,6 +171,7 @@ export const ru: LocaleType = {
       amount: 'Сумма, $',
       subscription: 'Подписка',
       paymentMethod: 'Способ оплаты',
+      autoUpdate: 'Автоматическое обновление',
     },
   },
 }

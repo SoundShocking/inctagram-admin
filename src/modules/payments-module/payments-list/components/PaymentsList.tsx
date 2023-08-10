@@ -80,7 +80,11 @@ export const PaymentsList: FC = () => {
           onChange={e => setSearchInput(e.target.value)}
         />
 
-        <Switch text={'Auto-update'} checked={autoUpdate} setChecked={setAutoUpdate} />
+        <Switch
+          text={t.translation.payments.autoUpdate}
+          checked={autoUpdate}
+          setChecked={setAutoUpdate}
+        />
       </div>
 
       {error ? (

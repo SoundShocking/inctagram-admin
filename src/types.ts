@@ -73,6 +73,7 @@ export type PaymentListViewModel = {
   paymentType: PaymentMethod
   paymentTypeText: Scalars['String']['output']
   status: StatusSubscriptionType
+  statusUser: UserStatusType
   typeSubscription: Scalars['String']['output']
   urlAvatar?: Maybe<Scalars['String']['output']>
   userId: Scalars['Float']['output']

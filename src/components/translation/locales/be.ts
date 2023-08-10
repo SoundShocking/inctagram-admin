@@ -92,9 +92,10 @@ export const be: LocaleType = {
       unbanUser: 'Разблакаваць карыстальніка',
       moreInfo: 'Больш інфармацыі',
       search: 'Пошук',
-      notSelected: 'Не выбрана',
-      notBlocked: 'Не заблакавана',
-      blocked: 'Заблакавана',
+      all: 'Усе',
+      banned: 'Заблакіраваныя',
+      active: 'Актыўныя',
+      pending: 'Непацверджаныя',
       show: 'Паказаць',
       onPage: 'на старонцы',
       table: {
@@ -170,6 +171,7 @@ export const be: LocaleType = {
       amount: 'Сума, $',
       subscription: 'Падпіска',
       paymentMethod: 'Метад плацежу',
+      autoUpdate: 'Аўтаматычнае абнаўленне',
     },
   },
 }
