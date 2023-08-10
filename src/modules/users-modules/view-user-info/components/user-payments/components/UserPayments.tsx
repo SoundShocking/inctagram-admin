@@ -16,7 +16,7 @@ import {
   GET_USER_PAYMENTS,
   ItemsUserPaymentsType,
   PaymentsUser,
-  setUserPaymentsDataEffect,
+  setUserSkeletonDataEffect,
   SkeletonUserPayments,
   UserPaymentsTable,
   UserPaymentsType,
@@ -43,7 +43,11 @@ export const UserPayments = () => {
   })
   const pageCount: number | undefined = paymentsData?.pagesCount
 
-  setUserPaymentsDataEffect(paymentsData, loading, setMyPaymentsData)
+  setUserSkeletonDataEffect<PaymentsUser, ItemsUserPaymentsType>(
+    paymentsData,
+    loading,
+    setMyPaymentsData
+  )
 
   const columns: ColumnDef<ItemsUserPaymentsType>[] = [
     {

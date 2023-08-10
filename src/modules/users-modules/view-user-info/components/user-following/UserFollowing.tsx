@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import { useQuery } from '@apollo/client'
 import {
@@ -13,7 +13,11 @@ import { useRouter } from 'next/router'
 
 import { dateChangesFormat } from '@/common'
 import { ErrorMessage, TableSortingCol } from '@/components'
-import { SkeletonUserPayments, UserPaymentsTable } from '@/modules/users-modules/view-user-info'
+import {
+  setUserSkeletonDataEffect,
+  SkeletonUserPayments,
+  UserPaymentsTable,
+} from '@/modules/users-modules/view-user-info'
 import { GET_USER_FOLLOWING } from '@/modules/users-modules/view-user-info/components/user-payments/queries/viewUserFollowingQueries'
 import {
   SortByForUsers,
@@ -30,28 +34,32 @@ export type UserFollowingType = {
 export const UserFollowing = () => {
   const router = useRouter()
   const { userId } = router.query
-  const [myPaymentsData, setMyPaymentsData] = useState<UserFollowsForSuperAdminViewModel[]>([])
+  const [userFollowingData, setUserFollowingData] = useState<UserFollowsWithPaginationViewModel>()
+  const [myUserFollowingData, setMyUserFollowingData] = useState<
+    UserFollowsForSuperAdminViewModel[]
+  >([])
   const [pageIndex, setPageIndex] = useState(0)
   const [pageSize, setPageSize] = useState('10')
   const [sorting, setSorting] = useState<SortingState>([])
 
-  const { data, loading, error } = useQuery<UserFollowingType>(GET_USER_FOLLOWING, {
+  const { loading, error } = useQuery<UserFollowingType>(GET_USER_FOLLOWING, {
     variables: {
       userId: Number(userId),
       pageNumber: pageIndex + 1,
       pageSize: +pageSize,
       ...TableSortingCol<SortByForUsers>(sorting),
     },
+    onCompleted: (data: UserFollowingType) => setUserFollowingData(data.user.followingUser),
     onError: error => console.error('error', error),
     fetchPolicy: 'cache-and-network',
   })
-  const pageCount: number | undefined = data?.user.followingUser.pagesCount
+  const pageCount: number | undefined = userFollowingData?.pagesCount
 
-  useEffect(() => {
-    data ? setMyPaymentsData(data.user.followingUser.items) : null
-  }, [data])
-
-  // setUserPaymentsDataEffect(data, loading, setMyPaymentsData)
+  setUserSkeletonDataEffect<UserFollowsWithPaginationViewModel, UserFollowsForSuperAdminViewModel>(
+    userFollowingData,
+    loading,
+    setMyUserFollowingData
+  )
   const columns: ColumnDef<UserFollowsForSuperAdminViewModel>[] = [
     {
       header: 'User ID',
@@ -69,7 +77,7 @@ export const UserFollowing = () => {
       header: 'User Name',
       cell: (params: any) => (loading ? <SkeletonUserPayments /> : params.getValue()),
       accessorKey: 'userName',
-      enableSorting: true,
+      enableSorting: false,
     },
     {
       header: 'Subscription Date',
@@ -81,7 +89,7 @@ export const UserFollowing = () => {
   ]
 
   const tableProps: Table<UserFollowsForSuperAdminViewModel> = useReactTable({
-    data: myPaymentsData,
+    data: myUserFollowingData,
     columns: columns,
     pageCount: pageCount,
     state: {
@@ -97,15 +105,19 @@ export const UserFollowing = () => {
     <div className="mt-9 text-accent-500 p-2 block w-full ">
       <ErrorMessage errorMessage={error?.message} />
       <UserPaymentsTable<UserFollowsForSuperAdminViewModel> tableProps={tableProps} />
-      {data?.user.followingUser.pagesCount ? (
+      {userFollowingData?.pagesCount ? (
         <TablePagination
-          pagesCount={data.user.followingUser.pagesCount}
+          pagesCount={userFollowingData.pagesCount}
           pageIndex={pageIndex}
           setPageIndex={setPageIndex}
           pageSize={pageSize}
           setPageSize={setPageSize}
         />
-      ) : null}
+      ) : (
+        <div className="flex justify-center items-center text-light-100 leading-6 text-sm">
+          <span>No Data</span>
+        </div>
+      )}
     </div>
   )
 }
