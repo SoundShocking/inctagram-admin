@@ -14,7 +14,7 @@ import dayjs from 'dayjs'
 import { PaymentsTableUserNameCell } from './PaymentsTableUserNameCell'
 
 import { useTranslation } from '@/components'
-import { TableSortIcon } from '@/components/Tables/table-sort-icon'
+import { TableSortIcon } from '@/components/tables/table-sort-icon'
 import { PaymentListViewModel } from '@/types'
 
 export type PaymentsItem = Pick<
