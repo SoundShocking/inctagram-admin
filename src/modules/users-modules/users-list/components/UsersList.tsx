@@ -56,7 +56,7 @@ export const UsersList = () => {
 
       {!error && (
         <TablePagination
-          pagesCount={data?.users.pagesCount || 1}
+          pagesCount={data?.users.pagesCount || previousData?.users.pagesCount || 1}
           pageIndex={pageIndex}
           setPageIndex={setPageIndex}
           pageSize={pageSize}
