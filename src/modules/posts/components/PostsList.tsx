@@ -2,11 +2,13 @@ import React, { ChangeEvent, useState } from 'react'
 
 import { useQuery } from '@apollo/client'
 import { useInView } from 'react-intersection-observer'
+import { toast } from 'react-toastify'
+import { useUpdateEffect } from 'usehooks-ts'
 
 import { ErrorMessage, NotFoundComponent, useTranslation } from '@/components'
 import { deletePostSubscriptionsEffect } from '@/modules/posts/custom/useEffect/deletePostSubscriptionsEffect'
 import { PostListViewModel, Query } from '@/types'
-import { GlobalInput, Spinner } from '@/ui'
+import { Spinner } from '@/ui'
 import { Switch } from '@/ui/switch'
 import {
   addNewPostSubscriptionsEffect,
@@ -18,6 +20,7 @@ import {
   SkeletonPost,
   StatusSelected,
 } from 'modules/posts'
+
 export type PostsListType = Pick<Query, 'postsList'>
 export const PostsList = () => {
   const [timerId, setTimerId] = useState<NodeJS.Timeout | undefined>(undefined)
@@ -69,6 +72,17 @@ export const PostsList = () => {
     data,
   })
   handleSearchDebounceEffect({ loading, timerId, setTimerId, setDebounce, search })
+  useUpdateEffect(() => {
+    if (autoUpdate) {
+      toast.success('Posts auto update on', {
+        toastId: 'Posts Auto-update On',
+      })
+    } else {
+      toast.success('Posts auto-update off', {
+        toastId: 'Posts Auto',
+      })
+    }
+  }, [autoUpdate])
 
   return (
     <div className="w-full relative sm:pr-4 md:pr-4 flex flex-col">
