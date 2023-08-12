@@ -105,6 +105,9 @@ export const UserFollowing = () => {
     <div className="mt-9 text-accent-500 p-2 block w-full ">
       <ErrorMessage errorMessage={error?.message} />
       <UserPaymentsTable<UserFollowsForSuperAdminViewModel> tableProps={tableProps} />
+      {userFollowingData?.items.length === 0 && (
+        <span className={'text-sm text-light-100 leading-6'}>No Data</span>
+      )}
       {userFollowingData?.pagesCount ? (
         <TablePagination
           pagesCount={userFollowingData.pagesCount}
@@ -113,11 +116,7 @@ export const UserFollowing = () => {
           pageSize={pageSize}
           setPageSize={setPageSize}
         />
-      ) : (
-        <div className="flex justify-center items-center text-light-100 leading-6 text-sm">
-          <span>No Data</span>
-        </div>
-      )}
+      ) : null}
     </div>
   )
 }

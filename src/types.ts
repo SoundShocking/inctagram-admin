@@ -41,6 +41,14 @@ export enum BanReasonInputType {
   BadBehavior = 'Bad_behavior',
 }
 
+/** Grouping Type [day, week, month, year] */
+export enum GroupingType {
+  Day = 'DAY',
+  Month = 'MONTH',
+  Week = 'WEEK',
+  Year = 'YEAR',
+}
+
 export type Mutation = {
   __typename?: 'Mutation'
   deleteUser: Scalars['Boolean']['output']
@@ -122,6 +130,7 @@ export type PostImageForSuperAdminViewModel = {
 
 export type PostListViewModel = {
   __typename?: 'PostListViewModel'
+  banReasonText?: Maybe<Scalars['String']['output']>
   createdAt: Scalars['DateTime']['output']
   description?: Maybe<Scalars['String']['output']>
   postId: Scalars['Float']['output']
@@ -183,6 +192,7 @@ export type QueryStatisticsPaidAccountsArgs = {
   comparisonEndDate?: InputMaybe<Scalars['Timestamp']['input']>
   comparisonStartDate?: InputMaybe<Scalars['Timestamp']['input']>
   endDate: Scalars['Timestamp']['input']
+  grouping?: InputMaybe<GroupingType>
   startDate: Scalars['Timestamp']['input']
 }
 
@@ -190,6 +200,7 @@ export type QueryStatisticsUploadedImagesArgs = {
   comparisonEndDate?: InputMaybe<Scalars['Timestamp']['input']>
   comparisonStartDate?: InputMaybe<Scalars['Timestamp']['input']>
   endDate: Scalars['Timestamp']['input']
+  grouping?: InputMaybe<GroupingType>
   startDate: Scalars['Timestamp']['input']
 }
 
@@ -197,6 +208,7 @@ export type QueryStatisticsUsersArgs = {
   comparisonEndDate?: InputMaybe<Scalars['Timestamp']['input']>
   comparisonStartDate?: InputMaybe<Scalars['Timestamp']['input']>
   endDate: Scalars['Timestamp']['input']
+  grouping?: InputMaybe<GroupingType>
   startDate: Scalars['Timestamp']['input']
 }
 
@@ -301,6 +313,7 @@ export type StatisticsQuery = {
   comparisonStartDate?: Maybe<Scalars['DateTime']['output']>
   dateEnd: Scalars['DateTime']['output']
   dateStart: Scalars['DateTime']['output']
+  grouping?: Maybe<Scalars['String']['output']>
 }
 
 /** StatusSubscriptionType [PENDING, ACTIVE, FINISHED, DELETED] */
@@ -315,6 +328,7 @@ export type Subscription = {
   __typename?: 'Subscription'
   createdPost: PostListViewModel
   createdSubscription: PaymentListViewModel
+  imagePostDeleted: PostListViewModel
   postDeleted: PostDeletedViewModel
 }
 

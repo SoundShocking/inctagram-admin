@@ -52,7 +52,7 @@ export const UserPaymentsTable = <T extends {}>({ tableProps }: { tableProps: Ta
                       key={cell.id}
                       style={{ width: cell.column.getSize() }}
                     >
-                      <div>{flexRender(cell.column.columnDef.cell, cell.getContext())}</div>
+                      <div>{flexRender(cell.column.columnDef.cell, cell.getContext())} </div>
                     </td>
                   )
                 })}

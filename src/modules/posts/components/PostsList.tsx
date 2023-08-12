@@ -12,6 +12,7 @@ import { Spinner } from '@/ui'
 import { Switch } from '@/ui/switch'
 import {
   addNewPostSubscriptionsEffect,
+  deleteImagePostSubscriptions,
   GET_POSTS_LIST,
   handleSearchDebounceEffect,
   infinityScrollForPostsEffect,
@@ -61,6 +62,7 @@ export const PostsList = () => {
     setSearch(target)
   }
 
+  deleteImagePostSubscriptions(subscribeToMore)
   deletePostSubscriptionsEffect(subscribeToMore)
   addNewPostSubscriptionsEffect(autoUpdate, subscribeToMore)
   infinityScrollForPostsEffect({
