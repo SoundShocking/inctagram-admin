@@ -27,9 +27,9 @@ export const SliderImagesPost = ({ postImages }: { postImages: string[] }) => {
         spaceBetween={50}
       >
         {postImages.map((image, index) => (
-          <SwiperSlide key={index} className="flex items-center">
+          <SwiperSlide key={index} className="flex items-center cursor-pointer" data-src={image}>
             <Placeholder
-              alt={'Post image'}
+              alt=""
               className="bg-dark-500 h-full w-full object-contain"
               width={234}
               height={240}

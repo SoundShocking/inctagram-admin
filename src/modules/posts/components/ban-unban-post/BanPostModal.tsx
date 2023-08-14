@@ -94,6 +94,8 @@ export const BanUserPostModal = ({
     setIsOpen(false)
   }
 
+  if (!isBanUserOpen) return null
+
   return (
     <ModalWithContent
       isOpen={isBanUserOpen}

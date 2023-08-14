@@ -1,5 +1,9 @@
 import { clsx } from 'clsx'
 import { formatDistance, parseISO } from 'date-fns'
+import lgRotate from 'lightgallery/plugins/rotate'
+import lgThumbnail from 'lightgallery/plugins/thumbnail'
+import lgZoom from 'lightgallery/plugins/zoom'
+import LightGallery from 'lightgallery/react'
 import Link from 'next/link'
 
 import { LocaleType, NotFoundComponent } from '@/components'
@@ -39,7 +43,13 @@ export const Post = ({
       <div className="max-w-56 flex flex-col h-auto">
         <div className="w-full h-full ">
           {post.urlsPostsImages ? (
-            <SliderImagesPost postImages={post.urlsPostsImages} />
+            <LightGallery
+              selector=".swiper-slide"
+              plugins={[lgThumbnail, lgRotate, lgZoom]}
+              download={false}
+            >
+              <SliderImagesPost postImages={post.urlsPostsImages} />
+            </LightGallery>
           ) : (
             <NotFoundComponent message={'No images'} />
           )}
@@ -47,7 +57,7 @@ export const Post = ({
             <div className="flex grow items-center gap-3 overflow-hidden">
               <div className="w-9 h-9 shrink-0">
                 <Placeholder
-                  className={`cursor-default object-cover rounded-full ${className.border}`}
+                  className={`cursor-default object-cover !w-9 !h-9 rounded-full ${className.border}`}
                   src={post.urlAvatar || ''}
                   alt={'User image post'}
                   height={36}
