@@ -29,6 +29,8 @@ export const UnBanPostUserModal = ({
     setIsUnbanUserOpen(false)
   }
 
+  if (!isUnbanUserOpen) return null
+
   return (
     <Confirm
       isOpen={isUnbanUserOpen}
