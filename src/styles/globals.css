@@ -44,7 +44,7 @@ body {
 }
 
 .black {
-  @apply text-accent-500 outline-none hover:text-accent-100  disabled:text-accent-900 outline-none;
+  @apply text-accent-500 hover:text-accent-100  disabled:text-accent-900 outline-none;
 }
 
 .tabsSelected {
