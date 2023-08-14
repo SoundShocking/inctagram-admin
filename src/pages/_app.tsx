@@ -1,4 +1,6 @@
 import '@/styles/globals.css'
+import '@/styles/light-gallery.css'
+import '@/styles/nprogress.css'
 import { ReactElement, ReactNode } from 'react'
 
 import { ApolloProvider } from '@apollo/client'
@@ -11,7 +13,6 @@ import { apolloClient } from '@/apollo-client'
 import { useLoader } from '@/common'
 import AuthProtection from '@/components/auth-components/auth-protection/AuthProtection'
 import { AuthProvider } from '@/store/store'
-import '../styles/nprogress.css'
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode

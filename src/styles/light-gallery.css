@@ -1,0 +1,9 @@
+@import 'lightgallery/css/lightgallery.css';
+@import 'lightgallery/css/lg-thumbnail.css';
+@import 'lightgallery/css/lg-rotate.css';
+@import 'lightgallery/css/lg-zoom.css';
+
+.lg-outer .lg-thumb-item.active,
+.lg-outer .lg-thumb-item:hover {
+  border-color: #397df6;
+}
