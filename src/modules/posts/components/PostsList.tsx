@@ -1,11 +1,13 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useCallback, useMemo, useRef, useState } from 'react'
 
 import { useQuery } from '@apollo/client'
+import { InitDetail } from 'lightgallery/lg-events'
 import { useInView } from 'react-intersection-observer'
 import { toast } from 'react-toastify'
 import { useUpdateEffect } from 'usehooks-ts'
 
 import { ErrorMessage, NotFoundComponent, useTranslation } from '@/components'
+import { PostsLightGallery } from '@/modules/posts/components/PostsLightGallery'
 import { deletePostSubscriptionsEffect } from '@/modules/posts/custom/useEffect/deletePostSubscriptionsEffect'
 import { PostListViewModel, Query } from '@/types'
 import { Spinner } from '@/ui'
@@ -86,6 +88,24 @@ export const PostsList = () => {
     }
   }, [autoUpdate])
 
+  const lightGallery = useRef<any>(null)
+
+  const onLightGalleryInit = useCallback((detail: InitDetail) => {
+    if (detail) {
+      lightGallery.current = detail.instance
+    }
+  }, [])
+
+  const openLG = () => {
+    lightGallery?.current?.openGallery?.(0)
+  }
+
+  const [postIdForLG, setPostIdForLG] = useState<number | null>(null)
+  const images = useMemo(
+    () => data?.postsList.items.find(post => post.postId === postIdForLG)?.urlsPostsImages,
+    [postIdForLG]
+  )
+
   return (
     <div className="w-full relative sm:pr-4 md:pr-4 flex flex-col">
       <ErrorMessage errorMessage={error?.message} />
@@ -106,6 +126,9 @@ export const PostsList = () => {
         />
       </div>
       <div className="flex justify-between gap-8"></div>
+
+      <PostsLightGallery onInit={onLightGalleryInit} images={images} />
+
       <div className="grid sm:grid-cols-2 md:grid-cols-3 grid-cols-4 gap-x-3 gap-y-8">
         {loading ? (
           SkeletonPost(32)
@@ -120,6 +143,8 @@ export const PostsList = () => {
                   key={index}
                   showMore={showMoreIds.includes(post.postId)}
                   setShowMoreId={handleCallBackShowMore}
+                  setPostIdForLG={setPostIdForLG}
+                  openLG={openLG}
                 />
               ))
             ) : (
