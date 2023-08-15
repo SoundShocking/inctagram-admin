@@ -20,6 +20,8 @@ export type PostsItemsType = {
 
 export type TableActionsDropDownType = {
   post: Pick<PostsItemsType, 'userName' | 'status' | 'postId' | 'postStatus' | 'userId'>
+  setPostIdForLG: (id: number) => void
+  openLG: () => void
 }
 
 export interface deletePostDataInterface {

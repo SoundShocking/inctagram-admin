@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import { AiFillUnlock } from 'react-icons/ai'
-import { FaEllipsis, FaUserLock } from 'react-icons/fa6'
+import { FaEllipsis, FaRegImages, FaUserLock } from 'react-icons/fa6'
 import { ImEye, ImEyeBlocked } from 'react-icons/im'
 
 import { useTranslation } from '@/components'
@@ -12,6 +12,8 @@ import { BanUserPostModal, TableActionsDropDownType, UnBanPostUserModal } from '
 
 export const PostsActionsDropDown = ({
   post: { userName, postStatus, postId, status, userId },
+  setPostIdForLG,
+  openLG,
 }: TableActionsDropDownType) => {
   const { t } = useTranslation()
 
@@ -38,11 +40,18 @@ export const PostsActionsDropDown = ({
     setIsUnbanUserOpen(true)
   }
 
+  const onClickGallery = async () => {
+    setPostIdForLG(postId)
+    setTimeout(() => {
+      openLG()
+    }, 50)
+  }
+
   return (
     <>
       <DropdownMenu.Root modal={false}>
         <DropdownMenu.Trigger asChild>
-          <button className="flex align-center text-white hover:text-accent-500 transition-colors data-[state=open]:text-accent-500">
+          <button className="flex align-center text-white hover:text-accent-500 transition-colors data-[state=open]:text-accent-500 outline-none">
             <FaEllipsis size={24} />
           </button>
         </DropdownMenu.Trigger>
@@ -91,6 +100,14 @@ export const PostsActionsDropDown = ({
                 {t.translation.postsList.unbanPost}
               </DropdownMenu.Item>
             )}
+
+            <DropdownMenu.Item
+              className="flex items-center my-3 cursor-pointer hover:text-accent-500 transition-colors outline-none"
+              onSelect={onClickGallery}
+            >
+              <FaRegImages size={24} className="mr-3" />
+              Open gallery
+            </DropdownMenu.Item>
           </DropdownMenu.Content>
         </DropdownMenu.Portal>
       </DropdownMenu.Root>

@@ -1,9 +1,5 @@
 import { clsx } from 'clsx'
 import { formatDistance, parseISO } from 'date-fns'
-import lgRotate from 'lightgallery/plugins/rotate'
-import lgThumbnail from 'lightgallery/plugins/thumbnail'
-import lgZoom from 'lightgallery/plugins/zoom'
-import LightGallery from 'lightgallery/react'
 import Link from 'next/link'
 
 import { LocaleType, NotFoundComponent } from '@/components'
@@ -21,12 +17,16 @@ export const Post = ({
   setShowMoreId,
   t,
   locale,
+  setPostIdForLG,
+  openLG,
 }: {
   locale: string | undefined
   t: LocaleType
   post: PostListViewModel
   showMore: boolean
   setShowMoreId: (postId: number) => void
+  setPostIdForLG: (id: number) => void
+  openLG: () => void
 }) => {
   const localeTime: Locale | undefined = localTimeDisplayLanguageInThePost[locale || 'en']
 
@@ -43,13 +43,7 @@ export const Post = ({
       <div className="max-w-56 flex flex-col h-auto">
         <div className="w-full h-full ">
           {post.urlsPostsImages ? (
-            <LightGallery
-              selector=".swiper-slide"
-              plugins={[lgThumbnail, lgRotate, lgZoom]}
-              download={false}
-            >
-              <SliderImagesPost postImages={post.urlsPostsImages} />
-            </LightGallery>
+            <SliderImagesPost postImages={post.urlsPostsImages} />
           ) : (
             <NotFoundComponent message={'No images'} />
           )}
@@ -72,7 +66,7 @@ export const Post = ({
               </Link>
             </div>
 
-            <PostsActionsDropDown post={post} />
+            <PostsActionsDropDown post={post} setPostIdForLG={setPostIdForLG} openLG={openLG} />
           </div>
 
           <div className="mt-3 text-light-900 leading-none text-xs">
