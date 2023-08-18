@@ -6,6 +6,7 @@ import { FC } from 'react'
 import clsx from 'clsx'
 import { getYear } from 'date-fns'
 import { range } from 'lodash'
+// eslint-disable-next-line import/no-named-as-default
 import ReactDatePicker from 'react-datepicker'
 
 import s from '../date-picker/datePicker.module.scss'

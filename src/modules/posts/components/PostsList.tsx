@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useCallback, useMemo, useRef, useState } from 'react'
 
 import { useQuery } from '@apollo/client'
+// eslint-disable-next-line import/no-named-as-default
 import { InitDetail } from 'lightgallery/lg-events'
 import { useInView } from 'react-intersection-observer'
 import { toast } from 'react-toastify'
