@@ -3,7 +3,6 @@ import React, { useContext } from 'react'
 import { useQuery } from '@apollo/client'
 import Cookies from 'js-cookie'
 import { FieldValues } from 'react-hook-form'
-import { toast } from 'react-toastify'
 
 import { useGlobalForm } from '@/common'
 import { useTranslation } from '@/components'
@@ -34,7 +33,6 @@ export const LoginForm = () => {
     refetch()
       .then()
       .catch(() => {
-        toast.error('Bad request')
         setCustomError(
           'password',
           'The password or the email or Username are incorrect. Try again, please'
