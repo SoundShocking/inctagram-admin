@@ -18,13 +18,28 @@ export const LoginForm = () => {
 
   const { t } = useTranslation()
 
-  const { handleSubmit, register, errors } = useGlobalForm(schemaLogin)
+  const { handleSubmit, register, errors, setCustomError } = useGlobalForm(schemaLogin)
   const handleFormSubmit = async ({ email, password }: FieldValues) => {
-    const authorization = btoa(email + ':' + password)
+    const encoder = new TextEncoder()
+    const data = encoder.encode(`${email}:${password}`)
+
+    // Преобразование байтового массива в строку
+    const binaryString = Array.from(data)
+      .map(byte => String.fromCharCode(byte))
+      .join('')
+
+    // Кодирование строки в base64
+    const authorization = btoa(binaryString)
 
     refetch()
       .then()
-      .catch(() => toast.error('Bad request'))
+      .catch(() => {
+        toast.error('Bad request')
+        setCustomError(
+          'password',
+          'The password or the email or Username are incorrect. Try again, please'
+        )
+      })
     Cookies.set('authToken', authorization)
   }
 
@@ -59,7 +74,7 @@ export const LoginForm = () => {
             error={errors?.password?.message}
             {...register('password')}
           />
-          <GlobalButton className={'mt-4'} variant="default" type="submit">
+          <GlobalButton className={'mt-10'} variant="default" type="submit">
             {t.translation.login.signIn}
           </GlobalButton>
         </form>
