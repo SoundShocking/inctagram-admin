@@ -6,4 +6,5 @@ export const routes = {
   payments: '/payments',
   statistics: '/statistics',
   posts: '/posts',
+  mainAddress: 'https://cygan.lol/',
 }

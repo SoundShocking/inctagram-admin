@@ -17,6 +17,7 @@ import { UsersTableUserIdCell } from './UsersTableUserIdCell'
 
 import { useTranslation } from '@/components'
 import { TableSortIcon } from '@/components/tables/table-sort-icon'
+import { routes } from '@/routing/router'
 import { UserForSuperAdminViewModel } from '@/types'
 
 export type UsersItem = Pick<
@@ -56,7 +57,7 @@ export const UsersTable: FC<Props> = ({ users, sorting, setSorting, loading }) =
       cell: info => (
         <Link
           className="border-b border-current hover:text-accent-500 transition-colors truncate"
-          href={`/users/${info.row.original.userId}`}
+          href={`${routes.mainAddress}${info.row.original.userName}`}
         >
           {info.getValue()}
         </Link>

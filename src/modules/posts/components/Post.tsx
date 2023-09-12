@@ -3,6 +3,7 @@ import { formatDistance, parseISO } from 'date-fns'
 import Link from 'next/link'
 
 import { LocaleType, NotFoundComponent } from '@/components'
+import { routes } from '@/routing/router'
 import { PostListViewModel } from '@/types'
 import { Placeholder } from '@/ui'
 import {
@@ -59,7 +60,7 @@ export const Post = ({
                 />
               </div>
 
-              <Link href={`/users/${post.userId}`} className="overflow-hidden">
+              <Link href={`${routes.mainAddress}${post.userName}`} className="overflow-hidden">
                 <div className="font-semibold truncate leading-6 text-base hover:text-accent-500 transition-colors outline-none">
                   {post.userName}
                 </div>
