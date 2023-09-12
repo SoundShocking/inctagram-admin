@@ -7,6 +7,7 @@ import { useInView } from 'react-intersection-observer'
 import { toast } from 'react-toastify'
 import { useUpdateEffect } from 'usehooks-ts'
 
+import { useSessionStorageAutoUpdate } from '@/common'
 import { ErrorMessage, NotFoundComponent, useTranslation } from '@/components'
 import { PostsLightGallery } from '@/modules/posts/components/PostsLightGallery'
 import { deletePostSubscriptionsEffect } from '@/modules/posts/custom/useEffect/deletePostSubscriptionsEffect'
@@ -106,6 +107,8 @@ export const PostsList = () => {
     () => data?.postsList.items.find(post => post.postId === postIdForLG)?.urlsPostsImages,
     [postIdForLG]
   )
+
+  useSessionStorageAutoUpdate(setAutoUpdate)
 
   return (
     <div className="w-full relative sm:pr-4 md:pr-4 flex flex-col">

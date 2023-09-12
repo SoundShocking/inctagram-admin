@@ -8,6 +8,7 @@ import { getPaymentsSorting } from '../helpers/getPaymentsSorting'
 
 import { PaymentsTable } from './PaymentsTable'
 
+import { useSessionStorageAutoUpdate } from '@/common'
 import { useTranslation } from '@/components'
 import { TablePagination } from '@/components/tables/table-pagination'
 import {
@@ -68,6 +69,8 @@ export const PaymentsList: FC = () => {
       })
     }
   }, [autoUpdate])
+
+  useSessionStorageAutoUpdate(setAutoUpdate)
 
   return (
     <div>

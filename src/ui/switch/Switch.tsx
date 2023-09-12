@@ -10,6 +10,10 @@ interface Props {
 
 export const Switch: FC<Props> = ({ text, checked, setChecked }) => {
   const id = useId()
+  const handlerSwitch = (checked: boolean) => {
+    sessionStorage.setItem('autoUpdatePosts', String(checked))
+    setChecked(checked)
+  }
 
   return (
     <div className="inline-flex items-center">
@@ -23,7 +27,7 @@ export const Switch: FC<Props> = ({ text, checked, setChecked }) => {
         className="w-[42px] h-[25px] rounded-full relative bg-white outline-none"
         id={id}
         checked={checked}
-        onCheckedChange={setChecked}
+        onCheckedChange={checked => handlerSwitch(checked)}
       >
         <SwitchPrimitive.Thumb className="block w-[21px] h-[21px] bg-accent-500 rounded-full transition-transform duration-100 translate-x-0.5 data-[state=checked]:translate-x-[19px]" />
       </SwitchPrimitive.Root>

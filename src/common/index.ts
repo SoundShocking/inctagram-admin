@@ -5,3 +5,4 @@ export * from './data-changes-format/dateChangesFormat'
 
 //useEffect
 export * from './useEffect/changingTheReasonForTheBanOrBlockingEffect'
+export * from './hooks/useSessionStorageAutoUpdate'
