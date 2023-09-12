@@ -141,12 +141,13 @@ export const DateCalendar: FC<DatePickerProps> = ({
       </p>
       <ReactDatePicker
         locale={locale || undefined}
+        minDate={new Date(2023, 2, 1)}
         maxDate={maxDate}
         dateFormat="dd-MM-yyyy"
         startDate={startDate}
         endDate={endDate}
         selected={startDate}
-        monthsShown={12}
+        monthsShown={2}
         preventOpenOnFocus={true}
         selectsRange={isRange}
         renderCustomHeader={({
