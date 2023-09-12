@@ -15,7 +15,7 @@ export const DetailsInput = ({ setError, error, setBanDetails }: PropsType) => {
     debugger
     const MAX_LENGTH = 100
 
-    if (value.length < MAX_LENGTH) {
+    if (value.length <= MAX_LENGTH) {
       setError('')
       setBanDetails(value)
     } else {
