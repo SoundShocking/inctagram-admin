@@ -64,26 +64,29 @@ export const CustomHeader = ({
           <select
             className={classNames.select}
             value={getYear(date)}
-            onChange={({ target: { value } }) => changeYear(Number(value))}
+            onChange={({ target: value }) => changeYear(Number(value))}
           >
-            {years.map((option, key) => (
-              <option key={key} value={option}>
-                {option}
-              </option>
-            ))}
+            {years.map(
+              (option, key) =>
+                option >= 2021 && (
+                  <option key={key} value={option}>
+                    {option}
+                  </option>
+                )
+            )}
           </select>
 
-          <select
-            className={classNames.select}
-            value={months[getMonth(date)]}
-            onChange={({ target: { value } }) => changeMonth(months.indexOf(value))}
-          >
-            {months.map((option, key) => (
-              <option key={key} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
+          {/*<select*/}
+          {/*  className={classNames.select}*/}
+          {/*  value={months[getMonth(date)]}*/}
+          {/*  onChange={({ target: { value } }) => changeMonth(months.indexOf(value))}*/}
+          {/*>*/}
+          {/*  {months.map((option, key) => (*/}
+          {/*    <option key={key} value={option}>*/}
+          {/*      {option}*/}
+          {/*    </option>*/}
+          {/*  ))}*/}
+          {/*</select>*/}
         </div>
         <button type="button" className={classNames.button} onClick={increaseMonth}>
           <KeyboardArrowRight />

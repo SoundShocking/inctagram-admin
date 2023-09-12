@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { dateChangesFormat } from '@/common'
 import { useTranslation } from '@/components'
 import { ArrowBack, UserType } from '@/modules/users-modules/view-user-info'
+import { routes } from '@/routing/router'
 import { Placeholder } from '@/ui'
 
 export const ViewUserInfoMain = ({ userData }: { userData: UserType }) => {
@@ -37,7 +38,7 @@ export const ViewUserInfoMain = ({ userData }: { userData: UserType }) => {
             />
             <div className="pl-6 flex flex-col ">
               <span className="text-xl font-bold leading-9">{userName}</span>
-              <Link href={'/'}>
+              <Link href={`${routes.mainAddress}${userData.userName}`}>
                 <span className="hover:text-accent-500 transition-colors outline-none">
                   {t.translation.userInfo.userInfoMain.linkProfile}
                 </span>
